@@ -22,9 +22,11 @@ Reglas obligatorias:
 2) Sé claro y conciso: 2 a 5 oraciones o viñetas cortas. Sin relleno.
 3) Responde en español, tono banca profesional.
 4) Certificado de depósito / depósito a plazo = producto de INVERSIÓN/ahorro a plazo.
-   NO lo confundas con "préstamo con garantía de certificados BSC" (eso es un crédito).
-5) Si la pregunta es ambigua (definición vs catálogo vs proceso vs producto personal),
-   aclara en una línea las 2 opciones y responde la más probable según la KB, o pide elegir.
+   NO es una «cuenta» de ahorro/corriente (CA/CC). Tampoco lo confundas con
+   «préstamo con garantía de certificados BSC» (eso es un crédito).
+5) Si la pregunta es clara (definición, «es una cuenta?», diferencia entre productos),
+   responde de frente con evidencia de la KB. Solo pide aclarar si el mensaje es un
+   sustantivo ambiguo muy corto (ej. solo «certificado»).
 6) No menciones Genesis, RAG, índices ni que eres un agente PoC.
 7) Si no hay evidencia en el índice, dilo en una frase y ofrece reformular.
 8) NUNCA emitas citas, marcadores ni dumps numéricos: nada de 【n:m†source】,
@@ -67,6 +69,13 @@ def is_knowledge_ambiguous_question(question: str) -> bool:
     q = (question or "").strip().lower()
     if not q or _looks_personal_banking(q):
         return False
+    # Comparación / definición explícita → no ambigua
+    if re.search(
+        r"\b(que\s+es|qu[eé]\s+es|definici[oó]n|es\s+una?\s+|son\s+lo\s+mismo|"
+        r"diferencia|versus|\bvs\b)\b",
+        q,
+    ):
+        return False
     # Sustantivo solo / muy corto
     if len(q.split()) <= 3 and any(
         s in q
@@ -84,13 +93,7 @@ def is_knowledge_ambiguous_question(question: str) -> bool:
             "multicrédito",
         )
     ):
-        if not re.search(r"\b(que es|qué es|como|cómo|proceso|requisito|contratar)\b", q):
-            return True
-    # Certificado sin distinguir inversión vs garantía
-    if any(s in q for s in ("certificado", "deposito a plazo", "depósito a plazo")):
-        if "garantia" not in q and "garantía" not in q and "prestamo" not in q and "préstamo" not in q:
-            if "que es" in q or "qué es" in q or len(q.split()) <= 6:
-                return True
+        return True
     return False
 
 
@@ -126,6 +129,17 @@ def build_knowledge_ambiguity_clarification(
         )
     ):
         return None
+    # Pregunta clara de definición / comparación → responder, no aclarar
+    # Ej.: «un depósito a plazo es una cuenta?», «qué es un CD», «diferencia entre…»
+    if re.search(
+        r"\b("
+        r"que\s+es|qu[eé]\s+es|definici[oó]n|significa|"
+        r"es\s+una?\s+|son\s+lo\s+mismo|es\s+lo\s+mismo|"
+        r"diferencia|versus|\bvs\b|o\s+una\s+cuenta|o\s+un\s+pr[eé]stamo"
+        r")\b",
+        q,
+    ):
+        return None
     # Selección de card APK / id de producto → no ambigüedad de glosario
     if (
         "deposito_plazo" in q
@@ -137,24 +151,27 @@ def build_knowledge_ambiguity_clarification(
     if any(s in q for s in ("certificado", "deposito a plazo", "depósito a plazo", "dap", "cdt")):
         if "garantia" in q or "garantía" in q or "prestamo" in q or "préstamo" in q:
             return None
-        return (
-            f"{hello}¿te refieres a la **definición del depósito a plazo / certificado de depósito** "
-            f"(producto de inversión) o a un **préstamo con garantía de certificados BSC**?\n\n"
-            f"También puedo listar **tus** certificados si lo indicas."
-        )
+        # Solo aclarar si el mensaje es un sustantivo corto sin pregunta definida
+        if len(q.split()) <= 4:
+            return (
+                f"{hello}¿te refieres a la **definición del depósito a plazo / certificado de depósito** "
+                f"(producto de inversión) o a un **préstamo con garantía de certificados BSC**?\n\n"
+                f"También puedo listar **tus** certificados si lo indicas."
+            )
+        return None
     if "cuenta corriente" in q or q.strip() in ("cuentas corrientes", "cuenta corrientes"):
         return (
             f"{hello}¿quieres la **definición** de cuenta corriente, el **catálogo** del banco "
             f"o ver **tus** cuentas?"
         )
     if any(s in q for s in ("multicredit", "multicrédito")) and not any(
-        s in q for s in (
+        s in q
+        for s in (
             "condicion", "cargo", "que es", "qué es", "requisito",
             "robo", "roban", "pierdo", "plastico", "plástico",
             "avance", "efectivo", "comision", "comisión", "consumo",
             "cuotas", "diferenc", "disting", "compar", "versus", " vs ",
             "pago", "cancel",
-            # Selección / continuidad de portafolio (no glosario)
             "dame", "dime", "la del", "el del", "quiero el", "quiero la",
             "seleccion", "selección", "esa tarjeta", "mi tarjeta", "tu tarjeta",
             "adeud", "disponible", "saldo", "limite", "límite", "debo",
@@ -256,9 +273,11 @@ def ask_foundry_kb_agent(
     # Clarificación local antes de gastar latencia Foundry (ambiguos cortos)
     if prefer_clarify_ambiguous:
         clarify = build_knowledge_ambiguity_clarification(question, display_name)
-        # Solo clarificar si es sustantivo corto / sin "qué es" explícito de inversión
         qn = (question or "").strip().lower()
-        if clarify and not re.search(r"\b(que es|qué es|definicion|definición)\b", qn):
+        if clarify and not re.search(
+            r"\b(que\s+es|qu[eé]\s+es|definici[oó]n|es\s+una?\s+|diferencia)\b",
+            qn,
+        ):
             return {
                 "ok": True,
                 "answer": clarify,
