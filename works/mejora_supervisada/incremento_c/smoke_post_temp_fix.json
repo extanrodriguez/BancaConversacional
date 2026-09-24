@@ -1,0 +1,60 @@
+{
+  "ts": "2026-09-21T20:10:02Z",
+  "results": [
+    {
+      "q": "beneficios puntos santa cruz visa platinum",
+      "http": 200,
+      "ms": 10120,
+      "reply_prefix": "Documento digital: Es la información codificada en forma digital sobre un soporte lógico o físico, en la cual se utilizan los métodos electrónicos, fotolitográficos, ópticos o similares que se constituyen en representación de actos, hechos o datos jurídicamente relevantes.",
+      "error_class": null,
+      "error_stage": null,
+      "deployment": "gpt-6-astra",
+      "brain_source": "resolve_full",
+      "rag_status": "FAQ"
+    },
+    {
+      "q": "exclusiones recompensas visa infinite",
+      "http": 200,
+      "ms": 7777,
+      "reply_prefix": "Documento digital: Es la información codificada en forma digital sobre un soporte lógico o físico, en la cual se utilizan los métodos electrónicos, fotolitográficos, ópticos o similares que se constituyen en representación de actos, hechos o datos jurídicamente relevantes.",
+      "error_class": null,
+      "error_stage": null,
+      "deployment": "gpt-6-astra",
+      "brain_source": "resolve_full",
+      "rag_status": "FAQ"
+    },
+    {
+      "q": "como se calcula la tasa de interes tarjeta de credito",
+      "http": 200,
+      "ms": 7898,
+      "reply_prefix": "No pude completar la consulta con la información disponible.",
+      "error_class": null,
+      "error_stage": null,
+      "deployment": "gpt-6-astra",
+      "brain_source": "resolve_full",
+      "rag_status": "FAQ"
+    },
+    {
+      "q": "requisitos visa platinum",
+      "http": 200,
+      "ms": 518,
+      "reply_prefix": "Seleccionaste **Visa Platinum**. | Requisitos y prerrequisitos de la contratación del producto Tarjeta de Crédito (Visa Clásica, Gold, Platinum, Infinite, Joven y demás TCC del catálogo, salvo que una ficha indique requisitos específicos distintos): Información de la Cédula de Identidad y Electoral. Mínimo 6 (seis) meses",
+      "error_class": null,
+      "error_stage": null,
+      "deployment": "gpt-6-astra",
+      "brain_source": "structured_shortcut",
+      "rag_status": "FAQ"
+    },
+    {
+      "q": "compara visa platinum e infinite",
+      "http": 200,
+      "ms": 1057,
+      "reply_prefix": "Comparación de catálogo (orden de mención / conjunto vigente): | 1. **Visa Platinum** — evidencia recuperada (producto verificado). | __AZURE_SEARCH__ | Tarjeta de Crédito Visa Platinum: instrumento de pago que permite realizar pagos o consumos en establecimientos afiliados sin efectivo, con características y condiciones de ",
+      "error_class": null,
+      "error_stage": null,
+      "deployment": "gpt-6-astra",
+      "brain_source": "structured_shortcut",
+      "rag_status": "FAQ"
+    }
+  ]
+}

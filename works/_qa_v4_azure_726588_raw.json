@@ -1,0 +1,379 @@
+{
+  "customer": "726588",
+  "base": "http://20.127.25.24:8447",
+  "journeys": {
+    "A_disponible_usd": {
+      "note": "USD puede no aplicar en portafolio 726588",
+      "steps": [
+        {
+          "q": "¿Con cuánto puedo contar?",
+          "http": 200,
+          "client_ms": 42644,
+          "status": "VALID_CONTRACT",
+          "intent": "ACCOUNT_BALANCE_READ",
+          "reply": "Felix Prestamos, tu saldo disponible en Cuenta de ahorros ...#### es de ####.[AMT] DOP.",
+          "options": [],
+          "audit": {
+            "semantic_mode": null,
+            "inference_count": 2,
+            "decision_trace": "[{'step': 'context', 'output': {'session_context': {'customer_id': '####', 'session_key': 'session:f4d68fec-dd9e-417d-9f9f-cd0149f56fa8', 'snapshot_key': 'customer:####:snapshot', 'snapshot_age_s': None, 'portfolio': [{'id': '####', 'type': 'SAVINGS', 'alias': 'Cuenta de Ahorros'}, {'id': '####', 'type': 'LOAN', 'alias': 'Préstamo'}, {'id': '####', 'type': 'LOAN', 'alias': 'Préstamo'}, {'id': '99'",
+            "total_ms": 42432,
+            "slowest_step": "verifier",
+            "step_count": 8,
+            "rag_status": null,
+            "deployment": ""
+          },
+          "model_called": true,
+          "error": ""
+        },
+        {
+          "q": "la de dólares",
+          "http": 200,
+          "client_ms": 26737,
+          "status": "VALID_CONTRACT",
+          "intent": "ACCOUNT_BALANCE_READ",
+          "reply": "Felix Prestamos, no encuentro un producto activo con esa referencia en tu portafolio.",
+          "options": [],
+          "audit": {
+            "semantic_mode": null,
+            "inference_count": 0,
+            "decision_trace": "[{'step': 'field_fastpath_currency_switch', 'output': {'intent': 'ACCOUNT_BALANCE_READ', 'ref': None}}]",
+            "total_ms": 26522,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": false,
+          "error": ""
+        }
+      ],
+      "model_calls": 1
+    },
+    "B_saldo_contable": {
+      "steps": [
+        {
+          "q": "¿Cuál es el saldo de mi cuenta?",
+          "http": 200,
+          "client_ms": 14081,
+          "status": "VALID_CONTRACT",
+          "intent": "ACCOUNT_BALANCE_READ",
+          "reply": "Felix Prestamos, tu saldo actual en Cuenta de ahorros ...#### es de **RD$[AMT]**. Nota: la fecha de origen del dato bancario es desconocida; no lo presento como actualizado.",
+          "options": [],
+          "audit": {
+            "semantic_mode": "azure_plan",
+            "inference_count": 2,
+            "decision_trace": "[{'step': 'azure_plan', 'output': {'semantic_mode': 'azure_plan', 'route_source': 'azure_plan', 'brain_source': 'resolve_full', 'deployment': 'gpt-4o-mini', 'task_count': 1, 'task_statuses': {'t1.balance': 'available'}, 'transition': 'none', 'calls': [{'name': 'proposer', 'duration_ms': ####, 'deployment': 'gpt-4o-mini'}, {'name': 'verifier', 'duration_ms': ####, 'deployment': 'gpt-4o-mini'}], 'in",
+            "total_ms": 13880,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": true,
+          "error": ""
+        },
+        {
+          "q": "¿Y el saldo contable?",
+          "http": 200,
+          "client_ms": 29006,
+          "status": "VALID_CONTRACT",
+          "intent": "ACCOUNT_BALANCE_READ",
+          "reply": "Felix Prestamos, tu saldo actual en Cuenta de ahorros ...#### es de ####.[AMT] DOP.",
+          "options": [],
+          "audit": {
+            "semantic_mode": null,
+            "inference_count": 0,
+            "decision_trace": "[{'step': 'field_fastpath_balance', 'output': {'intent': 'ACCOUNT_BALANCE_READ', 'ref': '####'}}]",
+            "total_ms": 28812,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": false,
+          "error": ""
+        }
+      ],
+      "model_calls": 1
+    },
+    "C_vision_retomar": {
+      "steps": [
+        {
+          "q": "¿Cuál es el saldo disponible de mi cuenta?",
+          "http": 200,
+          "client_ms": 5643,
+          "status": "VALID_CONTRACT",
+          "intent": "ACCOUNT_BALANCE_READ",
+          "reply": "Felix Prestamos, tu saldo disponible en Cuenta de ahorros ...#### es de **RD$[AMT]**. Nota: la fecha de origen del dato bancario es desconocida; no lo presento como actualizado.",
+          "options": [],
+          "audit": {
+            "semantic_mode": "azure_plan",
+            "inference_count": 2,
+            "decision_trace": "[{'step': 'azure_plan', 'output': {'semantic_mode': 'azure_plan', 'route_source': 'azure_plan', 'brain_source': 'resolve_full', 'deployment': 'gpt-4o-mini', 'task_count': 1, 'task_statuses': {'t1.available': 'available'}, 'transition': 'none', 'calls': [{'name': 'proposer', 'duration_ms': ####, 'deployment': 'gpt-4o-mini'}, {'name': 'verifier', 'duration_ms': ####, 'deployment': 'gpt-4o-mini'}], '",
+            "total_ms": 5414,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": true,
+          "error": ""
+        },
+        {
+          "q": "Dime la visión del banco",
+          "http": 200,
+          "client_ms": 5790,
+          "status": "VALID_CONTRACT",
+          "intent": "TURN_PLAN_MULTI",
+          "reply": "Felix Prestamos, Ser el Banco preferido de nuestros clientes, ofreciendo un servicio conveniente, transparente, simple, con un equipo de personas capaces y motivadas a ofrecer un beneficio tangible.",
+          "options": [],
+          "audit": {
+            "semantic_mode": "azure_plan",
+            "inference_count": 2,
+            "decision_trace": "[{'step': 'azure_plan', 'output': {'semantic_mode': 'azure_plan', 'route_source': 'azure_plan', 'brain_source': 'resolve_full', 'deployment': 'gpt-4o-mini', 'task_count': 1, 'task_statuses': {'t1': 'available'}, 'transition': 'none', 'calls': [{'name': 'proposer', 'duration_ms': ####, 'deployment': 'gpt-4o-mini'}, {'name': 'verifier', 'duration_ms': ####, 'deployment': 'gpt-4o-mini'}], 'inference_",
+            "total_ms": 5572,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "FAQ",
+            "deployment": ""
+          },
+          "model_called": true,
+          "error": ""
+        },
+        {
+          "q": "volvamos a esa cuenta",
+          "http": 200,
+          "client_ms": 7631,
+          "status": "VALID_CONTRACT",
+          "intent": "ACCOUNT_BALANCE_READ",
+          "reply": "Felix Prestamos, tu saldo actual en Cuenta de ahorros ...#### es de **RD$[AMT]**. Nota: la fecha de origen del dato bancario es desconocida; no lo presento como actualizado.",
+          "options": [],
+          "audit": {
+            "semantic_mode": null,
+            "inference_count": 0,
+            "decision_trace": "[{'step': 'field_fastpath_pending_continuity', 'output': {'intent': 'ACCOUNT_BALANCE_READ', 'ref': '####'}}]",
+            "total_ms": 7432,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": false,
+          "error": ""
+        }
+      ],
+      "model_calls": 2
+    },
+    "D_tasa_definicion": {
+      "steps": [
+        {
+          "q": "La tasa de mi préstamo y qué significa",
+          "http": 200,
+          "client_ms": 7029,
+          "status": "requires_selection",
+          "intent": "LOAN_DETAIL_READ",
+          "reply": "¿Sobre cuál préstamo deseas consultar:\n\n• **Préstamo ...####**\n• **Préstamo ...####**",
+          "options": [
+            {
+              "label": "Préstamo ...####",
+              "intent": null,
+              "ref_hash": "4aab50319e"
+            },
+            {
+              "label": "Préstamo ...####",
+              "intent": null,
+              "ref_hash": "131ebe7804"
+            }
+          ],
+          "audit": {
+            "semantic_mode": null,
+            "inference_count": 0,
+            "decision_trace": "[{'step': 'field_fastpath_mixed_pk', 'output': {'intent': 'LOAN_DETAIL_READ', 'ref': None}}]",
+            "total_ms": 5818,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": false,
+          "error": ""
+        },
+        {
+          "q": null,
+          "http": 200,
+          "client_ms": 5266,
+          "status": "VALID_CONTRACT",
+          "intent": "LOAN_DETAIL_READ",
+          "reply": "Felix Prestamos\n**Préstamo - ####**\n• Monto original: **RD$[AMT]**\n• Capital pendiente: **RD$[AMT]**\n• Total Adeudado: **RD$[AMT]**\n• Tasa Anual: **[RATE]%**\n• Próximo pago: **####-09-01**\n• Vencimiento del préstamo: **####-09-01**",
+          "options": [],
+          "audit": {
+            "semantic_mode": null,
+            "inference_count": 0,
+            "decision_trace": "[{'step': 't2_shortcut', 'output': {'resolved_ref': '####', 'intent': 'LOAN_DETAIL_READ'}}]",
+            "total_ms": 0,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": false,
+          "error": ""
+        }
+      ],
+      "model_calls": 0
+    },
+    "E_correccion_mision": {
+      "steps": [
+        {
+          "q": "¿Cuál es el saldo de mi cuenta de ahorro?",
+          "http": 200,
+          "client_ms": 6742,
+          "status": "VALID_CONTRACT",
+          "intent": "ACCOUNT_BALANCE_READ",
+          "reply": "Felix Prestamos, tu saldo actual en Cuenta de ahorros ...#### es de **RD$[AMT]**. Nota: la fecha de origen del dato bancario es desconocida; no lo presento como actualizado.",
+          "options": [],
+          "audit": {
+            "semantic_mode": "azure_plan",
+            "inference_count": 2,
+            "decision_trace": "[{'step': 'azure_plan', 'output': {'semantic_mode': 'azure_plan', 'route_source': 'azure_plan', 'brain_source': 'resolve_full', 'deployment': 'gpt-4o-mini', 'task_count': 1, 'task_statuses': {'t1.balance': 'available'}, 'transition': 'none', 'calls': [{'name': 'proposer', 'duration_ms': ####, 'deployment': 'gpt-4o-mini'}, {'name': 'verifier', 'duration_ms': ####, 'deployment': 'gpt-4o-mini'}], 'in",
+            "total_ms": 6541,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": true,
+          "error": ""
+        },
+        {
+          "q": "No, la corriente; además dime la misión",
+          "http": 200,
+          "client_ms": 5455,
+          "status": "PROVIDER_ERROR",
+          "intent": "SEMANTIC_AZURE_PLAN_FAILED",
+          "reply": "No pude completar la interpretación semántica en este momento. Intenta de nuevo o reformula la consulta.",
+          "options": [],
+          "audit": {
+            "semantic_mode": "azure_plan",
+            "inference_count": 0,
+            "decision_trace": "[{'step': 'azure_plan_error', 'output': {'error_class': 'InvalidModelOutputError', 'semantic_mode': 'azure_plan', 'degraded': True, 'not_heuristic_fallback': True}}]",
+            "total_ms": 5267,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": false,
+          "error": ""
+        }
+      ],
+      "model_calls": 1
+    },
+    "F_dos_pendientes": {
+      "steps": [
+        {
+          "q": "Quiero la tasa de mi préstamo y también el saldo de mi cuenta",
+          "http": 200,
+          "client_ms": 6293,
+          "status": "requires_selection",
+          "intent": "LOAN_DETAIL_READ",
+          "reply": "¿Sobre cuál préstamo deseas consultar:\n\n• **Préstamo ...####**\n• **Préstamo ...####**",
+          "options": [
+            {
+              "label": "Préstamo ...####",
+              "intent": null,
+              "ref_hash": "4aab50319e"
+            },
+            {
+              "label": "Préstamo ...####",
+              "intent": null,
+              "ref_hash": "131ebe7804"
+            }
+          ],
+          "audit": {
+            "semantic_mode": null,
+            "inference_count": 0,
+            "decision_trace": "[{'step': 'field_fastpath_personal_rate', 'output': {'intent': 'LOAN_DETAIL_READ', 'ref': None}}]",
+            "total_ms": 6091,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": false,
+          "error": ""
+        },
+        {
+          "q": null,
+          "http": 200,
+          "client_ms": 5485,
+          "status": "VALID_CONTRACT",
+          "intent": "LOAN_DETAIL_READ",
+          "reply": "Felix Prestamos\n**Préstamo - ####**\n• Monto original: **RD$[AMT]**\n• Capital pendiente: **RD$[AMT]**\n• Total Adeudado: **RD$[AMT]**\n• Tasa Anual: **[RATE]%**\n• Próximo pago: **####-09-01**\n• Vencimiento del préstamo: **####-09-01**",
+          "options": [],
+          "audit": {
+            "semantic_mode": null,
+            "inference_count": 0,
+            "decision_trace": "[{'step': 't2_shortcut', 'output': {'resolved_ref': '####', 'intent': 'LOAN_DETAIL_READ'}}]",
+            "total_ms": 0,
+            "slowest_step": null,
+            "step_count": 1,
+            "rag_status": "NOT_REQUIRED",
+            "deployment": ""
+          },
+          "model_called": false,
+          "error": ""
+        }
+      ],
+      "model_calls": 0
+    }
+  },
+  "skipped": [
+    "Transacciones bancarias (fuera de alcance)",
+    "Otros clientes distintos de 726588",
+    "Cambio de orquestador externo / Foundry index",
+    "USD real si portafolio 726588 no tiene cuenta USD (marcar NO APLICA en interpretación)",
+    "Tarjetas / DAP / certificados no presentes en 726588",
+    "Renovación sostenida de token Entra (>TTL largo)",
+    "PROD"
+  ],
+  "probes": {
+    "health": {
+      "status": "ok",
+      "service": "genesis-cognitive",
+      "env": "qa",
+      "version": "0.8.0",
+      "rag": "ready"
+    },
+    "ready_redis": {
+      "ok": true,
+      "session_backend": "redis",
+      "lock_backend": "redis",
+      "auth_mode": "entra_managed_identity",
+      "redis_required": true,
+      "session_backend_preference": "redis",
+      "session_ping": true,
+      "lock_ping": true,
+      "session_host": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+      "lock_host": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+      "errors": []
+    },
+    "context": {
+      "http": 200,
+      "client_ms": 559,
+      "status": "CONTEXT_LOADED",
+      "source": "lab_fallback",
+      "products_count": 4,
+      "active_count": 3,
+      "has_core_error": true
+    }
+  },
+  "summary": {
+    "turns": 13,
+    "http_200": 13,
+    "azure_plan_mode": 5,
+    "model_called_turns": 5,
+    "inference_total": 10
+  }
+}

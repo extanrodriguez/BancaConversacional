@@ -1,0 +1,8 @@
+dialogo_id,turno,customer_id,mensaje_usuario,que_debe_pasar,que_NO_debe_pasar,notas
+GOLD-001,1,usuario1,"Cuanto debo en mis tarjetas de credito y cual de ellas tiene mas credito disponible?","Mostrar resumen de todas las TC con adeudado y disponible; indicar cuál tiene más disponible","Pedir elegir una sola tarjeta; hablar de DAP","Plural = resumen"
+GOLD-001,2,usuario1,"y el pago minimo de la 6374?","Responder solo pago mínimo de la tarjeta 6374","Cambiar a otra tarjeta; devolver ficha completa","Debe recordar el hilo y el dígito"
+GOLD-002,1,usuario1,"Cuanto es mi proxima cuota?","Respuesta de MONTO de cuota (o no disponible) del préstamo en foco","Responder con la fecha de pago","Cuánto ≠ cuándo"
+GOLD-002,2,usuario1,"y cuando es?","Ahora sí la próxima fecha de pago","Volver a hablar de monto","Follow-up de fecha sobre el mismo préstamo"
+GOLD-003,1,usuario1,"Que es un certificado de deposito?","Definición KB de DAP/inversión","Mostrar capital/tasa del DAP personal 5511","Conocimiento ≠ personal"
+GOLD-003,2,usuario1,"Tengo algun prestamo o tarjeta con un pago proximo?","Resumen de préstamos/tarjetas con fechas de pago","Seguir hablando del certificado 5511","Debe soltar el foco del DAP"
+GOLD-004,1,usuario1,"Cuanto debo en mis tarjetas de debito?","Decir que no hay débito como producto consultable; ofrecer cuentas o preguntar si quiso crédito","Ofrecer Credito Joven 6374 / Multicredito 7111 para elegir","No confundir débito con crédito"

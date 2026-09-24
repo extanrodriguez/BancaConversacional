@@ -1,0 +1,71 @@
+{
+  "case_id": "CMP38",
+  "section": 19,
+  "questions": [
+    "Compárame un cargo, una comisión y una penalidad."
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    496
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuáles productos del catálogo deseas comparar?\n\nComisión por mora: se origina cuando el cliente no realiza el pago mínimo requerido antes o en la fecha límite de pago establecido. Se expresa en un monto fijo establecido por la institución y pactado contractualmente con el tarjetahabiente.",
+  "replies_sanitized": [
+    "¿Cuáles productos del catálogo deseas comparar?\n\nComisión por mora: se origina cuando el cliente no realiza el pago mínimo requerido antes o en la fecha límite de pago establecido. Se expresa en un monto fijo establecido por la institución y pactado contractualmente con el tarjetahabiente."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PASS_RESOLVED",
+  "reason": "definición FAQ (comisi)",
+  "audit": {
+    "total_ms": 255,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 255,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "9b9a88b8-97e8-4075-b764-c3fe85a6cca3",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_institutional",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 2,
+          "task_statuses": {
+            "t1": "needs_clarification",
+            "t2": "available"
+          },
+          "evidence_sources": [
+            "snapshot",
+            "azure_search"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 251.7
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 255
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_PARTIAL"
+}

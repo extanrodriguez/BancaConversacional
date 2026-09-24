@@ -1,0 +1,1968 @@
+{
+  "generated_at": "2026-09-18T10:08:01.928269+00:00",
+  "total": 260,
+  "counts": {
+    "passed": 31,
+    "not_executed": 227,
+    "blocked": 2
+  },
+  "policy": "blocked/not_executed/not_applicable NO cuentan como passed; failed hace fallar pytest",
+  "nine_approved_word_cases": [
+    "P01",
+    "P15",
+    "CD13",
+    "MIX07",
+    "CC02",
+    "CC03",
+    "X05",
+    "X07",
+    "IG01"
+  ],
+  "additional_v3_summary": {
+    "passed": 22,
+    "blocked": 2
+  },
+  "audit_correction_v3_1": {
+    "pytest_local": "59 passed",
+    "critical_v3": {
+      "V3-05": "passed",
+      "V3-08": "passed",
+      "V3-12": "passed",
+      "V3-13": "passed",
+      "V3-19": "passed"
+    },
+    "semantic_authority": "heuristic_multi (plan_interpreter) autoridad local multi-tarea; Azure IntentPacket = fallthrough 1 intencion; sin tercer clasificador",
+    "workspace_sha256": {
+      "src/genesis_cognitive/brain/plan_interpreter.py": "0b4add8e1c2a3e1d35bf04ed05876563b529adee3a018946358684e0c01ae755",
+      "src/genesis_cognitive/brain/plan_executor.py": "42e0edb54853f310f06d98455a1a81ec5151ffaf2ef0fe4284d91b77d28bb6a5",
+      "src/genesis_cognitive/brain/grounded_executor.py": "cd736992672da67346cb980e7263a53603be2fdc467d2eeef1253c249be33a85",
+      "src/genesis_cognitive/brain/security_secrets.py": "fae21731b7de6b3e61584be90081bfcf5410eca552eb4ec50047be0ab8fc53b8"
+    },
+    "pending_remote": {
+      "Azure_Brain_QA": "no ejecutado (GENESIS_AZURE_BRAIN=0)",
+      "Redis_CAS": "documentado aparte",
+      "BSC.genesis.conversational.backend": "sin cambios; no verificado por hash en este paquete"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "P01",
+      "family": "P",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey3_card_fields_and_dap_exclusion",
+      "checks": [
+        "Turno 1 multi-campo con 2 tarjetas → aclaración / pending_tasks",
+        "Turno 2 con entidad → deuda (3200) y disponible (15000) en respuesta"
+      ]
+    },
+    {
+      "case_id": "P02",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P03",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P04",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P05",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P06",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P07",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P08",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P09",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P10",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P11",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P12",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P13",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P14",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "P15",
+      "family": "P",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_casos_adicionales_v3.py::test_p15_full_certificates_exclusion_journey",
+      "checks": [
+        "Tasas 8 y 9 presentes",
+        "Vence primero 2030-01-15",
+        "Sin capital/balance 10000/20000",
+        "Sin mención tarjeta en prosa"
+      ]
+    },
+    {
+      "case_id": "C01",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "C02",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "C03",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "C04",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "C05",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "C06",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "C07",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "C08",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D01",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D02",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D03",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D04",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D05",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D06",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D07",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D08",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D09",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "D10",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "R01",
+      "family": "R",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "R02",
+      "family": "R",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "R03",
+      "family": "R",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "R04",
+      "family": "R",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "X01",
+      "family": "X",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "X02",
+      "family": "X",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "X03",
+      "family": "X",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "X04",
+      "family": "X",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "X05",
+      "family": "X",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey5_secrets_scrubbed_and_ownership",
+      "checks": [
+        "Historial sin dígitos del PIN",
+        "Respuesta de seguridad; no ficha de producto por sufijo"
+      ]
+    },
+    {
+      "case_id": "X06",
+      "family": "X",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "X07",
+      "family": "X",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey5_secrets_scrubbed_and_ownership",
+      "checks": [
+        "No devuelve saldo propio ante consulta del esposo",
+        "Mensaje de titularidad/autorización"
+      ]
+    },
+    {
+      "case_id": "X08",
+      "family": "X",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "X09",
+      "family": "X",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "X10",
+      "family": "X",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG01",
+      "family": "IG",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_mission_and_vision_both",
+      "checks": [
+        "«misión y visión» contiene ambos conceptos",
+        "Tras foco préstamo, misión no cae a clarificación genérica"
+      ]
+    },
+    {
+      "case_id": "IG02",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG03",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG04",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG05",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG06",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG07",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG08",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG09",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG10",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG11",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG12",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG13",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG14",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG15",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG16",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG17",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG18",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG19",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "IG20",
+      "family": "IG",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD01",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD02",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD03",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD04",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD05",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD06",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD07",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD08",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD09",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD10",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD11",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD12",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD13",
+      "family": "CD",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_cd13_min_payment_not_personal_selection",
+      "checks": [
+        "Respuesta contiene pago mínimo / definición",
+        "No queda solo como CLARIFICATION de tarjetas personales"
+      ]
+    },
+    {
+      "case_id": "CD14",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD15",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD16",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD17",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD18",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD19",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CD20",
+      "family": "CD",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC01",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC02",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC03",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC04",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC05",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC06",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC07",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC08",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC09",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC10",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC11",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC12",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC13",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC14",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC15",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TC16",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TD01",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TD02",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TD03",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TD04",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TD05",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TD06",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TD07",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "TD08",
+      "family": "T",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR01",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR02",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR03",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR04",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR05",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR06",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR07",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR08",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR09",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR10",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR11",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR12",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR13",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR14",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "PR15",
+      "family": "P",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CE01",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CE02",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CE03",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CE04",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CE05",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CE06",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CE07",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CE08",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR01",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR02",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR03",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR04",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR05",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR06",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR07",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR08",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR09",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR10",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR11",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "GR12",
+      "family": "GR",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX01",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX02",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX03",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX04",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX05",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX06",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX07",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX08",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CTX09",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA01",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA02",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA03",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA04",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA05",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA06",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA07",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA08",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA09",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "DA10",
+      "family": "D",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX01",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX02",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX03",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX04",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX05",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX06",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX07",
+      "family": "MIX",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey4_catalog_existence_and_compare_set",
+      "checks": [
+        "Tras foco multicrédito, «¿Tengo yo ese producto?» no devuelve saldo 8000 de cuenta",
+        "Menciona tarjeta/servicio/portafolio"
+      ]
+    },
+    {
+      "case_id": "MIX08",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX09",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "MIX10",
+      "family": "MIX",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP01",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP02",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP03",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP04",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP05",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP06",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP07",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP08",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP09",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP10",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP11",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP12",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP13",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP14",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP15",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP16",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP17",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP18",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP19",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP20",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP21",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP22",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP23",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP24",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP25",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP26",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP27",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP28",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP29",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP30",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP31",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP32",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP33",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP34",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP35",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP36",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP37",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP38",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP39",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP40",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP41",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP42",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP43",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP44",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP45",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP46",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP47",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CMP48",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CC01",
+      "family": "CC",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CC02",
+      "family": "CC",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_casos_adicionales_v3.py::test_cc02_cc03_catalog_compare_ordered_add_and_ordinal",
+      "checks": [
+        "Compara Platinum + Infinite sin saldo personal",
+        "compare_set ordenado [platinum, infinite]"
+      ]
+    },
+    {
+      "case_id": "CC03",
+      "family": "CC",
+      "status": "passed",
+      "reason": "vinculado a test E2E /turn (correccion auditada V3.1)",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_casos_adicionales_v3.py::test_cc03_account_catalog_five_turns",
+      "checks": [
+        "Agrega Gold → compare_set de 3",
+        "«la segunda» resuelve Infinite"
+      ]
+    },
+    {
+      "case_id": "CC04",
+      "family": "CC",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CC05",
+      "family": "CC",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CA01",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CA02",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CA03",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CA04",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CA05",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CA06",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CA07",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "CA08",
+      "family": "C",
+      "status": "not_executed",
+      "reason": "importado; no ejecutado en esta bateria",
+      "integration": "none"
+    },
+    {
+      "case_id": "V3-01",
+      "family": "institutional",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-02",
+      "family": "topic_switch",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-03",
+      "family": "pending_interruption",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-04",
+      "family": "knowledge_missing",
+      "status": "blocked",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": [
+        "Requiere FAQ/retriever sin entradas de misión versionadas; el corpus local sí tiene vf01-r80. No se vació el corpus (límite local)."
+      ]
+    },
+    {
+      "case_id": "V3-05",
+      "family": "compound_pending",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-06",
+      "family": "projection_comparison",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-07",
+      "family": "financial_fields",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-08",
+      "family": "missing_value",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-09",
+      "family": "ambiguity_clean",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-10",
+      "family": "ambiguity_resolved",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-11",
+      "family": "catalog_comparison",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-12",
+      "family": "explicit_correction",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-13",
+      "family": "catalog_to_personal",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-14",
+      "family": "catalog_to_personal_absent",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-15",
+      "family": "general_process",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-16",
+      "family": "secret_collision",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-17",
+      "family": "otp_collision",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-18",
+      "family": "third_party",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-19",
+      "family": "typo_compound",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-20",
+      "family": "mixed_partial",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-21",
+      "family": "azure_failure",
+      "status": "blocked",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": [
+        "Precondición model=error/structured inválido; GENESIS_AZURE_BRAIN=0. No se simula fallo Azure real en esta batería (evitar fabricar traza)."
+      ]
+    },
+    {
+      "case_id": "V3-22",
+      "family": "currency_units",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-23",
+      "family": "clarification_progress",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    },
+    {
+      "case_id": "V3-24",
+      "family": "unsupported_capability",
+      "status": "passed",
+      "reason": "recalculado desde RESULTADOS_CASOS_ADICIONALES_V3 tras correccion auditada",
+      "integration": "turn_e2e",
+      "test": "tests/unit/test_correccion_auditada_v3_1.py::test_additional_case_parametrized",
+      "notes": []
+    }
+  ]
+}

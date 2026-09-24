@@ -1,0 +1,60 @@
+{
+  "case_id": "PR03",
+  "section": 13,
+  "questions": [
+    "¿Qué es un Préstamo Fácil y cómo se diferencia de un préstamo personal tradicional?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    335
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, Multicrédito BSC y Cuotas BSC son las dos modalidades de **Crédito Diferido**.\n\n- **Multicrédito BSC**: facilidad revolvente con un plástico único; los consumos se amortizan en el ciclo de la facilidad.\n- **Cuotas BSC**: línea adicional vinculada a la tarjeta de crédito personal, con cuotas fijas de capital e interés.\n\nLa diferencia principal: Multicrédito opera como crédito revolvente en plástico dedicado; Cuotas BSC financia en cuotas fijas sobre una línea distinta unida a la TC.\n\n¿Quieres cargos, consumo mínimo o el proceso de cancelación de cada uno?",
+  "replies_sanitized": [
+    "Felix Prestamos, Multicrédito BSC y Cuotas BSC son las dos modalidades de **Crédito Diferido**.\n\n- **Multicrédito BSC**: facilidad revolvente con un plástico único; los consumos se amortizan en el ciclo de la facilidad.\n- **Cuotas BSC**: línea adicional vinculada a la tarjeta de crédito personal, con cuotas fijas de capital e interés.\n\nLa diferencia principal: Multicrédito opera como crédito revolvente en plástico dedicado; Cuotas BSC financia en cuotas fijas sobre una línea distinta unida a la TC.\n\n¿Quieres cargos, consumo mínimo o el proceso de cancelación de cada uno?"
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "posible acierto; revisar criterio completo",
+  "audit": {
+    "total_ms": 98,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 98,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "60bc049f-936d-47e8-be94-4bccc2611ad8",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 94.4
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 98
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

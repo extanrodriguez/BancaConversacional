@@ -1,0 +1,58 @@
+# Referencia — usar desde raíz: docker compose -f PlanContainerizacion/FASE_1/docker-compose.yml up
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  api:
+    build:
+      context: ../..
+      dockerfile: PlanContainerizacion/FASE_1/Dockerfile
+    image: genesis-api:local
+    restart: unless-stopped
+    ports:
+      - "8445:8445"
+    env_file:
+      - ../../.env
+    environment:
+      GENESIS_REDIS_URL: redis://redis:6379/0
+      GENESIS_SERVE_UI: "true"
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8445/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 45s
+
+  # Segunda réplica para probar sesión compartida (opcional)
+  api-replica:
+    image: genesis-api:local
+    restart: unless-stopped
+    ports:
+      - "8448:8445"
+    env_file:
+      - ../../.env
+    environment:
+      GENESIS_REDIS_URL: redis://redis:6379/0
+      GENESIS_PORT: "8445"
+    depends_on:
+      redis:
+        condition: service_healthy
+    profiles:
+      - scale-test
+
+volumes:
+  redis_data:

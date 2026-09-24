@@ -1,0 +1,18 @@
+{
+  "casos_236": {
+    "path": "c:\\NovusIntelligence\\BancoSantaCruz\\BancaConversacional\\works\\insumos\\BSC_Potenciacion_Lunes\\evaluacion\\casos_236.json",
+    "sha256": "6BDF76DA155D1CE04982B5E02D9379727D8805474762778D440F26CAAFCD527D"
+  },
+  "aceptacion_p0": {
+    "path": "c:\\NovusIntelligence\\BancoSantaCruz\\BancaConversacional\\works\\insumos\\BSC_Potenciacion_Lunes\\evaluacion\\aceptacion_p0.json",
+    "sha256": "75D395182239159E3312C0C7ED7FC951FA29CF3CC90C49C2D0D80A14C64B8066"
+  },
+  "analisis": {
+    "path": "c:\\Users\\zeusa\\Downloads\\Analisis_Adjuntos_y_Decisiones.md",
+    "sha256": "243910A70182C916EB3DC39B61619CB51B20655D5C1617B8EF66F18F5F9BC3A9"
+  },
+  "config": {
+    "path": "c:\\Users\\zeusa\\Downloads\\Plan_Mejora_Cognitiva_Azure\\configuracion_objetivo_qa.json",
+    "sha256": "E6E0978F670D6466E38ADE8D78B6F2B89E906B85970E8F7FC2A15D0A4EFBCBD5"
+  }
+}

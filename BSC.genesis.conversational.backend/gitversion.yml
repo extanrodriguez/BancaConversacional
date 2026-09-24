@@ -1,0 +1,157 @@
+workflow: GitFlow/v1
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-scheme: MajorMinorPatch
+mode: ContinuousDelivery
+tag-prefix: '[vV]?'
+major-version-bump-message: '(?i)(^|\n)(Merged PR \d+:\s*)?[a-z]+(\([^)]+\))?!:|(^|\n)BREAKING[ -]CHANGE:|\+semver:\s?(breaking|major)'
+minor-version-bump-message: '(?i)(^|\n)(Merged PR \d+:\s*)?feat(\([^)]+\))?:|\+semver:\s?(feature|minor)'
+patch-version-bump-message: '(?i)(^|\n)(Merged PR \d+:\s*)?(fix|perf)(\([^)]+\))?:|\+semver:\s?(fix|patch)'
+no-bump-message: '(?i)(^|\n)(Merged PR \d+:\s*)?(docs|style|test|chore|ci|build)(\([^)]+\))?:|\+semver:\s?(none|skip)'
+tag-pre-release-weight: 60000
+commit-message-incrementing: Enabled
+branches:
+  develop:
+    mode: ContinuousDelivery
+    label: alpha
+    increment: Minor
+    prevent-increment:
+      when-current-commit-tagged: false
+    track-merge-target: true
+    track-merge-message: true
+    regex: ^dev(elop)?(ment)?$
+    source-branches:
+      - main
+    tracks-release-branches: true
+    is-release-branch: false
+    is-main-branch: false
+    pre-release-weight: 0
+  main:
+    label: ''
+    increment: Patch
+    prevent-increment:
+      of-merged-branch: true
+    track-merge-target: false
+    track-merge-message: true
+    regex: ^master$|^main$
+    source-branches: []
+    tracks-release-branches: false
+    is-release-branch: false
+    is-main-branch: true
+    pre-release-weight: 55000
+  release:
+    mode: ManualDeployment
+    label: rc
+    increment: Patch
+    prevent-increment:
+      of-merged-branch: true
+      when-current-commit-tagged: false
+    track-merge-target: false
+    track-merge-message: true
+    regex: ^releases?[/-](?<BranchName>.+)
+    source-branches:
+      - main
+      - develop
+      - support
+    tracks-release-branches: false
+    is-release-branch: true
+    is-main-branch: false
+    pre-release-weight: 30000
+  staging:
+    mode: ManualDeployment
+    label: rc
+    increment: Patch
+    prevent-increment:
+      of-merged-branch: true
+      when-current-commit-tagged: false
+    track-merge-target: false
+    track-merge-message: true
+    regex: ^staging$
+    source-branches:
+      - main
+      - develop
+      - support
+    tracks-release-branches: false
+    is-release-branch: true
+    is-main-branch: false
+    pre-release-weight: 30000
+  feature:
+    mode: ManualDeployment
+    label: '{BranchName}'
+    increment: Inherit
+    prevent-increment:
+      when-current-commit-tagged: false
+    track-merge-message: true
+    regex: ^features?[/-](?<BranchName>.+)
+    source-branches:
+      - develop
+      - main
+      - release
+      - support
+      - hotfix
+    is-main-branch: false
+    pre-release-weight: 30000
+  pull-request:
+    mode: ContinuousDelivery
+    label: PullRequest{Number}
+    increment: Inherit
+    prevent-increment:
+      of-merged-branch: true
+      when-current-commit-tagged: false
+    track-merge-message: true
+    regex: ^(pull|pull-requests|pr)[/-](?<Number>\d*)
+    source-branches:
+      - develop
+      - main
+      - release
+      - feature
+      - support
+      - hotfix
+    pre-release-weight: 30000
+  hotfix:
+    mode: ManualDeployment
+    label: rc
+    increment: Patch
+    prevent-increment:
+      when-current-commit-tagged: false
+    regex: ^hotfix(es)?[/-](?<BranchName>.+)
+    source-branches:
+      - main
+      - support
+    is-release-branch: true
+    is-main-branch: false
+    pre-release-weight: 30000
+  support:
+    label: ''
+    increment: Patch
+    prevent-increment:
+      of-merged-branch: true
+    track-merge-target: false
+    regex: ^support[/-](?<BranchName>.+)
+    source-branches:
+      - main
+    tracks-release-branches: false
+    is-release-branch: false
+    is-main-branch: true
+    pre-release-weight: 55000
+  unknown:
+    mode: ManualDeployment
+    label: '{BranchName}'
+    increment: Inherit
+    prevent-increment:
+      when-current-commit-tagged: false
+    regex: (?<BranchName>.+)
+    source-branches:
+      - main
+      - develop
+      - release
+      - feature
+      - pull-request
+      - hotfix
+      - support
+    is-main-branch: false
+ignore:
+  sha:
+    - c7436025fa6cb3cfbb6fec02d040e31fe317fc5f
+    - 48679fb161c15574d7fb386a52a0b4a43af9407e
+  commits-before: '2023-11-14T23:00:00'
+update-build-number: true

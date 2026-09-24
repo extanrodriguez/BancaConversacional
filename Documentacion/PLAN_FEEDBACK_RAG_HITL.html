@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plan HITL — Backoffice Feedback RAG (Banca Conversacional)</title>
+  <style>
+    :root {
+      --navy: #0a2540;
+      --gold: #c5a46e;
+      --gold-deep: #8a6a2f;
+      --paper: #f6f4ef;
+      --card: #fff;
+      --ink: #1c2834;
+      --muted: #5c6b7a;
+      --line: #e4ddd2;
+      --ok: #1b6b3a;
+      --warn: #b86e00;
+      --crit: #9b1c1c;
+      --azure: #0078d4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 2.2rem 6vw 1.6rem;
+    }
+    header .kicker {
+      color: var(--gold);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      margin: 0 0 .4rem;
+    }
+    h1 { margin: 0; font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.3rem); }
+    .lede { max-width: 52rem; color: #d7e0ea; margin: .7rem 0 0; }
+    nav.doc {
+      display: flex; flex-wrap: wrap; gap: .45rem;
+      padding: .75rem 6vw; background: rgba(246,244,239,.95);
+      border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 2;
+    }
+    nav.doc a {
+      color: var(--navy); text-decoration: none; border: 1px solid var(--line);
+      background: #fff; border-radius: 999px; padding: .28rem .75rem; font-size: .88rem;
+    }
+    main { padding: 1.4rem 6vw 3.5rem; max-width: 62rem; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem 1.4rem;
+      margin: 0 0 1.2rem;
+    }
+    h2 { margin: 0 0 .6rem; color: var(--navy); font-size: 1.25rem; }
+    h3 { margin: 1rem 0 .4rem; color: var(--gold-deep); font-size: 1.02rem; }
+    p, li { color: var(--ink); }
+    .muted { color: var(--muted); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .95rem;
+      margin: .6rem 0 0;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: .55rem .65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f0ebe3; color: var(--navy); }
+    .tag {
+      display: inline-block;
+      border-radius: 999px;
+      padding: .15rem .55rem;
+      font-size: .78rem;
+      font-weight: 600;
+    }
+    .tag-plan { background: #fff3d6; color: var(--warn); }
+    .tag-human { background: #f8f1e3; color: var(--gold-deep); }
+    .tag-sys { background: #e8eef6; color: var(--navy); }
+    .tag-p0 { background: #fde8e8; color: var(--crit); }
+    .tag-p1 { background: #fff3d6; color: var(--warn); }
+    .tag-p2 { background: #e8eef6; color: var(--navy); }
+    .tag-fut { background: #eef6f0; color: var(--ok); }
+    pre.prompt {
+      background: #0f1f33;
+      color: #e8eef6;
+      padding: 1rem 1.1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: .86rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+    .callout {
+      border-left: 4px solid var(--gold-deep);
+      background: #fbf7ef;
+      padding: .7rem 1rem;
+      margin: .8rem 0;
+    }
+    .callout.ok { border-left-color: var(--ok); background: #f0f7f2; }
+    .callout.azure { border-left-color: var(--azure); background: #eef6fc; }
+    .callout strong { color: var(--navy); }
+    code { background: #f0ebe3; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: .75rem;
+      margin-top: .7rem;
+    }
+    .mod {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: .75rem .9rem;
+      background: #faf8f4;
+    }
+    .mod h4 { margin: 0 0 .35rem; color: var(--navy); font-size: .98rem; }
+    .mod p { margin: 0; font-size: .9rem; color: var(--muted); }
+    footer {
+      padding: 0 6vw 2.5rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    a { color: var(--navy); }
+    ol.steps li { margin: .35rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="kicker">Banco Santa Cruz · Banca Conversacional · QA</p>
+    <h1>Plan HITL: Backoffice de curación RAG</h1>
+    <p class="lede">
+      Visión de producto (no implementada): un <strong>backoffice</strong> donde el usuario funcional
+      gestiona tickets con criticidad, cura respuestas que alimentan Azure AI Search / Foundry,
+      entrena por prompts con rollback, consulta la base de conocimiento, ve estadísticas en tiempo
+      real y —a futuro— el log de la banca conversacional.
+      Principio: capturar ≠ aprender; nada llega al modelo sin aprobación humana versionada.
+    </p>
+    <p style="margin:.8rem 0 0">
+      <span class="tag tag-plan">PLAN — NO EJECUTADO</span>
+      <span class="tag tag-sys">Actualizado con visión backoffice</span>
+    </p>
+  </header>
+
+  <nav class="doc">
+    <a href="#vision">Visión</a>
+    <a href="#backoffice">Backoffice</a>
+    <a href="#tickets">Tickets</a>
+    <a href="#curacion">Curación → Azure</a>
+    <a href="#kb">Base de conocimiento</a>
+    <a href="#prompts-train">Prompts + rollback</a>
+    <a href="#stats">Estadísticas</a>
+    <a href="#logs">Logs (futuro)</a>
+    <a href="#fases">Fases</a>
+    <a href="#sugerencias">Sugerencias</a>
+    <a href="#prompts">Prompts ops</a>
+  </nav>
+
+  <main>
+    <section id="vision">
+      <h2>1. Visión: dónde se genera y dónde se resuelve</h2>
+      <div class="callout">
+        <strong>Respuesta directa:</strong> el ticket se genera automáticamente en Cognitiva
+        (detección en <code>/turn</code>). El funcional le da seguimiento y lo resuelve
+        <em>dentro del backoffice HITL</em> — una interfaz web interna (no la APK del cliente).
+      </div>
+      <table>
+        <thead><tr><th>Qué</th><th>Dónde</th><th>Quién</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Señal de error / feedback</td>
+            <td>Chat APK o UI <code>/pruebas</code></td>
+            <td>Cliente / tester</td>
+          </tr>
+          <tr>
+            <td>Creación del ticket + criticidad</td>
+            <td>API Cognitiva → store (DB/Redis) del backoffice</td>
+            <td>Sistema</td>
+          </tr>
+          <tr>
+            <td>Seguimiento y resolución</td>
+            <td><strong>Backoffice HITL</strong> (web interna con SSO/Entra ID)</td>
+            <td>Usuario funcional</td>
+          </tr>
+          <tr>
+            <td>Publicación al “modelo”</td>
+            <td>Azure AI Search (<code>bsc-kb-conocimiento</code>) + instrucciones agente Foundry + overrides de Q→A</td>
+            <td>Backoffice dispara pipeline tras aprobación</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:.8rem">
+        Nota técnica: no se “reentrena” el LLM base (fine-tune) en caliente. Se actualiza el
+        <strong>contexto recuperable</strong> (RAG / agent instructions / reglas canónicas).
+        Eso es lo que hace que “cuando pregunten X, responda lo que indicó el funcional”.
+      </p>
+    </section>
+
+    <section id="backoffice">
+      <h2>2. Módulos del backoffice</h2>
+      <div class="modules">
+        <div class="mod">
+          <h4>Tickets HITL</h4>
+          <p>Cola por criticidad, filtros, asignación, curación in-app y publish con preview.</p>
+        </div>
+        <div class="mod">
+          <h4>Base de conocimiento</h4>
+          <p>Explorar, buscar, editar y versionar chunks del índice Search; historial y diff.</p>
+        </div>
+        <div class="mod">
+          <h4>Entrenamiento por prompts</h4>
+          <p>Inyectar instrucciones/overrides al agente Foundry con plan de rollback versionado.</p>
+        </div>
+        <div class="mod">
+          <h4>Estadísticas en tiempo real</h4>
+          <p>Errores top/raros/nuevos, intents, tools, latencia, NPS feedback, tendencias.</p>
+        </div>
+        <div class="mod">
+          <h4>Logs conversacionales</h4>
+          <p><span class="tag tag-fut">Fase futura</span> Traza de turnos (sanitizada), tools y estados.</p>
+        </div>
+        <div class="mod">
+          <h4>Smoke / laboratorio</h4>
+          <p>Probar pregunta curada contra QA :8447 antes de publicar a prod.</p>
+        </div>
+      </div>
+      <h3>Acceso</h3>
+      <ul>
+        <li>URL interna (VPN / Private Link), autenticación Entra ID, roles: <code>funcional</code>, <code>funcional_admin</code>, <code>ops</code>, <code>readonly</code>.</li>
+        <li>Auditoría: quién curó, qué publicó, cuándo, rollback quién.</li>
+      </ul>
+    </section>
+
+    <section id="tickets">
+      <h2>3. Tickets: generación, criticidad y resolución en plataforma</h2>
+      <h3>Cómo se crea el ticket</h3>
+      <ol class="steps">
+        <li>Cliente envía feedback en el chat.</li>
+        <li>Detector (regex + LLM) clasifica y sugiere criticidad.</li>
+        <li>Cognitiva persiste el ticket y notifica al backoffice (badge + opcional Teams/correo).</li>
+        <li>Cliente recibe ack; la KB no cambia todavía.</li>
+      </ol>
+
+      <h3>Grados de criticidad</h3>
+      <table>
+        <thead><tr><th>Nivel</th><th>Criterio</th><th>SLA sugerido</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-p0">P0 — Crítica</span></td>
+            <td>Dato incorrecto de producto/tasa/requisito; riesgo compliance; respuesta ofensiva o con fuga técnica (citas, dumps).</td>
+            <td>≤ 4 h laborables</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-p1">P1 — Alta</span></td>
+            <td>Enrutamiento malo (Redis vs KB), clarificación innecesaria repetida, respuesta incompleta frecuente.</td>
+            <td>≤ 1 día laboral</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-p2">P2 — Media</span></td>
+            <td>Tono/UX, redacción, casos edge poco frecuentes.</td>
+            <td>≤ 3 días</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-sys">P3 — Baja</span></td>
+            <td>Mejora opcional, falso positivo, elogio con sugerencia.</td>
+            <td>Backlog</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted">El funcional puede subir/bajar criticidad al abrir el ticket.</p>
+
+      <h3>Resolver directamente en el backoffice</h3>
+      <ol class="steps">
+        <li>Abrir ticket → ver pregunta, respuesta IA, feedback, tool, conversation_id (sin PII sensible en claro si se enmascara).</li>
+        <li>Clasificar tipo: contenido KB / routing / tono / personal (no-RAG) / falso positivo.</li>
+        <li>Escribir <strong>respuesta canónica</strong> y variantes de pregunta (incl. typos).</li>
+        <li>Elegir destino de publicación:
+          <ul>
+            <li><code>qa_override</code> — regla Q→A de alta prioridad (parche rápido),</li>
+            <li><code>search_chunk</code> — documento/chunk en <code>bsc-kb-conocimiento</code>,</li>
+            <li><code>foundry_instruction</code> — instrucción del agente KB,</li>
+            <li><code>router_rule</code> — preferir Redis vs Search.</li>
+          </ul>
+        </li>
+        <li>Preview + smoke en QA → <strong>Publicar</strong> → estado <code>published</code> → verificar → <code>verified</code>.</li>
+      </ol>
+    </section>
+
+    <section id="curacion">
+      <h2>4. Cómo se “actualiza el modelo Azure AI”</h2>
+      <div class="callout azure">
+        <strong>Mecanismo recomendado:</strong> cuando el funcional publica una curación,
+        el backoffice escribe/actualiza el contexto en Azure (Search + Foundry), no hace fine-tune del LLM.
+        En el siguiente turno, si la pregunta hace match con lo registrado, el recuperador / agente
+        usa ese contexto y responde lo indicado.
+      </div>
+      <table>
+        <thead><tr><th>Acción del funcional</th><th>Efecto en Azure / Cognitiva</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Alta de Q→A canónica</td>
+            <td>Documento/override indexado en AI Search (campo prioridad alta). Foundry/Search lo recupera primero.</td>
+          </tr>
+          <tr>
+            <td>Edición de chunk KB</td>
+            <td>Update + reindex parcial del índice <code>bsc-kb-conocimiento</code>.</td>
+          </tr>
+          <tr>
+            <td>Prompt / instrucción</td>
+            <td>Nueva versión de instrucciones del agente Foundry <code>genesis-kb-agent-poc</code> (o capa de system overlay versionada).</td>
+          </tr>
+          <tr>
+            <td>Regla de router</td>
+            <td>Config/regla en Cognitiva (no Azure model weights): forzar tool Redis o KB.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Flujo deseado: <em>«cuando pregunten X o Y (registradas en backoffice) → responder lo que indicó el funcional»</em>
+        = match semántico/exacto sobre overrides curados + retrieval del chunk aprobado.
+      </p>
+    </section>
+
+    <section id="kb">
+      <h2>5. ¿Se puede ver y actualizar la base de conocimiento en el backoffice?</h2>
+      <div class="callout ok">
+        <strong>Sí.</strong> El backoffice debe ofrecer un explorador del índice Azure AI Search
+        (<code>bsc-kb-conocimiento</code>): listar, buscar, previsualizar chunks, editar, crear, desactivar
+        y publicar con versionado. Es la forma correcta de “ver lo que sabe el modelo” en un sistema RAG.
+      </div>
+      <h3>Capacidades KB en backoffice</h3>
+      <ul>
+        <li><strong>Ver:</strong> búsqueda full-text / filtros por producto, tema, fuente, fecha de publish.</li>
+        <li><strong>Leer detalle:</strong> texto del chunk, metadatos, embeddings status, documentos vinculados.</li>
+        <li><strong>Actualizar:</strong> editar texto → diff → aprobación → reindex → smoke de 1–3 preguntas ancla.</li>
+        <li><strong>Crear:</strong> nuevo FAQ / glosario / política desde plantilla.</li>
+        <li><strong>Desactivar / rollback:</strong> soft-delete o restaurar versión anterior.</li>
+        <li><strong>No mostrar:</strong> secretos, keys, ni datos personales de clientes en la KB pública.</li>
+      </ul>
+      <p class="muted">
+        Lo que <em>no</em> se “ve” como KB: saldos y fechas personales viven en Redis/Core, no en Search.
+        El backoffice puede enlazar a “dato personal → no curar en RAG” y abrir ticket de routing.
+      </p>
+    </section>
+
+    <section id="prompts-train">
+      <h2>6. Entrenamiento por prompts directos + plan de rollback</h2>
+      <p>
+        El funcional puede enviar <strong>prompts / instrucciones</strong> que se aplican al agente Foundry
+        (o a una capa de “system overlay” de Cognitiva) sin tocar el chat del cliente.
+      </p>
+      <h3>Flujo</h3>
+      <ol class="steps">
+        <li>Redactar instrucción en el módulo “Entrenamiento” (ej. «Si preguntan misión del banco, responder exactamente…»).</li>
+        <li>Validación automática (longitud, prohibido PII, tono).</li>
+        <li>Guardar como <code>prompt_version = N+1</code> en estado <code>draft</code>.</li>
+        <li>Smoke en QA con 5 utterances de prueba.</li>
+        <li>Publicar a QA → luego a prod (doble gate si <code>funcional_admin</code>).</li>
+        <li>Queda registrada la versión anterior como rollback inmediato.</li>
+      </ol>
+      <h3>Plan de rollback</h3>
+      <table>
+        <thead><tr><th>Disparador</th><th>Acción</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Funcional pulsa “Revertir”</td>
+            <td>Restaurar <code>prompt_version = N-1</code> (o versión marcada “última estable”).</td>
+          </tr>
+          <tr>
+            <td>Smoke post-publish falla</td>
+            <td>Auto-rollback a versión estable + ticket P0.</td>
+          </tr>
+          <tr>
+            <td>Spike de feedback negativo (stats)</td>
+            <td>Alerta + opción de rollback con un clic.</td>
+          </tr>
+          <tr>
+            <td>Auditoría / compliance</td>
+            <td>Historial inmutable: autor, diff, timestamp, entorno.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <strong>Guardrail:</strong> un prompt no debe contradecir políticas del banco ni inventar tasas.
+        El copiloto de curación marca riesgo <code>high</code> y exige doble aprobación.
+      </div>
+    </section>
+
+    <section id="stats">
+      <h2>7. Estadísticas en tiempo real</h2>
+      <p>Dashboard del funcional (refresh periódico / WebSocket), alimentado por telemetría de <code>/turn</code>:</p>
+      <table>
+        <thead><tr><th>Bloque</th><th>Métricas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Errores / feedback</strong></td>
+            <td>Más comunes, menos comunes, <em>nuevos</em> (primera vez en N días); por criticidad; tiempo medio de resolución.</td>
+          </tr>
+          <tr>
+            <td><strong>Conversación</strong></td>
+            <td>Turnos/hora, sesiones activas, tasa de contención, % KB vs Redis vs chitchat.</td>
+          </tr>
+          <tr>
+            <td><strong>Calidad</strong></td>
+            <td>% respuestas con cite-noise bloqueado, hedges, clarificaciones, tool errors.</td>
+          </tr>
+          <tr>
+            <td><strong>Rendimiento</strong></td>
+            <td>Latencia p50/p95 Foundry, Search, Redis; timeouts.</td>
+          </tr>
+          <tr>
+            <td><strong>Curación</strong></td>
+            <td>Tickets abiertos/cerrados, publishes, rollbacks, cobertura de overrides.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted">“Tiempo real” práctico: telemetría &lt; 1–5 min; no exige streaming de cada token al dashboard.</p>
+    </section>
+
+    <section id="logs">
+      <h2>8. Log propio de la banca conversacional <span class="tag tag-fut">Futuro</span></h2>
+      <ul>
+        <li>Visor de turnos: timestamp, intent/tool, mode, latencia, status (PII enmascarada).</li>
+        <li>Drill-down desde un ticket o desde una estadística hasta el turno.</li>
+        <li>Retención y acceso según política del banco (no export masivo de chats).</li>
+        <li>Se implementa después del MVP de tickets + KB + stats básicas.</li>
+      </ul>
+    </section>
+
+    <section id="roles">
+      <h2>9. Roles</h2>
+      <table>
+        <thead><tr><th>Rol</th><th>En backoffice puede</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Usuario final</strong></td>
+            <td>Nada (solo chat). Dispara tickets sin saberlo.</td>
+          </tr>
+          <tr>
+            <td><strong>Usuario funcional</strong></td>
+            <td>Ver/resolver tickets, editar KB draft, proponer prompts, ver stats, correr smoke QA.</td>
+          </tr>
+          <tr>
+            <td><strong>Funcional admin</strong></td>
+            <td>Publicar a prod, rollback, cambiar criticidad masiva, gestionar roles de contenido.</td>
+          </tr>
+          <tr>
+            <td><strong>Ops / técnico</strong></td>
+            <td>Pipeline reindex, health Azure, emergencia rollback, configuración de conectores.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="fases">
+      <h2>10. Fases del ticket (ciclo de vida)</h2>
+      <table>
+        <thead>
+          <tr><th>Fase</th><th>Sistema</th><th>Humano</th><th>Estado</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. Detectar</td>
+            <td>Clasificador + criticidad sugerida</td>
+            <td>Cliente escribe señal</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>2. Capturar</td>
+            <td>Alta en store del backoffice</td>
+            <td>—</td>
+            <td><code>captured</code></td>
+          </tr>
+          <tr>
+            <td>3. Ack chat</td>
+            <td>Confirmación al cliente</td>
+            <td>—</td>
+            <td><code>acked</code></td>
+          </tr>
+          <tr>
+            <td>4. Cola backoffice</td>
+            <td>Lista por P0–P3</td>
+            <td>Funcional abre ticket</td>
+            <td><code>pending_review</code></td>
+          </tr>
+          <tr>
+            <td><strong>5. Curar en plataforma</strong></td>
+            <td>Editor + copiloto</td>
+            <td><strong>Funcional define respuesta/regla</strong></td>
+            <td><code>curated</code></td>
+          </tr>
+          <tr>
+            <td>6. Publicar Azure</td>
+            <td>Search / Foundry / override</td>
+            <td>Funcional (admin) aprueba</td>
+            <td><code>published</code></td>
+          </tr>
+          <tr>
+            <td>7. Verificar</td>
+            <td>Smoke anclas</td>
+            <td>Funcional cierra o rollback</td>
+            <td><code>verified</code> / <code>rolled_back</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="roadmap">
+      <h2>11. Roadmap de implementación sugerido</h2>
+      <table>
+        <thead><tr><th>Entrega</th><th>Alcance</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>MVP 1</strong></td>
+            <td>Backoffice: login, cola tickets con criticidad, curar Q→A override, publish a Search QA, stats básicas de errores.</td>
+          </tr>
+          <tr>
+            <td><strong>MVP 2</strong></td>
+            <td>Explorador/editor KB completo, versionado, rollback de chunks y prompts Foundry.</td>
+          </tr>
+          <tr>
+            <td><strong>MVP 3</strong></td>
+            <td>Dashboard tiempo real ampliado + alertas spike.</td>
+          </tr>
+          <tr>
+            <td><strong>Futuro</strong></td>
+            <td>Visor de logs conversacionales sanitizados; export controlado; multi-ambiente (QA/prod) con gates.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="sugerencias">
+      <h2>12. Sugerencias adicionales</h2>
+      <ol>
+        <li>
+          <strong>Overrides Q→A de alta prioridad</strong> antes que reescribir documentos largos:
+          cura rápida y medible; luego consolidar en la KB “oficial”.
+        </li>
+        <li>
+          <strong>Ambientes separados:</strong> publish siempre a QA primero; prod solo con rol admin + smoke verde.
+        </li>
+        <li>
+          <strong>No fine-tune del LLM en caliente:</strong> más costo, menos control y peor rollback.
+          Preferir RAG + instrucciones versionadas.
+        </li>
+        <li>
+          <strong>Separar tickets “dato personal”</strong> (Redis/Core) de tickets “conocimiento”:
+          evita envenenar la KB con datos de un cliente.
+        </li>
+        <li>
+          <strong>Prueba de regresión ancla:</strong> suite fija (misión, fecha de corte glosario, Visa Platinum…)
+          que corre tras cada publish.
+        </li>
+        <li>
+          <strong>Deduplicar tickets:</strong> agrupar por embedding de la pregunta para no inundar la cola
+          con el mismo error 50 veces; subir criticidad al cluster.
+        </li>
+        <li>
+          <strong>Cuatro-ojos en P0:</strong> un funcional cura, otro aprueba si hay impacto regulatorio.
+        </li>
+        <li>
+          <strong>Telemetría de “cite noise” y hedges</strong> como KPIs de calidad (ya hubo incidentes de dumps de citas).
+        </li>
+        <li>
+          <strong>Enlace ticket ↔ chunk:</strong> desde el ticket, saltar al fragmento KB que se usó (si hay citation limpia interna).
+        </li>
+        <li>
+          <strong>Modo “solo lectura” para auditoría</strong> del banco sin poder publicar.
+        </li>
+      </ol>
+    </section>
+
+    <section id="prompts">
+      <h2>13. Prompts de operación</h2>
+
+      <h3>13.1 Detector de feedback (sistema)</h3>
+      <pre class="prompt">Eres el detector de feedback de Banca Conversacional (Banco Santa Cruz).
+Clasifica el ÚLTIMO mensaje del cliente respecto a la respuesta previa de la IA.
+
+Entrada: question_prev, answer_prev, message_now, tool_used
+
+Clases: negative_feedback | correction | do_not_ask | praise | not_feedback
+Criticidad sugerida: P0 | P1 | P2 | P3
+  P0 = dato falso / compliance / fuga técnica
+  P1 = routing o respuesta incompleta recurrente
+  P2 = tono/UX
+  P3 = menor / dudoso
+
+Si hay duda → not_feedback y suggested_queue=false.
+No inventes hechos. No propongas cambios al índice.
+JSON:
+{
+  "is_feedback": true|false,
+  "class": "...",
+  "severity": "P0|P1|P2|P3",
+  "confidence": 0.0-1.0,
+  "summary": "una frase",
+  "suggested_queue": true|false
+}</pre>
+
+      <h3>13.2 Copiloto de curación (backoffice)</h3>
+      <pre class="prompt">Eres copiloto de curación HITL en el backoffice de Banco Santa Cruz.
+El funcional decide; tú propones.
+
+Salida JSON:
+diagnosis, canonical_answer, question_variants[3+],
+publish_target: qa_override|search_chunk|foundry_instruction|router_rule|n/a,
+knowledge_patch|n/a, foundry_instruction_patch|n/a, router_note|n/a,
+test_utterances[3], risk: low|medium|high, rollback_hint
+
+Reglas:
+- Sin tasas ni fechas personales inventadas
+- Portafolio del cliente → no va a KB (router_note → Redis)
+- Sin citas 【n:m†source】 ni dumps numéricos
+- Español, tono banca</pre>
+
+      <h3>13.3 Ack al cliente</h3>
+      <pre class="prompt">Gracias, registramos tu comentario para mejorar la asistencia.
+Si necesitas algo más de tus productos o del banco, dime cómo te ayudo.</pre>
+    </section>
+
+    <section id="alcance">
+      <h2>14. Alcance y límites</h2>
+      <ul>
+        <li>Este documento es <strong>plan de producto</strong>; el backoffice aún no está construido.</li>
+        <li>Aplica a conocimiento (KB/Foundry) y UX de clarificación; datos personales → Core/Redis.</li>
+        <li>No hay auto-write al índice desde el chat del cliente.</li>
+        <li>Diagrama hermano: <a href="../mermaid/index.html#feedback">mermaid/index.html §8</a>
+          · Prompts: <a href="PROMPT_FEEDBACK_RAG_HITL.md">PROMPT_FEEDBACK_RAG_HITL.md</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Banca Conversacional Genesis · Plan HITL / Backoffice feedback RAG · Sin secretos ni datos de clientes.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "P01",
+    "question": "¿Cuánto debo en mi tarjeta de crédito, cuánto tengo disponible y cuándo es mi fecha límite de pago?",
+    "hist": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de form"
+  },
+  {
+    "id": "P02",
+    "question": "De mi tarjeta de crédito dime el saldo actual, el pago mínimo, el límite disponible y mis últimos movimientos.",
+    "hist": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de form"
+  },
+  {
+    "id": "P03",
+    "question": "¿Cuánto debo de mi préstamo personal, cuánto es mi próxima cuota y cuándo me toca pagarla?",
+    "hist": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de form"
+  },
+  {
+    "id": "P04",
+    "question": "Dime cuánto me falta del préstamo hipotecario, cuál es la tasa y cuánto necesitaría para cancelarlo.",
+    "hist": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de form"
+  },
+  {
+    "id": "P05",
+    "question": "De mi certificado financiero dime cuánto invertí, qué tasa tiene, cuánto ha generado y cuándo vence.",
+    "hist": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de form"
+  },
+  {
+    "id": "P06",
+    "question": "¿Cuál es el balance actual y disponible de mi cuenta corriente y cuáles fueron los últimos tres movimientos?",
+    "hist": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de form"
+  },
+  {
+    "id": "P07",
+    "question": "Dime cuánto tengo en mi cuenta de ahorros y cuánto debo en mi tarjeta de crédito.",
+    "hist": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no "
+  },
+  {
+    "id": "P08",
+    "question": "¿Cuánto tengo disponible en mi cuenta corriente, cuánto debo de mi tarjeta y cuándo vence la próxima cuota del préstamo personal?",
+    "hist": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no "
+  },
+  {
+    "id": "P09",
+    "question": "¿Cuánto debo en mis tarjetas de crédito y cuál de ellas tiene más crédito disponible?",
+    "hist": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de form"
+  },
+  {
+    "id": "P10",
+    "question": "Compárame mis certificados financieros: dime la tasa, el balance y cuál vence primero.",
+    "hist": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no "
+  },
+  {
+    "id": "P11",
+    "question": "¿Cuánto tengo en mis cuentas, cuánto debo de mis tarjetas y cuánto tengo pendiente de mis préstamos?",
+    "hist": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no "
+  },
+  {
+    "id": "P12",
+    "question": "¿Tengo algún préstamo o tarjeta con un pago próximo? Si es así, dime cuánto debo pagar y cuándo.",
+    "hist": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no "
+  },
+  {
+    "id": "P13",
+    "question": "De mi préstamo personal dime saldo y próxima cuota, y del hipotecario solo dime la tasa.",
+    "hist": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no "
+  },
+  {
+    "id": "P14",
+    "question": "Dime el saldo de mi cuenta de ahorros y de mi cuenta corriente, pero solo muéstrame los movimientos de la cuenta de ahorros.",
+    "hist": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de form"
+  },
+  {
+    "id": "P15",
+    "question": "Dime la tasa y vencimiento de mis certificados financieros y cuál vence primero, pero no necesito el balance.",
+    "hist": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no "
+  }
+]

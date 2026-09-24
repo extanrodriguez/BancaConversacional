@@ -1,0 +1,60 @@
+{
+  "case_id": "CMP33",
+  "section": 19,
+  "questions": [
+    "¿Cuál es la diferencia entre cashback y Puntos Santa Cruz?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    296
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, Puntos Santa Cruz: Es el nombre del programa de lealtad del Banco Santa Cruz, con el cual los tarjetahabientes, generan puntos por sus transacciones realizadas con las tarjetas participantes en dicho programa y posteriormente pueden redimir estos puntos por servicios, pagos a la tarjeta de crédito u ofertas determinada.",
+  "replies_sanitized": [
+    "Felix Prestamos, Puntos Santa Cruz: Es el nombre del programa de lealtad del Banco Santa Cruz, con el cual los tarjetahabientes, generan puntos por sus transacciones realizadas con las tarjetas participantes en dicho programa y posteriormente pueden redimir estos puntos por servicios, pagos a la tarjeta de crédito u ofertas determinada."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PARTIAL",
+  "reason": "define un tema pero no completa el contraste",
+  "audit": {
+    "total_ms": 89,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 89,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "6169ea9c-74b5-484e-9158-0a56fd1b5230",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 85.2
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 89
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

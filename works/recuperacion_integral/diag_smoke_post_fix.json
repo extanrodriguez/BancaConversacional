@@ -1,0 +1,75 @@
+{
+  "ts": "2026-09-21T21:00:30Z",
+  "results": [
+    {
+      "family": "PORTFOLIO_LIST",
+      "q": "que productos tengo",
+      "http": 200,
+      "ms": 13048,
+      "reply_prefix": "Felix Prestamos, estos son tus productos activos: |  | **Cuentas** | • **Cuenta de ahorros ...08001** — disponible **RD$50,000.00** | • **Cuenta corriente ...09002** — disponible **RD$28,500.00** |  | **Tarjetas de crédito** | **Visa Full Car Flotilla Empleado - 2240** | • Límite de crédito: **RD$5,000.00** | • Saldo",
+      "brain_source": "resolve_full",
+      "route_source": "azure_plan",
+      "rag_status": "NOT_REQUIRED"
+    },
+    {
+      "family": "INSTITUTIONAL",
+      "q": "cual es la mision del banco",
+      "http": 200,
+      "ms": 689,
+      "reply_prefix": "Misión del Banco Santa Cruz. ¿Cuál es la misión del Banco? Cuéntame sobre la misión de Banco Santa Cruz. misión del banco. cual es la mision. Somos una institución financiera orientada a empresas e individuos emprendedores. Satisfacemos las necesidades financieras de nuestros clientes, acompañándole",
+      "brain_source": "structured_shortcut",
+      "route_source": "shortcut:kb_institutional",
+      "rag_status": "FAQ"
+    },
+    {
+      "family": "INSTITUTIONAL2",
+      "q": "cual es la vision del banco",
+      "http": 200,
+      "ms": 647,
+      "reply_prefix": "Visión del Banco Santa Cruz. ¿Cuál es la visión del Banco? Cuéntame sobre la visión de Banco Santa Cruz. visión del banco. cual es la vision. Ser el Banco preferido de nuestros clientes, ofreciendo un servicio conveniente, transparente, simple, con un equipo de personas capaces y motivadas a ofrecer",
+      "brain_source": "structured_shortcut",
+      "route_source": "shortcut:kb_institutional",
+      "rag_status": "FAQ"
+    },
+    {
+      "family": "DEFINITION",
+      "q": "que significa saldo disponible",
+      "http": 200,
+      "ms": 568,
+      "reply_prefix": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta.",
+      "brain_source": "structured_shortcut",
+      "route_source": "shortcut:kb_glossary_available",
+      "rag_status": "FAQ"
+    },
+    {
+      "family": "PROCEDURE",
+      "q": "como funciona la cancelacion de prestamos",
+      "http": 200,
+      "ms": 246,
+      "reply_prefix": "Para cancelar un **préstamo** (personal, hipotecario u otro crédito de consumo), debes solicitarlo en un centro de negocios o por los canales oficiales del banco, liquidar el saldo de cancelación vigente y obtener la carta de saldo. Esta orientación aplica a préstamos, no a otros productos de financ",
+      "brain_source": "structured_shortcut",
+      "route_source": "shortcut:kb_cancelacion",
+      "rag_status": "FAQ"
+    },
+    {
+      "family": "COMPARE",
+      "q": "compara visa platinum e infinite",
+      "http": 200,
+      "ms": 978,
+      "reply_prefix": "Comparación de catálogo (orden de mención / conjunto vigente): | 1. **Visa Platinum** — evidencia recuperada (producto verificado). | __AZURE_SEARCH__ | Tarjeta de Crédito Visa Platinum: instrumento de pago que permite realizar pagos o consumos en establecimientos afiliados sin efectivo, con característic",
+      "brain_source": "structured_shortcut",
+      "route_source": "shortcut:kb_catalog_compare",
+      "rag_status": "FAQ"
+    },
+    {
+      "family": "MULTI",
+      "q": "cual es mi saldo disponible y la proxima fecha de pago de mi prestamo",
+      "http": 200,
+      "ms": 248,
+      "reply_prefix": "¿Sobre cuál préstamo deseas consultar: |  | • **Préstamo personal (...27615)** | • **Préstamo hipotecario (...90123)**",
+      "brain_source": "structured_shortcut",
+      "route_source": "shortcut:compound_personal_local",
+      "rag_status": "NOT_REQUIRED"
+    }
+  ]
+}

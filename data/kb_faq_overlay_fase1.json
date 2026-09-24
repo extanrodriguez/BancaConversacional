@@ -1,0 +1,745 @@
+{
+  "version": "fase1-overlay",
+  "description": "Expresiones ampliadas y entradas institucionales. Se fusiona con kb_faq_vf01.json en runtime (GENESIS_FAQ_OVERLAY_PATH).",
+  "entries": [
+    {
+      "id": "vf01-r80",
+      "expressions": [
+        "Mision",
+        "Misión",
+        "mision del banco",
+        "misión del banco",
+        "cual es la mision",
+        "cuál es la misión",
+        "dime la mision",
+        "dime la misión"
+      ],
+      "synonyms": ["mision", "misión", "proposito del banco"]
+    },
+    {
+      "id": "vf01-r82",
+      "expressions": [
+        "Vision",
+        "Visión",
+        "vision del banco",
+        "visión del banco",
+        "cual es la vision",
+        "cuál es la visión",
+        "dime la vision",
+        "dime la visión"
+      ],
+      "synonyms": ["vision", "visión"]
+    },
+    {
+      "id": "fase1-mision-y-vision",
+      "row": 0,
+      "topic": "Misión / Visión",
+      "product": "Banco Santa Cruz / General",
+      "intent": "Consultar información institucional",
+      "expressions": [
+        "mision y vision",
+        "misión y visión",
+        "mision y la vision",
+        "misión y la visión",
+        "cual es la mision y la vision",
+        "cuál es la misión y la visión",
+        "cual es la mision y vision del banco",
+        "cuál es la misión y visión del banco",
+        "dime la mision y la vision",
+        "dime la misión y la visión",
+        "mision vision del banco"
+      ],
+      "synonyms": ["mision y vision", "misión y visión"],
+      "answer": "**Misión**\nSomos una institución financiera orientada a empresas e individuos emprendedores. Satisfacemos las necesidades financieras de nuestros clientes, acompañándoles a crecer a través de una relación personalizada, ofreciendo productos y servicios creados a su medida y entregados con un estilo de servicio único, oportuno y excepcional, agregando valor a su negocio y mejorando su calidad de vida. Ofrecemos una inversión segura y rentable a nuestros accionistas. Promovemos el desarrollo de nuestros colaboradores y de nuestra comunidad.\n\n**Visión**\nSer el Banco preferido de nuestros clientes, ofreciendo un servicio conveniente, transparente, simple, con un equipo de personas capaces y motivadas a ofrecer un beneficio tangible.",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "fase1-banco-santa-cruz",
+      "row": 0,
+      "topic": "Banco Santa Cruz",
+      "product": "Banco Santa Cruz / General",
+      "intent": "Consultar información institucional",
+      "expressions": [
+        "Qué es Banco Santa Cruz",
+        "Que es Banco Santa Cruz",
+        "Qué es BSC",
+        "Que es BSC",
+        "Háblame del banco",
+        "Hablame del banco",
+        "Hablame del banco santa cruz",
+        "Háblame del banco santa cruz",
+        "Hablame de banco santa cruz",
+        "Cuéntame del banco",
+        "Cuentame del banco",
+        "Cuéntame del banco santa cruz",
+        "Información del banco",
+        "Informacion del banco",
+        "Sobre Banco Santa Cruz",
+        "Quiénes son",
+        "Quienes son"
+      ],
+      "synonyms": [
+        "banco santa cruz",
+        "bsc",
+        "hablame del banco",
+        "hablame del banco santa cruz",
+        "que es el banco"
+      ],
+      "answer": "Banco Santa Cruz es una institución financiera orientada a empresas e individuos emprendedores. Satisfacemos las necesidades financieras de nuestros clientes, acompañándoles a crecer a través de una relación personalizada, ofreciendo productos y servicios creados a su medida y entregados con un estilo de servicio único, oportuno y excepcional.\n\nNuestra visión es ser el Banco preferido de nuestros clientes, con un servicio conveniente, transparente y simple.\n\n¿Te gustaría conocer nuestra misión, visión o algún producto en particular?",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "fase1-assistant-scope",
+      "row": 0,
+      "topic": "Alcance del asistente",
+      "product": "Todos los productos / General",
+      "intent": "Consultar alcance del asistente",
+      "expressions": [
+        "En qué me puedes ayudar",
+        "En que me puedes ayudar",
+        "Qué puedes hacer",
+        "Que puedes hacer",
+        "Cuáles son tus funciones",
+        "Cuales son tus funciones"
+      ],
+      "answer": "Puedo ayudarte con consultas de saldos y productos de tu portafolio, información general del banco (misión, visión, definiciones, requisitos) y orientación sobre procesos como reclamaciones. Aún no realizo transferencias ni operaciones. ¿Qué deseas consultar?",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "fase1-cuentas-contratar",
+      "row": 0,
+      "topic": "Productos de cuentas que puedes contratar",
+      "product": "Cuentas de Efectivo",
+      "intent": "Consultar catálogo de cuentas",
+      "expressions": [
+        "dime cuales productos de cuentas puedo contratar en el banco",
+        "dime cuáles productos de cuentas puedo contratar en el banco",
+        "dime cuales productos de cuentas puedo contratar con el banco",
+        "dime cuáles productos de cuentas puedo contratar con el banco",
+        "dime cuales productos de cuentas puedo contratar con el banco santa cruz",
+        "dime cuáles productos de cuentas puedo contratar con el banco santa cruz",
+        "que cuentas puedo contratar",
+        "qué cuentas puedo contratar",
+        "que cuentas puedo abrir",
+        "qué cuentas puedo abrir",
+        "productos de cuentas del banco",
+        "cuentas que ofrece el banco",
+        "tipos de cuenta que puedo contratar",
+        "cuales cuentas tiene el banco",
+        "cuáles cuentas tiene el banco",
+        "que cuentas tiene el banco",
+        "qué cuentas tiene el banco",
+        "cuales son las cuentas del banco",
+        "cuáles son las cuentas del banco",
+        "cuentas del banco",
+        "qué tipos de cuentas ofrece",
+        "que tipos de cuentas ofrece",
+        "tipos de cuentas ofrece banco santa cruz",
+        "qué tipos de cuentas ofrece banco santa cruz",
+        "tipos de cuentas del banco"
+      ],
+      "synonyms": [
+        "contratar cuentas",
+        "productos de cuentas",
+        "cuentas puedo contratar",
+        "abrir cuenta",
+        "cuentas tiene el banco",
+        "cuentas del banco",
+        "tipos de cuentas"
+      ],
+      "answer": "En Banco Santa Cruz puedes contratar cuentas de efectivo personales, principalmente:\n\n• **Cuentas de Ahorro Personales**: permiten gestionar tus fondos con o sin libreta, con acceso inmediato al saldo y tasa de interés según el tarifario vigente.\n\n• **Cuentas Corrientes Personales**: orientadas a transacciones diarias, con emisión de cheques y acceso inmediato a los fondos. Hay modalidad estándar y remunerada.\n\nTambién pueden habilitarse cuentas conjuntas según la política vigente.\n\nPara abrir una cuenta debes ser cliente personal, completar la solicitud, presentar tu documento de identidad y la documentación requerida, y realizar el depósito mínimo de apertura.\n\n[Para contratar de forma digital, ingresa aquí](https://solicitudesdigitales.bsc.com.do/)\n\n¿Quieres el detalle de ahorro, corriente o del proceso de apertura?",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "fase1-prestamos-contratar",
+      "row": 0,
+      "topic": "Préstamos que puedes contratar",
+      "product": "Préstamos",
+      "intent": "Consultar catálogo de préstamos",
+      "expressions": [
+        "Dame informacion de los prestamos que puedo contratar en el banco",
+        "Dame información de los préstamos que puedo contratar en el banco",
+        "dame informacion de los prestamos que puedo contratar",
+        "que prestamos puedo contratar",
+        "qué préstamos puedo contratar",
+        "prestamos que ofrece el banco",
+        "préstamos que ofrece el banco",
+        "tipos de prestamo que puedo solicitar",
+        "tipos de préstamo que puedo solicitar"
+      ],
+      "synonyms": [
+        "contratar prestamos",
+        "contratar préstamos",
+        "prestamos puedo contratar",
+        "préstamos puedo contratar"
+      ],
+      "answer": "En Banco Santa Cruz ofrecemos diferentes tipos de préstamos:\n\n• **Préstamos personales sin garantía** y **Préstamos Fácil**, orientados a necesidades de consumo.\n• **Préstamos con garantía** (mobiliaria, certificados BSC, inmobiliaria).\n• **Préstamos de vehículos**.\n• **Préstamos hipotecarios** para adquisición de vivienda.\n• **Consolidación de deudas** y **reenganche** de préstamos vigentes.\n\n[Para contratar de forma digital, ingresa aquí](https://solicitudesdigitales.bsc.com.do/)\n\nPuedes preguntarme por un tipo específico (personal, vehículo, hipotecario o con garantía) para ver más detalle.",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "fase1-productos-solicitar",
+      "row": 0,
+      "topic": "Productos que puedes solicitar",
+      "product": "Todos los productos / General",
+      "intent": "Consultar catálogo de productos",
+      "expressions": [
+        "Que productos puedo solicitar",
+        "Qué productos puedo solicitar",
+        "que productos puedo adquirir",
+        "qué productos puedo adquirir",
+        "que productos puedo contratar",
+        "qué productos puedo contratar",
+        "productos que puedo solicitar en el banco",
+        "que puedo solicitar en el banco",
+        "que tipos de productos puedo sacar con el banco",
+        "qué tipos de productos puedo sacar con el banco",
+        "tipos de productos",
+        "tipos de producto",
+        "que productos ofrece el banco",
+        "qué productos ofrece el banco",
+        "que productos puedo sacar",
+        "qué productos puedo sacar",
+        "productos del banco",
+        "catalogo de productos",
+        "catálogo de productos",
+        "cuales son los productos que tiene el banco",
+        "cuáles son los productos que tiene el banco",
+        "que productos tiene el banco",
+        "qué productos tiene el banco",
+        "cuales productos tiene el banco",
+        "cuáles productos tiene el banco",
+        "productos que tiene el banco"
+      ],
+      "synonyms": [
+        "puedo solicitar",
+        "puedo adquirir",
+        "productos solicitar",
+        "tipos de productos",
+        "productos del banco",
+        "sacar con el banco",
+        "productos que tiene el banco",
+        "tiene el banco"
+      ],
+      "answer": "En Banco Santa Cruz puedes solicitar, entre otros:\n\n• **Cuentas** de ahorro y corriente personales.\n• **Préstamos** personales, con garantía, de vehículos e hipotecarios.\n• **Tarjetas** de crédito y débito, según elegibilidad.\n• **Depósitos / certificados** a plazo.\n\n[Para contratar de forma digital, ingresa aquí](https://solicitudesdigitales.bsc.com.do/)\n\nIndícame si quieres el detalle de cuentas, préstamos o tarjetas.",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "fase1-tarjetas-contratar",
+      "row": 0,
+      "topic": "Tarjetas que puedes contratar",
+      "product": "Tarjetas de crédito y débito",
+      "intent": "Consultar catálogo de tarjetas",
+      "expressions": [
+        "que productos de tarjeta tiene el banco",
+        "qué productos de tarjeta tiene el banco",
+        "que productos de tarjetas tiene el banco",
+        "qué productos de tarjetas tiene el banco",
+        "cuales productos de tarjeta tiene el banco",
+        "cuáles productos de tarjeta tiene el banco",
+        "que tarjetas tiene el banco",
+        "qué tarjetas tiene el banco",
+        "cuales tarjetas ofrece el banco",
+        "cuáles tarjetas ofrece el banco",
+        "cuales tarjetas tiene el banco",
+        "cuáles tarjetas tiene el banco",
+        "tipos de tarjeta del banco",
+        "tipos de tarjetas del banco",
+        "tarjetas que puedo contratar",
+        "tarjetas que puedo solicitar",
+        "dame informacion de las tarjetas del banco",
+        "dame información de las tarjetas del banco",
+        "info de las tarjetas del banco",
+        "productos de tarjeta del banco",
+        "quiero info de tarjetas",
+        "informacion de productos de tarjeta",
+        "información de productos de tarjeta",
+        "cuales tarjetas de debito tiene el banco",
+        "cuáles tarjetas de débito tiene el banco",
+        "que tarjetas de debito tiene el banco",
+        "qué tarjetas de débito tiene el banco",
+        "tarjetas de debito del banco",
+        "tarjetas de débito del banco"
+      ],
+      "synonyms": [
+        "tarjetas del banco",
+        "productos de tarjeta",
+        "productos de tarjetas",
+        "tipos de tarjeta",
+        "tipos de tarjetas",
+        "tarjetas puedo contratar",
+        "tarjetas puedo solicitar",
+        "tarjetas de debito",
+        "tarjetas de débito",
+        "ofrece el banco"
+      ],
+      "answer": "En Banco Santa Cruz puedes contratar, según elegibilidad:\n\n• **Tarjetas de crédito**: entre ellas Visa Clásica, Visa Joven, Multicrédito BSC y otras modalidades según perfil.\n• **Tarjetas de débito**: principalmente **Visa Clásica de débito**, vinculadas a tus cuentas de ahorro o corriente, para compras y retiros.\n\nCada producto tiene límites, beneficios y requisitos propios.\n\n[Para contratar de forma digital, ingresa aquí](https://solicitudesdigitales.bsc.com.do/)\n\n¿Quieres el detalle de crédito, débito o del proceso de solicitud?",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "fase1-proceso-contratar",
+      "row": 0,
+      "topic": "Proceso para contratar un producto",
+      "product": "Todos los productos / Contratación digital",
+      "intent": "Consultar proceso de contratación",
+      "expressions": [
+        "cual es el proceso para contratar un producto",
+        "cuál es el proceso para contratar un producto",
+        "proceso para contratar un producto",
+        "proceso para contratar",
+        "como contrato un producto",
+        "cómo contrato un producto",
+        "como contratar un producto",
+        "cómo contratar un producto",
+        "como solicito un producto",
+        "cómo solicito un producto",
+        "proceso de contratacion",
+        "proceso de contratación",
+        "quiero contratar un producto",
+        "donde contrato un producto",
+        "dónde contrato un producto"
+      ],
+      "synonyms": [
+        "proceso para contratar",
+        "contratar un producto",
+        "contratacion digital",
+        "contratación digital"
+      ],
+      "answer": "Para contratar un producto con Banco Santa Cruz puedes iniciar la solicitud de forma digital o en un Centro de Negocios.\n\n[Para contratar de forma digital, ingresa aquí](https://solicitudesdigitales.bsc.com.do/)\n\nTambién puedes acercarte a un Centro de Negocios BSC con tu documento de identidad. Según el producto (cuenta, préstamo, tarjeta o depósito) te indicarán requisitos y documentación.\n\n¿Qué producto te interesa contratar: cuentas, préstamos, tarjetas o depósitos?",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "fase1-credito-diferido-contratar",
+      "row": 0,
+      "topic": "Cómo contratar Crédito Diferido / Multicrédito",
+      "product": "Crédito Diferido",
+      "intent": "Consultar proceso de solicitud de crédito diferido",
+      "expressions": [
+        "como contrato un credito diferido",
+        "cómo contrato un crédito diferido",
+        "como contratar credito diferido",
+        "cómo contratar crédito diferido",
+        "como solicito multicredito",
+        "cómo solicito multicrédito",
+        "proceso para solicitar credito diferido",
+        "proceso de solicitud credito diferido",
+        "como obtengo multicredito",
+        "cómo obtengo multicrédito"
+      ],
+      "synonyms": [
+        "contratar credito diferido",
+        "solicitar multicredito",
+        "solicitar crédito diferido"
+      ],
+      "answer": "Para solicitar **Crédito Diferido** (Multicrédito BSC y/o Cuotas BSC) debes:\n\n1. Ser cliente del banco y, en general, poseer una tarjeta de crédito elegible.\n2. Presentar tu cédula de identidad y la documentación que te solicite el ejecutivo.\n3. Solicitar la facilidad en un **Centro de Negocios BSC** o por los canales que el banco habilite.\n4. Esperar la evaluación del Área de Análisis de Crédito.\n\n[También puedes iniciar trámites digitales aquí](https://solicitudesdigitales.bsc.com.do/)\n\n¿Quieres los requisitos documentales o las condiciones de uso del Multicrédito?",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "vf01-r143",
+      "expressions": [
+        "que es una cuenta corriente",
+        "qué es una cuenta corriente",
+        "que es cuenta corriente",
+        "qué es cuenta corriente",
+        "definicion de cuenta corriente",
+        "definición de cuenta corriente",
+        "significa cuenta corriente",
+        "explicame cuenta corriente",
+        "explícame cuenta corriente"
+      ],
+      "synonyms": ["cuenta corriente", "cuentas corrientes"]
+    },
+    {
+      "id": "vf01-r286",
+      "expressions": [
+        "cuales son las condiciones de uso de la tarjeta de debito",
+        "cuáles son las condiciones de uso de la tarjeta de débito",
+        "condiciones de uso tarjeta de debito",
+        "condiciones de uso tarjeta de débito",
+        "como funciona la tarjeta de debito",
+        "cómo funciona la tarjeta de débito"
+      ]
+    },
+    {
+      "id": "vf01-r210",
+      "expressions": [
+        "cuales son los cargos del multicredito",
+        "cuáles son los cargos del multicrédito",
+        "cargos del multicredito",
+        "cargos del multicrédito",
+        "que cargos tiene el multicredito",
+        "qué cargos tiene el multicrédito",
+        "cargos multicredito bsc"
+      ],
+      "synonyms": ["cargos multicredito", "cargos del multicrédito"]
+    },
+    {
+      "id": "vf01-r196",
+      "expressions": [
+        "cuales son las condiciones de uso del multicredito",
+        "cuáles son las condiciones de uso del multicrédito",
+        "condiciones de uso del multicredito",
+        "condiciones de uso del multicrédito",
+        "condiciones del multicredito",
+        "usos del multicredito",
+        "usos permitidos multicredito"
+      ],
+      "synonyms": ["condiciones multicredito", "condiciones de uso multicrédito"]
+    },
+    {
+      "id": "vf01-r321",
+      "expressions": [
+        "cual es mi responsabilidad en el banco",
+        "cuál es mi responsabilidad en el banco",
+        "cual es mi responsabilidad",
+        "cuál es mi responsabilidad",
+        "mi responsabilidad",
+        "mis responsabilidades en el banco",
+        "cuales son mis responsabilidades",
+        "cuáles son mis responsabilidades",
+        "obligaciones del usuario",
+        "mis deberes como cliente",
+        "mis obligaciones como cliente",
+        "cuales son mis obligaciones",
+        "cuáles son mis obligaciones",
+        "esa es la del banco y la mia como cliente",
+        "esa es la del banco y la mía como cliente",
+        "y la mia como cliente",
+        "y la mía como cliente",
+        "la mia como cliente",
+        "la mía como cliente",
+        "responsabilidades del cliente",
+        "responsabilidad del cliente",
+        "derechos y obligaciones del usuario",
+        "mis derechos y obligaciones"
+      ],
+      "synonyms": [
+        "responsabilidad en el banco",
+        "mis responsabilidades",
+        "mi responsabilidad",
+        "obligaciones del cliente",
+        "deberes del cliente"
+      ],
+      "answer": "Como cliente de Banco Santa Cruz tienes **derechos** y también **obligaciones**. Entre tus responsabilidades destacan:\n\n• Proporcionar información veraz y actualizada.\n• Cumplir lo pactado en contratos (pagos, plazos y condiciones).\n• Usar los productos y canales de forma segura y conforme a las políticas del banco.\n• Revisar estados de cuenta y reportar a tiempo cualquier irregularidad.\n• No ceder credenciales ni datos de acceso.\n\nSi una reclamación está en curso, eso **no te exime** de pagar consumos, intereses, moras u otros cargos contratados, salvo lo que disponga la normativa aplicable.\n\n¿Quieres que te detalle solo **obligaciones**, solo **derechos**, o el proceso de reclamaciones?"
+    },
+    {
+      "id": "fase1-responsabilidad-cliente",
+      "row": 321,
+      "topic": "Derechos y obligaciones del usuario / mi responsabilidad",
+      "product": "General / Derechos y Deberes",
+      "intent": "Consultar obligaciones del cliente",
+      "expressions": [
+        "cual es mi responsabilidad",
+        "cuál es mi responsabilidad",
+        "mi responsabilidad como cliente",
+        "esa es la del banco y la mia",
+        "esa es la del banco y la mía",
+        "y las mias",
+        "y las mías",
+        "las del banco y las mias",
+        "las del banco y las mías"
+      ],
+      "synonyms": ["mi responsabilidad", "como cliente"],
+      "answer": "Como cliente de Banco Santa Cruz tienes **derechos** y también **obligaciones**. Entre tus responsabilidades destacan:\n\n• Proporcionar información veraz y actualizada.\n• Cumplir lo pactado en contratos (pagos, plazos y condiciones).\n• Usar los productos y canales de forma segura y conforme a las políticas del banco.\n• Revisar estados de cuenta y reportar a tiempo cualquier irregularidad.\n• No ceder credenciales ni datos de acceso.\n\nSi una reclamación está en curso, eso **no te exime** de pagar consumos, intereses, moras u otros cargos contratados, salvo lo que disponga la normativa aplicable.\n\n¿Quieres que te detalle solo **obligaciones**, solo **derechos**, o el proceso de reclamaciones?",
+      "source": "fase1-overlay+vf01-r321"
+    },
+    {
+      "id": "fase1-responsabilidad-banco",
+      "row": 321,
+      "topic": "Responsabilidad del banco como institución",
+      "product": "General / Derechos y Deberes",
+      "intent": "Consultar responsabilidades del banco",
+      "expressions": [
+        "cual es la responsabilidad del banco",
+        "cuál es la responsabilidad del banco",
+        "responsabilidad del banco",
+        "responsabilidades del banco",
+        "cual es la del banco",
+        "cuál es la del banco",
+        "y la del banco",
+        "y las del banco",
+        "la del banco",
+        "las del banco",
+        "obligaciones del banco",
+        "deberes del banco",
+        "que debe el banco",
+        "qué debe el banco"
+      ],
+      "synonyms": ["responsabilidad del banco", "como institución"],
+      "answer": "Como **institución**, Banco Santa Cruz tiene entre sus responsabilidades:\n\n• Velar por la protección de los derechos de los usuarios de servicios financieros.\n• Brindar información exacta, oportuna y completa sobre productos y servicios.\n• Entregar los documentos e información propios del producto contratado y de sus modificaciones.\n• Prestarte el producto o servicio en la forma y condiciones pactadas.\n• Atender quejas y reclamaciones sin costo por ese servicio, y responder en los plazos reglamentarios.\n• Facilitar el acceso a la información que el Banco genere sobre ti y a la reportada a centrales de riesgo, conforme a la normativa.\n\nTambién elaboramos una guía de **derechos y obligaciones del usuario**. ¿Quieres ver ahora tus **obligaciones como cliente** o el **proceso de reclamaciones**?",
+      "source": "fase1-overlay+vf01-r321-banco"
+    },
+    {
+      "id": "fase1-cuenta-ahorro-uso",
+      "row": 142,
+      "topic": "Cuenta de ahorro / cómo se usa",
+      "product": "Cuentas / Ahorro",
+      "intent": "Consultar uso de cuenta de ahorro",
+      "expressions": [
+        "como se usa una cuenta de ahorro",
+        "cómo se usa una cuenta de ahorro",
+        "como se usa una cuenta de ahorros",
+        "cómo se usa una cuenta de ahorros",
+        "como funciona la cuenta de ahorro",
+        "cómo funciona la cuenta de ahorro",
+        "como se usa cuenta de ahorro",
+        "cómo se usa / cómo funciona Cuenta de ahorro",
+        "para que sirve la cuenta de ahorro",
+        "para qué sirve la cuenta de ahorro"
+      ],
+      "synonyms": ["uso cuenta de ahorro", "cómo se usa"],
+      "answer": "La **cuenta de ahorro** es un depósito a la vista: puedes disponer de tus fondos de forma inmediata.\n\n**Cómo se usa habitualmente:**\n• Depósitos y retiros en ventanilla o canales digitales del banco.\n• Retiros y consultas en cajeros automáticos (con tarjeta de débito y PIN).\n• Transferencias electrónicas entre cuentas.\n• Pagos y compras con tarjeta de débito asociada a la cuenta.\n\nEl dinero disponible es el de tu saldo; no es una línea de crédito. ¿Quieres saber requisitos para abrirla, tasas, o el saldo de **tu** cuenta de ahorro?",
+      "source": "fase1-overlay+vf01-r142"
+    },
+    {
+      "id": "vf01-r324",
+      "expressions": [
+        "PROCESO DE RETIRO DE FONDO DEL CLIENTE FALLECIDO",
+        "PROCESO DE RETIRO DE FONDOS DEL CLIENTE FALLECIDO",
+        "proceso de retiro de fondo del cliente fallecido",
+        "proceso de retiro de fondos del cliente fallecido",
+        "retiro de fondos de cliente fallecido",
+        "retiro de fondo del cliente fallecido",
+        "como retirar fondos de un cliente fallecido",
+        "cómo retirar fondos de un cliente fallecido",
+        "fondos de un cliente fallecido",
+        "cliente fallecido"
+      ],
+      "synonyms": [
+        "cliente fallecido",
+        "fondos fallecido",
+        "retiro fallecido",
+        "fallecimiento"
+      ]
+    },
+    {
+      "id": "fase1-proceso-reclamaciones",
+      "row": 320,
+      "topic": "PROCESO DE RECLAMACIONES",
+      "product": "General / Reclamaciones",
+      "intent": "Consultar proceso de reclamaciones",
+      "expressions": [
+        "cual es el proceso de reclamaciones",
+        "cuál es el proceso de reclamaciones",
+        "proceso de reclamaciones",
+        "proceso de reclamacion",
+        "como es el proceso de reclamaciones",
+        "cómo es el proceso de reclamaciones",
+        "como hago una reclamacion",
+        "cómo hago una reclamación",
+        "donde puedo poner una reclamacion",
+        "dónde puedo poner una reclamación",
+        "quiero reclamar",
+        "poner una queja"
+      ],
+      "synonyms": [
+        "proceso de reclam",
+        "reclamaciones",
+        "reclamacion",
+        "reclamar"
+      ],
+      "answer": "Puedes realizar tu reclamación a través de estos canales:\n\n• Centro de Contacto: **809.726.1000**\n• Centros de Negocios BSC (área de Servicios)\n• BSC en Línea\n\nHorarios y ubicaciones: bsc.com.do\n\nAl registrar tu caso recibirás el Formulario Único de Reclamación por correo con el número de caso.\n\nSegún el tipo de reclamación, pueden pedirte documentos de soporte (constancias, facturas, evidencia del comercio, etc.).\n\nSi quieres el detalle paso a paso, indícame el canal: Centro de Contacto, Centro de Negocios o BSC en Línea.",
+      "source": "fase1-overlay+vf01-r320"
+    },
+    {
+      "id": "fase1-que-es-certificado-deposito",
+      "row": 0,
+      "topic": "Qué es un certificado de depósito / depósito a plazo",
+      "product": "Depósito a Plazo",
+      "intent": "Consultar definición de Depósito a Plazo",
+      "expressions": [
+        "que es un certificado de deposito",
+        "qué es un certificado de depósito",
+        "que es un certificado de depósito",
+        "qué es un certificado de deposito",
+        "que es certificado de deposito",
+        "qué es certificado de depósito",
+        "que es un deposito a plazo",
+        "qué es un depósito a plazo",
+        "que es deposito a plazo",
+        "qué es depósito a plazo",
+        "que significa certificado de deposito",
+        "qué significa certificado de depósito",
+        "que es un dap",
+        "qué es un dap",
+        "que es un cdt",
+        "qué es un cdt",
+        "hablame de los certificados de deposito",
+        "háblame de los certificados de depósito",
+        "cuentame sobre deposito a plazo",
+        "cuéntame sobre depósito a plazo",
+        "certificado de deposito",
+        "certificado de depósito"
+      ],
+      "synonyms": [
+        "certificado de deposito",
+        "certificado de depósito",
+        "deposito a plazo",
+        "depósito a plazo",
+        "dap",
+        "cdt"
+      ],
+      "answer": "Un **certificado de depósito** (también llamado **depósito a plazo**) es un producto de inversión de Banco Santa Cruz: depositas un monto por un plazo acordado y recibes intereses según la tasa y condiciones del certificado.\n\nAl vencimiento puedes renovarlo o disponer del capital e intereses, conforme a si el certificado es redimible o no y a las condiciones pactadas.\n\nNo es lo mismo que un **préstamo con garantía de certificados BSC** (eso es un crédito respaldado por tu certificado).\n\n[Para contratar de forma digital, ingresa aquí](https://solicitudesdigitales.bsc.com.do/)\n\nSi quieres ver **tus** certificados (tasa, vencimiento o saldo), dímelo y te ayudo.",
+      "source": "fase1-overlay"
+    },
+    {
+      "id": "vf01-r123",
+      "expressions": [
+        "qué es pago mínimo de tarjeta de crédito",
+        "que es el pago minimo de la tarjeta",
+        "pago mínimo tarjeta de crédito",
+        "pago minimo tarjeta de credito",
+        "definición de pago mínimo tarjeta"
+      ],
+      "synonyms": ["pago minimo tarjeta", "pago mínimo – tarjeta de crédito"]
+    },
+    {
+      "id": "vf01-r215",
+      "expressions": [
+        "qué es domiciliación de cuotas",
+        "que es domiciliacion de cuotas",
+        "explicame domiciliación de cuotas",
+        "domiciliar cuotas multicrédito",
+        "domiciliar pagos del multicredito",
+        "pago automático de cuotas multicrédito"
+      ],
+      "synonyms": ["domiciliacion de cuotas", "domiciliar cuotas"]
+    },
+    {
+      "id": "vf01-r270",
+      "expressions": [
+        "qué son tarjetas de crédito empresariales",
+        "que son tarjetas empresariales",
+        "tarjetas empresariales banco santa cruz",
+        "requisitos tarjeta de crédito empresarial",
+        "documentación tarjeta empresarial"
+      ],
+      "synonyms": ["tarjetas empresariales", "tarjeta empresarial"]
+    },
+    {
+      "id": "vf01-r194",
+      "expressions": [
+        "documentación requerida para solicitud de crédito diferido",
+        "qué documentación necesito para crédito diferido",
+        "documentos para solicitar multicrédito",
+        "reúne la documentación necesaria crédito diferido"
+      ],
+      "answer": "Para solicitar Crédito Diferido (Multicrédito BSC / Cuotas BSC) debes reunir la documentación necesaria que indique el Banco. En general se solicita cédula de identidad y electoral o pasaporte, y la información/documentos que el Centro de Negocios o el canal digital te indiquen según el caso.\n\nSi ya eres cliente, el proceso puede ser más ágil; si no, pueden pedirte soportes adicionales de ingresos o identidad.\n\n[Para iniciar la solicitud digital, ingresa aquí](https://solicitudesdigitales.bsc.com.do/)"
+    },
+    {
+      "id": "vf01-r288",
+      "expressions": [
+        "conversión de moneda en transacciones internacionales",
+        "qué es conversión de moneda",
+        "como funciona la conversion de moneda",
+        "cómo funciona la conversión de moneda",
+        "transacciones internacionales tarjeta de débito moneda",
+        "cambio de moneda visa débito"
+      ],
+      "answer": "En transacciones internacionales con **tarjeta de débito Visa**, cuando el comercio opera en una moneda distinta a pesos dominicanos o dólares estadounidenses, aplica la **metodología de conversión de la marca Visa**. El monto se convierte según las reglas y tasas de Visa vigentes al momento de la operación.\n\nPueden aplicarse cargos o diferencias cambiarias según el tarifario vigente. Para el detalle exacto consulta bsc.com.do o un Centro de Negocios."
+    },
+    {
+      "id": "vf01-r289",
+      "expressions": [
+        "cómo cancelo tarjeta de débito",
+        "como cancelo tarjeta de debito",
+        "cancelar tarjeta de débito",
+        "qué necesito para cancelar tarjeta de débito"
+      ]
+    },
+    {
+      "id": "vf01-r308",
+      "expressions": [
+        "cómo se pagan las cuotas",
+        "como se pagan las cuotas",
+        "cómo pago las cuotas del préstamo",
+        "pago de cuotas préstamo personal"
+      ]
+    },
+    {
+      "id": "vf01-r319",
+      "expressions": [
+        "cómo cancelo un producto",
+        "como cancelo un producto",
+        "proceso de cancelación de productos",
+        "proceso de cancelacion de productos",
+        "cómo cancelar un producto del banco",
+        "qué necesito para cancelar un producto"
+      ],
+      "synonyms": ["cancelacion de productos", "cancelar producto"]
+    },
+    {
+      "id": "vf01-r261",
+      "expressions": [
+        "qué es visa infinite",
+        "que es visa infinite",
+        "háblame de la infinite",
+        "hablame de la infinite",
+        "ahora háblame de la infinite",
+        "ahora hablame de la infinite",
+        "tarjeta infinite",
+        "visa infinite banco santa cruz"
+      ],
+      "synonyms": ["infinite", "visa infinite"]
+    },
+    {
+      "id": "vf01-r262",
+      "expressions": [
+        "qué es visa joven",
+        "que es visa joven",
+        "características visa joven",
+        "caracteristicas visa joven",
+        "a quién está dirigida visa joven",
+        "tarjeta visa joven",
+        "visa joven banco santa cruz"
+      ],
+      "synonyms": ["visa joven", "joven"]
+    },
+    {
+      "id": "vf01-r288",
+      "expressions": [
+        "compras internacionales tarjeta de débito",
+        "conversión de moneda débito",
+        "como funciona conversion de moneda tarjeta debito"
+      ]
+    },
+    {
+      "id": "fase1-multicredito-vs-cuotas",
+      "row": 0,
+      "topic": "Multicrédito BSC vs Cuotas BSC",
+      "product": "Crédito Diferido",
+      "intent": "Comparar modalidades",
+      "expressions": [
+        "compárame multicrédito",
+        "comparame multicredito",
+        "compárame multicrédito bsc con cuotas bsc",
+        "comparame multicredito bsc con cuotas bsc",
+        "diferencia entre multicrédito y cuotas",
+        "diferencia entre multicrédito bsc y cuotas bsc",
+        "diferencia entre Multicrédito BSC y Cuotas BSC",
+        "qué los distingue",
+        "que los distingue",
+        "comparar multicrédito y cuotas bsc",
+        "multicrédito vs cuotas bsc"
+      ],
+      "synonyms": ["multicredito", "cuotas bsc", "comparar", "diferencia"],
+      "answer": "Multicrédito BSC y Cuotas BSC son las dos modalidades de **Crédito Diferido**.\n\n- **Multicrédito BSC**: facilidad revolvente con un plástico único; los consumos se amortizan en el ciclo de la facilidad.\n- **Cuotas BSC**: línea adicional vinculada a la tarjeta de crédito personal, con cuotas fijas de capital e interés.\n\nLa diferencia principal: Multicrédito opera como crédito revolvente en plástico dedicado; Cuotas BSC financia en cuotas fijas sobre una línea distinta unida a la TC.\n\n¿Quieres cargos, consumo mínimo o el proceso de cancelación de cada uno?"
+    },
+    {
+      "id": "fase1-tc-vs-td",
+      "row": 0,
+      "topic": "tarjeta de crédito y tarjeta de débito",
+      "product": "Tarjetas",
+      "intent": "Comparar productos",
+      "expressions": [
+        "compárame una tarjeta de crédito y una de débito",
+        "comparame una tarjeta de credito y una de debito",
+        "diferencia entre tarjeta de crédito y débito",
+        "diferencia entre tarjeta de credito y debito",
+        "crédito vs débito",
+        "credito vs debito"
+      ],
+      "synonyms": ["credito", "debito", "comparar"],
+      "answer": "La **tarjeta de crédito** usa una línea de crédito aprobada por el banco: consumes ahora y pagas después (pago mínimo o total), con intereses/cargos según el tarifario.\n\nLa **tarjeta de débito** usa directamente el dinero de tu **cuenta** asociada (ahorro/corriente/nómina): solo gastas lo disponible; no es una línea de préstamo.\n\nCargos típicos: emisión/renovación y otros del tarifario (débito suele cargarse a la cuenta; crédito al balance de la tarjeta).\n\n¿Quieres el detalle de cargos de la de débito o de la de crédito?"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "utc": "20260921T191806Z",
+  "indexes": {
+    "bsc-kb-conocimiento": {
+      "documentCount": 980,
+      "storageSize": 21881817
+    },
+    "bsc-kb-qa-vnext-20260921": {
+      "documentCount": 196,
+      "storageSize": 4270694
+    },
+    "genesis-rag-index": {
+      "documentCount": 131,
+      "storageSize": 2752829
+    }
+  },
+  "deployments_probe": [
+    {
+      "name": "gpt-6-astra",
+      "ok": false,
+      "err": "NotFoundError"
+    },
+    {
+      "name": "gpt-5.6-sol",
+      "ok": false,
+      "err": "NotFoundError"
+    },
+    {
+      "name": "gpt-4o-mini",
+      "ok": true,
+      "sample": "Hello! How can I"
+    },
+    {
+      "name": "gpt-4o",
+      "ok": false,
+      "err": "NotFoundError"
+    },
+    {
+      "name": "gpt-4.1",
+      "ok": false,
+      "err": "NotFoundError"
+    }
+  ],
+  "health": {
+    "status": "ok",
+    "service": "genesis-cognitive",
+    "env": "qa",
+    "version": "0.8.0",
+    "rag": "ready"
+  },
+  "ready_redis": {
+    "ok": true,
+    "session_backend": "redis",
+    "lock_backend": "redis",
+    "auth_mode": "entra_managed_identity",
+    "redis_required": true,
+    "session_backend_preference": "redis",
+    "session_ping": true,
+    "lock_ping": true,
+    "session_host": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+    "lock_host": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+    "errors": []
+  },
+  "vm_env": [
+    "AZURE_OPENAI_CHAT_DEPLOYMENT=gpt-4o-mini",
+    "AZURE_SEARCH_INDEX=bsc-kb-qa-vnext-20260921",
+    "GENESIS_AZURE_BRAIN=1",
+    "GENESIS_SEMANTIC_MODE=azure_plan",
+    "GENESIS_SEARCH_RETRIEVE=1"
+  ],
+  "smokes": [
+    {
+      "q": "qué significa saldo disponible",
+      "http": 200,
+      "ms": 765,
+      "reply_prefix": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta.",
+      "audit_keys": [
+        "total_ms",
+        "slowest_step",
+        "slowest_step_ms",
+        "step_count",
+        "rag_status",
+        "correlation_id",
+        "route_steps",
+        "brain_source",
+        "context_source",
+        "inference_count",
+        "semantic_mode",
+        "decision_trace"
+      ]
+    },
+    {
+      "q": "compara visa platinum e infinite",
+      "http": 200,
+      "ms": 1261,
+      "reply_prefix": "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Platinum\nLas TARJETAS PLATINUM de crédito Visa Santa Cruz es un instrumento de pago que te da la facilidad de realizar pagos o co",
+      "audit_keys": [
+        "total_ms",
+        "slowest_step",
+        "slowest_step_ms",
+        "step_count",
+        "rag_status",
+        "correlation_id",
+        "route_steps",
+        "brain_source",
+        "context_source",
+        "inference_count",
+        "semantic_mode",
+        "decision_trace"
+      ]
+    }
+  ]
+}

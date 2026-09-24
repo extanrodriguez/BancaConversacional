@@ -1,0 +1,307 @@
+{
+  "run_id": "reconcile_20260921T092332Z",
+  "build": {
+    "git": "NO_GIT",
+    "cognitive_py_sha256_prefix": "67ffad92ef109517",
+    "code_version": "potenciacion-strict-v2.2",
+    "knowledge_version": "bsc-kb-2026-09-19-candidate-1",
+    "deployment": "gpt-4o-mini",
+    "endpoint_host": "testbsc0001.openai.azure.com",
+    "GENESIS_SEMANTIC_MODE": "azure_plan",
+    "GENESIS_SESSION_BACKEND": "memory",
+    "GENESIS_SEARCH_RETRIEVE": "1",
+    "context": "lab_synthetic",
+    "customer_id": "726588",
+    "portfolio": "qa_726588_contract_demo.json",
+    "labels": {
+      "interpretation": "MODELO_REAL_when_inference",
+      "session": "MEMORIA_SIMULADA",
+      "context": "CONTEXTO_SINTETICO",
+      "redis": "PENDIENTE"
+    },
+    "cognitive_py_file_count": 121
+  },
+  "baseline_note": "baseline_turn_real_result.json conservado; reply[:500] era recorte del runner extract, no del servicio",
+  "turns": [
+    {
+      "turn_index": 1,
+      "question": "Oye, se me vence algo pronto? Dime si tengo que pagar algún préstamo o tarjeta en estos días y cuánto.",
+      "http": 200,
+      "client_ms": 7463,
+      "reply_full": "Felix Prestamos, ventana temporal: fecha de referencia **2026-09-21**, zona horaria **America/Santo_Domingo**, intervalo **próximos 30 días** (hasta **2026-10-21**, inclusive).\nSí: estos productos tienen **pago próximo** dentro de la ventana:\n• **Visa Full Car Flotilla Empleado (••••2240)**: pago próximo / fecha límite **2026-09-25**, pago mínimo **RD$0.00**\nFechas de pago registradas fuera de la ventana (no cuentan como próximo):\n• **Préstamo personal (...27615)**: tiene fecha de pago **2026-09-01** (anterior a la referencia; no es pago próximo en esta ventana), cuota **RD$8,500.00**\n• **Préstamo hipotecario (...90123)**: tiene fecha de pago **2026-08-10** (anterior a la referencia; no es pago próximo en esta ventana), cuota **RD$12,500.00**\n• **Tarjeta Joven (••••3446)**: tiene fecha de pago **2026-09-18** (anterior a la referencia; no es pago próximo en esta ventana), pago mínimo **RD$696.85**\n• **Multicredito Empleado (••••8891)**: tiene fecha de pago **2026-09-20** (anterior a la referencia; no es pago próximo en esta ventana), pago mínimo **RD$350.00**",
+      "reply_len": 1074,
+      "reply_view_500": "Felix Prestamos, ventana temporal: fecha de referencia **2026-09-21**, zona horaria **America/Santo_Domingo**, intervalo **próximos 30 días** (hasta **2026-10-21**, inclusive).\nSí: estos productos tienen **pago próximo** dentro de la ventana:\n• **Visa Full Car Flotilla Empleado (••••2240)**: pago próximo / fecha límite **2026-09-25**, pago mínimo **RD$0.00**\nFechas de pago registradas fuera de la ventana (no cuentan como próximo):\n• **Préstamo personal (...27615)**: tiene fecha de pago **2026-09",
+      "reply_truncated_by": "report_view_only",
+      "status": "VALID_CONTRACT",
+      "intent_id": "TURN_PLAN_MULTI",
+      "audit": {
+        "brain_source": "structural_repair",
+        "inference_count": 2,
+        "rag_status": "NOT_REQUIRED",
+        "semantic_mode": "azure_plan",
+        "decision_trace": [
+          {
+            "step": "azure_plan",
+            "output": {
+              "semantic_mode": "azure_plan",
+              "route_source": "repair:after_CLARIFICATION_REQUIRED_no_interpretation",
+              "brain_source": "structural_repair",
+              "deployment": "gpt-4o-mini",
+              "task_count": 1,
+              "task_statuses": {
+                "t1": "available"
+              },
+              "transition": "none",
+              "calls": [
+                {
+                  "name": "proposer",
+                  "duration_ms": 5205,
+                  "deployment": "gpt-4o-mini"
+                },
+                {
+                  "name": "verifier",
+                  "duration_ms": 2212,
+                  "deployment": "gpt-4o-mini"
+                }
+              ],
+              "inference_count": 2,
+              "failed_model_attempts": 0,
+              "stage_timings_ms": {
+                "envelope_ms": 0.9,
+                "resolve_full_attempt1_ms": 7418.7,
+                "initial_proposal_recovery_ms": 1.9,
+                "initial_proposal_recovery_rejected": "no_upcoming_coverage",
+                "structural_repair_ms": 10.1
+              },
+              "repaired_from": "CLARIFICATION_REQUIRED",
+              "interpretation_present": false
+            },
+            "duration_ms": 7449
+          }
+        ],
+        "total_ms": 7449
+      },
+      "instrumentation": {
+        "status": "VALID_CONTRACT",
+        "intent_id": "TURN_PLAN_MULTI",
+        "brain_trace": {
+          "step": "azure_plan",
+          "output": {
+            "semantic_mode": "azure_plan",
+            "route_source": "repair:after_CLARIFICATION_REQUIRED_no_interpretation",
+            "brain_source": "structural_repair",
+            "deployment": "gpt-4o-mini",
+            "task_count": 1,
+            "task_statuses": {
+              "t1": "available"
+            },
+            "transition": "none",
+            "calls": [
+              {
+                "name": "proposer",
+                "duration_ms": 5205,
+                "deployment": "gpt-4o-mini"
+              },
+              {
+                "name": "verifier",
+                "duration_ms": 2212,
+                "deployment": "gpt-4o-mini"
+              }
+            ],
+            "inference_count": 2,
+            "failed_model_attempts": 0,
+            "stage_timings_ms": {
+              "envelope_ms": 0.9,
+              "resolve_full_attempt1_ms": 7418.7,
+              "initial_proposal_recovery_ms": 1.9,
+              "initial_proposal_recovery_rejected": "no_upcoming_coverage",
+              "structural_repair_ms": 10.1
+            },
+            "repaired_from": "CLARIFICATION_REQUIRED",
+            "interpretation_present": false
+          },
+          "duration_ms": 7449
+        },
+        "client_response_len": 1074,
+        "client_response_full": "Felix Prestamos, ventana temporal: fecha de referencia **2026-09-21**, zona horaria **America/Santo_Domingo**, intervalo **próximos 30 días** (hasta **2026-10-21**, inclusive).\nSí: estos productos tienen **pago próximo** dentro de la ventana:\n• **Visa Full Car Flotilla Empleado (****2240)**: pago próximo / fecha límite **2026-09-25**, pago mínimo **RD$0.00**\nFechas de pago registradas fuera de la ventana (no cuentan como próximo):\n• **Préstamo personal (...27615)**: tiene fecha de pago **2026-09-01** (anterior a la referencia; no es pago próximo en esta ventana), cuota **RD$8,500.00**\n• **Préstamo hipotecario (...90123)**: tiene fecha de pago **2026-08-10** (anterior a la referencia; no es pago próximo en esta ventana), cuota **RD$12,500.00**\n• **Tarjeta Joven (****3446)**: tiene fecha de pago **2026-09-18** (anterior a la referencia; no es pago próximo en esta ventana), pago mínimo **RD$696.85**\n• **Multicredito Empleado (****8891)**: tiene fecha de pago **2026-09-20** (anterior a la referencia; no es pago próximo en esta ventana), pago mínimo **RD$350.00**",
+        "inference_count": 2,
+        "rag_status": "NOT_REQUIRED",
+        "evidence_sources": null,
+        "initial_proposal": null,
+        "verified_status": null,
+        "executed_plan": {
+          "source": "repair:after_CLARIFICATION_REQUIRED_no_interpretation",
+          "transition": "none",
+          "tasks": [
+            {
+              "id": "t1",
+              "domain": "personal",
+              "action": "read_field",
+              "object": "product",
+              "fields": [
+                "due_date",
+                "installment_amount",
+                "min_payment"
+              ],
+              "status": "ready",
+              "entity_ref": null
+            }
+          ]
+        },
+        "pex": {
+          "status": "VALID_CONTRACT",
+          "route": "personal",
+          "text_len": 1074,
+          "evidences": [
+            {
+              "task_id": "t1",
+              "domain": "personal",
+              "status": "available",
+              "source": "upcoming_payments",
+              "field": "due_date",
+              "text_preview": "Felix Prestamos, ventana temporal: fecha de referencia **2026-09-21**, zona horaria **America/Santo_Domingo**, intervalo **próximos 30 días** (hasta **2026-10-21**, inclusive).\nSí: estos productos tienen **pago próximo** dentro de la ventan"
+            }
+          ]
+        }
+      },
+      "labels": {
+        "context": "CONTEXTO_SINTETICO",
+        "session": "MEMORIA_SIMULADA",
+        "model_invoked": true,
+        "search_used": false
+      }
+    },
+    {
+      "turn_index": 2,
+      "question": "Qué significa el saldo disponible en una cuenta de ahorros?",
+      "http": 200,
+      "client_ms": 4259,
+      "reply_full": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta.",
+      "reply_len": 182,
+      "reply_view_500": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta.",
+      "reply_truncated_by": "none",
+      "status": "VALID_CONTRACT",
+      "intent_id": "TURN_PLAN_MULTI",
+      "audit": {
+        "brain_source": "structured_shortcut",
+        "inference_count": 0,
+        "rag_status": "FAQ",
+        "semantic_mode": "azure_plan",
+        "decision_trace": [
+          {
+            "step": "azure_plan",
+            "output": {
+              "semantic_mode": "azure_plan",
+              "route_source": "shortcut:kb_glossary_available",
+              "brain_source": "structured_shortcut",
+              "deployment": "gpt-4o-mini",
+              "task_count": 1,
+              "task_statuses": {
+                "t1": "available"
+              },
+              "evidence_sources": [
+                "faq"
+              ],
+              "field_accreditation": null,
+              "payment_window": null,
+              "transition": "none",
+              "calls": [],
+              "inference_count": 0,
+              "failed_model_attempts": 0,
+              "stage_timings_ms": {
+                "shortcut_ms": 4246.9
+              },
+              "cognitive_code_version": "potenciacion-strict-v2.2",
+              "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+            },
+            "duration_ms": 4248
+          }
+        ],
+        "total_ms": 4248
+      },
+      "instrumentation": {
+        "status": "VALID_CONTRACT",
+        "intent_id": "TURN_PLAN_MULTI",
+        "brain_trace": {
+          "step": "azure_plan",
+          "output": {
+            "semantic_mode": "azure_plan",
+            "route_source": "shortcut:kb_glossary_available",
+            "brain_source": "structured_shortcut",
+            "deployment": "gpt-4o-mini",
+            "task_count": 1,
+            "task_statuses": {
+              "t1": "available"
+            },
+            "evidence_sources": [
+              "faq"
+            ],
+            "field_accreditation": null,
+            "payment_window": null,
+            "transition": "none",
+            "calls": [],
+            "inference_count": 0,
+            "failed_model_attempts": 0,
+            "stage_timings_ms": {
+              "shortcut_ms": 4246.9
+            },
+            "cognitive_code_version": "potenciacion-strict-v2.2",
+            "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+          },
+          "duration_ms": 4248
+        },
+        "client_response_len": 182,
+        "client_response_full": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta.",
+        "inference_count": 0,
+        "rag_status": "FAQ",
+        "evidence_sources": [
+          "faq"
+        ],
+        "initial_proposal": null,
+        "verified_status": null,
+        "executed_plan": {
+          "source": "shortcut:kb_glossary_available",
+          "transition": "none",
+          "tasks": [
+            {
+              "id": "t1",
+              "domain": "institutional",
+              "action": "define",
+              "object": "glossary",
+              "fields": [
+                "available_balance"
+              ],
+              "status": "ready",
+              "entity_ref": null
+            }
+          ]
+        },
+        "pex": {
+          "status": "VALID_CONTRACT",
+          "route": "knowledge",
+          "text_len": 182,
+          "evidences": [
+            {
+              "task_id": "t1",
+              "domain": "institutional",
+              "status": "available",
+              "source": "faq",
+              "field": "available_balance",
+              "text_preview": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta."
+            }
+          ]
+        }
+      },
+      "labels": {
+        "context": "CONTEXTO_SINTETICO",
+        "session": "MEMORIA_SIMULADA",
+        "model_invoked": false,
+        "search_used": false
+      }
+    }
+  ],
+  "context_load": {
+    "http": 200,
+    "status": "CONTEXT_LOADED"
+  }
+}

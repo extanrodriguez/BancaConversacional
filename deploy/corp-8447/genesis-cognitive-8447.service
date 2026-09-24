@@ -1,0 +1,22 @@
+[Unit]
+Description=Genesis Cognitive API - Lab 8447 (parallel to 8446)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=genesis
+WorkingDirectory=/opt/genesis-cognitive-8447/Genesis_v2
+Environment=GENESIS_PORT=8447
+Environment=GENESIS_HOST=0.0.0.0
+Environment=GENESIS_SERVE_UI=false
+Environment=GENESIS_FAQ_PATH=/opt/genesis-cognitive-8447/Genesis_v2/data/kb_faq_vf01.json
+Environment=GENESIS_FAQ_OVERLAY_PATH=/opt/genesis-cognitive-8447/Genesis_v2/data/kb_faq_overlay_fase1.json
+Environment=GENESIS_RAG_NO_HUMAN_ESCALATION_INSTITUTIONAL=1
+EnvironmentFile=/opt/genesis-cognitive-8447/Genesis_v2/.env
+ExecStart=/opt/genesis-cognitive-8447/Genesis_v2/.venv/bin/python scripts/run_contract_inspector.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

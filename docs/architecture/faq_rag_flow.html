@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Genesis Cognitiva — FAQ vs RAG</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a222c;
+      --panel2: #222c38;
+      --line: #2f3b4a;
+      --text: #e8eef4;
+      --muted: #9aabbc;
+      --faq: #3d9a7a;
+      --faq-soft: rgba(61, 154, 122, 0.18);
+      --rag: #4a7fd4;
+      --rag-soft: rgba(74, 127, 212, 0.18);
+      --kb: #c4a35a;
+      --kb-soft: rgba(196, 163, 90, 0.18);
+      --warn: #d97757;
+      --ok: #5cbc8a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    header {
+      padding: 2rem 1.5rem 1.25rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #162029 0%, var(--bg) 100%);
+    }
+    header h1 {
+      margin: 0 0 0.4rem;
+      font-size: 1.65rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    header p { margin: 0; color: var(--muted); max-width: 52rem; }
+    main { padding: 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .verdict {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+    }
+    .card h3 { margin: 0 0 0.35rem; font-size: 0.85rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .card .val { font-size: 1.05rem; font-weight: 600; }
+    .card.yes .val { color: var(--ok); }
+    .card.no .val { color: var(--warn); }
+    .card p { margin: 0.4rem 0 0; color: var(--muted); font-size: 0.9rem; }
+
+    h2 {
+      margin: 2rem 0 0.85rem;
+      font-size: 1.15rem;
+      font-weight: 650;
+    }
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+    }
+    .n {
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      display: grid; place-items: center;
+      font-weight: 700;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      margin-top: 2px;
+    }
+    .step.faq { border-left: 3px solid var(--faq); }
+    .step.rag { border-left: 3px solid var(--rag); }
+    .step.kb { border-left: 3px solid var(--kb); }
+    .step h4 { margin: 0 0 0.25rem; font-size: 1rem; }
+    .step p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+    }
+    .tag.faq { background: var(--faq-soft); color: var(--faq); }
+    .tag.rag { background: var(--rag-soft); color: var(--rag); }
+    .tag.kb { background: var(--kb-soft); color: var(--kb); }
+    .tag.no-vec { background: rgba(217,119,87,0.15); color: var(--warn); }
+    .tag.vec { background: rgba(92,188,138,0.15); color: var(--ok); }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+    @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.7rem 0.85rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th { color: var(--muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; background: var(--panel2); }
+    tr:last-child td { border-bottom: 0; }
+    code {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.82em;
+      background: var(--panel2);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      margin: 0.5rem 0 1rem; color: var(--muted); font-size: 0.88rem;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 0.35rem; }
+    footer {
+      margin: 2rem 1.5rem 2.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .arrow {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.2rem;
+      line-height: 0.6;
+      margin: -0.15rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FAQ vs RAG — cómo está implementado hoy</h1>
+    <p>
+      Genesis Cognitiva (8447). Respuesta corta:
+      <strong>sí hay base vectorial (Azure AI Search)</strong>, pero el path feliz de FAQ
+      <strong>no</strong> la consulta. Primero gana el match lexical del JSON/overlay;
+      Azure Search solo entra cuando el fastpath falla y el intent es conocimiento de negocio.
+    </p>
+  </header>
+
+  <main>
+    <section class="verdict">
+      <div class="card yes">
+        <h3>¿Base vectorial?</h3>
+        <div class="val">Sí — Azure AI Search</div>
+        <p>Campo <code>content_vector</code> + embeddings Azure OpenAI.</p>
+      </div>
+      <div class="card no">
+        <h3>¿FAQ usa vectores?</h3>
+        <div class="val">No</div>
+        <p>Match léxico sobre <code>kb_faq_vf01.json</code> + overlay.</p>
+      </div>
+      <div class="card yes">
+        <h3>¿RAG en /turn?</h3>
+        <div class="val">Solo path knowledge</div>
+        <p>Si fastpath miss + <code>BUSINESS_KNOWLEDGE_QUERY</code> + Search <code>ready</code>.</p>
+      </div>
+      <div class="card no">
+        <h3>¿Vector DB local?</h3>
+        <div class="val">No (FAISS/Chroma)</div>
+        <p><code>local_rag.py</code> es cliente Azure (nombre histórico).</p>
+      </div>
+    </section>
+
+    <h2>Flujo de un turno (orden real)</h2>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--faq)"></span>FAQ lexical</span>
+      <span><span class="dot" style="background:var(--kb)"></span>KB intent (MD/JSON overlap)</span>
+      <span><span class="dot" style="background:var(--rag)"></span>RAG vectorial Azure</span>
+    </div>
+
+    <div class="flow">
+      <div class="step">
+        <div class="n">1</div>
+        <div>
+          <h4>Usuario → <code>POST /turn</code> → <code>inspect</code></h4>
+          <p>Sesión + snapshot. Aún no hay FAQ ni Search.</p>
+        </div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="step faq">
+        <div class="n">2</div>
+        <div>
+          <h4>Fast-path determinista <span class="tag faq">FAQ</span> <span class="tag no-vec">sin vectores</span></h4>
+          <p>
+            <code>run_field_fastpath</code> → <code>apply_faq_guardrail</code> / <code>match_faq</code>.
+            Carga <code>data/kb_faq_vf01.json</code> + <code>kb_faq_overlay_fase1.json</code>.
+            Scoring por tokens/expresiones (umbral ~0.78; institucional ~0.65).
+            Hit → responde y <strong>termina</strong> (misión, catálogo, “qué es…”, etc.).
+          </p>
+        </div>
+      </div>
+      <div class="arrow">↓ miss</div>
+      <div class="step kb">
+        <div class="n">3</div>
+        <div>
+          <h4>Dentro del FAQ: <code>kb_intent_resolver</code> <span class="tag kb">overlap</span> <span class="tag no-vec">sin vectores</span></h4>
+          <p>
+            Si el FAQ exacto no alcanza, intenta overlap sobre el mismo corpus JSON
+            + markdown en <code>Knowledge_Base/excel_vf01/*.md</code>.
+            No embebe ni consulta Azure Search.
+          </p>
+        </div>
+      </div>
+      <div class="arrow">↓ aún miss → LLM</div>
+      <div class="step">
+        <div class="n">4</div>
+        <div>
+          <h4>Clasificadores + turn-decision (LLM)</h4>
+          <p>Dominio <code>business</code> → intent <code>BUSINESS_KNOWLEDGE_QUERY</code>.</p>
+        </div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="step rag">
+        <div class="n">5</div>
+        <div>
+          <h4>RAG Azure <span class="tag rag">vectorial</span> <span class="tag vec">sí consulta Search</span></h4>
+          <p>
+            <code>LocalRagStore.query</code> en <code>rag/local_rag.py</code>:
+            embedding de la pregunta → <code>vectorQueries</code> sobre el índice Azure AI Search
+            → top chunks → <code>generate_rag_answer</code> (LLM grounded).
+          </p>
+        </div>
+      </div>
+      <div class="arrow">↓ NO_HITS / Search no ready</div>
+      <div class="step kb">
+        <div class="n">6</div>
+        <div>
+          <h4>Cascada de fallback</h4>
+          <p>FAQ otra vez → KB intent → fallback institucional → (opcional) humano.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Dos motores, lado a lado</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="color:var(--faq)">FAQ</h3>
+        <p style="margin:0 0 0.6rem;color:var(--text);font-weight:600">Respuestas tipadas, rápidas, sin LLM</p>
+        <p>
+          Fuente: Excel VF01 → JSON + overlay Fase 1.<br />
+          Match: expresiones / sinónimos / topic.<br />
+          Archivos: <code>faq_guardrail.py</code>, <code>kb_faq_*.json</code>.
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--rag)">RAG</h3>
+        <p style="margin:0 0 0.6rem;color:var(--text);font-weight:600">Huecos / conocimiento largo</p>
+        <p>
+          Fuente: índice Azure (chunks de KB).<br />
+          Match: embedding + similitud vectorial.<br />
+          Archivos: <code>local_rag.py</code>, <code>index_kb_azure.py</code>.
+        </p>
+      </div>
+    </div>
+
+    <h2>¿Cuándo se consulta la base vectorial?</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Pregunta ejemplo</th>
+          <th>Camino típico</th>
+          <th>¿Azure Search?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>“Misión”, “hablame del banco”</td>
+          <td>FAQ fastpath</td>
+          <td><strong>No</strong></td>
+        </tr>
+        <tr>
+          <td>“qué es un certificado de depósito”</td>
+          <td>FAQ overlay (tras el fix)</td>
+          <td><strong>No</strong></td>
+        </tr>
+        <tr>
+          <td>“cuál es la tasa de mi DAP 5511”</td>
+          <td>Snapshot personal (templates)</td>
+          <td><strong>No</strong></td>
+        </tr>
+        <tr>
+          <td>Knowledge sin FAQ fuerte, Search ready</td>
+          <td>LLM → BUSINESS_KNOWLEDGE → RAG</td>
+          <td><strong>Sí</strong></td>
+        </tr>
+        <tr>
+          <td>RAG sin hits / índice vacío</td>
+          <td>FAQ → kb_intent → institucional</td>
+          <td>Intentó Search; fallback lexical</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Variables de entorno clave</h2>
+    <table>
+      <thead>
+        <tr><th>Variable</th><th>Rol</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>GENESIS_FAQ_PATH</code></td><td>JSON principal FAQ</td></tr>
+        <tr><td><code>GENESIS_FAQ_OVERLAY_PATH</code></td><td>Overlay Fase 1 (expresiones + respuestas nuevas)</td></tr>
+        <tr><td><code>GENESIS_FAQ_INSTITUTIONAL_MIN_SCORE</code></td><td>Umbral FAQ corto (default 0.65)</td></tr>
+        <tr><td><code>GENESIS_KB_DIR</code></td><td>Markdown local para kb_intent</td></tr>
+        <tr><td><code>AZURE_SEARCH_ENDPOINT</code> / <code>INDEX</code> / <code>API_KEY</code></td><td>Índice vectorial</td></tr>
+        <tr><td><code>AZURE_OPENAI_EMBEDDING_DEPLOYMENT</code></td><td>Embeddings de la query</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    Generado para Banca Conversacional · abrir este archivo en el navegador ·
+    <code>docs/architecture/faq_rag_flow.html</code>
+  </footer>
+</body>
+</html>

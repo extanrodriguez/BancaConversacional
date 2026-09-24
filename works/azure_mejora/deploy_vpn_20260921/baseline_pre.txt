@@ -1,0 +1,8 @@
+{"status":"ok","service":"genesis-cognitive","env":"qa","version":"0.8.0","rag":"ready"}
+{"ok":true,"session_backend":"redis","lock_backend":"redis","auth_mode":"entra_managed_identity","redis_required":true,"session_backend_preference":"redis","session_ping":true,"lock_ping":true,"session_host":"bsc-cognitive-redis-qa.eastus.redis.azure.net","lock_host":"bsc-cognitive-redis-qa.eastus.redis.azure.net","errors":[]}
+active
+genesis_v2_20260917_123314.tar.gz
+genesis_v2_20260918_105850.tar.gz
+genesis_v2_20260918_122721.tar.gz
+genesis_v2_20260921_102720.tar.gz
+genesis_v2_20260921_110050.tar.gz

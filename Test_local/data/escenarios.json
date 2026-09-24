@@ -1,0 +1,118 @@
+{
+  "default_endpoint": "http://127.0.0.1:8445",
+  "customer_id": "CUST_LOCAL",
+  "escenarios": [
+    {
+      "id": "real_core",
+      "portfolio": "core_real_sample.json",
+      "descripcion": "JSON real del orquestador/Core (CA+TC+PR)",
+      "cubre": [
+        "ambiguedad cuentas DOP",
+        "ambiguedad 3 prestamos genericos",
+        "2 tarjetas",
+        "cuenta USD"
+      ]
+    },
+    {
+      "id": "cuenta_unica",
+      "portfolio": "mvp_cuenta_unica.json",
+      "descripcion": "Una sola cuenta de ahorros",
+      "cubre": [
+        "saldo sin aclarar"
+      ]
+    },
+    {
+      "id": "cuentas_multi",
+      "portfolio": "mvp_cuentas_multi.json",
+      "descripcion": "Ahorros + corriente",
+      "cubre": [
+        "aclarar tipo",
+        "cambiar de cuenta"
+      ]
+    },
+    {
+      "id": "cuenta_usd",
+      "portfolio": "mvp_cuenta_usd.json",
+      "descripcion": "Ahorros DOP + USD",
+      "cubre": [
+        "cuenta en dolares"
+      ]
+    },
+    {
+      "id": "prestamo_unico",
+      "portfolio": "mvp_prestamo_unico.json",
+      "descripcion": "Un prestamo",
+      "cubre": [
+        "cuota tasa deuda vencimiento cancelacion desembolso"
+      ]
+    },
+    {
+      "id": "prestamos_tipos",
+      "portfolio": "mvp_prestamos_tipos.json",
+      "descripcion": "Hipotecario + vehiculo + personal",
+      "cubre": [
+        "aclarar cual prestamo",
+        "identificar por tipo"
+      ]
+    },
+    {
+      "id": "tarjeta_unica",
+      "portfolio": "mvp_tarjeta_unica.json",
+      "descripcion": "Una tarjeta Bravo",
+      "cubre": [
+        "disponible limite corte pago minimo"
+      ]
+    },
+    {
+      "id": "tarjetas_multi",
+      "portfolio": "mvp_tarjetas_multi.json",
+      "descripcion": "Dos Visa",
+      "cubre": [
+        "aclarar tarjeta"
+      ]
+    },
+    {
+      "id": "dap_unico",
+      "portfolio": "mvp_dap_unico.json",
+      "descripcion": "Un deposito a plazo",
+      "cubre": [
+        "monto tasa vencimiento intereses"
+      ]
+    },
+    {
+      "id": "dap_multi",
+      "portfolio": "mvp_dap_multi.json",
+      "descripcion": "Dos depositos a plazo",
+      "cubre": [
+        "aclarar cual DAP"
+      ]
+    },
+    {
+      "id": "sin_prestamos",
+      "portfolio": "mvp_sin_prestamos.json",
+      "descripcion": "Cliente sin prestamo",
+      "cubre": [
+        "excepcion sin producto"
+      ]
+    },
+    {
+      "id": "qa_andres",
+      "portfolio": "qa_andres_david.json",
+      "descripcion": "Portafolio QA Andres David (CA+TC+PR real)",
+      "cubre": [
+        "saldo generico multi-cuenta",
+        "ambiguedad tarjetas",
+        "movimientos",
+        "follow-up moneda"
+      ]
+    },
+    {
+      "id": "vacio",
+      "portfolio": "mvp_vacio.json",
+      "descripcion": "Sin productos",
+      "cubre": [
+        "sin producto elegible"
+      ]
+    }
+  ]
+}

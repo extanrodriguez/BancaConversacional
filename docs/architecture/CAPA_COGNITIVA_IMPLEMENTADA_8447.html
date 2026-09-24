@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Genesis Cognitiva — Capa implementada (QA :8447)</title>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#e8f0ea",
+        primaryTextColor: "#1a2e22",
+        primaryBorderColor: "#2d6a4f",
+        lineColor: "#4a5568",
+        secondaryColor: "#f0f4f8",
+        tertiaryColor: "#fff8e7",
+        fontFamily: "Segoe UI, system-ui, sans-serif",
+      },
+      flowchart: { curve: "basis", htmlLabels: true },
+    });
+  </script>
+  <style>
+    :root {
+      --bg: #f7f5f1;
+      --ink: #1c241e;
+      --muted: #5c6b62;
+      --card: #ffffff;
+      --line: #d8ddd9;
+      --green: #2d6a4f;
+      --green-soft: #e8f0ea;
+      --amber: #9a6b2f;
+      --amber-soft: #fff4e0;
+      --blue: #2c5282;
+      --blue-soft: #e8f1fa;
+      --red-soft: #fdecea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(135deg, #1a3d2e 0%, #2d6a4f 55%, #3d7a5c 100%);
+      color: #f5faf7;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    header .wrap, main, footer .wrap { max-width: 960px; margin: 0 auto; }
+    header h1 { margin: 0 0 0.4rem; font-size: 1.75rem; font-weight: 650; }
+    header p { margin: 0; opacity: 0.9; max-width: 42rem; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.1rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    main { padding: 1.75rem 1.5rem 3rem; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.35rem 1.4rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.2rem;
+      color: var(--green);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.45rem;
+    }
+    h3 { margin: 1.1rem 0 0.45rem; font-size: 1rem; }
+    p, li { color: var(--ink); }
+    .muted { color: var(--muted); font-size: 0.92rem; }
+    .callout {
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin: 0.85rem 0;
+      border-left: 4px solid var(--green);
+      background: var(--green-soft);
+    }
+    .callout.warn {
+      border-left-color: var(--amber);
+      background: var(--amber-soft);
+    }
+    .callout.info {
+      border-left-color: var(--blue);
+      background: var(--blue-soft);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 0.6rem 0 0.2rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f0f3f1; font-weight: 600; }
+    code, .mono {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.86em;
+      background: #eef2ef;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+    .mermaid {
+      background: #fafbfa;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin: 0.85rem 0;
+      overflow-x: auto;
+    }
+    ul.compact { margin: 0.4rem 0; padding-left: 1.2rem; }
+    ul.compact li { margin: 0.25rem 0; }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.25rem 1.5rem 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    a { color: var(--green); }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+    @media (max-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.4rem; }
+    }
+    .stat {
+      background: var(--green-soft);
+      border: 1px solid #c5d9cc;
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+    }
+    .stat strong { display: block; font-size: 1.25rem; color: var(--green); }
+    .stat span { font-size: 0.85rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Capa cognitiva Genesis — cómo quedó implementada</h1>
+      <p>
+        Documento de referencia para QA en
+        <strong>http://20.127.25.24:8447</strong>.
+        Orientado a <strong>fiabilidad operativa</strong>: personal solo con snapshot;
+        conocimiento con FAQ confiable o Foundry grounded.
+      </p>
+      <div class="badge-row">
+        <span class="badge">Guía orch 19/19</span>
+        <span class="badge">Variantes 15/15</span>
+        <span class="badge">P0 Puerta confianza ON</span>
+        <span class="badge">P1 Cache Foundry ON</span>
+        <span class="badge">Foundry KB v5</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. ¿Puedo probar ya en :8447?</h2>
+      <div class="callout">
+        <strong>Sí.</strong> El lab QA está desplegado y validado para contexto + conocimiento + Foundry.
+        UI: <a href="http://20.127.25.24:8447/pruebas" target="_blank" rel="noopener">http://20.127.25.24:8447/pruebas</a>
+        · Health: <a href="http://20.127.25.24:8447/health" target="_blank" rel="noopener">/health</a>
+        · Webhook: <code>POST /orch/webhook/chat</code> + header <code>ClientId</code>
+      </div>
+      <div class="callout warn">
+        <strong>Pendiente menor (no bloquea prueba KB):</strong> revalidar la batería
+        <em>personal</em> (saldos / mi tarjeta / préstamos) sin <code>--skip-personal</code>.
+        P2 (presupuesto) y P3 (rerank embeddings) son mejoras posteriores; no están en el camino crítico actual.
+      </div>
+      <div class="grid-2" style="margin-top:0.9rem">
+        <div class="stat"><strong>19/19</strong><span>Guía orquestador (contexto + KB)</span></div>
+        <div class="stat"><strong>15/15</strong><span>Variantes (paráfrasis + Foundry)</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Diagrama del turno (implementación actual)</h2>
+      <p class="muted">
+        Fastpath primero (seguridad y latencia). Personal nunca va a Foundry.
+        En conocimiento, FAQ solo cierra con confianza; si no, Foundry (con cache).
+      </p>
+      <pre class="mermaid">
+flowchart TB
+  A[Canal APK / Orquestador] --> B["/turn · /inspect · webhook"]
+  B --> C[Sesión + Snapshot Core]
+  C --> D[Fastpath determinista]
+
+  D -->|datos del cliente| P[PERSONAL → snapshot]
+  D -->|conocimiento| F[FAQ + overlay]
+
+  F --> G{Puerta de confianza P0}
+  G -->|alta confianza + cubre intención| R[Respuesta final + rag_status]
+  G -->|miss / genérico / detalle| K[Cache Foundry P1]
+
+  K -->|hit| R
+  K -->|miss| FY[Foundry KB Agent v5]
+  FY -->|fallback| S[Azure Search RAG]
+  FY --> R
+  S --> R
+  P --> R
+
+  R -.->|offline| L[Feedback → promote → overlay]
+      </pre>
+    </section>
+
+    <section>
+      <h2>3. Separación personal vs conocimiento</h2>
+      <pre class="mermaid">
+flowchart LR
+  Q[Pregunta del usuario] --> D{¿Marcadores personales?<br/>mi saldo / mi tarjeta / mi préstamo}
+  D -->|Sí| SNAP[CustomerContextSnapshot<br/>reglas + templates]
+  D -->|No| KNOW[FAQ → puerta → Foundry]
+  SNAP --> OUT[Reply auditable]
+  KNOW --> OUT
+      </pre>
+      <table>
+        <thead>
+          <tr><th>Ruta</th><th>Fuente de verdad</th><th>Foundry</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Personal</strong></td>
+            <td>Snapshot Core / lab (saldos, productos, focus)</td>
+            <td>Prohibido (<code>FOUNDRY_SKIP_PERSONAL</code>)</td>
+          </tr>
+          <tr>
+            <td><strong>Conocimiento</strong></td>
+            <td>FAQ VF01 + overlay → índice <code>bsc-kb-conocimiento</code></td>
+            <td>Sí, cuando el FAQ no cubre el detalle</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>4. P0 — Puerta de confianza (fiabilidad)</h2>
+      <p>
+        Función central: <code>prefer_foundry_for_faq_hit()</code> en
+        <code>knowledge_followup.py</code>. Evita que un FAQ “genérico” cierre el turno
+        cuando el usuario pide detalle (requisitos, cargos, solicitud, consumo, robo, etc.).
+      </p>
+      <pre class="mermaid">
+flowchart TD
+  H[FAQ hit + score] --> A{¿Respuesta vacía?}
+  A -->|Sí| FY[Ceder a Foundry]
+  A -->|No| B{¿Pide detalle y FAQ no lo cubre?<br/>should_prefer_foundry_over_faq}
+  B -->|Sí| FY
+  B -->|No| C{GENESIS_KB_CONFIDENCE_GATE=1?}
+  C -->|No| FAQ[Usar FAQ]
+  C -->|Sí| D{score &lt; GRAY_MIN 0.55?}
+  D -->|Sí| FY
+  D -->|No| E{score &lt; HIGH 0.90 y pregunta de detalle?}
+  E -->|Sí| FY
+  E -->|No| FAQ
+      </pre>
+      <table>
+        <thead><tr><th>Flag</th><th>Valor en :8447</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code>GENESIS_KB_CONFIDENCE_GATE</code></td><td>1</td><td>Activa umbrales de score</td></tr>
+          <tr><td><code>GENESIS_FAQ_HIGH_SCORE</code></td><td>0.90</td><td>FAQ “seguro” para cerrar</td></tr>
+          <tr><td><code>GENESIS_FAQ_GRAY_MIN</code></td><td>0.55</td><td>Debajo = Foundry</td></tr>
+          <tr><td><code>GENESIS_FAQ_GRAY_MAX</code></td><td>0.85</td><td>Reservado para P3 rerank</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>5. P1 — Cache Foundry (ahorro sin perder fiabilidad)</h2>
+      <p>
+        Módulo <code>foundry_kb_cache.py</code>. Clave = hash(<code>topic|pregunta_normalizada</code>).
+        Solo cachea <code>FOUNDRY_KB_ANSWERED</code>. No cachea personal, clarify ni respuestas basura.
+      </p>
+      <pre class="mermaid">
+sequenceDiagram
+  participant U as Usuario
+  participant C as Cognitiva
+  participant Cache as Cache disco
+  participant F as Foundry KB
+
+  U->>C: ¿Requisitos Crédito Diferido?
+  C->>Cache: get(topic|q)
+  alt hit
+    Cache-->>C: answer
+    C-->>U: reply (FOUNDRY_KB_CACHE_HIT)
+  else miss
+    C->>F: ask_foundry_kb_agent
+    F-->>C: grounded answer
+    C->>Cache: put(TTL 24h)
+    C-->>U: reply (FOUNDRY_KB_ANSWERED)
+  end
+      </pre>
+      <table>
+        <thead><tr><th>Flag</th><th>Valor :8447</th></tr></thead>
+        <tbody>
+          <tr><td><code>GENESIS_FOUNDRY_CACHE</code></td><td>1</td></tr>
+          <tr><td><code>GENESIS_FOUNDRY_CACHE_TTL_S</code></td><td>86400 (24 h)</td></tr>
+          <tr><td><code>GENESIS_FOUNDRY_CACHE_DIR</code></td><td><code>.../data/cache/foundry_kb</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>6. Contexto multi-turno y comparaciones</h2>
+      <ul class="compact">
+        <li><code>last_knowledge_topic</code> mantiene el producto del hilo (Crédito Diferido, Multicrédito vs Cuotas, crédito/débito…).</li>
+        <li><code>expand_knowledge_question</code> convierte follow-ups cortos (“¿cómo lo solicito?”, “me refería a la primera”) en pregunta explícita.</li>
+        <li>Comparaciones KB (Multicrédito/Cuotas, crédito/débito) tienen camino dedicado para no caer a portafolio personal ni a OOD.</li>
+        <li>No se guarda <code>KB_AMBIGUITY</code> como topic (evita envenenar el hilo).</li>
+      </ul>
+      <pre class="mermaid">
+flowchart LR
+  T1["T1: ¿Qué es Crédito Diferido?"] --> FAQ1[FAQ definición]
+  FAQ1 --> T2["T2: ¿Y los requisitos?"]
+  T2 --> EXP[expand + prefer Foundry]
+  EXP --> FY[Foundry grounded]
+  FY --> T3["T3: ¿Cómo lo solicito?"]
+  T3 --> FY2[Foundry / cache]
+      </pre>
+    </section>
+
+    <section>
+      <h2>7. Componentes y archivos clave</h2>
+      <table>
+        <thead><tr><th>Componente</th><th>Archivo</th><th>Qué hace</th></tr></thead>
+        <tbody>
+          <tr><td>Entrada HTTP</td><td><code>demo/contract_inspector_app.py</code></td><td><code>/inspect</code>, <code>/turn</code>, webhook orch</td></tr>
+          <tr><td>Fastpath</td><td><code>router/field_guardrails.py</code></td><td>Reglas sin LLM (personal + FAQ corto)</td></tr>
+          <tr><td>FAQ + overlay</td><td><code>router/faq_guardrail.py</code></td><td>Match lexical; strip “qué es…”</td></tr>
+          <tr><td>Follow-up KB</td><td><code>router/knowledge_followup.py</code></td><td>Topic sticky + puerta confianza</td></tr>
+          <tr><td>Foundry</td><td><code>rag/foundry_kb_agent.py</code></td><td>Agente <code>genesis-kb-agent-poc</code> v5</td></tr>
+          <tr><td>Cache</td><td><code>rag/foundry_kb_cache.py</code></td><td>TTL disco por topic|pregunta</td></tr>
+          <tr><td>Learning</td><td><code>learning/feedback_store.py</code></td><td>OK/KO offline → promote overlay</td></tr>
+          <tr><td>Datos FAQ</td><td><code>data/kb_faq_vf01.json</code> + <code>overlay_fase1.json</code></td><td>Base + expresiones aprendidas</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>8. Observabilidad (<code>rag_status</code>)</h2>
+      <table>
+        <thead><tr><th>Valor</th><th>Significado</th></tr></thead>
+        <tbody>
+          <tr><td><code>NOT_REQUIRED</code></td><td>Resuelto por FAQ/personal (sin Foundry)</td></tr>
+          <tr><td><code>FOUNDRY_KB_ANSWERED</code></td><td>Foundry respondió grounded</td></tr>
+          <tr><td><code>FOUNDRY_KB_CACHE_HIT</code></td><td>Misma respuesta desde cache</td></tr>
+          <tr><td><code>FOUNDRY_KB_CLARIFY</code></td><td>Ambigüedad: pide aclaración mínima</td></tr>
+          <tr><td><code>FAQ_KB_FOLLOWUP</code> / <code>FAQ_KB_COMPARE</code></td><td>FAQ en hilo de conocimiento</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>9. Aprendizaje (offline, no en el turno del cliente)</h2>
+      <pre class="mermaid">
+flowchart LR
+  R[Regresión / pruebas] --> F[feedback_store SQLite]
+  F --> P[promote_learning_expressions]
+  P --> O[kb_faq_overlay_fase1.json]
+  O --> D[Redeploy :8447]
+  O --> I[Opcional: reindex Azure Search]
+      </pre>
+      <p class="muted">
+        No se reentrena un LLM con datos del cliente. El aprendizaje operativo es
+        <strong>cobertura de expresiones</strong> → más hits FAQ baratos y estables;
+        Foundry queda para lo nuevo o detallado.
+      </p>
+    </section>
+
+    <section>
+      <h2>10. Cómo probar (rápido)</h2>
+      <ol>
+        <li>Abrir <a href="http://20.127.25.24:8447/pruebas" target="_blank" rel="noopener">/pruebas</a> o usar webhook con <code>ClientId: CUST001</code>.</li>
+        <li>Conocimiento multi-turno: “¿Qué es Crédito Diferido?” → “¿requisitos?” → “¿cómo lo solicito?”.</li>
+        <li>Comparación: “Compárame Multicrédito y Cuotas BSC” / “crédito vs débito”.</li>
+        <li>Personal (snapshot): “¿cuál es mi saldo?” — no debe invocar Foundry.</li>
+        <li>Repetir una pregunta Foundry dos veces: la 2ª puede marcar <code>FOUNDRY_KB_CACHE_HIT</code>.</li>
+      </ol>
+      <div class="callout info">
+        Suites: <code>scripts/orch_sdk_guide_suite.py</code> ·
+        <code>scripts/orch_sdk_variants_suite.py</code>
+      </div>
+    </section>
+
+    <section>
+      <h2>11. Qué no hace falta tocar ahora</h2>
+      <ul class="compact">
+        <li>No poner Foundry primero en todo (rompe personal, costo y auditoría).</li>
+        <li>No fine-tune de LLM con conversaciones de clientes.</li>
+        <li>P2 presupuesto y P3 rerank: útiles, pero secundarios si la prioridad es fiabilidad ya medida en 100%.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Banco Santa Cruz · Banca Conversacional · Genesis Cognitiva QA :8447 ·
+      Documento generado para revisión operativa · Índice Foundry:
+      <code>bsc-kb-conocimiento</code> · Agente <code>genesis-kb-agent-poc</code> v5
+    </div>
+  </footer>
+</body>
+</html>

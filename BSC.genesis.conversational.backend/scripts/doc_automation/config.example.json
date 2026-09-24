@@ -1,0 +1,17 @@
+{
+  "ado_org_url": "https://dev.azure.com/BMSC",
+  "ado_project": "Proyecto_Genesis",
+  "ado_repo_id": "BSC.genesis.conversational.backend",
+  "ado_pat": "",
+  "output_dir": "docs/generated",
+  "templates_dir": "scripts/doc_automation/templates",
+  "templates_override_dir": "docs/doc-automation/templates-overrides",
+  "since_days": 30,
+  "max_items": 50,
+  "publish_confluence": false,
+  "confluence_base_url": "",
+  "confluence_space_key": "",
+  "confluence_user": "",
+  "confluence_api_token": "",
+  "confluence_parent_title": "Technical Documentation"
+}

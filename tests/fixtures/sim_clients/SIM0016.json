@@ -1,0 +1,7 @@
+{
+  "resultCode": 0,
+  "primerNombre": "Laura Soto",
+  "products": [
+    {"productCategory": "CA", "productIdentification": "6601230001", "productDescription": "Cuenta de Ahorros", "productStatus": 3, "currencyCode": 214, "availableBalance": 8000.0, "currentBalance": 8000.0}
+  ]
+}

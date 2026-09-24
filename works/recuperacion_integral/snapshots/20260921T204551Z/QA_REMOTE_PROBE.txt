@@ -1,0 +1,27 @@
+===ENV===
+CFG AZURE_SEARCH_INDEX=bsc-kb-qa-vnext-20260921
+CFG AZURE_OPENAI_CHAT_DEPLOYMENT=gpt-6-astra
+CFG GENESIS_AZURE_DEPLOYMENT=gpt-6-astra
+CFG AZURE_OPENAI_DEPLOYMENT=gpt-6-astra
+CFG GENESIS_SEMANTIC_MODE=azure_plan
+CFG GENESIS_AZURE_BRAIN=1
+CFG GENESIS_SEARCH_RETRIEVE=1
+CFG GENESIS_SEARCH_RERANK_LOCAL=
+===SERVICE===
+active
+===HASHES===
+HASH src/genesis_cognitive/brain/azure_plan_turn.py 0e37d6ec092fc69cc9568e11568cb2ba074646a4b3f8f1a467a2d6acda7a91aa 44195
+HASH src/genesis_cognitive/brain/plan_executor.py cc2eb27d80e4f21c9528010a2d84703734b6f574d22564b599d819c9ece08f80 87519
+HASH src/genesis_cognitive/brain/plan_interpreter.py f2f4e163bd4cc900ea3074affc2d20bb1ffb0cc595f81a964c52cb3cfba13e31 99162
+HASH src/genesis_cognitive/brain/semantic_mode.py 9ae158132fb88894c50e74209a959c3a06e94ed51cb08872505a10891f296469 2128
+HASH src/genesis_cognitive/brain/azure_plan_adapter.py 2ef3808669a9d4a3e2e6588b0954a6a3548f0ac188c9f77db258550d1c46346f 47897
+HASH src/genesis_cognitive/agents/agent_framework_turn_resolver.py 2a24d9c862ac051e61cd89049f677563604fa86c436daf71ae35fbfca33e4657 20319
+HASH src/genesis_cognitive/agents/semantic_verifier.py c47a4b2697c3e8966afd9d1bea49974d0be861c678ebd3a90d0ff0ce80305f8e 8369
+HASH src/genesis_cognitive/rag/azure_search_retrieve.py 9880ead905a90b37bcc434f3bdc0fce586f41949a88c7fc05e2b57f181f440fe 10927
+HASH src/genesis_cognitive/rag/grounding_verifier.py 9ba181c1f64ca8eb80891b90ae605d62d59001b6ab3137b6794676b43eaefcc8 7921
+HASH src/genesis_cognitive/router/field_guardrails.py ba2ef36cac7bae1a2799207c04d6cde931329b1c7e9c3e0d7494705966acbb2b 128842
+HASH src/genesis_cognitive/router/domain_classifier.py 8f90b99c28ee6bf08356b6f94ad2af816194413e2f700bc91d90fd461b77f988 6889
+HASH src/genesis_cognitive/demo/contract_inspector_app.py 524a85cb42fd31d36e0d93dc1a11e3b0e8a44dc73da8458ff6307d18598fc615 284531
+===HEALTH===
+{"status":"ok","service":"genesis-cognitive","env":"qa","version":"0.8.0","rag":"ready"}
+{"ok":true,"session_backend":"redis","lock_backend":"redis","auth_mode":"entra_managed_identity","redis_required":true,"session_backend_preference":"redis","session_ping":true,"lock_ping":true,"session_host":"bsc-cognitive-redis-qa.eastus.redis.azure.net","lock_host":"bsc-cognitive-redis-qa.eastus.redis.azure.net","errors":[]}

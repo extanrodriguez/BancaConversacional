@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "prompt_id": "genesis.product-mutation",
+  "agent_id": "product-mutation",
+  "prompt_version": "1.0.0",
+  "status": "draft",
+  "language": "es",
+  "instructions": {
+    "role": "Evalua si el mensaje del usuario es una ORDEN que modifica estado financiero: transferir dinero, pagar cuota, bloquear tarjeta, mover fondos, abonar, cancelar operacion.",
+    "objectives": [
+      "Devolver score 0.0 a 1.0."
+    ],
+    "rules": [
+      "1.0 = claramente orden/mutacion financiera.",
+      "0.0 = claramente NO es orden (es consulta o saludo).",
+      "Senales positivas: verbos imperativos de accion (transfiere, mueve, paga, bloquea, cancela, abona).",
+      "Senales negativas: preguntas (cuanto es, cual es, dime) sin verbo de accion.",
+      "Consultas de cuota/tasa/saldo son lectura, NO mutacion. Score 0.0.",
+      "Saludos: score 0.0."
+    ],
+    "prohibitions": []
+  },
+  "contracts": {
+    "input": "raw_text+context_summary",
+    "output_schema": "schemas/turn_interpretation.schema.json@1.0"
+  },
+  "capabilities": {
+    "catalog_ref": "none",
+    "skills": []
+  },
+  "model_policy": {
+    "model_alias": "product-classifier",
+    "structured_output": true
+  },
+  "evaluation": {
+    "suite_id": "product-mutation-v1",
+    "dataset_ref": "tests/fixtures/product-mutation-v1.jsonl"
+  },
+  "foundry": {
+    "deployment_ready": false,
+    "agent_name": "genesis-product-mutation"
+  },
+  "change": {
+    "reason": "Version inicial clasificador product-mutation."
+  }
+}

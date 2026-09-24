@@ -1,0 +1,60 @@
+{
+  "case_id": "IG19",
+  "section": 9,
+  "questions": [
+    "¿Qué es un apoderado y qué puede hacer frente a una cuenta?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    332
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, Apoderado(s): persona autorizada legalmente por el titular o poderdante para realizar.",
+  "replies_sanitized": [
+    "Felix Prestamos, Apoderado(s): persona autorizada legalmente por el titular o poderdante para realizar."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 103,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 103,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "44b35f56-0206-4af7-94d6-907c92336cbb",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 98.2
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 103
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

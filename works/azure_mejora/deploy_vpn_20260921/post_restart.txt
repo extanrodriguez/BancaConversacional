@@ -1,0 +1,6 @@
+***
+active
+{"status":"ok","service":"genesis-cognitive","env":"qa","version":"0.8.0","rag":"ready"}
+{"ok":true,"session_backend":"redis","lock_backend":"redis","auth_mode":"entra_managed_identity","redis_required":true,"session_backend_preference":"redis","session_ping":true,"lock_ping":true,"session_host":"bsc-cognitive-redis-qa.eastus.redis.azure.net","lock_host":"bsc-cognitive-redis-qa.eastus.redis.azure.net","errors":[]}
+HAS_P12_WINDOW
+6c5d0b9fe6d67b4a1a9442b5549137e7f5cdfee96e1dc14ab0d8d880ba535a44

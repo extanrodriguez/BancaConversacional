@@ -1,0 +1,11 @@
+{
+  "run_id": "20260920T200416Z_6f97adcc",
+  "base": "http://20.127.25.24:8447",
+  "customer": "726588",
+  "scope": "p0",
+  "generated_utc": "20260920T200751Z",
+  "cases": 4,
+  "captured": 0,
+  "failed": 4,
+  "images_dir": "images/fix/20260920T200416Z_6f97adcc"
+}

@@ -1,0 +1,473 @@
+{
+  "version": "bsc-kb-2026-09-19-candidate-1",
+  "usage": "Resolver candidatos junto al snapshot. No afirmar tenencia ni crear códigos Core. Joven, Gold, Platinum e Infinite pueden tener varias familias.",
+  "products": [
+    {
+      "catalog_id": "bsc-catalog-r257",
+      "name": "Tarjeta de Crédito Visa Clásica",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Visa Clásica",
+        "Visa Clásica",
+        "clasica",
+        "classic"
+      ],
+      "knowledge_id": "vf01-r257",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r258",
+      "name": "Tarjeta de Crédito Bravo Santa Cruz",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Bravo Santa Cruz",
+        "Bravo Santa Cruz"
+      ],
+      "knowledge_id": "vf01-r258",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r259",
+      "name": "Tarjeta de Crédito Visa Gold",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Visa Gold",
+        "Visa Gold",
+        "gold",
+        "dorada"
+      ],
+      "knowledge_id": "vf01-r259",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r260",
+      "name": "Tarjeta de Crédito Visa Platinum",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Visa Platinum",
+        "Visa Platinum",
+        "platinum",
+        "platino"
+      ],
+      "knowledge_id": "vf01-r260",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r261",
+      "name": "Tarjeta de Crédito Visa Infinite",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Visa Infinite",
+        "Visa Infinite"
+      ],
+      "knowledge_id": "vf01-r261",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r262",
+      "name": "Tarjeta de Crédito Visa Joven",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Visa Joven",
+        "Visa Joven",
+        "joven",
+        "tarjeta joven"
+      ],
+      "knowledge_id": "vf01-r262",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r263",
+      "name": "Tarjeta de Crédito Cecomsa",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Cecomsa",
+        "Cecomsa"
+      ],
+      "knowledge_id": "vf01-r263",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r264",
+      "name": "Tarjeta de Crédito Full Car",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Full Car",
+        "Full Car"
+      ],
+      "knowledge_id": "vf01-r264",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r265",
+      "name": "Tarjeta de Crédito Visa Empresarial",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Visa Empresarial",
+        "Visa Empresarial"
+      ],
+      "knowledge_id": "vf01-r265",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r266",
+      "name": "Tarjeta de Crédito Mi Negocio",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Mi Negocio",
+        "Mi Negocio"
+      ],
+      "knowledge_id": "vf01-r266",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r267",
+      "name": "Tarjeta de Crédito Visa PriceSmart BSC Personal",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Visa PriceSmart BSC Personal",
+        "Visa PriceSmart BSC Personal"
+      ],
+      "knowledge_id": "vf01-r267",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r268",
+      "name": "Tarjeta de Crédito Visa PriceSmart BSC Comercial",
+      "family": "tarjeta_credito",
+      "aliases": [
+        "Tarjeta de Crédito Visa PriceSmart BSC Comercial",
+        "Visa PriceSmart BSC Comercial"
+      ],
+      "knowledge_id": "vf01-r268",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r278",
+      "name": "Tarjeta de Débito Visa Clásica",
+      "family": "tarjeta_debito",
+      "aliases": [
+        "Tarjeta de Débito Visa Clásica",
+        "Visa Clásica",
+        "clasica",
+        "classic"
+      ],
+      "knowledge_id": "vf01-r278",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r279",
+      "name": "Tarjeta de Débito Visa Gold",
+      "family": "tarjeta_debito",
+      "aliases": [
+        "Tarjeta de Débito Visa Gold",
+        "Visa Gold",
+        "gold",
+        "dorada"
+      ],
+      "knowledge_id": "vf01-r279",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r280",
+      "name": "Tarjeta de Débito Visa Platinum",
+      "family": "tarjeta_debito",
+      "aliases": [
+        "Tarjeta de Débito Visa Platinum",
+        "Visa Platinum",
+        "platinum",
+        "platino"
+      ],
+      "knowledge_id": "vf01-r280",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r281",
+      "name": "Tarjeta de Débito Visa Infinite",
+      "family": "tarjeta_debito",
+      "aliases": [
+        "Tarjeta de Débito Visa Infinite",
+        "Visa Infinite"
+      ],
+      "knowledge_id": "vf01-r281",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r282",
+      "name": "Tarjeta de Débito Visa Joven",
+      "family": "tarjeta_debito",
+      "aliases": [
+        "Tarjeta de Débito Visa Joven",
+        "Visa Joven",
+        "joven",
+        "tarjeta joven"
+      ],
+      "knowledge_id": "vf01-r282",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r283",
+      "name": "Tarjeta de Débito Visa Junior",
+      "family": "tarjeta_debito",
+      "aliases": [
+        "Tarjeta de Débito Visa Junior",
+        "Visa Junior"
+      ],
+      "knowledge_id": "vf01-r283",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r284",
+      "name": "Tarjeta de Débito Mi Negocio",
+      "family": "tarjeta_debito",
+      "aliases": [
+        "Tarjeta de Débito Mi Negocio",
+        "Mi Negocio"
+      ],
+      "knowledge_id": "vf01-r284",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r291",
+      "name": "Préstamos Personales “Sin Garantía”",
+      "family": "prestamo",
+      "aliases": [
+        "Préstamos Personales “Sin Garantía”"
+      ],
+      "knowledge_id": "vf01-r291",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r292",
+      "name": "Préstamos Fácil",
+      "family": "prestamo",
+      "aliases": [
+        "Préstamos Fácil"
+      ],
+      "knowledge_id": "vf01-r292",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r293",
+      "name": "Préstamos Personales “Con Garantía”",
+      "family": "prestamo",
+      "aliases": [
+        "Préstamos Personales “Con Garantía”"
+      ],
+      "knowledge_id": "vf01-r293",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r294",
+      "name": "i. Préstamos con “Garantía Mobiliaria”",
+      "family": "prestamo",
+      "aliases": [
+        "i. Préstamos con “Garantía Mobiliaria”"
+      ],
+      "knowledge_id": "vf01-r294",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r295",
+      "name": "ii. Préstamos con Garantía Certificados BSC",
+      "family": "prestamo",
+      "aliases": [
+        "ii. Préstamos con Garantía Certificados BSC"
+      ],
+      "knowledge_id": "vf01-r295",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r296",
+      "name": "iii. Préstamos de Vehículos",
+      "family": "prestamo",
+      "aliases": [
+        "iii. Préstamos de Vehículos"
+      ],
+      "knowledge_id": "vf01-r296",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r297",
+      "name": "iv. Préstamos con “Garantía Inmobiliaria”",
+      "family": "prestamo",
+      "aliases": [
+        "iv. Préstamos con “Garantía Inmobiliaria”"
+      ],
+      "knowledge_id": "vf01-r297",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r298",
+      "name": "v. Préstamos Personales con Garantía Hipotecaria",
+      "family": "prestamo",
+      "aliases": [
+        "v. Préstamos Personales con Garantía Hipotecaria"
+      ],
+      "knowledge_id": "vf01-r298",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r299",
+      "name": "vi. Préstamos Hipotecarios para adquisición de vivienda",
+      "family": "prestamo",
+      "aliases": [
+        "vi. Préstamos Hipotecarios para adquisición de vivienda"
+      ],
+      "knowledge_id": "vf01-r299",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r300",
+      "name": "Préstamos Personales para Consolidación de Deudas",
+      "family": "prestamo",
+      "aliases": [
+        "Préstamos Personales para Consolidación de Deudas"
+      ],
+      "knowledge_id": "vf01-r300",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r301",
+      "name": "Préstamos Personales de Reenganche",
+      "family": "prestamo",
+      "aliases": [
+        "Préstamos Personales de Reenganche"
+      ],
+      "knowledge_id": "vf01-r301",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r314",
+      "name": "Cuenta de ahorro personal",
+      "family": "cuenta",
+      "aliases": [
+        "Cuenta de ahorro personal"
+      ],
+      "knowledge_id": "vf01-r314",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-r315",
+      "name": "Cuenta corriente personal",
+      "family": "cuenta",
+      "aliases": [
+        "Cuenta corriente personal"
+      ],
+      "knowledge_id": "vf01-r315",
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-multicredito",
+      "name": "Multicrédito BSC",
+      "family": "credito_diferido",
+      "aliases": [
+        "multicredito",
+        "multicrédito",
+        "multicredito empleado"
+      ],
+      "knowledge_ids": [
+        "vf01-r102",
+        "vf01-r177"
+      ],
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-cuotas",
+      "name": "Cuotas BSC",
+      "family": "credito_diferido",
+      "aliases": [
+        "cuotas bsc",
+        "cuotas santa cruz"
+      ],
+      "knowledge_ids": [
+        "vf01-r091",
+        "vf01-r180"
+      ],
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    },
+    {
+      "catalog_id": "bsc-catalog-deposito",
+      "name": "Certificado / depósito a plazo",
+      "family": "deposito",
+      "aliases": [
+        "certificado",
+        "deposito a plazo",
+        "dap",
+        "certificado financiero"
+      ],
+      "knowledge_ids": [],
+      "core_codes": [],
+      "core_mapping_status": "UNVERIFIED",
+      "alias_alone_proves_ownership": false
+    }
+  ]
+}

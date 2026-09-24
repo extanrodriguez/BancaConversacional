@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Formal — Arquitectura Azure Banca Conversacional Genesis</title>
+<style>
+  :root {
+    --bg:#f4f7fb; --card:#fff; --text:#172033; --muted:#5f6b7a;
+    --accent:#0078d4; --accent-dark:#005a9e; --border:#dfe5ec;
+    --ok:#107c10; --warn:#d83b01; --code:#101820;
+    --highlight:#fff8e6; --current:#e8f5e9; --recommended:#eef7ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  header{background:linear-gradient(135deg,#0078d4 0%,#004578 100%);color:#fff;padding:48px 8%}
+  header h1{font-size:36px;margin:0 0 10px;font-weight:600}
+  header p{font-size:17px;max-width:1100px;opacity:.95;margin:0}
+  header .meta{margin-top:18px;font-size:13px;opacity:.85}
+  nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);padding:12px 8%;z-index:10;overflow-x:auto;white-space:nowrap}
+  nav a{margin-right:16px;color:var(--accent-dark);text-decoration:none;font-size:13px;font-weight:500}
+  nav a:hover{text-decoration:underline}
+  main{max-width:1240px;margin:28px auto;padding:0 24px 60px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:26px;margin:22px 0;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+  h2{margin-top:0;color:var(--accent-dark);border-bottom:2px solid var(--border);padding-bottom:10px;font-size:24px}
+  h3{color:#17365d;margin-top:22px;font-size:18px}
+  h4{color:#17365d;margin:14px 0 6px;font-size:15px}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+  th,td{border:1px solid var(--border);padding:10px 12px;text-align:left;vertical-align:top}
+  th{background:#eef5fb;font-weight:600}
+  tr.highlight td{background:var(--recommended)}
+  tr.current td{background:var(--current)}
+  code{background:#eef2f6;padding:2px 6px;border-radius:4px;font-size:13px}
+  pre{background:var(--code);color:#e9f1f7;padding:18px;border-radius:8px;overflow:auto;font-size:12.5px;line-height:1.45}
+  .note{border-left:4px solid var(--accent);padding:14px 18px;background:var(--recommended);margin:16px 0;border-radius:0 8px 8px 0}
+  .note.ok{border-left-color:var(--ok);background:#f0faf0}
+  .note.warn{border-left-color:var(--warn);background:#fff4ed}
+  .note.current{border-left-color:#2e7d32;background:var(--current)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:16px 0}
+  .grid .box{border:1px solid var(--border);border-radius:10px;padding:16px;background:#fafbfd}
+  .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;font-size:12px;margin:3px 4px 3px 0;border:1px solid rgba(255,255,255,.3)}
+  .badge{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+  .badge-rec{background:#0078d4;color:#fff}
+  .badge-cur{background:#2e7d32;color:#fff}
+  .badge-fut{background:#8764b8;color:#fff}
+  .badge-alt{background:#ca5010;color:#fff}
+  .score{font-size:18px;letter-spacing:1px;color:#0078d4}
+  .small{font-size:13px;color:var(--muted)}
+  .verdict{font-size:20px;font-weight:600;color:var(--accent-dark);margin:12px 0}
+  ul{padding-left:20px} li{margin:6px 0}
+  .toc ol{columns:2;gap:24px;padding-left:20px}
+  footer{padding:32px 8%;color:var(--muted);text-align:center;border-top:1px solid var(--border);background:#fff}
+  @media(max-width:768px){header h1{font-size:28px}.toc ol{columns:1}}
+  @media print{nav{display:none}header{padding:24px}.card{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Propuesta Formal de Arquitectura Azure</h1>
+  <p>Banca Conversacional Genesis — Análisis del estado actual, merge con la propuesta Container Apps, comparativo VM / Container Apps / AKS / App Service, costos, implementación y recomendación para Banco Santa Cruz.</p>
+  <div style="margin-top:16px">
+    <span class="pill">Banco Santa Cruz</span>
+    <span class="pill">Genesis Cognitive</span>
+    <span class="pill">Azure OpenAI</span>
+    <span class="pill">Container Apps</span>
+    <span class="pill">AKS</span>
+    <span class="pill">Comparativo</span>
+  </div>
+  <div class="meta">Documento generado: 28 de agosto de 2026 · Basado en PlanContainerizacion/, deploy actual y propuesta Azure_Container_Apps_Banca_Conversacional.html</div>
+</header>
+
+<nav>
+  <a href="#resumen">Resumen</a>
+  <a href="#estado-actual">Estado actual</a>
+  <a href="#gap">Gap analysis</a>
+  <a href="#arquitectura">Arquitectura</a>
+  <a href="#comparativo">Comparativo</a>
+  <a href="#costos">Costos</a>
+  <a href="#recomendacion">Recomendación</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#implementacion">Implementación</a>
+  <a href="#seguridad">Seguridad</a>
+  <a href="#contexto-api">API Contexto</a>
+  <a href="#checklist">Checklist</a>
+</nav>
+
+<main>
+
+<!-- 1. RESUMEN -->
+<section id="resumen" class="card">
+  <h2>1. Resumen ejecutivo</h2>
+  <p>Este documento consolida <strong>tres fuentes</strong>:</p>
+  <ul>
+    <li><strong>Estado operativo actual</strong> — VM <code>vm-test002-genesis</code> con systemd, Python 3.12, Azure OpenAI y deploy manual por ZIP/SSH.</li>
+    <li><strong>Plan interno del repositorio</strong> — <code>PlanContainerizacion/</code> con fases 1–3 (Docker → Container Apps → Producción).</li>
+    <li><strong>Propuesta externa</strong> — arquitectura microservicios con Container Apps, Redis, APIM, AI Gateway e integración DataPower/ACE/Core.</li>
+  </ul>
+
+  <div class="note ok">
+    <strong>Veredicto:</strong> Para Banca Conversacional Genesis, la opción recomendada es <strong>Azure Container Apps (ACA)</strong> como plataforma de ejecución en Azure, evolucionando desde el baseline VM actual mediante el roadmap ya definido en el repo. <strong>AKS</strong> queda reservado para cuando exista un requisito corporativo explícito de plataforma Kubernetes, cargas muy grandes/sostenidas o portabilidad on-premise con OpenShift. <strong>Azure App Service</strong> no es la opción óptima para este caso por limitaciones en microservicios, sesión distribuida y control de contenedores.
+  </div>
+
+  <div class="grid">
+    <div class="box">
+      <h4>Mejor time-to-market</h4>
+      <p class="verdict">Container Apps</p>
+      <p class="small">Menor operación que AKS; más escalable que VM.</p>
+    </div>
+    <div class="box">
+      <h4>Más barato (TCO operativo)</h4>
+      <p class="verdict">Container Apps</p>
+      <p class="small">~USD 55–115/mes lab vs ~USD 400–800/mes AKS mínimo.</p>
+    </div>
+    <div class="box">
+      <h4>Más completo (control plataforma)</h4>
+      <p class="verdict">AKS</p>
+      <p class="small">Kubernetes completo, networking avanzado, portabilidad.</p>
+    </div>
+    <div class="box">
+      <h4>Estado hoy</h4>
+      <p class="verdict">VM + systemd</p>
+      <p class="small">Funcional en QA; no escala horizontalmente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ESTADO ACTUAL -->
+<section id="estado-actual" class="card">
+  <h2>2. Estado actual — Lo que ya tenemos</h2>
+
+  <h3>2.1 Infraestructura Azure desplegada hoy</h3>
+  <table>
+    <tr><th>Componente</th><th>Detalle</th><th>Estado</th></tr>
+    <tr class="current"><td>VM Linux</td><td><code>vm-test002-genesis</code> — IP pública <code>20.127.25.24</code>, privada <code>192.168.150.5</code></td><td><span class="badge badge-cur">Activo</span></td></tr>
+    <tr class="current"><td>API Cognitiva QA</td><td><code>genesis-cognitive-8447.service</code> — FastAPI/uvicorn en puerto <strong>8447</strong></td><td><span class="badge badge-cur">Activo</span></td></tr>
+    <tr class="current"><td>API Cognitiva legacy</td><td><code>genesis-cognitive-8446.service</code> — puerto <strong>8446</strong></td><td><span class="badge badge-cur">Activo</span></td></tr>
+    <tr class="current"><td>MCP Bridge</td><td><code>/opt/genesis/mcp-bridge</code> — puerto <strong>8080</strong></td><td><span class="badge badge-cur">Activo</span></td></tr>
+    <tr class="current"><td>Proxy APK (genesis-rag)</td><td>Puerto <strong>8000</strong> → reenvía a 8447</td><td><span class="badge badge-cur">Activo</span></td></tr>
+    <tr class="current"><td>Azure OpenAI</td><td><code>aoai-genesis-871a5b</code> (eastus) — deployment <code>gpt-4o-mini</code></td><td><span class="badge badge-cur">Activo</span></td></tr>
+    <tr class="current"><td>Azure AI Search</td><td><code>genesis-search-lab</code> — índice RAG</td><td><span class="badge badge-cur">Activo</span></td></tr>
+    <tr><td>Core bancario</td><td><code>4.227.182.177:8090</code> (integración vía MCP)</td><td><span class="badge badge-cur">Externo</span></td></tr>
+    <tr><td>Redis gestionado</td><td>Sesiones distribuidas</td><td><span class="badge badge-alt">Pendiente</span></td></tr>
+    <tr><td>Container Apps / AKS</td><td>Plataforma contenedores</td><td><span class="badge badge-fut">Planificado</span></td></tr>
+    <tr><td>API Management</td><td>Gateway corporativo</td><td><span class="badge badge-fut">Propuesto</span></td></tr>
+  </table>
+
+  <h3>2.2 Arquitectura actual (as-is)</h3>
+  <pre>
+                         CANALES / APK / QA
+                                 |
+            +--------------------+--------------------+
+            |                    |                    |
+            v                    v                    v
+     :8000 genesis-rag    :8080 MCP Bridge    :8447 /pruebas
+            |                    |                    |
+            +--------------------+--------------------+
+                                 |
+                                 v
+              VM vm-test002-genesis (systemd + Python 3.12)
+              genesis-cognitive-8447 / 8446
+              ReactiveSessionStore IN-MEMORY (1 worker)
+                                 |
+              +------------------+------------------+
+              |                                     |
+              v                                     v
+       Azure OpenAI                          Azure AI Search
+       gpt-4o-mini                           genesis-search-lab
+              |
+              v
+       Core 4.227.182.177:8090 (vía MCP, opcional)
+  </pre>
+
+  <h3>2.3 Código y capacidades ya implementadas</h3>
+  <table>
+    <tr><th>Capacidad</th><th>Implementación</th><th>Notas</th></tr>
+    <tr><td>API conversacional</td><td><code>contract_inspector_app.py</code> — <code>/turn</code>, <code>/health</code>, <code>/pruebas</code></td><td>FastAPI + Agent Framework</td></tr>
+    <tr><td>Fast-path sin LLM</td><td><code>field_guardrails.py</code></td><td>Saldo, préstamos, TC, transferencias (&lt;100 ms)</td></tr>
+    <tr><td>RAG</td><td>Azure AI Search + embeddings</td><td>Preguntas de negocio</td></tr>
+    <tr><td>Contexto cliente</td><td><code>core_portfolio_mapper.py</code> + SQLite lab</td><td>Snapshot desde Core JSON</td></tr>
+    <tr><td>Orquestación APK</td><td>MCP Bridge :8080 + proxy :8000</td><td>Código fuera del repo principal</td></tr>
+    <tr><td>Deploy</td><td><code>build_corp_package.py</code> + SSH + systemd</td><td>Manual, ~45 s por deploy</td></tr>
+    <tr><td>Dockerfile referencia</td><td><code>PlanContainerizacion/FASE_1/Dockerfile</code></td><td>Python 3.12, multi-stage, usuario no-root</td></tr>
+    <tr><td>IaC Container Apps</td><td><code>PlanContainerizacion/FASE_2/containerapp.bicep</code></td><td>ACR, Redis, Key Vault, ACA</td></tr>
+    <tr><td>Sesión Redis</td><td>Spec en <code>REDIS_SESSION_STORE_SPEC.md</code></td><td><strong>No implementado aún</strong></td></tr>
+  </table>
+
+  <div class="note current">
+    <strong>Limitación crítica actual:</strong> <code>ReactiveSessionStore</code> es <strong>in-memory</strong>. Con un solo worker uvicorn no hay pérdida de sesión, pero <strong>no soporta réplicas horizontales</strong>. Migrar a Redis es prerrequisito obligatorio antes de Container Apps o AKS en producción.
+  </div>
+</section>
+
+<!-- 3. GAP ANALYSIS -->
+<section id="gap" class="card">
+  <h2>3. Gap analysis — Estado actual vs propuesta</h2>
+  <table>
+    <tr><th>Dimensión</th><th>Hoy (VM)</th><th>Propuesta Container Apps</th><th>Gap / Acción</th></tr>
+    <tr><td>Unidad de despliegue</td><td>ZIP + systemd</td><td>Imagen Docker inmutable</td><td>Completar Dockerfile en raíz + CI</td></tr>
+    <tr><td>Escalado horizontal</td><td>1 worker, no réplicas</td><td>min 2 / max N réplicas</td><td>Implementar RedisSessionStore</td></tr>
+    <tr><td>Estado de sesión</td><td>In-memory</td><td>Azure Cache for Redis</td><td>Fase 1 del plan interno</td></tr>
+    <tr><td>Secretos</td><td>.env en VM</td><td>Key Vault + Managed Identity</td><td>Fase 2 — Bicep ya preparado</td></tr>
+    <tr><td>Entrada API</td><td>Puertos directos + NSG</td><td>APIM + Front Door + WAF</td><td>Fase 3 producción</td></tr>
+    <tr><td>Microservicios</td><td>Monolito Python + MCP externo</td><td>Conversation, Orchestrator, Context, Capability, Transaction</td><td>Evolución gradual; hoy monolito es suficiente para MVP</td></tr>
+    <tr><td>Integración Core</td><td>MCP → Core :8090</td><td>DataPower / ACE → Core</td><td>Alinear contratos; MCP como adaptador transitorio</td></tr>
+    <tr><td>Observabilidad</td><td>Logs locales + audit en /turn</td><td>App Insights + OpenTelemetry + Correlation-ID</td><td>Fase 3</td></tr>
+    <tr><td>CI/CD</td><td>Manual (build + SSH)</td><td>Pipeline ACR → ACA revision</td><td><code>azure-pipeline.yml</code> en Fase 2</td></tr>
+    <tr><td>AI Gateway</td><td>Llamada directa Azure OpenAI</td><td>Capa abstracción + guardrails + cuotas</td><td>Opcional Fase 3; guardrails ya en código</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Merge estratégico:</strong> La propuesta externa describe la <em>arquitectura objetivo empresarial</em> (microservicios + APIM + Redis + AI Gateway). El plan interno del repo describe el <em>camino incremental realista</em> para llegar allí sin reescribir la lógica. Ambos son compatibles: <strong>contenedores estándar + contratos desacoplados + adaptadores Azure</strong>.
+  </div>
+</section>
+
+<!-- 4. ARQUITECTURA -->
+<section id="arquitectura" class="card">
+  <h2>4. Arquitectura objetivo (merge propuesta + plan interno)</h2>
+
+  <h3>4.1 Fase intermedia — Container Apps monolito (Fase 2 del repo)</h3>
+  <p>Primer paso realista: containerizar la API cognitiva existente como <strong>un Container App</strong>, sin descomponer en microservicios todavía.</p>
+  <pre>
+                    CANALES / APK / Orquestador
+                              |
+                              v
+                   Azure API Management (Fase 3)
+                              |
+                              v
+              +---------------------------------------+
+              |  Azure Container Apps Environment     |
+              |  cae-genesis-eus                      |
+              |                                       |
+              |  genesis-api (min 2, max 10 réplicas) |
+              |  FastAPI + field_guardrails + RAG     |
+              +-------+--------------+----------------+
+                      |              |
+                      v              v
+            Azure Cache Redis    Azure OpenAI
+            (sesión/snapshot)    gpt-4o-mini
+                      |              |
+                      |              v
+                      |       Azure AI Search
+                      v
+              Key Vault (secretos, MI)
+                      |
+                      v
+              MCP Bridge / Core (transitorio)
+                      |
+                      v
+              DataPower / ACE / Core Bancario
+  </pre>
+
+  <h3>4.2 Fase objetivo — Microservicios (propuesta externa)</h3>
+  <pre>
+                         MOBILE / CANALES
+                                |
+                                v
+                     +---------------------+
+                     | Azure Front Door    |
+                     +----------+----------+
+                                |
+                                v
+                     +---------------------+
+                     | Azure API Management|
+                     +----------+----------+
+                                |
+                                v
+                +----------------------------------+
+                | Azure Container Apps Environment |
+                |                                  |
+                | Conversation API                 |
+                | Orchestrator                     |
+                | Customer Context Service         |
+                | Capability Router                |
+                | Transaction Service              |
+                +-----------+-------------+--------+
+                            |             |
+                            v             v
+                  +----------------+  +----------------+
+                  | Azure Managed  |  | AI Gateway     |
+                  | Redis          |  | Azure OpenAI   |
+                  +----------------+  +----------------+
+                            |
+                            v
+                    DataPower / IBM ACE
+                            |
+                            v
+                       Core Banking
+  </pre>
+
+  <h3>4.3 Mapeo componentes propuesta → código actual</h3>
+  <table>
+    <tr><th>Componente propuesto</th><th>Equivalente hoy</th><th>Evolución</th></tr>
+    <tr><td>Conversation API</td><td><code>/turn</code>, <code>/chat/front</code> en 8447</td><td>Primer Container App</td></tr>
+    <tr><td>Orchestrator</td><td>MCP Bridge :8080 + lógica en <code>contract_inspector_app.py</code></td><td>Separar cuando el tráfico lo justifique</td></tr>
+    <tr><td>Customer Context</td><td><code>core_portfolio_mapper</code> + <code>ReactiveSessionStore</code></td><td>Extraer + Redis</td></tr>
+    <tr><td>Capability Router</td><td><code>field_guardrails</code> + intent map</td><td>Ya existe como módulo Python</td></tr>
+    <tr><td>Transaction Service</td><td>Core ops vía MCP</td><td>Contratos tipados + ACE</td></tr>
+    <tr><td>AI Gateway</td><td>Azure OpenAI directo + guardrails</td><td>APIM policies o capa dedicada</td></tr>
+  </table>
+
+  <div class="note warn">
+    <strong>Regla de seguridad (ambas propuestas):</strong> el LLM <strong>nunca</strong> debe acceder directamente al core bancario. Solo solicita capacidades declaradas y autorizadas con validación de esquema, identidad, límites e idempotencia.
+  </div>
+</section>
+
+<!-- 5. COMPARATIVO -->
+<section id="comparativo" class="card">
+  <h2>5. Comparativo de plataformas Azure</h2>
+
+  <h3>5.1 Tabla general — VM vs Container Apps vs AKS vs App Service</h3>
+  <table>
+    <tr>
+      <th>Criterio</th>
+      <th>VM + systemd<br><span class="badge badge-cur">Actual</span></th>
+      <th>Container Apps<br><span class="badge badge-rec">Recomendado</span></th>
+      <th>AKS</th>
+      <th>App Service</th>
+    </tr>
+    <tr><td>Unidad de despliegue</td><td>Proceso / ZIP</td><td>Contenedor</td><td>Pod / Deployment</td><td>App / contenedor simple</td></tr>
+    <tr><td>Operación diaria</td><td>Alta (patching, SSH, systemd)</td><td><strong>Baja</strong></td><td>Muy alta (K8s ops)</td><td>Muy baja</td></tr>
+    <tr><td>Escalado horizontal</td><td>Manual / difícil</td><td><strong>Automático HTTP/concurrency</strong></td><td>HPA / KEDA / CA</td><td>Limitado (plan Premium)</td></tr>
+    <tr><td>Scale-to-zero</td><td>No</td><td>Sí (workloads compatibles)</td><td>No habitual</td><td>Sí (Consumption)</td></tr>
+    <tr><td>Microservicios</td><td>Posible, acoplado</td><td><strong>Excelente</strong></td><td><strong>Excelente</strong></td><td>Limitado</td></tr>
+    <tr><td>Estado distribuido (Redis)</td><td>Requiere config manual</td><td>Nativo con Azure Redis</td><td>Nativo</td><td>Posible pero no ideal</td></tr>
+    <tr><td>Networking avanzado</td><td>NSG manual</td><td>Bueno (VNet integration)</td><td><strong>Excelente</strong> (Network Policies)</td><td>Básico</td></tr>
+    <tr><td>Portabilidad on-premise</td><td>Alta (VM genérica)</td><td>Media (componentes Azure)</td><td><strong>Alta</strong> (Kubernetes estándar)</td><td>Baja</td></tr>
+    <tr><td>Time-to-market</td><td>Ya desplegado</td><td><strong>3–4 semanas</strong></td><td>6–10 semanas</td><td>2–3 semanas</td></tr>
+    <tr><td>Complejidad técnica</td><td>Media</td><td><strong>Baja</strong></td><td>Alta</td><td>Muy baja</td></tr>
+    <tr><td>Control infraestructura</td><td>Alto</td><td>Medio</td><td><strong>Muy alto</strong></td><td>Bajo</td></tr>
+    <tr><td>CI/CD contenedores</td><td>No nativo</td><td><strong>ACR + revisiones</strong></td><td>Helm / GitOps</td><td>Deploy slot básico</td></tr>
+    <tr><td>Rollback</td><td>Backup tar.gz (~5 min)</td><td>Revisión anterior (&lt;5 min)</td><td>Rollback deployment</td><td>Swap slot</td></tr>
+    <tr><td>Adecuación banca conversacional</td><td>MVP / lab</td><td><strong>Producción MVP–medio</strong></td><td>Producción enterprise</td><td>No recomendado</td></tr>
+  </table>
+
+  <h3>5.2 Matriz de puntuación (1–5 estrellas)</h3>
+  <table>
+    <tr><th>Necesidad Banca Conversacional</th><th>VM</th><th>Container Apps</th><th>AKS</th><th>App Service</th><th>Ganador</th></tr>
+    <tr><td>Time-to-market</td><td class="score">★★★★★</td><td class="score">★★★★★</td><td class="score">★★★</td><td class="score">★★★★</td><td>VM / ACA</td></tr>
+    <tr><td>Operación sencilla</td><td class="score">★★</td><td class="score">★★★★★</td><td class="score">★★</td><td class="score">★★★★★</td><td>ACA / App Service</td></tr>
+    <tr><td>Escalamiento HTTP concurrente</td><td class="score">★★</td><td class="score">★★★★★</td><td class="score">★★★★★</td><td class="score">★★★</td><td>ACA / AKS</td></tr>
+    <tr><td>Sesión distribuida + réplicas</td><td class="score">★</td><td class="score">★★★★★</td><td class="score">★★★★★</td><td class="score">★★★</td><td>ACA / AKS</td></tr>
+    <tr><td>Microservicios futuros</td><td class="score">★★</td><td class="score">★★★★★</td><td class="score">★★★★★</td><td class="score">★★</td><td>ACA / AKS</td></tr>
+    <tr><td>Control Kubernetes / on-prem</td><td class="score">★</td><td class="score">★★</td><td class="score">★★★★★</td><td class="score">★</td><td>AKS</td></tr>
+    <tr><td>Coste operativo (TCO)</td><td class="score">★★★</td><td class="score">★★★★★</td><td class="score">★★★</td><td class="score">★★★★</td><td>ACA</td></tr>
+    <tr><td>Seguridad bancaria (WAF, PE, MI)</td><td class="score">★★★</td><td class="score">★★★★</td><td class="score">★★★★★</td><td class="score">★★★</td><td>AKS / ACA</td></tr>
+    <tr><td>Adecuación MVP Genesis</td><td class="score">★★★★★</td><td class="score">★★★★★</td><td class="score">★★★</td><td class="score">★★</td><td>VM → ACA</td></tr>
+    <tr class="highlight"><td><strong>Recomendación global</strong></td><td>Baseline</td><td><strong>Destino Azure</strong></td><td>Evolución enterprise</td><td>No usar</td><td><strong>Container Apps</strong></td></tr>
+  </table>
+
+  <h3>5.3 Container Apps vs AKS — ¿Cuál es mejor para banca conversacional?</h3>
+  <table>
+    <tr><th>Escenario</th><th>Mejor opción</th><th>Razón</th></tr>
+    <tr><td>MVP con 2–10 réplicas, fast-path + LLM</td><td><strong>Container Apps</strong></td><td>Autoscaling HTTP nativo, sin operar clúster</td></tr>
+    <tr><td>Alta concurrencia moderada (&lt;500 RPS)</td><td><strong>Container Apps</strong></td><td>Suficiente; validar con load tests</td></tr>
+    <tr><td>Equipo pequeño sin SRE Kubernetes</td><td><strong>Container Apps</strong></td><td>Menor curva de aprendizaje y TCO</td></tr>
+    <tr><td>Política corporativa "todo en Kubernetes"</td><td><strong>AKS</strong></td><td>Alineación con plataforma existente del banco</td></tr>
+    <tr><td>Portabilidad on-prem OpenShift</td><td><strong>AKS</strong></td><td>Mismos manifiestos Helm/K8s</td></tr>
+    <tr><td>Network policies granulares, service mesh</td><td><strong>AKS</strong></td><td>Istio/Linkerd, Cilium, etc.</td></tr>
+    <tr><td>Cargas sostenidas muy altas (&gt;1000 RPS)</td><td>Evaluar AKS</td><td>Node pools dedicados, optimización fina</td></tr>
+    <tr><td>Notificaciones async / colas KEDA</td><td>Empate</td><td>ACA soporta KEDA; AKS tiene más triggers</td></tr>
+  </table>
+
+  <div class="note ok">
+    <strong>Conclusión comparativa:</strong> Para Genesis en su etapa actual, <strong>Container Apps gana</strong> en costo, simplicidad y time-to-market. <strong>AKS gana</strong> en completitud de plataforma y control. La propuesta correcta no es "ACA o AKS", sino <strong>ACA ahora + imágenes Docker portables + contratos desacoplados</strong>, dejando AKS como evolución cuando el banco lo exija.
+  </div>
+</section>
+
+<!-- 6. COSTOS -->
+<section id="costos" class="card">
+  <h2>6. Comparativo de costos estimados (USD/mes)</h2>
+  <p class="small">Estimaciones orientativas para entorno lab/QA en East US. El coste dominante en banca conversacional suele ser <strong>Azure OpenAI (tokens)</strong>, no la plataforma de cómputo.</p>
+
+  <table>
+    <tr><th>Concepto</th><th>VM actual</th><th>Container Apps (lab)</th><th>AKS mínimo</th><th>App Service P1v3</th></tr>
+    <tr><td>Compute plataforma</td><td>~USD 80–150 (VM D2s/D4s)</td><td>~USD 30–80 (2 réplicas, 0.5 vCPU c/u)</td><td>~USD 150–300 (3 nodes system+app)</td><td>~USD 80–160 (Premium v3)</td></tr>
+    <tr><td>Redis sesión</td><td>— (in-memory)</td><td>~USD 15–20 (Basic C1)</td><td>~USD 15–75 (Basic–Standard)</td><td>~USD 15–20 (externo)</td></tr>
+    <tr><td>Container Registry</td><td>—</td><td>~USD 5 (Basic)</td><td>~USD 5–20 (Basic/Premium)</td><td>—</td></tr>
+    <tr><td>Log Analytics / Monitor</td><td>~USD 0–10</td><td>~USD 5–15</td><td>~USD 10–30</td><td>~USD 5–10</td></tr>
+    <tr><td>Key Vault</td><td>—</td><td>~USD 1–3</td><td>~USD 1–3</td><td>~USD 1–3</td></tr>
+    <tr><td>API Management (opcional)</td><td>—</td><td>~USD 50–700 (Developer/Std)</td><td>~USD 50–700</td><td>~USD 50–700</td></tr>
+    <tr><td>Application Gateway + WAF</td><td>—</td><td>~USD 150–250 (prod)</td><td>~USD 150–250</td><td>~USD 150–250</td></tr>
+    <tr><td>Operación humana (SRE)</td><td>Media-alta</td><td><strong>Baja</strong></td><td><strong>Alta</strong></td><td>Baja</td></tr>
+    <tr class="highlight"><td><strong>Subtotal plataforma (sin OpenAI)</strong></td><td><strong>~USD 80–160</strong></td><td><strong>~USD 55–120</strong></td><td><strong>~USD 400–800+</strong></td><td><strong>~USD 250–400</strong></td></tr>
+    <tr><td>Azure OpenAI (tokens)</td><td>Variable</td><td>Variable</td><td>Variable</td><td>Variable</td></tr>
+    <tr><td>Azure AI Search</td><td>Ya provisionado</td><td>Ya provisionado</td><td>Ya provisionado</td><td>Ya provisionado</td></tr>
+  </table>
+
+  <h3>6.1 Interpretación de costos</h3>
+  <ul>
+    <li><strong>Más barato en plataforma:</strong> Container Apps (~USD 55–120/mes lab) vs AKS (~USD 400–800/mes mínimo con 3 nodos).</li>
+    <li><strong>VM actual</strong> es competitiva en costo fijo, pero <strong>no escala</strong> y tiene mayor costo operativo humano (patching, deploy manual, monitoreo).</li>
+    <li><strong>App Service</strong> parece barato pero no soporta bien el patrón conversacional multi-réplica con Redis, MCP sidecar y evolución a microservicios.</li>
+    <li><strong>Coste real del LLM</strong> puede superar toda la infraestructura: optimizar fast-path (ya implementado) reduce tokens y es la palanca económica principal.</li>
+  </ul>
+
+  <div class="note">
+    <strong>Nota:</strong> Los costos de producción bancaria incluirán APIM + App Gateway + Redis Standard/Premium + multi-AZ. Presupuesto producción estimado: <strong>USD 800–2,500/mes</strong> (plataforma) + tokens OpenAI según volumen.
+  </div>
+</section>
+
+<!-- 7. RECOMENDACIÓN -->
+<section id="recomendacion" class="card">
+  <h2>7. Recomendación formal</h2>
+
+  <h3>7.1 Decisión propuesta</h3>
+  <table>
+    <tr><th>Dimensión</th><th>Decisión</th><th>Justificación</th></tr>
+    <tr class="highlight"><td>Plataforma Azure destino</td><td><strong>Azure Container Apps</strong></td><td>Mejor balance costo/operación/escala para MVP conversacional</td></tr>
+    <tr><td>Plataforma actual (transitoria)</td><td>VM + systemd 8447</td><td>Mantener hasta cutover validado en QA</td></tr>
+    <tr><td>Plataforma enterprise futura</td><td>AKS (condicional)</td><td>Solo si política corporativa o escala lo exige</td></tr>
+    <tr><td>Descartado</td><td>Azure App Service</td><td>Insuficiente para microservicios y sesión distribuida</td></tr>
+    <tr><td>Estado / sesión</td><td>Azure Cache for Redis</td><td>Prerrequisito antes de réplicas &gt; 1</td></tr>
+    <tr><td>Modelo LLM</td><td>Azure OpenAI <code>gpt-4o-mini</code></td><td>Ya provisionado; fuera del contenedor</td></tr>
+    <tr><td>Entrada API producción</td><td>APIM + App Gateway + WAF</td><td>Fase 3</td></tr>
+    <tr><td>Integración Core</td><td>MCP → DataPower/ACE (evolutivo)</td><td>Sin acceso directo del LLM al core</td></tr>
+    <tr><td>Portabilidad</td><td>Docker estándar + abstracciones</td><td>Evitar acoplamiento a SDKs Azure en dominio</td></tr>
+  </table>
+
+  <h3>7.2 Respuestas directas</h3>
+  <div class="grid">
+    <div class="box">
+      <h4>¿Container Apps o AKS para banca conversacional?</h4>
+      <p><strong>Container Apps</strong> para la fase actual y producción MVP. AKS cuando el banco requiera Kubernetes corporativo o portabilidad on-premise.</p>
+    </div>
+    <div class="box">
+      <h4>¿Cuál es más barata?</h4>
+      <p><strong>Container Apps</strong> (~3–5× menos costo de plataforma que AKS mínimo). VM es similar en compute pero más cara en operación.</p>
+    </div>
+    <div class="box">
+      <h4>¿Cuál es más completa?</h4>
+      <p><strong>AKS</strong> ofrece control total de Kubernetes, networking, policies y portabilidad. Container Apps es más completa que VM para escala cloud-native.</p>
+    </div>
+    <div class="box">
+      <h4>¿App Service?</h4>
+      <p><strong>No recomendado</strong> para este caso. Mejor para web apps simples, no para orquestación conversacional multi-componente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. ROADMAP -->
+<section id="roadmap" class="card">
+  <h2>8. Roadmap de implementación (merge plan interno + propuesta)</h2>
+
+  <table>
+    <tr><th>Fase</th><th>Duración</th><th>Entregable</th><th>Plataforma</th><th>Estado</th></tr>
+    <tr class="current"><td><strong>Fase 0 — Baseline</strong></td><td>Completada</td><td>VM 8447, OpenAI, Search, MCP, guardrails</td><td>VM systemd</td><td><span class="badge badge-cur">Activo</span></td></tr>
+    <tr><td><strong>Fase 1 — Docker + Redis</strong></td><td>2–3 semanas</td><td>Dockerfile, compose, RedisSessionStore, CI build+test</td><td>VM + Docker Compose</td><td><span class="badge badge-alt">Pendiente</span></td></tr>
+    <tr class="highlight"><td><strong>Fase 2 — Container Apps</strong></td><td>3–4 semanas</td><td>ACR, ACA, Redis gestionado, Key Vault, Bicep, pipeline</td><td>Azure Container Apps</td><td><span class="badge badge-fut">Planificado</span></td></tr>
+    <tr><td><strong>Fase 3 — Producción</strong></td><td>Continuo</td><td>App Gateway, WAF, APIM, App Insights, DR, cutover</td><td>ACA + servicios PaaS</td><td><span class="badge badge-fut">Planificado</span></td></tr>
+    <tr><td><strong>Fase 4 — Microservicios</strong></td><td>Evolutivo</td><td>Separar Orchestrator, Context, Transaction (propuesta externa)</td><td>ACA o AKS</td><td><span class="badge badge-fut">Futuro</span></td></tr>
+  </table>
+
+  <pre>
+Fase 0 (HOY)          Fase 1                 Fase 2                    Fase 3                 Fase 4
+VM + systemd    →    Docker + Redis    →    Container Apps       →    App Gateway + APIM  →   Microservicios
+8447 activo          compose en VM          ACR + Bicep               WAF + prod               (si escala lo pide)
+in-memory sesión     RedisSessionStore      min 2 / max 10            cutover VM→ACA           ACA o AKS
+  </pre>
+</section>
+
+<!-- 9. IMPLEMENTACIÓN -->
+<section id="implementacion" class="card">
+  <h2>9. Implementación — Pasos concretos</h2>
+
+  <h3>9.1 Fase 1 — Docker + Redis (inmediato)</h3>
+  <pre>
+# 1. Copiar Dockerfile de referencia a raíz
+cp PlanContainerizacion/FASE_1/Dockerfile ./Dockerfile
+
+# 2. Implementar RedisSessionStore (spec: REDIS_SESSION_STORE_SPEC.md)
+#    Variable: GENESIS_REDIS_URL=redis://...
+
+# 3. Build y prueba local
+docker build -t genesis-api:local .
+docker compose -f PlanContainerizacion/FASE_1/docker-compose.yml up
+
+# 4. Smoke
+GENESIS_ENDPOINT=http://127.0.0.1:8445 python Test_local/run_mvp.py --smoke
+  </pre>
+
+  <h3>9.2 Fase 2 — Container Apps (Azure)</h3>
+  <pre>
+# Recursos (Bicep ya preparado)
+Resource Group:  rg-genesis-cognitive-mvp-eus
+Subscription:    871a5b90-0204-450e-b968-3190e9143faf
+ACR:             acrgenesis871a5b
+Redis:           redis-genesis-lab (Basic C1)
+Key Vault:       kv-genesis-cognitive
+ACA Environment: cae-genesis-eus
+Container App:   genesis-api (min 2, max 10, 0.5 vCPU, 1Gi)
+
+# Deploy
+az deployment group create \
+  --resource-group rg-genesis-cognitive-mvp-eus \
+  --template-file PlanContainerizacion/FASE_2/containerapp.bicep
+
+# Push imagen
+az acr build --registry acrgenesis871a5b --image genesis-api:{sha} .
+az containerapp update --name genesis-api --image acrgenesis871a5b.azurecr.io/genesis-api:{sha}
+  </pre>
+
+  <h3>9.3 Variables críticas (Container App)</h3>
+  <table>
+    <tr><th>Variable</th><th>Origen</th><th>Notas</th></tr>
+    <tr><td><code>GENESIS_REDIS_URL</code></td><td>Secret (Redis)</td><td>Obligatorio para réplicas</td></tr>
+    <tr><td><code>AZURE_OPENAI_API_KEY</code></td><td>Key Vault</td><td>Managed Identity</td></tr>
+    <tr><td><code>AZURE_OPENAI_ENDPOINT</code></td><td>Env</td><td>aoai-genesis-871a5b</td></tr>
+    <tr><td><code>AZURE_OPENAI_CHAT_DEPLOYMENT</code></td><td>Env</td><td>gpt-4o-mini</td></tr>
+    <tr><td><code>AZURE_SEARCH_*</code></td><td>Key Vault + Env</td><td>RAG</td></tr>
+    <tr><td><code>GENESIS_PORT</code></td><td>Env</td><td>8445 (target ACA ingress)</td></tr>
+  </table>
+
+  <h3>9.4 Dockerfile de referencia (Python — repo actual)</h3>
+  <pre>
+FROM python:3.12-slim-bookworm AS runtime
+ENV PYTHONUNBUFFERED=1 GENESIS_HOST=0.0.0.0 GENESIS_PORT=8445
+RUN groupadd -r genesis && useradd -r -g genesis genesis
+WORKDIR /app
+COPY --from=builder /wheels /wheels
+RUN pip install --no-cache-dir /wheels/* && rm -rf /wheels
+COPY src prompts schemas data scripts/run_contract_inspector.py ./
+USER genesis
+EXPOSE 8445
+HEALTHCHECK CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8445/health')"
+CMD ["python", "scripts/run_contract_inspector.py"]
+  </pre>
+
+  <h3>9.5 CI/CD propuesto</h3>
+  <pre>
+Git push → Build + pytest + SAST
+         → Docker build → ACR push (tag = commit SHA)
+         → az containerapp update (nueva revisión)
+         → Smoke remoto (/health + escenarios_routing.json)
+         → Aprobación manual → tráfico 100% a nueva revisión
+         → Rollback: revisión anterior (&lt; 5 min)
+  </pre>
+</section>
+
+<!-- 10. SEGURIDAD -->
+<section id="seguridad" class="card">
+  <h2>10. Seguridad y red (merge ambas propuestas)</h2>
+  <pre>
+                    INTERNET / CANALES
+                           |
+                           v
+                   Azure Front Door (Fase 3)
+                           |
+                           v
+                    API Management
+                     JWT / Quotas / WAF
+                           |
+                    VNet (privada)
+                           |
+              +------------+------------+
+              |                         |
+              v                         v
+       Container Apps              Key Vault
+       (Managed Identity)         (secretos)
+              |
+    +---------+---------+
+    |                   |
+    v                   v
+Azure Redis PE     Azure OpenAI
+(Private Endpoint)  (Managed API)
+              |
+              v
+    ExpressRoute / VPN corporativa
+              |
+              v
+       DataPower / IBM ACE
+              |
+              v
+         CORE BANCARIO
+  </pre>
+
+  <div class="grid">
+    <div class="box"><h4>Identidad</h4><p>Entra ID / OIDC para canal. Managed Identity para servicios Azure. Separar identidad cliente vs servicio.</p></div>
+    <div class="box"><h4>Secretos</h4><p>Key Vault exclusivamente. Nunca en imagen Docker ni git.</p></div>
+    <div class="box"><h4>Red</h4><p>VNet integration ACA. Private Endpoints para Redis, Key Vault, OpenAI.</p></div>
+    <div class="box"><h4>LLM</h4><p>Allowlist de capacidades. Guardrails deterministas. Sin acceso directo al core.</p></div>
+    <div class="box"><h4>Transacciones</h4><p>Idempotencia, step-up auth, máquina de estados, circuit breakers hacia ACE.</p></div>
+    <div class="box"><h4>Observabilidad</h4><p>Correlation-ID end-to-end. OpenTelemetry → App Insights → SIEM.</p></div>
+  </div>
+</section>
+
+<!-- 11. OBSERVABILIDAD -->
+<section class="card">
+  <h2>11. Observabilidad y SLOs</h2>
+  <table>
+    <tr><th>Métrica</th><th>Objetivo</th><th>Herramienta</th></tr>
+    <tr><td>Fast-path latency p95</td><td>&lt; 100 ms</td><td>App Insights / audit en /turn</td></tr>
+    <tr><td>LLM latency p95</td><td>&lt; 8 s</td><td>App Insights (limitado por OpenAI TPM)</td></tr>
+    <tr><td>Error rate</td><td>&lt; 1%</td><td>Alertas ACA + APIM</td></tr>
+    <tr><td>Redis hit ratio</td><td>&gt; 90% sesión</td><td>Azure Monitor Redis</td></tr>
+    <tr><td>OpenAI 429 throttling</td><td>0 sostenido</td><td>Alerta + backoff</td></tr>
+    <tr><td>Deploy rollback</td><td>&lt; 5 min</td><td>ACA revision swap</td></tr>
+    <tr><td>Core/ACE latency</td><td>Monitorear cuello de botella</td><td>Correlation-ID en MCP</td></tr>
+  </table>
+</section>
+
+<!-- 12. API DE CONTEXTO — PRIMERA CARGA -->
+<section id="contexto-api" class="card">
+  <h2>12. API de Contexto — Primera carga (incluye CDT / Certificados)</h2>
+  <p>El API de contexto es la <strong>primera carga al iniciar sesión</strong>. Debe traer el portafolio del cliente suficiente para personalizar, desambiguar productos y responder consultas de lectura frecuentes <strong>sin otra llamada al Core</strong>. No debe incluir movimientos, historial ni datos transaccionales.</p>
+
+  <div class="note ok">
+    <strong>Principio:</strong> Catálogo de productos activos + snapshot de lectura por tipo. Los CDT (Certificados de Depósito a Término) se identifican en Core como categoría <code>CD</code> y en la cognitiva como <code>TERM_DEPOSIT</code>.
+  </div>
+
+  <h3>12.1 Endpoint y flujo</h3>
+  <table>
+    <tr><th>Propiedad</th><th>Valor</th></tr>
+    <tr><td>Método / Endpoint</td><td><code>GET /products/v1/get-products-by-customer-id</code></td></tr>
+    <tr><td>Origen</td><td>Core vía ACE/DataPower — SP <code>KI.PKG_INTERFAZ_CLIENTE.obtener_productos_por_cliente</code></td></tr>
+    <tr><td>Consumidor</td><td>Orquestador → <code>POST /turn</code> con <code>context_info=true</code></td></tr>
+    <tr><td>Momento</td><td>Login / inicio de sesión conversacional (una vez por sesión, refresh bajo demanda)</td></tr>
+  </table>
+  <pre>
+APK login → Orquestador obtiene customerId
+        → GET /products/v1/get-products-by-customer-id
+        → POST /turn { context_info: true, context: { data: { primerNombre, products[] } } }
+        → Cognitiva persiste snapshot (store / Redis)
+        → Chat: POST /turn { context_info: false, question: "..." }
+  </pre>
+
+  <h3>12.2 Tipos de producto soportados en primera carga</h3>
+  <table>
+    <tr><th>Categoría Core</th><th>Nombre negocio</th><th>Tipo interno</th><th>¿Incluir en 1ª carga?</th></tr>
+    <tr><td><code>CA</code></td><td>Cuenta de Ahorros</td><td><code>SAVINGS</code></td><td><strong>Sí</strong></td></tr>
+    <tr><td><code>CC</code></td><td>Cuenta Corriente</td><td><code>CHECKING</code></td><td><strong>Sí</strong></td></tr>
+    <tr class="highlight"><td><code>CD</code></td><td><strong>CDT / Certificado de Depósito a Término</strong></td><td><code>TERM_DEPOSIT</code></td><td><strong>Sí</strong></td></tr>
+    <tr><td><code>TC</code></td><td>Tarjeta de Crédito</td><td><code>CREDIT_CARD</code></td><td><strong>Sí</strong></td></tr>
+    <tr><td><code>PR</code></td><td>Préstamo</td><td><code>LOAN</code></td><td><strong>Sí</strong></td></tr>
+  </table>
+
+  <h3>12.3 Campos obligatorios — TODOS los productos</h3>
+  <table>
+    <tr><th>Campo API</th><th>¿Incluir?</th><th>Uso conversacional</th></tr>
+    <tr><td><code>productCategory</code></td><td><strong>Sí</strong></td><td>Routing: CA, CC, CD, TC, PR</td></tr>
+    <tr><td><code>productIdentification</code></td><td><strong>Sí</strong></td><td><code>account_ref</code> interno</td></tr>
+    <tr><td><code>productDescription</code></td><td><strong>Sí</strong></td><td>Desambiguación: "Certificado de Depósito terminado en 5511"</td></tr>
+    <tr><td><code>productStatus</code></td><td><strong>Sí</strong></td><td>Filtrar activos; excluir inactivos de opciones</td></tr>
+    <tr><td><code>currencyCode</code></td><td><strong>Sí</strong></td><td>214=DOP, 840=USD; desambiguación por moneda</td></tr>
+  </table>
+
+  <h3>12.4 CDT / Certificados (<code>CD</code> → <code>TERM_DEPOSIT</code>)</h3>
+  <p>Los CDT deben venir en la primera carga con los campos específicos del Excel. La cognitiva responde preguntas como: <em>"¿Cuánto tengo en mi certificado?"</em>, <em>"¿Cuándo vence mi depósito a plazo?"</em>, <em>"¿Cuál es la tasa de mi CDT?"</em> mediante el intent <code>TERM_DEPOSIT_DETAIL_READ</code>.</p>
+
+  <table>
+    <tr><th>Campo API</th><th>¿Incluir en 1ª carga?</th><th>Significado para CDT</th><th>Mapeo interno</th></tr>
+    <tr><td><code>availableBalance</code></td><td><strong>Sí</strong></td><td>Capital invertido (= <code>currentBalance</code>)</td><td><code>available_balance</code></td></tr>
+    <tr><td><code>currentBalance</code></td><td><strong>Sí</strong></td><td>Capital invertido</td><td><code>ledger_balance</code></td></tr>
+    <tr><td><code>maturityDate</code></td><td><strong>Sí</strong></td><td>Fecha de vencimiento (YYYY-MM-DD)</td><td><code>maturity_date</code></td></tr>
+    <tr><td><code>interestRateCd</code></td><td><strong>Sí</strong></td><td>Tasa anual pactada (%)</td><td><code>interest_rate</code></td></tr>
+    <tr><td><code>interestAmountCd</code></td><td><strong>Sí</strong></td><td>Intereses acumulados a la fecha</td><td><code>interest_amount</code></td></tr>
+    <tr><td><code>maskedCardNumber</code></td><td><strong>No</strong></td><td>Siempre null en CDT</td><td>—</td></tr>
+    <tr><td><code>pendingBalancePr</code></td><td><strong>No</strong></td><td>0 en CDT</td><td>—</td></tr>
+    <tr><td>Campos TC (<code>minimumPaymentTc*</code>, etc.)</td><td><strong>No</strong></td><td>0 en CDT</td><td>—</td></tr>
+  </table>
+
+  <h4>Reglas de negocio CDT (primera carga)</h4>
+  <ul>
+    <li>Mostrar <code>currentBalance</code> / <code>availableBalance</code> como <strong>capital invertido</strong>.</li>
+    <li>Mostrar <code>maturityDate</code> como <strong>fecha de vencimiento</strong> del certificado.</li>
+    <li>Mostrar <code>interestRateCd</code> como <strong>tasa pactada</strong> e <code>interestAmountCd</code> como <strong>intereses acumulados</strong>.</li>
+    <li>Si el cliente tiene <strong>2+ CDT</strong> (ej. uno DOP y uno USD), desambiguar por moneda o últimos 4 dígitos.</li>
+    <li>Señales conversacionales reconocidas: <em>certificado, depósito, depósito a plazo, CDT, DAP, capitalización, modalidad, vencimiento, tasa</em>.</li>
+    <li>Estado activo CD: <code>productStatus</code> 1 o 3 según tabla Core.</li>
+  </ul>
+
+  <h4>Ejemplo CDT en <code>products[]</code></h4>
+  <pre>{
+  "productCategory": "CD",
+  "productIdentification": "33012010005511",
+  "productDescription": "Certificado de Depósito 12 meses",
+  "productStatus": "1",
+  "currencyCode": "214",
+  "availableBalance": 500000.00,
+  "currentBalance": 500000.00,
+  "maturityDate": "2027-03-15 00:00:00",
+  "interestRateCd": 8.5,
+  "interestAmountCd": 12500.00,
+  "multiCurrency": "0"
+}</pre>
+
+  <h3>12.5 Campos por tipo — resumen completo primera carga</h3>
+  <table>
+    <tr><th>Tipo</th><th>Campos adicionales requeridos</th><th>NO incluir</th></tr>
+    <tr><td><strong>CA / CC</strong></td><td><code>availableBalance</code>, <code>currentBalance</code></td><td>Campos TC, PR, CD; <code>maturityDate</code> null</td></tr>
+    <tr class="highlight"><td><strong>CD (CDT)</strong></td><td><code>availableBalance</code>, <code>currentBalance</code>, <code>maturityDate</code>, <code>interestRateCd</code>, <code>interestAmountCd</code></td><td><code>maskedCardNumber</code>; campos TC/PR</td></tr>
+    <tr><td><strong>TC</strong></td><td><code>maskedCardNumber</code>, <code>availableBalance</code> (límite), <code>currentBalance</code>, <code>availablePurchasesDomestic/Foreign</code>, <code>multiCurrency</code>, <code>statementCutoffDay</code>, <code>minimumPaymentTc*</code>, <code>statementBalanceTc*</code></td><td>Campos PR, CD</td></tr>
+    <tr><td><strong>PR</strong></td><td><code>currentBalance</code>, <code>pendingBalancePr</code>, <code>interestRatePr</code>, <code>nextPaymentDatePr</code>, <code>nextInstallmentDatePr</code>, <code>maturityDate</code>, <code>availableBalance</code>, <code>domesticCurrencyBalance</code></td><td>Campos TC, CD</td></tr>
+  </table>
+
+  <h3>12.6 Qué NO debe traer el API de contexto (primera carga)</h3>
+  <table>
+    <tr><th>Dato</th><th>Motivo</th><th>Cuándo obtenerlo</th></tr>
+    <tr><td>Movimientos / transacciones</td><td>Payload grande, cambia constantemente</td><td>Core ops bajo demanda</td></tr>
+    <tr><td>Historial de pagos TC / estados detallados</td><td>No es catálogo inicial</td><td>API consulta puntual</td></tr>
+    <tr><td>Tabla de amortización completa PR</td><td>Consulta específica</td><td>Core ops</td></tr>
+    <tr><td>Renovación / cancelación anticipada CDT</td><td>Operación transaccional</td><td>Capability autorizada + Core</td></tr>
+    <tr><td>Beneficiarios, terceros, OTP</td><td>Seguridad / operación</td><td>Servicios de autorización</td></tr>
+    <tr><td>Número de producto completo sin enmascarar</td><td>Minimización PII</td><td>Solo últimos 4 dígitos o máscara TC</td></tr>
+    <tr><td><code>partyType</code></td><td>Baja prioridad v1</td><td>Solo si hay cotitulares</td></tr>
+    <tr><td><code>cardExpiryDate</code></td><td>Rara en primer turno</td><td>Consulta posterior</td></tr>
+  </table>
+
+  <div class="note warn">
+    <strong>Regla de frescura:</strong> Los saldos y montos del CDT en la primera carga son <strong>snapshot al login</strong>. Antes de una operación (renovación, cancelación, transferencia del vencimiento), el orquestador debe <strong>refrescar con Core</strong>.
+  </div>
+
+  <h3>12.7 Contrato mínimo <code>POST /turn</code> con contexto</h3>
+  <pre>{
+  "customer_id": "123456",
+  "conversation_id": "uuid-sesion",
+  "context_info": true,
+  "question": null,
+  "context_op": "load",
+  "context": {
+    "data": {
+      "primerNombre": "Andres",
+      "resultCode": 0,
+      "resultMessage": "Consulta realizada exitosamente.",
+      "products": [
+        { "productCategory": "CA", "...": "..." },
+        { "productCategory": "CD", "...": "CDT con maturityDate, interestRateCd, interestAmountCd" },
+        { "productCategory": "TC", "...": "..." },
+        { "productCategory": "PR", "...": "..." }
+      ]
+    }
+  }
+}</pre>
+
+  <h3>12.8 Escenarios de prueba CDT</h3>
+  <table>
+    <tr><th>Escenario</th><th>Portafolio</th><th>Pregunta</th><th>Resultado esperado</th></tr>
+    <tr><td>CDT único</td><td>1 CD DOP</td><td>"¿Cuándo vence mi certificado?"</td><td><code>TERM_DEPOSIT_DETAIL_READ</code> + fecha</td></tr>
+    <tr><td>CDT único</td><td>1 CD DOP</td><td>"¿Cuánto tengo en el depósito a plazo?"</td><td>Capital invertido sin clarificación</td></tr>
+    <tr><td>CDT múltiple</td><td>2 CD (DOP + USD)</td><td>"¿Cuál es la tasa de mi certificado?"</td><td>Desambiguación por moneda o últimos 4</td></tr>
+    <tr><td>Sin CDT</td><td>Solo CA + TC</td><td>"¿Cuánto tengo en mi certificado?"</td><td>Mensaje: no tienes depósitos a plazo activos</td></tr>
+    <tr><td>Mixto</td><td>CA + CD + TC</td><td>"¿Cuánto tengo en pesos?"</td><td>Resolver CA DOP, no confundir con CDT</td></tr>
+  </table>
+</section>
+
+<!-- 13. CHECKLIST -->
+<section id="checklist" class="card">
+  <h2>13. Checklist consolidado de producción</h2>
+  <ul>
+    <li>☐ Fase 1: Dockerfile + RedisSessionStore + smoke en contenedor</li>
+    <li>☐ Fase 2: ACR + ACA + Redis + Key Vault (Bicep)</li>
+    <li>☐ minReplicas=2 validado sin pérdida de sesión</li>
+    <li>☐ Pipeline CI/CD automatizado (build → push → update)</li>
+    <li>☐ Secretos solo en Key Vault; cero en git</li>
+    <li>☐ Fase 3: Application Gateway + WAF + TLS corporativo</li>
+    <li>☐ API Management con JWT, rate limiting, cuotas</li>
+    <li>☐ Private Endpoints para Redis y servicios internos</li>
+    <li>☐ App Insights + alertas (p95, error rate, 429 OpenAI)</li>
+    <li>☐ Circuit breakers hacia ACE/Core</li>
+    <li>☐ Pruebas de carga y soak tests</li>
+    <li>☐ Cutover VM 8447 → ACA con rollback documentado</li>
+    <li>☐ Runbook operativo + plan DR</li>
+    <li>☐ Estrategia de portabilidad (Docker + abstracciones)</li>
+    <li>☐ Evaluación AKS solo si política corporativa lo requiere</li>
+    <li>☐ API contexto incluye CDT (<code>CD</code>) con <code>maturityDate</code>, <code>interestRateCd</code>, <code>interestAmountCd</code></li>
+    <li>☐ Escenarios CDT en pruebas: único, múltiple DOP/USD, sin CDT, mixto CA+CD</li>
+  </ul>
+</section>
+
+<!-- 14. CONCLUSIÓN -->
+<section class="card">
+  <h2>14. Conclusión</h2>
+  <p>La propuesta externa de Container Apps es <strong>sólida y alineada</strong> con el plan interno del repositorio. El merge produce un camino claro:</p>
+  <ol>
+    <li><strong>Mantener</strong> la VM 8447 como baseline operativo mientras se implementa Fase 1.</li>
+    <li><strong>Implementar Redis</strong> como prerrequisito no negociable para escala.</li>
+    <li><strong>Migrar a Container Apps</strong> (Fase 2) como plataforma Azure destino — más barata, más simple y suficiente para banca conversacional MVP/producción media.</li>
+    <li><strong>Reservar AKS</strong> para evolución enterprise o portabilidad on-premise, usando las mismas imágenes Docker.</li>
+    <li><strong>Descartar App Service</strong> para este workload específico.</li>
+  </ol>
+  <p>La arquitectura de aplicación (guardrails, contratos, APIs, observabilidad) debe permanecer <strong>independiente de la plataforma de ejecución</strong>, permitiendo evolucionar de VM → Container Apps → AKS sin reescribir la lógica de negocio conversacional.</p>
+</section>
+
+</main>
+
+<footer>
+  <strong>Propuesta Formal — Arquitectura Azure Banca Conversacional Genesis</strong><br>
+  Banco Santa Cruz · Novus Intelligence · Agosto 2026<br>
+  <span class="small">Documento generado a partir de PlanContainerizacion/, deploy actual (vm-test002-genesis) y propuesta Azure_Container_Apps_Banca_Conversacional.html. Los costos son estimaciones orientativas; validar con calculadora Azure y políticas del banco.</span>
+</footer>
+
+</body>
+</html>

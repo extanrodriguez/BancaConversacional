@@ -1,0 +1,7 @@
+pregunta_del_cliente,dato_que_hace_falta,existe_hoy,donde_deberia_venir,que_decir_si_no_esta,responsable,prioridad
+Monto de la cuota del préstamo,cuota contractual / next installment,NO,API productos o LOAN_QUERY,No tengo el monto de la cuota contractual… ofrecer capital/tasa/fecha + canales,Core + Funcional,P0
+Próxima fecha de pago del préstamo,next_due_date,SI,API productos / loan detail,La fecha de pago no está disponible…,Core,P0
+Fecha límite de pago de la tarjeta,payment_due_date,NO o PARCIAL,API tarjetas / estado de cuenta,Indicar corte si existe y que la límite está en estado de cuenta,Core + Funcional,P0
+Fecha de corte de la tarjeta,cutoff_day,PARCIAL,API tarjetas,La fecha de corte no está disponible…,Core,P1
+Tarjetas de débito del cliente,producto débito o vínculo a cuenta,NO,definir con negocio,Explicar que débito va ligado a cuentas y ofrecer saldo de cuentas,Funcional + Core,P0
+Historial de movimientos / últimos pagos,movimientos,NO,servicio de movimientos,Ese historial no está disponible en este momento…,Core,P1

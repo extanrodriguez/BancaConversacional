@@ -1,0 +1,88 @@
+{
+  "case_id": "CC05",
+  "section": 20,
+  "questions": [
+    "Compárame una tarjeta de crédito y una de débito.",
+    "¿Cuál usa directamente el dinero de mi cuenta?",
+    "¿Y cómo funciona la otra?",
+    "¿Qué cargos puede tener esa?",
+    "No, me refería a la primera."
+  ],
+  "http": [
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "ms": [
+    217,
+    214,
+    298,
+    307,
+    221
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**",
+  "replies_sanitized": [
+    "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**"
+  ],
+  "options_count": 2,
+  "options_labels": [
+    "Cuenta de ahorro ···####",
+    "Cuenta corriente ···####"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 6,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 6,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "12604479-04c6-457b-8460-6643d2c152d6",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:heuristic_personal_plan",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1.balance": "needs_clarification"
+          },
+          "evidence_sources": [
+            "grounded"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "correction",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 1.2
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 6
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CLARIFICATION"
+}

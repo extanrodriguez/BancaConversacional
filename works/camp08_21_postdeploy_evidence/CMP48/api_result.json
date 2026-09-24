@@ -1,0 +1,74 @@
+{
+  "case_id": "CMP48",
+  "section": 19,
+  "questions": [
+    "Compárame los tipos de préstamos personales disponibles y explícame qué caracteriza a cada uno."
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    447
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuáles productos del catálogo deseas comparar?\n\nFelix Prestamos, de tu Préstamo personal (...####): capital **RD$[AMT]**; próximo pago **####-09-01**.",
+  "replies_sanitized": [
+    "¿Cuáles productos del catálogo deseas comparar?\n\nFelix Prestamos, de tu Préstamo personal (...####): capital **RD$[AMT]**; próximo pago **####-09-01**."
+  ],
+  "options_count": 1,
+  "options_labels": [
+    "Préstamo hipotecario (...####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 204,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 204,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "9a50b286-e699-404c-811d-cf1838780cc4",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_catalog_compare",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 2,
+          "task_statuses": {
+            "t1": "needs_clarification",
+            "t2.available": "available"
+          },
+          "evidence_sources": [
+            "snapshot",
+            "grounded"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 198.8,
+            "shortcut_ms": 1.6
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 204
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_PARTIAL"
+}

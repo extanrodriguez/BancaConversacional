@@ -1,0 +1,74 @@
+{
+  "case_id": "CMP02",
+  "section": 19,
+  "questions": [
+    "¿En qué se diferencia Multicrédito BSC de Cuotas BSC en cuanto a funcionamiento, pagos y condiciones?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    367
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Sobre cuál préstamo deseas consultar:\n\n• **Préstamo personal (...####)**\n• **Préstamo hipotecario (...####)**\n\nSeleccionaste **Multicredito**.\nMulticrédito BSC: facilidad de crédito otorgada por la entidad tarjetahabiente para ser usada con un plástico único para estos fines, el cual es revolvente amortizado en cuotas iguales, fijas y consecutivas contentivas de capital e interés en base a trescientos sesenta (360) días.",
+  "replies_sanitized": [
+    "¿Sobre cuál préstamo deseas consultar:\n\n• **Préstamo personal (...####)**\n• **Préstamo hipotecario (...####)**\n\nSeleccionaste **Multicredito**.\nMulticrédito BSC: facilidad de crédito otorgada por la entidad tarjetahabiente para ser usada con un plástico único para estos fines, el cual es revolvente amortizado en cuotas iguales, fijas y consecutivas contentivas de capital e interés en base a trescientos sesenta (360) días."
+  ],
+  "options_count": 2,
+  "options_labels": [
+    "Préstamo personal (...####)",
+    "Préstamo hipotecario (...####)"
+  ],
+  "status_eval": "PARTIAL",
+  "reason": "define un tema pero no completa el contraste",
+  "audit": {
+    "total_ms": 7,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 7,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "b837d41e-78c4-4447-aad9-bac3cfa19e55",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_catalog_define",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 2,
+          "task_statuses": {
+            "t1": "needs_clarification",
+            "t2": "available"
+          },
+          "evidence_sources": [
+            "snapshot",
+            "faq"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 2.7
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 7
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_PARTIAL"
+}

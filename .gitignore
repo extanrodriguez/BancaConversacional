@@ -1,0 +1,21 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+*.log
+backups/
+**/SSH_DEPLOY*
+**/*pass*once*
+Test_local/.env.local
+Test_local/results/
+Test_local/build_exe/
+Test_local/BancaPruebas.exe
+# artefactos locales / IDE
+.idea/
+.vscode/
+*.tar.gz
+node_modules/

@@ -1,0 +1,52 @@
+%% Banca Conversacional Genesis — componentes Azure (QA vigente)
+flowchart TB
+  classDef rg fill:#F4F6F8,stroke:#5C6B7A,color:#0A2540,stroke-width:1.5px
+  classDef compute fill:#0A2540,stroke:#0A2540,color:#FFFFFF,stroke-width:1.5px
+  classDef data fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef ai fill:#E8F1FA,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef net fill:#E7F6F4,stroke:#0E7C7B,color:#0A2540,stroke-width:1.5px
+  classDef id fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+
+  subgraph RG["Resource Group · RG_BSC_PRJ_GENESIS"]
+    direction TB
+
+    subgraph COMP["Cómputo"]
+      VM["vm-test002-genesis<br/>Ubuntu · East US<br/>IP pública 20.127.25.24<br/>IP privada 192.168.150.5"]:::compute
+      SVC["systemd<br/>genesis-cognitive-8447<br/>lab8446_runtime"]:::compute
+    end
+
+    subgraph DATA["Datos de sesión"]
+      REDIS["Azure Managed Redis<br/>bsc-cognitive-redis-qa<br/>TLS :10000<br/>público OFF"]:::data
+      PE["Private Endpoint<br/>192.168.150.7"]:::net
+    end
+
+    subgraph AI["Inteligencia artificial"]
+      AOAI["Azure OpenAI<br/>aoai / testbsc0001<br/>chat gpt-4o-mini"]:::ai
+      FOU["Azure AI Foundry<br/>proyecto genesis"]:::ai
+      SRCH["Azure AI Search<br/>KB institucional"]:::ai
+    end
+
+    subgraph NET["Red"]
+      VNET["VNET_S2S_AZ_TO_BSC_GEN"]:::net
+      NSG["NSG vm-test002-genesis-nsg<br/>Allow 8440-8449"]:::net
+      DNS["Private DNS<br/>qa.bsc.com.do"]:::net
+    end
+
+    subgraph ID["Identidad"]
+      MI["Managed Identity<br/>de la VM"]:::id
+      ENTRA["Entra ID<br/>token Redis<br/>sin access keys"]:::id
+    end
+  end
+
+  VM --> SVC
+  SVC -->|"rediss + Entra"| PE
+  PE --> REDIS
+  MI --> ENTRA
+  ENTRA --> REDIS
+  SVC --> AOAI
+  SVC --> FOU
+  FOU --> SRCH
+  VNET --> NSG
+  NSG --> VM
+  VNET --> PE
+  VNET --> DNS

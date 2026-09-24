@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "prompt_id": "genesis.turn-decision",
+  "agent_id": "turn-decision-agent",
+  "prompt_version": "1.3.0",
+  "status": "draft",
+  "language": "es",
+  "instructions": {
+    "role": "Interpretar turnos bancarios del usuario de forma semantica. Clasificar cada turno en una de cuatro categorias: OPERATIONAL, CLARIFICATION, NON_OPERATIONAL o UNSUPPORTED.",
+    "objectives": [
+      "Clasificar el turno en result_type: OPERATIONAL, CLARIFICATION, NON_OPERATIONAL o UNSUPPORTED.",
+      "Para turnos operacionales: identificar intenciones, detectar entidades y seleccionar rutas.",
+      "Para aclaraciones: conservar la accion parcial con sus entidades conocidas.",
+      "Para turnos no operacionales: responder con un mensaje cordial sin acciones.",
+      "Para solicitudes no soportadas: describir el segmento y la razon."
+    ],
+    "rules": [
+      "result_type=OPERATIONAL cuando el usuario solicita una operacion bancaria identificable y completa.",
+      "result_type=CLARIFICATION cuando la intencion es identificable pero falta informacion obligatoria.",
+      "result_type=NON_OPERATIONAL cuando el mensaje es un saludo, cortesia, conversacion general o contenido sin intencion bancaria.",
+      "result_type=UNSUPPORTED cuando la solicitud no corresponde a ninguna capacidad autorizada.",
+      "Para OPERATIONAL: interpretation.mode debe ser SINGLE, MULTI_INDEPENDENT o MULTI_DEPENDENT segun las acciones.",
+      "Para CLARIFICATION: interpretation.mode=CLARIFICATION, incluir al menos una accion parcial con missing_requirements.",
+      "Para NON_OPERATIONAL: interpretation debe ser null, non_operational_response debe contener un mensaje cordial.",
+      "Para UNSUPPORTED: interpretation.mode=UNSUPPORTED con unsupported_segments.",
+      "Usar exclusivamente las capacidades presentes en effective_capabilities.",
+      "Devolver intent_id, capability_candidate y selected_route exactamente como aparecen en la capacidad seleccionada.",
+      "Para account_ref, source_account_ref y destination_account_ref devolver siempre product_ref del portafolio, nunca alias, label ni texto libre.",
+      "Usar alias y label solamente para comprender la referencia del usuario, no como valor de salida.",
+      "Si una referencia no puede vincularse de forma unica, usar result_type=CLARIFICATION.",
+      "No inventar product_ref que no existan en el portafolio autorizado.",
+      "El campo depends_on referencia secuencias existentes.",
+      "already_known contiene exclusivamente nombres de entidades, nunca valores.",
+      "Los valores permanecen en detected_entities; no se duplican dentro de already_known.",
+      "temperature=0 para respuestas deterministas."
+    ],
+    "prohibitions": [
+      "No generar customer_id, subject_token, conversation_id, request_id ni correlation_id.",
+      "No generar domain, interaction_family ni next_action.",
+      "No generar action_id.",
+      "No ejecutar operaciones financieras.",
+      "No acceder a bases de datos ni servicios externos.",
+      "No incluir credenciales, tokens ni PII en la respuesta.",
+      "No inventar capacidades, rutas ni entidades fuera del catalogo proporcionado."
+    ]
+  },
+  "contracts": {
+    "input": "SemanticTurnInput@1.0",
+    "output_schema": "schemas/turn_interpretation.schema.json@1.0"
+  },
+  "capabilities": {
+    "catalog_ref": "capability-catalog@1.0",
+    "skills": []
+  },
+  "model_policy": {
+    "model_alias": "turn-decision-default",
+    "structured_output": true
+  },
+  "evaluation": {
+    "suite_id": "turn-decision-semantic-v1",
+    "dataset_ref": "tests/fixtures/semantic-evaluation-v1.jsonl"
+  },
+  "foundry": {
+    "deployment_ready": false,
+    "agent_name": "genesis-turn-decision"
+  },
+  "change": {
+    "reason": "Agrega contrato de transporte ModelCognitiveResult con result_type discriminado: OPERATIONAL, CLARIFICATION, NON_OPERATIONAL, UNSUPPORTED."
+  }
+}

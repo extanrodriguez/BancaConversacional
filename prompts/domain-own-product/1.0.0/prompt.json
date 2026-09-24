@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "prompt_id": "genesis.domain-own-product",
+  "agent_id": "domain-own-product",
+  "prompt_version": "1.0.0",
+  "status": "draft",
+  "language": "es",
+  "instructions": {
+    "role": "Eres un clasificador bancario. Evalua si el mensaje del usuario pregunta por un dato especifico de SU producto o contrato personal (saldo, cuota, tasa de su credito, movimientos, estado de su cuenta, fecha de pago, capital pendiente, mora).",
+    "objectives": [
+      "Devolver un score de 0.0 a 1.0 indicando la probabilidad de que el mensaje sea una consulta personal sobre un producto del cliente."
+    ],
+    "rules": [
+      "1.0 = claramente pregunta por un dato de su producto personal.",
+      "0.0 = claramente NO pregunta por un dato de su producto.",
+      "Senales positivas: posesivos (mi, mis), verbos de estado personal (tengo, me queda, debo, pago), referencia a un producto con contexto de posesion.",
+      "Senales negativas: preguntas sobre requisitos, rangos, que ofrece el banco, informacion general.",
+      "Saludos y cortesia tienen score bajo (0.0-0.1).",
+      "Solicitudes no bancarias (vuelos, pizza) tienen score 0.0."
+    ],
+    "prohibitions": []
+  },
+  "contracts": {
+    "input": "raw_text+context_summary",
+    "output_schema": "schemas/turn_interpretation.schema.json@1.0"
+  },
+  "capabilities": {
+    "catalog_ref": "none",
+    "skills": []
+  },
+  "model_policy": {
+    "model_alias": "domain-classifier",
+    "structured_output": true
+  },
+  "evaluation": {
+    "suite_id": "domain-own-product-v1",
+    "dataset_ref": "tests/fixtures/domain-own-product-v1.jsonl"
+  },
+  "foundry": {
+    "deployment_ready": false,
+    "agent_name": "genesis-domain-own-product"
+  },
+  "change": {
+    "reason": "Version inicial del clasificador own_product."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "resultCode": 0,
+  "primerNombre": "Alejandra Mendez",
+  "resultMessage": "Consulta realizada exitosamente.",
+  "products": [
+    {
+      "productCategory": "CA",
+      "productIdentification": "5001230001",
+      "productDescription": "Cuenta de Ahorros Nomina",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 67500.25,
+      "currentBalance": 68000.00
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "5001230002",
+      "productDescription": "Cuenta Corriente Empresarial",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 230000.00,
+      "currentBalance": 231000.00
+    },
+    {
+      "productCategory": "TC",
+      "productIdentification": "4111222233334444",
+      "productDescription": "Visa Platinum",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "maskedCardNumber": "****4444",
+      "availableBalance": 150000.00,
+      "availablePurchasesDomestic": 140000.00,
+      "availablePurchasesForeign": 100000.00,
+      "minimumPaymentTcRd": 4500.00,
+      "statementBalanceTcRd": 25000.00
+    },
+    {
+      "productCategory": "PR",
+      "productIdentification": "PRE-AM-001",
+      "productDescription": "Prestamo Libre Inversion",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "pendingBalancePr": 185000.50,
+      "interestRatePr": 16.5,
+      "nextPaymentDatePr": "2026-09-01",
+      "nextInstallmentDatePr": "2026-09-01"
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "5001230099",
+      "productDescription": "Cuenta Cerrada Legacy",
+      "productStatus": 2,
+      "currencyCode": 214,
+      "availableBalance": 0,
+      "currentBalance": 0
+    }
+  ]
+}

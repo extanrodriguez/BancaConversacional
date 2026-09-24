@@ -1,0 +1,103 @@
+{
+  "case_id": "CC01",
+  "section": 20,
+  "questions": [
+    "Compárame Multicrédito BSC con Cuotas BSC.",
+    "¿Cuál es la principal diferencia?",
+    "¿Y en cuanto a los pagos?",
+    "¿Cuál de los dos tiene consumo mínimo?",
+    "¿Cómo cancelo el primero?",
+    "¿Y el segundo?"
+  ],
+  "http": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "ms": [
+    916,
+    6618,
+    237,
+    330,
+    1244,
+    9763
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+  "replies_sanitized": [
+    "Comparación de catálogo (orden de mención / conjunto vigente):\n_(Comparación parcial: no todos los productos/atributos tienen evidencia.)_\n1. **Multicredito** — evidencia recuperada (producto verificado).\nMulticrédito BSC: facilidad de crédito otorgada por la entidad tarjetahabiente para ser usada con un plástico único para estos fines, el cual es revolvente amortizado en cuotas iguales, fijas y consecutivas contentivas de capital e interés en base a trescientos sesenta (360) días.\n2. **Cuotas Bsc** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nCuotas BSC: línea de crédito independiente unida en un mismo plástico a la línea correspondiente que otorga el Banco a cada tarjetahabiente titular como un crédito diferente al rotativo para el uso de la tarjeta de crédito, a ser amortizado en cuotas iguales, fijas y consecutivas de capital e interés, calculado sobre saldo insoluto de los montos desembolsados bajo la línea adicional aprobada.\n\nDiferencias por atributos equivalentes:\n- **descripción / condiciones**: **Multicredito** → «Multicrédito BSC: facilidad de crédito otorgada por la entidad tarjetahabiente para ser usada con un plástico único para»; **Cuotas Bsc** → «__AZURE_SEARCH__ Cuotas BSC: línea de crédito independiente unida en un mismo plástico a la línea correspondiente que ot».\n\nGrounding incompleto: sin evidencia verificable para: multicredito:features, cuotas_bsc:features. No invento atributos faltantes.\n- Producto multicredito recuperado pero sin soporte de atributo 'features' (nombre ≠ hecho afirmado).\n- Producto cuotas_bsc recuperado pero sin soporte de atributo 'features' (nombre ≠ hecho afirmado).\nPuedes pedir «la segunda» del conjunto vigente o agregar otro producto.",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "__AZURE_SEARCH__\nResponsabilidad de EL BANCO y EL TARJETAHABIENTE\nRecibir orientación sobre el funcionamiento de los productos y servicios contratado.\n\nSeleccionaste **Multicredito** (posición 1 del conjunto vigente).\nUsa la tarjeta de manera responsable:\nEL TARJETAHABIENTE reconoce que el uso de este producto es personal e intransferible y para su uso será indispensable que estampe su firma al dorso de esta al momento de recibirla y deberá presentar el Multicrédito BSC o la tarjeta de crédito personal debidamente firmada y vigente a Los Afiliados, su documento de identidad, en caso de ser requerida, así como firmar el comprobante de crédito que le proporcione El Afiliado por el valor de los bienes y servicios recibidos para los casos que aplica. EL TARJETAHABIENTE es responsable del uso del Multicrédito BSC o de Cuotas BSC (línea adicional en su tarjeta de crédito personal) y su conservación en un lugar seguro para evitar su uso no autorizado por parte de terceros y cumplir con las formalidades establecidas para su uso.",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea"
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "FAIL",
+  "reason": "fallback genérico sin evidencia",
+  "audit": {
+    "total_ms": 9489,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 9489,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "953c5e75-0ce1-4c9f-bd55-7bcb34585309",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "resolve_full",
+    "context_source": null,
+    "inference_count": 2,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "azure_plan",
+          "brain_source": "resolve_full",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "available"
+          },
+          "evidence_sources": [
+            "noop"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "selection",
+          "calls": [
+            {
+              "name": "proposer",
+              "duration_ms": 3330,
+              "deployment": "gpt-6-astra"
+            },
+            {
+              "name": "verifier",
+              "duration_ms": 6152,
+              "deployment": "gpt-6-astra"
+            }
+          ],
+          "inference_count": 2,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "envelope_ms": 0.5,
+            "resolve_full_attempt1_ms": 9483.5,
+            "adapter_ms": 0.9,
+            "execute_ms": 0.1
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 9489
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_MULTI"
+}

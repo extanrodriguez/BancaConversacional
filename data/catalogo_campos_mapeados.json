@@ -1,0 +1,74 @@
+{
+  "version": "bsc-kb-2026-09-19-candidate-1-mapped",
+  "note": "Paths confirmados contra customer_context_snapshot / grounded_executor. mapping_status=CONFIRMED_IN_CHECKOUT.",
+  "fields": [
+    {
+      "field": "account.ledger_balance",
+      "core_json_path": "ProductSnapshot.ledger_balance",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "account.available_balance",
+      "core_json_path": "ProductSnapshot.available_balance",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "credit_card.current_debt",
+      "core_json_path": "ProductSnapshot.ledger_balance",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE",
+      "note": "Adeudado TC; no confundir con available_purchases_domestic"
+    },
+    {
+      "field": "credit_card.available_credit",
+      "core_json_path": "ProductSnapshot.available_purchases_domestic",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "credit_card.payment_due_date",
+      "core_json_path": "ProductSnapshot.payment_due_date",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "credit_card.minimum_payment",
+      "core_json_path": "ProductSnapshot.minimum_payment",
+      "mapping_status": "VERIFY_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "loan.outstanding_balance",
+      "core_json_path": "LoanDetails.outstanding_principal | ProductSnapshot.ledger_balance",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "loan.installment_amount",
+      "core_json_path": "LoanDetails.installment_amount",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "loan.interest_rate",
+      "core_json_path": "ProductSnapshot.interest_rate",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "loan.payoff_amount",
+      "core_json_path": "LoanDetails.payoff_amount",
+      "mapping_status": "CONFIRMED_IN_CHECKOUT",
+      "on_missing": "FIELD_NOT_AVAILABLE"
+    },
+    {
+      "field": "account.transactions",
+      "core_json_path": null,
+      "mapping_status": "NOT_IN_CONTRACT",
+      "on_missing": "FIELD_NOT_AVAILABLE",
+      "note": "El snapshot actual no entrega movimientos; ausencia explícita esperada"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+GENESIS COGNITIVE 8446 — VALIDACIÓN DEL ARTEFACTO CORREGIDO
+
+Cambios aplicados:
+1. Rutas internas POSIX compatibles con unzip en Linux.
+2. scripts/run_contract_inspector.py usa AZURE_OPENAI_API_KEY.
+3. src/genesis_cognitive/rag/local_rag.py usa API keys para OpenAI y Search.
+4. La búsqueda selecciona content,source,document_name del índice vivo.
+5. No se ejecuta ni modifica el índice corporativo.
+6. Eliminados archivos compilados y SQLite temporales.
+
+Restricciones:
+- No contiene .env real ni secretos.
+- No modifica genesis-cognitive.service ni el puerto 8445.
+- El archivo debe copiarse a /tmp/genesis_corp_8446.zip en la VM.

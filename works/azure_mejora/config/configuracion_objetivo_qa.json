@@ -1,0 +1,174 @@
+{
+  "spec_version": "bsc-cognitive-qa-proposal-1",
+  "status": "PROPOSED_NOT_APPLIED",
+  "notice": "Especificación para adaptar al código real; no es un archivo de configuración de Azure ni variables de entorno preexistentes.",
+  "scope": {
+    "environment": "qa",
+    "remote_customer_read_only": "726588",
+    "production_changes": false,
+    "external_backend_changes": false,
+    "remote_mutations": "only_if_explicitly_authorized_after_concrete_diff"
+  },
+  "redis": {
+    "resource_reported": "bsc-cognitive-redis-qa",
+    "host_reported": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+    "port_reported": 10000,
+    "tls_required": true,
+    "certificate_verification": true,
+    "auth": "preserve_entra_managed_identity",
+    "cluster_policy": "discover_and_preserve_compatible_current",
+    "eviction_policy_proposal": "noeviction_for_session_and_lock_after_capacity_and_OOM_validation",
+    "max_connections_per_pool_qa_proposal": 16,
+    "session_idle_ttl_s": null,
+    "session_idle_ttl_if_no_existing_policy_qa_trial_s": 1800,
+    "session_absolute_expiry": "bounded_by_authenticated_session",
+    "snapshot_volatile_staleness_qa_trial_s": 60,
+    "portfolio_staleness_qa_trial_s": 600,
+    "freshness_note": "Preserve source timestamps; trial thresholds do not trigger unapproved Core refresh or extend data validity",
+    "lock_lease_s": null,
+    "lock_note": "Discover and preserve tested lease/renewal/CAS; align deadline and owner validation"
+  },
+  "document_cache": {
+    "enabled_initially": false,
+    "ttl_qa_trial_s": 300,
+    "scope": "retrieval_results_only",
+    "personal_answer_cache": false,
+    "max_bytes": null,
+    "require_budget_before_enable": true,
+    "key_dimensions": [
+      "query_hash",
+      "product_ids",
+      "facets",
+      "language",
+      "validated_access_scope",
+      "index_version",
+      "corpus_version",
+      "retrieval_version"
+    ],
+    "invalidate_on": [
+      "publication",
+      "permission_change",
+      "expiry"
+    ]
+  },
+  "chunking": {
+    "target_tokens": 600,
+    "preferred_min_tokens": 400,
+    "preferred_max_tokens": 800,
+    "overlap_tokens": 80,
+    "short_complete_facts_allowed": true,
+    "preserve_product_boundaries": true,
+    "preserve_rules_and_exceptions": true,
+    "oversize_handling": "semantic_split_parent_links_or_documented_exception_no_silent_truncation",
+    "tokenizer": "resolve_from_embedding_model",
+    "experiments": [
+      {
+        "target": 400,
+        "overlap": 50
+      },
+      {
+        "target": 600,
+        "overlap": 80
+      },
+      {
+        "target": 800,
+        "overlap": 100
+      }
+    ]
+  },
+  "search": {
+    "endpoint": null,
+    "active_index": "discover",
+    "candidate_index_pattern": "bsc-kb-qa-vnext-<date>-<hash>",
+    "embedding_deployment": "discover_and_reuse",
+    "embedding_dimension": null,
+    "embedding_if_absent_proposal": {
+      "model": "text-embedding-3-small",
+      "dimensions": 1536,
+      "condition": "verify_support_and_authorize_deployment"
+    },
+    "vector_algorithm_proposal": "hnsw",
+    "distance_proposal": "cosine",
+    "retrieval": "hybrid",
+    "semantic_ranker": "enable_if_supported_authorized_and_measured",
+    "vector_filter_mode_initial": "preFilter",
+    "k_initial": 50,
+    "top_per_task_initial": 5,
+    "evidence_chunks_total_typical": [
+      5,
+      8
+    ],
+    "evidence_token_budget_initial": 4000,
+    "max_parallel_document_queries_per_turn_initial": 2,
+    "filter_dimensions": [
+      "validated_access_scope",
+      "product_applicability",
+      "publication_status",
+      "validity",
+      "corpus_version"
+    ],
+    "active_index_deletion": false
+  },
+  "context": {
+    "recent_exchanges_initial": 6,
+    "summary_token_budget_initial": 600,
+    "typical_prompt_budget_tokens": 8000,
+    "pending_tasks_preserved": true,
+    "personal_and_knowledge_focus_separate": true,
+    "compare_set_ordered": true,
+    "numbers_authority": "typed_executor_not_model_summary",
+    "overflow": "rebudget_without_dropping_requested_tasks"
+  },
+  "model": {
+    "deployment": "discover_and_preserve_current",
+    "structured_output_schema": "adapt_existing_TurnPlan_to_supported_strict_subset",
+    "temperature_plan_if_supported": 0,
+    "temperature_writer_if_supported": 0.2,
+    "plan_output_tokens_initial": 1200,
+    "simple_writer_output_tokens_initial": 600,
+    "compound_writer_output_tokens_initial": 1200,
+    "normal_inference_target_per_turn_max": 2,
+    "bounded_extra_attempt_max": 1,
+    "verifier_policy": "deterministic_when_proven_equivalent_feature_flag",
+    "deadline_ms": null,
+    "deadline_rule": "discover_consumer_timeout_and_leave_margin",
+    "dynamic_data_after_static_prompt_prefix": true,
+    "retries": "bounded_total_budget_with_jitter_for_transient_errors",
+    "streaming_external_contract_changes": false
+  },
+  "measurement": {
+    "latency_targets_are_not_SLA": true,
+    "qa_p95_target_ms": {
+      "personal_deterministic": 2000,
+      "knowledge_simple": 5000,
+      "mixed": 8000
+    },
+    "minimum_latency_sample_per_category_proposal": 30,
+    "controlled_qa_concurrency_steps": [
+      1,
+      3,
+      5
+    ],
+    "cache_modes": [
+      "cold",
+      "warm"
+    ],
+    "oracles": "versioned_expected_source_and_semantic_assertions",
+    "full_guide_target_cases": 236,
+    "visual_evidence": "real_chat_capture_per_case_in_fix_column",
+    "runtime_tests_executed_by_this_package": 0
+  },
+  "discovery_required": [
+    "exact_subscription_resource_ids",
+    "actual_runtime_code_hash",
+    "identity_roles",
+    "Search_API_and_tier",
+    "embedding_model_dimensions",
+    "consumer_timeout",
+    "session_retention_policy",
+    "eviction_and_memory_budget",
+    "data_source_freshness",
+    "readiness_private_network",
+    "corpus_approval_status"
+  ]
+}

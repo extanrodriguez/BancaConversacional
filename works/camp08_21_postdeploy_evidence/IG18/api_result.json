@@ -1,0 +1,60 @@
+{
+  "case_id": "IG18",
+  "section": 9,
+  "questions": [
+    "¿Qué es FATCA y qué relación puede tener con una cuenta bancaria?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    306
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, FATCA: El formulario FATCA (Foreign Account Tax Compliance Act) es un documento.",
+  "replies_sanitized": [
+    "Felix Prestamos, FATCA: El formulario FATCA (Foreign Account Tax Compliance Act) es un documento."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 98,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 98,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "5324b2de-396d-43a0-986b-1929ee57b9d8",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 91.2
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 98
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

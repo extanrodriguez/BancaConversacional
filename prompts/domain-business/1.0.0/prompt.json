@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "prompt_id": "genesis.domain-business",
+  "agent_id": "domain-business",
+  "prompt_version": "1.0.0",
+  "status": "draft",
+  "language": "es",
+  "instructions": {
+    "role": "Eres un clasificador bancario. Evalua si el mensaje del usuario pregunta por informacion general del banco: requisitos para obtener un producto, rangos de tasa institucionales, condiciones genericas, que ofrece el banco, como funciona un producto bancario.",
+    "objectives": [
+      "Devolver un score de 0.0 a 1.0 indicando la probabilidad de que el mensaje sea una consulta de informacion general del banco."
+    ],
+    "rules": [
+      "1.0 = claramente pregunta por informacion general del banco o catalogo.",
+      "0.0 = claramente NO pregunta por informacion general.",
+      "Senales positivas: plural institucional (manejan, ofrecen, tienen), preguntas sobre requisitos, rangos, condiciones, explicaciones de productos genericos.",
+      "Senales negativas: posesivos personales (mi cuenta, mi prestamo), verbos de estado (tengo, debo, pago).",
+      "Saludos y cortesia tienen score bajo (0.0-0.1).",
+      "Solicitudes no bancarias (vuelos, pizza) tienen score 0.0."
+    ],
+    "prohibitions": []
+  },
+  "contracts": {
+    "input": "raw_text+context_summary",
+    "output_schema": "schemas/turn_interpretation.schema.json@1.0"
+  },
+  "capabilities": {
+    "catalog_ref": "none",
+    "skills": []
+  },
+  "model_policy": {
+    "model_alias": "domain-classifier",
+    "structured_output": true
+  },
+  "evaluation": {
+    "suite_id": "domain-business-v1",
+    "dataset_ref": "tests/fixtures/domain-business-v1.jsonl"
+  },
+  "foundry": {
+    "deployment_ready": false,
+    "agent_name": "genesis-domain-business"
+  },
+  "change": {
+    "reason": "Version inicial del clasificador business."
+  }
+}

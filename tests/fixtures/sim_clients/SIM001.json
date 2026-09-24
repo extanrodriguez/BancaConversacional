@@ -1,0 +1,34 @@
+{
+  "primerNombre": "Ana Simple",
+  "products": [
+    {
+      "productCategory": "CA",
+      "productIdentification": "1104200001001",
+      "productDescription": "Cuenta de Ahorros",
+      "currencyCode": "214",
+      "productStatus": "3",
+      "availableBalance": 15250.50,
+      "maturityDate": null,
+      "currentBalance": 15250.50,
+      "foreignCurrencyBalance": 15250.50,
+      "domesticCurrencyBalance": 15250.50,
+      "partyType": null,
+      "maskedCardNumber": null,
+      "pendingBalancePr": 0,
+      "minimumPaymentTcRd": 0,
+      "minimumPaymentTcUs": 0,
+      "statementBalanceTcRd": 0,
+      "statementBalanceTcUs": 0,
+      "statementCutoffDay": 0,
+      "cardExpiryDate": 0,
+      "multiCurrency": "0",
+      "interestRateCd": 0,
+      "interestAmountCd": 0,
+      "interestRatePr": 0,
+      "nextInstallmentDatePr": null,
+      "nextPaymentDatePr": null,
+      "availablePurchasesForeign": null,
+      "availablePurchasesDomestic": null
+    }
+  ]
+}

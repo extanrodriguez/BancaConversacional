@@ -1,0 +1,8 @@
+{
+  "endpoint": "https://testbsc0001.openai.azure.com/",
+  "found": [
+    "gpt-6-astra",
+    "gpt-4o-mini"
+  ],
+  "prefer": "gpt-6-astra"
+}

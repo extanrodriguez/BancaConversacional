@@ -1,0 +1,60 @@
+{
+  "case_id": "PR08",
+  "section": 13,
+  "questions": [
+    "¿Qué es un préstamo para consolidación de deudas y para qué se utiliza?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    383
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, Préstamos Personales para Consolidación de Deudas: Son una herramienta financiera que permite a los Clientes BSC agrupar varias deudas distintas a tarjetas de crédito en un solo préstamo. La finalidad de este tipo de préstamo es simplificar el pago de múltiples obligaciones (como préstamos personales y otras deudas elegibles) en una única cuota mensual, generalmente con una tasa de interés más baja que la de las deudas originales. Esto ayuda a reducir la carga financiera y a gestionar las deudas de forma más eficiente.",
+  "replies_sanitized": [
+    "Felix Prestamos, Préstamos Personales para Consolidación de Deudas: Son una herramienta financiera que permite a los Clientes BSC agrupar varias deudas distintas a tarjetas de crédito en un solo préstamo. La finalidad de este tipo de préstamo es simplificar el pago de múltiples obligaciones (como préstamos personales y otras deudas elegibles) en una única cuota mensual, generalmente con una tasa de interés más baja que la de las deudas originales. Esto ayuda a reducir la carga financiera y a gestionar las deudas de forma más eficiente."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PASS_RESOLVED",
+  "reason": "definición FAQ (préstamo)",
+  "audit": {
+    "total_ms": 163,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 163,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "71e35178-830b-4842-b1ee-e173a674d0a9",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 153.3
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 163
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

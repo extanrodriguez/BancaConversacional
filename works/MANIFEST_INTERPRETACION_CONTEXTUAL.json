@@ -1,0 +1,86 @@
+{
+  "name": "interpretacion_contextual_bsc",
+  "generated_at": "2026-09-19T17:56:21Z",
+  "files": [
+    {
+      "path": "src/genesis_cognitive/brain/semantic_field_catalog.py",
+      "sha256": "4b25226cd2ae436ca7ef88614550bae96379bc0dc7f1b35f3d25c4cd5ce870dc",
+      "bytes": 3766
+    },
+    {
+      "path": "src/genesis_cognitive/brain/azure_plan_turn.py",
+      "sha256": "d79f94ebbaf885f57fb4946f0025e6598530163849c94aa6d71da6545063f562",
+      "bytes": 38769
+    },
+    {
+      "path": "src/genesis_cognitive/brain/plan_executor.py",
+      "sha256": "add54669244cde2eb75abaa32d5ce6de083364937cc857fa5d5ea62870cdc024",
+      "bytes": 44994
+    },
+    {
+      "path": "src/genesis_cognitive/brain/turn_plan.py",
+      "sha256": "e247831ebf037b35b1fc5065b4c7c23f49962c87ffae730fd4a35ae2b3082c01",
+      "bytes": 5657
+    },
+    {
+      "path": "src/genesis_cognitive/model_input/model_input_builder.py",
+      "sha256": "e51e0eca743577add85a21813777afcf436b93df9a02dd3ae301c6d1de5bfa34",
+      "bytes": 10491
+    },
+    {
+      "path": "src/genesis_cognitive/router/faq_guardrail.py",
+      "sha256": "f5e25b16bb86b7de28408ad0bfd2bd978a8d69faca35966702ef64f04b74882c",
+      "bytes": 45203
+    },
+    {
+      "path": "tests/unit/test_matriz_aceptacion_contextual.py",
+      "sha256": "7aaa50d40af56d4bf31d8dba772f92890be69e8ed588732a00645772e45b1af4",
+      "bytes": 5106
+    },
+    {
+      "path": "tests/unit/test_ux_regression_azure_plan_bridge.py",
+      "sha256": "713c00d436bd0367817323a61406b4af8d1c7da5bc58d1aa8e46988640e56b76",
+      "bytes": 4699
+    },
+    {
+      "path": "scripts/run_contextual_acceptance.py",
+      "sha256": "bc535e66ac828e44130d51fd6d552dc9c432b67684b34eddfcde86bc5117cf3d",
+      "bytes": 6066
+    },
+    {
+      "path": "works/DIAGNOSTICO_CONTEXTUAL.md",
+      "sha256": "7ff4daac4467a4c97786d7769e77c8c5a4269f9192717a877b6bf38a76dc9f9a",
+      "bytes": 1927
+    },
+    {
+      "path": "works/MAPA_CAPACIDADES_CONTEXTUALES.json",
+      "sha256": "0394dbd7cafd64d839347cca683ad74959a7972716f5b8721e60c093f89fd99d",
+      "bytes": 1962
+    },
+    {
+      "path": "works/RESULTADOS_CONTEXTUALES.json",
+      "sha256": "d151710dfbcd87d82ca0fe86c87eec7423b352790c9393b30514622836c75314",
+      "bytes": 176997
+    },
+    {
+      "path": "works/BRECHAS_KB_CONTEXTUAL.md",
+      "sha256": "f3883af7b2290b21190647eab8f58cfbfb35e9ddbd6c2730068d9bf0691c5753",
+      "bytes": 1511
+    },
+    {
+      "path": "works/ENTREGA_INTERPRETACION_CONTEXTUAL.md",
+      "sha256": "3189910ff900d7f117dfcda3587fc75d7265e7095e507e35bad2ed547f169049",
+      "bytes": 2041
+    },
+    {
+      "path": "works/Matriz_Aceptacion_Contextual_BSC.md",
+      "sha256": "f9c984cc41d1dccd77f8378a0418dafbfbe940aa89c069fe02d4547672ddd66a",
+      "bytes": 1635
+    },
+    {
+      "path": "works/Casos_Guia_BSC_236.json",
+      "sha256": "286efabf8cee8bfc19e5efe70a4a4b985f043bd1b60cd3fa6d0da95304c1cad0",
+      "bytes": 165726
+    }
+  ]
+}

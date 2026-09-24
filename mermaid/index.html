@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banca Conversacional Genesis — Arquitectura QA (VP Tecnología)</title>
+  <style>
+    :root {
+      --navy: #0a2540;
+      --navy-2: #163a5f;
+      --gold: #c5a46e;
+      --gold-deep: #8a6a2f;
+      --paper: #f6f4ef;
+      --card: #ffffff;
+      --ink: #1c2834;
+      --muted: #5c6b7a;
+      --line: #e4ddd2;
+      --azure: #0078d4;
+      --warn: #b86e00;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Segoe UI", Calibri, sans-serif;
+      line-height: 1.5;
+    }
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 2.4rem 6vw 1.6rem;
+    }
+    .kicker {
+      margin: 0 0 .4rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      color: var(--gold);
+    }
+    h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -.02em;
+    }
+    .lede {
+      max-width: 48rem;
+      margin: .8rem 0 0;
+      color: #d7e0ea;
+      font-size: 1.05rem;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      padding: .7rem 6vw;
+      background: rgba(246, 244, 239, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    nav a {
+      color: var(--navy);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: .35rem .9rem;
+      font-size: .92rem;
+    }
+    nav a:hover { border-color: var(--gold-deep); }
+    main { padding: 1.2rem 6vw 4rem; }
+    section {
+      margin: 1.4rem 0 2.2rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.4rem 1.4rem 1.2rem;
+      box-shadow: 0 10px 30px rgba(10, 37, 64, .04);
+    }
+    h2 {
+      margin: 0 0 .35rem;
+      color: var(--navy);
+      font-size: 1.45rem;
+    }
+    .thesis { margin: 0 0 1rem; color: var(--muted); max-width: 52rem; }
+    .diagram {
+      position: relative;
+      height: min(72vh, 760px);
+      min-height: 480px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fbfaf8;
+    }
+    .diagram:fullscreen {
+      height: 100vh;
+      min-height: 0;
+      border-radius: 0;
+      background: #fbfaf8;
+    }
+    .zoom-bar {
+      position: absolute;
+      top: .7rem;
+      right: .7rem;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+      padding: .25rem;
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(10, 37, 64, .08);
+    }
+    .zoom-bar button {
+      border: 0;
+      background: transparent;
+      color: var(--navy);
+      font: inherit;
+      font-size: .88rem;
+      min-width: 2rem;
+      height: 2rem;
+      padding: 0 .55rem;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .zoom-bar button:hover { background: #f3efe8; }
+    .zoom-bar .zoom-label {
+      min-width: 3.2rem;
+      text-align: center;
+      font-size: .82rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .viewport {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+    }
+    .viewport.is-panning { cursor: grabbing; }
+    .stage {
+      transform-origin: 0 0;
+      width: max-content;
+      padding: 1.2rem;
+    }
+    .diagram .mermaid { min-width: 720px; }
+    .zoom-hint {
+      position: absolute;
+      left: .8rem;
+      bottom: .7rem;
+      z-index: 2;
+      margin: 0;
+      font-size: .78rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .88);
+      border-radius: 999px;
+      padding: .2rem .6rem;
+    }
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .8rem;
+      margin-top: 1rem;
+    }
+    .notes article {
+      background: #f8f6f2;
+      border-radius: 10px;
+      padding: .8rem .9rem;
+    }
+    .notes h3 {
+      margin: 0 0 .3rem;
+      font-size: .82rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+    }
+    .notes p { margin: 0; font-size: .95rem; }
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: .9rem;
+      margin-top: .9rem;
+    }
+    .artifact-grid article {
+      background: #f8f6f2;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: .95rem 1rem;
+    }
+    .artifact-grid h3 {
+      margin: 0 0 .35rem;
+      font-size: 1rem;
+      color: var(--navy);
+    }
+    .artifact-grid .file {
+      display: block;
+      margin: 0 0 .55rem;
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: .78rem;
+      color: var(--gold-deep);
+      word-break: break-all;
+    }
+    .artifact-grid ul {
+      margin: .4rem 0 0;
+      padding-left: 1.1rem;
+      font-size: .93rem;
+    }
+    .artifact-grid li { margin: .25rem 0; }
+    table.contract {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .92rem;
+      margin: .7rem 0 0;
+    }
+    table.contract th, table.contract td {
+      text-align: left;
+      padding: .5rem .55rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    table.contract th { background: #eef3f8; color: var(--navy); }
+    code.inline {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: .84em;
+      background: #eef2ef;
+      padding: .08rem .3rem;
+      border-radius: 4px;
+    }
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.2rem;
+    }
+    .pill {
+      border-radius: 999px;
+      padding: .25rem .7rem;
+      font-size: .82rem;
+      background: #e7f6f4;
+      color: #0e5c58;
+    }
+    .pill.warn { background: #fff6e8; color: var(--warn); }
+    .pill.mute { background: #eef1f4; color: var(--muted); }
+    footer {
+      padding: 0 6vw 2.5rem;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .legend { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; margin: .2rem 0 1rem; font-size: .88rem; }
+    .swatch { display: inline-block; width: .75rem; height: .75rem; border-radius: 2px; margin-right: .35rem; vertical-align: -1px; }
+    @media print {
+      nav, .zoom-bar, .zoom-hint { display: none; }
+      .diagram { height: auto; overflow: visible; }
+      .stage { transform: none !important; }
+      header, section { break-inside: avoid; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="kicker">Banco Santa Cruz · Vicepresidencia de Tecnología</p>
+    <h1>Banca Conversacional Genesis</h1>
+    <p class="lede">
+      Arquitectura vigente del entorno QA. Capa cognitiva lab8446 en :8447,
+      Redis con Entra (WRITE PATH del orquestador intocable). En el turno NL,
+      <strong>Azure OpenAI elige la tool</strong> (portafolio Redis vs conocimiento Foundry/Search);
+      chitchat se resuelve local. Incluye diagramas, artefactos y el plan HITL de feedback al RAG
+      (aún no implementado).
+    </p>
+    <div class="status">
+      <span class="pill">Operativo · cognitiva :8447 lab8446</span>
+      <span class="pill">Operativo · Redis WRITE PATH</span>
+      <span class="pill">Operativo · Azure tool_choice + Foundry KB</span>
+      <span class="pill">UI /pruebas · logo + panel JSON ocultable</span>
+      <span class="pill warn">Plan · feedback HITL RAG (no ejecutado)</span>
+      <span class="pill mute">Actualizado · 22 de septiembre de 2026</span>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#arquitectura">Componentes</a>
+    <a href="#azure">Azure</a>
+    <a href="#red">Red</a>
+    <a href="#secuencia">Secuencia</a>
+    <a href="#decision">Decisión interna</a>
+    <a href="#artefactos">Artefactos</a>
+    <a href="#contrato">Contrato /turn</a>
+    <a href="#feedback">Plan feedback RAG</a>
+    <a href="../Documentacion/FUNCIONAL_BANCA_CONVERSACIONAL_8447.html">Documento funcional</a>
+  </nav>
+
+  <main>
+    <section id="arquitectura">
+      <h2>1. Arquitectura de componentes</h2>
+      <p class="thesis">
+        El canal habla con el orquestador, que entrega el portafolio Core (WRITE Redis).
+        En la pregunta NL, <strong>Azure OpenAI con tool_choice=auto</strong> elige
+        Redis (portafolio) o Foundry/Search (conocimiento). No inventa saldos.
+      </p>
+      <div class="legend">
+        <span><i class="swatch" style="background:#0A2540"></i>Cognitiva</span>
+        <span><i class="swatch" style="background:#C5A46E"></i>Banco y orquestación</span>
+        <span><i class="swatch" style="background:#0078D4"></i>Azure</span>
+        <span><i class="swatch" style="background:#1E40AF"></i>WRITE PATH Redis</span>
+      </div>
+      <div class="diagram"><pre class="mermaid">
+flowchart TB
+  classDef canal fill:#E8EEF6,stroke:#0A2540,color:#0A2540,stroke-width:1.5px
+  classDef orch fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef cog fill:#0A2540,stroke:#0A2540,color:#FFFFFF,stroke-width:1.5px
+  classDef step fill:#163A5F,stroke:#0A2540,color:#FFFFFF
+  classDef azure fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef bank fill:#F4EFE6,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef write fill:#DBEAFE,stroke:#1E40AF,color:#0A2540,stroke-width:1.5px
+
+  subgraph CAN["Canales"]
+    direction TB
+    APK["APK Banca Conversacional"]:::canal
+    UI["UI de pruebas /pruebas<br/>laboratorio QA"]:::canal
+  end
+
+  subgraph ORQ["Orquestación de canal — INTOCABLE"]
+    direction TB
+    NET["Orquestador .NET 8<br/>BancaConversacional.Api<br/>WebSocket"]:::orch
+    CTX["Envía context.data<br/>portafolio Core completo"]:::orch
+  end
+
+  subgraph COG["Capa cognitiva Genesis — lab8446 en :8447"]
+    direction TB
+    API["FastAPI lab8446<br/>POST /turn · /health · /ready"]:::cog
+    W["WRITE context_info<br/>sin LLM"]:::write
+    CH["Chitchat local<br/>hola / gracias"]:::step
+    ROUTER["Azure OpenAI<br/>tool_choice=auto"]:::step
+    TOOL["get_customer_products<br/>→ Redis"]:::step
+    KB["search_bank_knowledge<br/>→ Foundry + Search"]:::step
+  end
+
+  subgraph AZ["Azure — servicios gestionados"]
+    direction TB
+    REDIS[("Azure Managed Redis<br/>sesión · snapshot · portfolio")]:::azure
+    AOAI["Azure OpenAI gpt-4o-mini"]:::azure
+    FOU["Foundry genesis-kb-agent-poc"]:::azure
+    SRCH["Azure AI Search<br/>bsc-kb-conocimiento"]:::azure
+  end
+
+  subgraph BSC["Banco Santa Cruz — fuente de productos"]
+    direction TB
+    PP["Presentation Product / Core<br/>vía orquestador"]:::bank
+    CORE["APIs de productos on-prem"]:::bank
+  end
+
+  APK --> NET
+  UI --> API
+  NET --> CTX
+  CTX -->|"1) context_info"| API
+  NET -->|"2) question"| API
+  NET --> PP
+  PP --> CORE
+  API --> W
+  API --> CH
+  API --> ROUTER
+  W -->|"ContextPersistenceService"| REDIS
+  ROUTER --> AOAI
+  AOAI -->|"elige"| TOOL
+  AOAI -->|"elige"| KB
+  TOOL --> REDIS
+  KB --> FOU
+  FOU --> SRCH
+      </pre></div>
+      <div class="notes">
+        <article>
+          <h3>Qué decir</h3>
+          <p>APK vía orquestador; laboratorio directo a <code class="inline">/turn</code>. Misma cognitiva :8447.</p>
+        </article>
+        <article>
+          <h3>Quién decide</h3>
+          <p>Azure elige la tool. Search resuelve typos en KB. Redis solo entrega datos personales cuando se llama la tool.</p>
+        </article>
+        <article>
+          <h3>WRITE PATH</h3>
+          <p><code class="inline">context_info=true</code> → sesión/snapshot/portfolio. Sin LLM. <code class="inline">CONTEXT_LOADED</code>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="azure">
+      <h2>2. Componentes Azure</h2>
+      <p class="thesis">
+        Todo el cómputo cognitivo de QA vive en una VM dentro del resource group del proyecto.
+        Redis, OpenAI, Foundry y Search son servicios gestionados; Redis solo por private endpoint e identidad administrada.
+      </p>
+      <div class="legend">
+        <span><i class="swatch" style="background:#0A2540"></i>Cómputo</span>
+        <span><i class="swatch" style="background:#0078D4"></i>Datos e IA</span>
+        <span><i class="swatch" style="background:#0E7C7B"></i>Red</span>
+        <span><i class="swatch" style="background:#C5A46E"></i>Identidad</span>
+      </div>
+      <div class="diagram"><pre class="mermaid">
+flowchart TB
+  classDef compute fill:#0A2540,stroke:#0A2540,color:#FFFFFF,stroke-width:1.5px
+  classDef data fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef ai fill:#E8F1FA,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef net fill:#E7F6F4,stroke:#0E7C7B,color:#0A2540,stroke-width:1.5px
+  classDef id fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+
+  subgraph RG["Resource Group · RG_BSC_PRJ_GENESIS"]
+    direction TB
+
+    subgraph COMP["Cómputo"]
+      VM["vm-test002-genesis<br/>Ubuntu · East US<br/>IP pública 20.127.25.24<br/>IP privada 192.168.150.5"]:::compute
+      SVC["systemd<br/>genesis-cognitive-8447<br/>lab8446_runtime"]:::compute
+    end
+
+    subgraph DATA["Datos de sesión"]
+      REDIS["Azure Managed Redis<br/>bsc-cognitive-redis-qa<br/>TLS :10000 · público OFF"]:::data
+      PE["Private Endpoint<br/>192.168.150.7"]:::net
+    end
+
+    subgraph AI["Inteligencia artificial"]
+      AOAI["Azure OpenAI<br/>chat gpt-4o-mini"]:::ai
+      FOU["Azure AI Foundry<br/>proyecto genesis"]:::ai
+      SRCH["Azure AI Search<br/>KB institucional"]:::ai
+    end
+
+    subgraph NET["Red"]
+      VNET["VNET_S2S_AZ_TO_BSC_GEN"]:::net
+      NSG["NSG · Allow 8440-8449"]:::net
+      DNS["Private DNS qa.bsc.com.do"]:::net
+    end
+
+    subgraph ID["Identidad"]
+      MI["Managed Identity VM"]:::id
+      ENTRA["Entra ID · token Redis<br/>sin access keys"]:::id
+    end
+  end
+
+  VM --> SVC
+  SVC -->|"rediss + Entra"| PE
+  PE --> REDIS
+  MI --> ENTRA
+  ENTRA --> REDIS
+  SVC --> AOAI
+  SVC --> FOU
+  FOU --> SRCH
+  VNET --> NSG
+  NSG --> VM
+  VNET --> PE
+  VNET --> DNS
+      </pre></div>
+      <div class="notes">
+        <article>
+          <h3>Redis</h3>
+          <p>Keys de orquestador sin prefijo: <code>session:</code>, <code>customer:*:snapshot</code>, <code>customer:*:portfolio</code>. Auth solo Entra.</p>
+        </article>
+        <article>
+          <h3>OpenAI</h3>
+          <p>Router de intención vía tool-calling (<code class="inline">tool_choice=auto</code>): elige Redis o KB.</p>
+        </article>
+        <article>
+          <h3>Foundry / Search</h3>
+          <p>Agente <code class="inline">genesis-kb-agent-poc</code> + índice <code class="inline">bsc-kb-conocimiento</code>. Misión, requisitos, catálogo genérico. Nunca el saldo de una tarjeta concreta.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="red">
+      <h2>3. Red</h2>
+      <p class="thesis">
+        La VM cognitiva está en la VNet del túnel Azure–Banco. Redis solo se alcanza por private endpoint y Entra.
+        El nombre del API Gateway ya resuelve por DNS privado; el HTTP hacia 172.31.15.43 sigue en validación.
+      </p>
+      <div class="legend">
+        <span><i class="swatch" style="background:#0E7C7B"></i>VNet y private endpoint</span>
+        <span><i class="swatch" style="background:#0078D4"></i>Servicios Azure</span>
+        <span><i class="swatch" style="background:#C5A46E"></i>Sitio del banco</span>
+        <span><i class="swatch" style="background:#B86E00"></i>Línea punteada · en validación</span>
+      </div>
+      <div class="diagram"><pre class="mermaid">
+flowchart LR
+  classDef access fill:#E8EEF6,stroke:#0A2540,color:#0A2540,stroke-width:1.5px
+  classDef vnet fill:#E7F6F4,stroke:#0E7C7B,color:#0A2540,stroke-width:1.5px
+  classDef vm fill:#0A2540,stroke:#0A2540,color:#FFFFFF
+  classDef azure fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef bank fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef warn fill:#FFF6E8,stroke:#B86E00,color:#0A2540,stroke-width:1.5px
+
+  subgraph ACC["Quién entra"]
+    direction TB
+    DEV["Puestos autorizados<br/>allowlist del NSG"]:::access
+    APK["APK y orquestador .NET<br/>red del banco"]:::access
+  end
+
+  subgraph VNET["VNET_S2S_AZ_TO_BSC_GEN"]
+    direction TB
+    NSG["NSG vm-test002-genesis-nsg<br/>Allow 8440-8449 prioridad 119<br/>Deny el resto prioridad 121"]:::vnet
+    VM["vm-test002-genesis<br/>pública 20.127.25.24<br/>privada 192.168.150.5<br/>8447 lab8446 Foundry+Redis<br/>8446 legacy inactive"]:::vm
+    PE["Private Endpoint Redis<br/>192.168.150.7"]:::vnet
+    DNS["Private DNS qa.bsc.com.do<br/>apigateway-gen a 172.31.15.43"]:::warn
+  end
+
+  subgraph REDISZ["Datos de sesión"]
+    RED["bsc-cognitive-redis-qa<br/>puerto 10000 TLS<br/>Entra, sin access keys"]:::azure
+  end
+
+  subgraph AIZ["Modelos y conocimiento"]
+    direction TB
+    OAI["Azure OpenAI"]:::azure
+    FND["Azure AI Foundry"]:::azure
+    SCH["Azure AI Search"]:::azure
+  end
+
+  subgraph ONP["Sitio Banco Santa Cruz"]
+    direction TB
+    GW["API Gateway QA<br/>172.31.15.43 :443"]:::bank
+    PP["Presentation Product"]:::bank
+    BK["APIs on-prem<br/>172.27.4.20"]:::bank
+  end
+
+  DEV -->|"TCP 22 y 8447"| NSG
+  NSG --> VM
+  APK -->|"túnel S2S"| VM
+  VM -->|"rediss + MI"| PE
+  PE --> RED
+  VM --> OAI
+  VM --> FND
+  FND --> SCH
+  VM -.->|"DNS listo · HTTP en validación"| DNS
+  DNS --> GW
+  GW --> PP
+  GW --> BK
+  APK -.->|"portafolio Core"| GW
+      </pre></div>
+      <div class="notes">
+        <article>
+          <h3>Grupo y VNet</h3>
+          <p>RG_BSC_PRJ_GENESIS. VNet del túnel: VNET_S2S_AZ_TO_BSC_GEN. Zona privada qa.bsc.com.do vinculada a esa VNet.</p>
+        </article>
+        <article>
+          <h3>Redis</h3>
+          <p>bsc-cognitive-redis-qa · East US · TLS 10000 · MI de la VM · access keys apagadas · red pública cerrada.</p>
+        </article>
+        <article>
+          <h3>Lo que falta cerrar</h3>
+          <p>apigateway-gen.qa.bsc.com.do ya resuelve a 172.31.15.43. El HTTP desde la VM aún en validación; el orquestador sigue siendo quien entrega el portafolio.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="secuencia">
+      <h2>4. Secuencia funcional de un turno</h2>
+      <p class="thesis">
+        Primero WRITE (contexto). Después READ: chitchat local, o Azure elige tool
+        (KB Foundry/Search vs Redis portafolio). Misma <code class="inline">conversation_id</code>.
+      </p>
+      <div class="diagram"><pre class="mermaid">
+flowchart TD
+  classDef canal fill:#E8EEF6,stroke:#0A2540,color:#0A2540,stroke-width:1.5px
+  classDef cog fill:#0A2540,stroke:#0A2540,color:#FFFFFF,stroke-width:1.5px
+  classDef azure fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef bank fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef decide fill:#FFF6E8,stroke:#B86E00,color:#0A2540,stroke-width:1.5px
+  classDef out fill:#E7F6F4,stroke:#0E7C7B,color:#0A2540,stroke-width:1.5px
+  classDef write fill:#DBEAFE,stroke:#1E40AF,color:#0A2540,stroke-width:1.5px
+
+  A["1. Cliente abre sesión"]:::canal --> B["2. Orquestador obtiene portafolio Core"]:::bank
+  B --> C["3. POST /turn context_info=true"]:::write
+  C --> D["4. Redis session + snapshot + portfolio"]:::azure
+  D --> E["5. CONTEXT_LOADED"]:::out
+  E --> F["6. Cliente pregunta"]:::canal
+  F --> G["7. POST /turn question"]:::canal
+  G --> H{"8. ¿Chitchat puro?"}:::decide
+  H -->|Sí| I["9a. Bienvenida local"]:::out
+  H -->|No| J["9b. Azure OpenAI tool_choice=auto"]:::azure
+  J --> K{"10. Tool elegida"}:::decide
+  K -->|search_bank_knowledge| L["11b. Foundry + AI Search"]:::azure
+  K -->|get_customer_products| M["11c. Lee Redis"]:::cog
+  L --> N["12. Respuesta KB"]:::out
+  M --> O["12. Respuesta portafolio"]:::out
+  I --> P["13. VALID_CONTRACT + reply"]:::out
+  N --> P
+  O --> P
+  P --> Q["14. Cliente ve la respuesta"]:::canal
+      </pre></div>
+      <div class="notes">
+        <article>
+          <h3>Cuándo hay modelo</h3>
+          <p>En casi todo READ salvo chitchat. Azure elige tool; Foundry/Search atienden conocimiento (incl. typos).</p>
+        </article>
+        <article>
+          <h3>Cuándo hay banco</h3>
+          <p>El orquestador arma <code class="inline">context.data</code> desde Core. La cognitiva no reconstruye el portafolio en cada pregunta.</p>
+        </article>
+        <article>
+          <h3>Cuándo hay Foundry</h3>
+          <p>Cuando Azure elige <code class="inline">search_bank_knowledge</code>. Saldos personales solo vía Redis.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="decision">
+      <h2>5. Cómo decide la cognitiva (intención)</h2>
+      <p class="thesis">
+        <strong>Gate local mínimo:</strong> solo saludo/chitchat. El resto lo decide
+        <strong>Azure OpenAI</strong> eligiendo entre las dos tools. El hint de
+        <code class="inline">semantic_intent</code> es red de seguridad si el LLM no llama tool.
+        Azure AI Search resuelve typos al recuperar documentos.
+      </p>
+      <div class="diagram"><pre class="mermaid">
+flowchart TD
+  classDef in fill:#E8EEF6,stroke:#0A2540,color:#0A2540,stroke-width:1.5px
+  classDef decide fill:#FFF6E8,stroke:#B86E00,color:#0A2540,stroke-width:1.5px
+  classDef chat fill:#E7F6F4,stroke:#0E7C7B,color:#0A2540,stroke-width:1.5px
+  classDef kb fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef prod fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef az fill:#0A2540,stroke:#0A2540,color:#FFFFFF
+
+  Q["Mensaje del usuario"]:::in --> G{"¿Saludo / chitchat puro?<br/>hola · gracias · buenos días"}:::decide
+  G -->|Sí| C["Respuesta fija local<br/>sin tools"]:::chat
+  G -->|No| AZ["Azure OpenAI<br/>tool_choice=auto"]:::az
+  AZ -->|elige search_bank_knowledge| KB["Foundry + Azure AI Search<br/>typos / docs KB"]:::kb
+  AZ -->|elige get_customer_products| PR["Redis portafolio<br/>saldos / mis productos"]:::prod
+  AZ -->|sin tool| S{"Hint semantic_intent"}:::decide
+  S -->|products| PR
+  S -->|else| KB
+      </pre></div>
+      <div class="notes">
+        <article>
+          <h3>Ejemplos → KB (Azure elige)</h3>
+          <p>«cual es la misiin», «proceso de reclamcion», «háblame de la platinum».</p>
+        </article>
+        <article>
+          <h3>Ejemplos → Redis (Azure elige)</h3>
+          <p>«Lista mis productos», «disponible de mi cuenta», «compara MIS tarjetas».</p>
+        </article>
+        <article>
+          <h3>Chitchat (local)</h3>
+          <p>«Hola», «gracias». Barato, predecible; no gasta LLM ni Search.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="artefactos">
+      <h2>6. Artefactos internos (qué hace cada uno)</h2>
+      <p class="thesis">
+        Runtime en <code class="inline">/opt/genesis-cognitive-8447/lab8446_runtime</code>
+        (código fuente hermano: <code class="inline">BancaConversacional8446/lab8446/</code>).
+        El sibling Genesis aporta el WRITE PATH Redis y el cliente Foundry KB.
+      </p>
+      <div class="artifact-grid">
+        <article>
+          <h3>app.py — FastAPI</h3>
+          <span class="file">lab8446/app.py</span>
+          <p>Expone el contrato HTTP. Enruta <code class="inline">context_info</code> al WRITE PATH y el resto a <code class="inline">LabConversationalAgent.run_turn</code>. Formatea la respuesta al envelope del orquestador (<code class="inline">VALID_CONTRACT</code>, <code class="inline">app_channel</code>).</p>
+          <ul>
+            <li>Endpoints: <code class="inline">/turn</code>, <code class="inline">/health</code>, <code class="inline">/ready</code>, UI <code class="inline">/pruebas/</code></li>
+            <li>No interpreta intención: delega en el agente</li>
+          </ul>
+        </article>
+        <article>
+          <h3>semantic_intent.py — Hint / chitchat</h3>
+          <span class="file">lab8446/semantic_intent.py</span>
+          <p>Gate local de chitchat + hint de seguridad si Azure no llama tool. Ya no es el router principal KB vs Redis.</p>
+          <ul>
+            <li>Chitchat → <code class="inline">suggested_tool=none</code></li>
+            <li>Hint products vs RAG solo como fallback</li>
+          </ul>
+        </article>
+        <article>
+          <h3>agent.py — Orquestación del turno</h3>
+          <span class="file">lab8446/agent.py</span>
+          <p>Chitchat local; resto → Azure OpenAI con <code class="inline">tool_choice=auto</code>. Ejecuta la tool elegida (Redis o Foundry/Search).</p>
+          <ul>
+            <li>Debug: <code class="inline">router</code>, <code class="inline">azure_chose_tools</code></li>
+            <li>Si Foundry responde <code class="inline">final=true</code>, se usa esa respuesta</li>
+            <li>Sin tool → safety con hint local</li>
+          </ul>
+        </article>
+        <article>
+          <h3>kb_search.py — Conocimiento</h3>
+          <span class="file">lab8446/kb_search.py</span>
+          <p>Camino preferido: agente Foundry <code class="inline">genesis-kb-agent-poc</code> (mismo playground). Si la respuesta evade o falla, cae a Azure AI Search (<code class="inline">bsc-kb-conocimiento</code>) y, si hace falta, síntesis grounded.</p>
+          <ul>
+            <li>No envía preguntas personales al agente KB</li>
+            <li>Evita expansión de query que contamine Search con «Banco Santa Cruz» genérico</li>
+            <li>Prefiere Foundry cuando la respuesta cubre el producto pedido</li>
+          </ul>
+        </article>
+        <article>
+          <h3>foundry_kb_agent.py — Cliente Foundry</h3>
+          <span class="file">sibling …/rag/foundry_kb_agent.py</span>
+          <p>Invoca el proyecto Foundry vía <code class="inline">AIProjectClient</code> / responses API. Flag <code class="inline">GENESIS_FOUNDRY_KB_AGENT=1</code>.</p>
+          <ul>
+            <li>Agente: <code class="inline">genesis-kb-agent-poc</code> (versión en env, p.ej. 9)</li>
+            <li>Índice detrás: Azure AI Search del playground</li>
+            <li>Skip si el texto parece banca personal</li>
+          </ul>
+        </article>
+        <article>
+          <h3>tools.py — Schemas de tools</h3>
+          <span class="file">lab8446/tools.py</span>
+          <p>Schemas + system prompt: Azure debe elegir KB vs Redis; Search cubre typos; never inventar.</p>
+        </article>
+        <article>
+          <h3>product_context_service.py — READ Redis</h3>
+          <span class="file">lab8446/product_context_service.py</span>
+          <p>Lee el portafolio de la sesión desde Redis. Filtra por tipo (ACCOUNT, LOAN, CREDIT_CARD, DEPOSIT) y campos pedibles (saldo, tasa, disponible…).</p>
+          <ul>
+            <li>Fuente: <code class="inline">customer:{id}:portfolio</code></li>
+            <li>Aislamiento por <code class="inline">customer_id</code> de la sesión autenticada</li>
+          </ul>
+        </article>
+        <article>
+          <h3>context_write.py — WRITE PATH</h3>
+          <span class="file">lab8446/context_write.py</span>
+          <p>Persiste <code class="inline">context.data</code> del orquestador. Reutiliza <code class="inline">ContextPersistenceService</code> del sibling Genesis (CAS session/snapshot) y sincroniza el portfolio lab para las tools.</p>
+          <ul>
+            <li>Sin LLM</li>
+            <li>Meta UI en <code class="inline">labmeta:{conv}</code> para no pisar <code class="inline">session:{id}</code></li>
+            <li>Respuesta: <code class="inline">CONTEXT_LOADED</code>, <code class="inline">genesis_write=true</code></li>
+          </ul>
+        </article>
+        <article>
+          <h3>security_context.py — Identidad de turno</h3>
+          <span class="file">lab8446/security_context.py</span>
+          <p>Lleva <code class="inline">customer_id</code>, <code class="inline">conversation_id</code> y <code class="inline">display_name</code> del turno. Impide que el modelo “cambie de cliente”.</p>
+        </article>
+        <article>
+          <h3>reply_format.py — Presentación</h3>
+          <span class="file">lab8446/reply_format.py</span>
+          <p>Normaliza el texto al cliente (markdown ligero, deduplicación de saludos). No altera la decisión semántica.</p>
+        </article>
+        <article>
+          <h3>redis_store.py — Cliente Redis</h3>
+          <span class="file">lab8446/redis_store.py</span>
+          <p>Acceso a Redis Entra (MI). Prefijo vacío en promote a :8447 para compatibilidad con keys del orquestador.</p>
+        </article>
+        <article>
+          <h3>UI /pruebas</h3>
+          <span class="file">static/pruebas/*</span>
+          <p>Laboratorio de chat. Logo corporativo, panel JSON de <code class="inline">/turn</code> ocultable, login por <code class="inline">customer_id</code>. No sustituye al orquestador .NET en producción.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contrato">
+      <h2>7. Contrato del orquestador externo → cognitiva</h2>
+      <p class="thesis">
+        El orquestador apunta a un solo endpoint de negocio:
+        <code class="inline">POST http://20.127.25.24:8447/turn</code>.
+        Healthchecks opcionales: <code class="inline">/health</code>, <code class="inline">/ready</code>.
+      </p>
+      <table class="contract">
+        <thead>
+          <tr><th>Modo</th><th>Campos clave</th><th>Efecto en cognitiva</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>WRITE</strong> — cargar contexto</td>
+            <td><code class="inline">context_info=true</code>, <code class="inline">question=null</code>, <code class="inline">customer_id</code>, <code class="inline">conversation_id</code>, <code class="inline">context_op</code> (load|refresh), <code class="inline">context.data</code></td>
+            <td>Persiste en Redis. Sin LLM. Devuelve <code class="inline">CONTEXT_LOADED</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>READ</strong> — pregunta NL</td>
+            <td>Misma <code class="inline">conversation_id</code> + <code class="inline">question</code> (o <code class="inline">message</code>)</td>
+            <td>Chitchat local, o Azure elige tool → Redis / Foundry. Envelope <code class="inline">VALID_CONTRACT</code> + <code class="inline">reply</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="notes" style="margin-top:1rem">
+        <article>
+          <h3>Qué no debe llamar el orquestador</h3>
+          <p><code class="inline">/lab/login</code>, <code class="inline">/orch/context</code>, <code class="inline">/chat/front</code>, <code class="inline">/debug/*</code> — solo UI/lab.</p>
+        </article>
+        <article>
+          <h3>Validación de “tareas”</h3>
+          <p>Azure elige tool; la evidencia (Redis o Search) valida la respuesta. Si falla la tool, se admite el miss sin inventar.</p>
+        </article>
+        <article>
+          <h3>Documento hermano</h3>
+          <p><a href="../Documentacion/ARQUITECTURA_8447_FOUNDRY_REDIS.html">ARQUITECTURA_8447_FOUNDRY_REDIS.html</a> detalla keys Redis y diagramas WRITE/READ.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="feedback">
+      <h2>8. Plan — alimentar el RAG con feedback (NO implementado)</h2>
+      <p class="thesis">
+        Objetivo: cuando el usuario diga cosas como «no me preguntes eso», «está mal» o corrija la respuesta,
+        capturar el caso en un <strong>backoffice HITL</strong> donde el usuario funcional resuelve tickets por criticidad,
+        cura Q&rarr;A hacia Azure Search/Foundry, entrena con prompts versionados (rollback), ve la KB y estadisticas.
+        Documento:
+        <a href="../Documentacion/PLAN_FEEDBACK_RAG_HITL.html">PLAN_FEEDBACK_RAG_HITL.html</a>
+        · <a href="../Documentacion/PROMPT_FEEDBACK_RAG_HITL.md">PROMPT_FEEDBACK_RAG_HITL.md</a>
+      </p>
+
+      <h3 style="color:var(--gold-deep);font-size:1rem;margin:1rem 0 .4rem">Fases propuestas</h3>
+      <table class="contract">
+        <thead>
+          <tr><th>Fase</th><th>Qué hace el sistema</th><th>Quién interviene</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Detectar</strong></td>
+            <td>Clasificar feedback negativo / corrección / «no preguntes X» (regex + prompt detector).</td>
+            <td>Solo el <em>usuario final</em> genera la señal.</td>
+          </tr>
+          <tr>
+            <td><strong>2. Capturar</strong></td>
+            <td>Guardar pregunta previa, respuesta IA, feedback, tool, conversation_id, customer_id.</td>
+            <td>Automático.</td>
+          </tr>
+          <tr>
+            <td><strong>3. Acusar recibo</strong></td>
+            <td>«Gracias, lo registramos para mejorar» (sin cambiar la KB).</td>
+            <td>Usuario final solo recibe confirmación.</td>
+          </tr>
+          <tr>
+            <td><strong>4. Cola HITL</strong></td>
+            <td>Panel / cola <code class="inline">feedback:pending</code>.</td>
+            <td><strong>Usuario funcional</strong> abre la cola (fuera del chat del cliente).</td>
+          </tr>
+          <tr>
+            <td><strong>5. Curar</strong></td>
+            <td>Copiloto (prompt B) propone; el funcional define respuesta/regla y destino (Search / Foundry / router).</td>
+            <td><strong>Intervención clave del usuario funcional</strong> — aquí se ajustan los errores.</td>
+          </tr>
+          <tr>
+            <td><strong>6. Publicar</strong></td>
+            <td>Actualizar <code class="inline">bsc-kb-conocimiento</code> y/o instrucciones Foundry; reindexar.</td>
+            <td>Funcional + ops aprueban el publish.</td>
+          </tr>
+          <tr>
+            <td><strong>7. Verificar</strong></td>
+            <td>Smoke de la pregunta original (y typos).</td>
+            <td>Usuario funcional / QA cierra el ticket.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="color:var(--gold-deep);font-size:1rem;margin:1.2rem 0 .4rem">Cómo entra el usuario funcional a corregir</h3>
+      <ol style="margin:.2rem 0 0;padding-left:1.2rem;color:var(--muted)">
+        <li>Recibe aviso de tickets <code class="inline">pending_review</code>.</li>
+        <li>Abre el caso: pregunta, respuesta IA, feedback del cliente, tool usada.</li>
+        <li>Clasifica (KB / routing Redis vs Search / tono / falso positivo).</li>
+        <li><strong>Ajusta:</strong> escribe la respuesta o regla correcta y el artefacto destino.</li>
+        <li>Aprueba publicación → ops reindexa → funcional verifica smoke y cierra.</li>
+      </ol>
+      <p style="margin:.7rem 0 0;color:var(--muted);font-size:.95rem">
+        Datos personales (saldo, corte de <em>mi</em> tarjeta) no se aprenden en el RAG: se corrigen en Core/Redis.
+      </p>
+
+      <div class="diagram" style="margin-top:1rem"><pre class="mermaid">
+flowchart LR
+  classDef u fill:#E8EEF6,stroke:#0A2540,color:#0A2540
+  classDef s fill:#0A2540,stroke:#0A2540,color:#FFFFFF
+  classDef h fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540
+  classDef kb fill:#E5F2FB,stroke:#0078D4,color:#0A2540
+
+  U["Usuario final<br/>feedback en chat"]:::u --> D["Detectar + capturar"]:::s
+  D --> ACK["Ack en chat"]:::s
+  D --> Q["Cola feedback:pending"]:::s
+  Q --> A["Usuario funcional<br/>cura respuesta/regla"]:::h
+  A --> P["Publicar Search<br/>o Foundry"]:::kb
+  P --> T["Funcional/QA verifica"]:::h
+      </pre></div>
+
+      <div class="notes">
+        <article>
+          <h3>Momento exacto de intervención</h3>
+          <p><strong>Fase 5 (Curar)</strong> en el panel HITL. El chat del cliente no es el lugar donde se edita la KB.</p>
+        </article>
+        <article>
+          <h3>Prompts</h3>
+          <p>Detector (A) + copiloto de curación (B) en <code class="inline">Documentacion/PROMPT_FEEDBACK_RAG_HITL.md</code>.</p>
+        </article>
+        <article>
+          <h3>Qué no hacer</h3>
+          <p>No escribir en el índice en vivo desde cada queja. Riesgo de compliance y envenenamiento de la KB.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Fuentes editables: <code>mermaid/arquitectura.mmd</code>, <code>mermaid/azure.mmd</code>,
+    <code>mermaid/red.mmd</code>, <code>mermaid/secuencia.mmd</code>, <code>mermaid/decision.mmd</code>.
+    Documento funcional: <code>Documentacion/FUNCIONAL_BANCA_CONVERSACIONAL_8447.html</code>.
+    Plan HITL: <code>Documentacion/PLAN_FEEDBACK_RAG_HITL.html</code>.
+    Abrir con conexión a internet para dibujar Mermaid. Sin secretos ni datos de clientes.
+    Sección 8 = plan HITL (no ejecutado).
+  </footer>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      theme: "base",
+      fontFamily: "Segoe UI, Calibri, sans-serif",
+      themeVariables: {
+        fontSize: "15px",
+        lineColor: "#5C6B7A",
+        textColor: "#0A2540"
+      },
+      flowchart: { htmlLabels: true, curve: "basis", padding: 12 }
+    });
+    await mermaid.run({ querySelector: ".mermaid" });
+
+    for (const diagram of document.querySelectorAll(".diagram")) {
+      const mermaidNode = diagram.querySelector(".mermaid");
+      if (!mermaidNode) continue;
+
+      const bar = document.createElement("div");
+      bar.className = "zoom-bar";
+      bar.innerHTML = `
+        <button type="button" data-act="out" aria-label="Alejar">−</button>
+        <span class="zoom-label">100%</span>
+        <button type="button" data-act="in" aria-label="Acercar">+</button>
+        <button type="button" data-act="fit">Ajustar</button>
+        <button type="button" data-act="full">Pantalla</button>
+      `;
+      const hint = document.createElement("p");
+      hint.className = "zoom-hint";
+      hint.textContent = "Rueda para zoom · arrastrar para mover";
+      const viewport = document.createElement("div");
+      viewport.className = "viewport";
+      const stage = document.createElement("div");
+      stage.className = "stage";
+      diagram.insertBefore(bar, mermaidNode);
+      diagram.insertBefore(hint, mermaidNode);
+      viewport.appendChild(stage);
+      stage.appendChild(mermaidNode);
+      diagram.appendChild(viewport);
+
+      let scale = 1, x = 0, y = 0;
+      const label = bar.querySelector(".zoom-label");
+      const apply = () => {
+        stage.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+        label.textContent = `${Math.round(scale * 100)}%`;
+      };
+      const contentSize = () => {
+        const svg = stage.querySelector("svg");
+        if (!svg) return { w: stage.scrollWidth, h: stage.scrollHeight };
+        const box = svg.viewBox && svg.viewBox.baseVal && svg.viewBox.baseVal.width
+          ? svg.viewBox.baseVal : null;
+        const w = box && box.width ? box.width : svg.getBoundingClientRect().width / scale;
+        const h = box && box.height ? box.height : svg.getBoundingClientRect().height / scale;
+        return { w: w + 24, h: h + 24 };
+      };
+      const fit = () => {
+        const { w, h } = contentSize();
+        const vw = viewport.clientWidth, vh = viewport.clientHeight;
+        scale = Math.min((vw - 32) / w, (vh - 32) / h, 1.35);
+        if (!Number.isFinite(scale) || scale <= 0) scale = 1;
+        x = Math.max(16, (vw - w * scale) / 2);
+        y = Math.max(16, (vh - h * scale) / 2);
+        apply();
+      };
+      const zoomAt = (next, cx, cy) => {
+        const clamped = Math.min(4, Math.max(0.35, next));
+        const k = clamped / scale;
+        x = cx - k * (cx - x);
+        y = cy - k * (cy - y);
+        scale = clamped;
+        apply();
+      };
+      bar.addEventListener("click", (event) => {
+        const act = event.target.closest("button")?.dataset.act;
+        if (!act) return;
+        const cx = viewport.clientWidth / 2, cy = viewport.clientHeight / 2;
+        if (act === "in") zoomAt(scale * 1.25, cx, cy);
+        if (act === "out") zoomAt(scale / 1.25, cx, cy);
+        if (act === "fit") fit();
+        if (act === "full") {
+          if (document.fullscreenElement === diagram) document.exitFullscreen();
+          else diagram.requestFullscreen?.();
+        }
+      });
+      viewport.addEventListener("wheel", (event) => {
+        event.preventDefault();
+        const rect = viewport.getBoundingClientRect();
+        zoomAt(scale * (event.deltaY < 0 ? 1.12 : 1 / 1.12), event.clientX - rect.left, event.clientY - rect.top);
+      }, { passive: false });
+      let dragging = false, lastX = 0, lastY = 0;
+      viewport.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) return;
+        dragging = true; lastX = event.clientX; lastY = event.clientY;
+        viewport.classList.add("is-panning");
+        viewport.setPointerCapture(event.pointerId);
+      });
+      viewport.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        x += event.clientX - lastX; y += event.clientY - lastY;
+        lastX = event.clientX; lastY = event.clientY; apply();
+      });
+      const endDrag = () => { dragging = false; viewport.classList.remove("is-panning"); };
+      viewport.addEventListener("pointerup", endDrag);
+      viewport.addEventListener("pointercancel", endDrag);
+      viewport.addEventListener("dblclick", () => fit());
+      document.addEventListener("fullscreenchange", () => {
+        if (document.fullscreenElement === diagram || !document.fullscreenElement) requestAnimationFrame(fit);
+      });
+      requestAnimationFrame(fit);
+    }
+  </script>
+</body>
+</html>

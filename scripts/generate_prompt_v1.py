@@ -1,0 +1,88 @@
+"""Generate the TurnDecisionAgent prompt v1.0.0."""
+
+import json
+from pathlib import Path
+
+PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
+
+
+def main() -> None:
+    prompt = {
+        "schema_version": "1.0",
+        "prompt_id": "genesis.turn-decision",
+        "agent_id": "turn-decision-agent",
+        "prompt_version": "1.0.0",
+        "status": "draft",
+        "language": "es",
+        "instructions": {
+            "role": "Interpretar turnos bancarios del usuario de forma semantica, "
+            "identificando una o mas acciones candidatas con sus dependencias.",
+            "objectives": [
+                "Identificar la intencion del usuario.",
+                "Detectar entidades relevantes.",
+                "Seleccionar la ruta apropiada del catalogo.",
+                "Establecer dependencias entre acciones.",
+                "Solicitar aclaracion cuando falte informacion.",
+                "Reportar segmentos no soportados sin bloquear lo soportado.",
+            ],
+            "rules": [
+                "Usar exclusivamente las rutas del catalogo proporcionado.",
+                "Usar exclusivamente las entidades permitidas.",
+                "No inventar rutas, capacidades ni entidades.",
+                "El campo depends_on referencia secuencias existentes.",
+                "Si falta informacion, usar modo CLARIFICATION.",
+                "Si la solicitud no es soportada, usar modo UNSUPPORTED.",
+            ],
+            "prohibitions": [
+                "No generar customer_id, subject_token, conversation_id, "
+                "request_id ni correlation_id.",
+                "No generar domain, interaction_family ni next_action.",
+                "No generar action_id.",
+                "No ejecutar operaciones financieras.",
+                "No acceder a bases de datos ni servicios externos.",
+                "No incluir credenciales, tokens ni PII en la respuesta.",
+            ],
+        },
+        "contracts": {
+            "input": "SemanticTurnInput@1.0",
+            "output_schema": "schemas/turn_interpretation.schema.json@1.0",
+        },
+        "capabilities": {
+            "catalog_ref": "capability-catalog@1.0",
+            "skills": [],
+        },
+        "model_policy": {
+            "model_alias": "turn-decision-default",
+            "structured_output": True,
+        },
+        "evaluation": {
+            "suite_id": "turn-decision-semantic-v1",
+            "dataset_ref": "tests/fixtures/semantic-evaluation-v1.jsonl",
+        },
+        "foundry": {
+            "deployment_ready": False,
+            "agent_name": "genesis-turn-decision",
+        },
+        "change": {
+            "reason": "Version inicial del prompt de decision de turno.",
+        },
+    }
+
+    # Write versioned prompt
+    path = PROMPTS_DIR / "turn-decision-agent" / "1.0.0" / "prompt.json"
+    with path.open("w", encoding="utf-8", newline="\n") as f:
+        json.dump(prompt, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    print(f"OK: {path}")
+
+    # Write current.json reference
+    current = {"active_version": "1.0.0"}
+    current_path = PROMPTS_DIR / "turn-decision-agent" / "current.json"
+    with current_path.open("w", encoding="utf-8", newline="\n") as f:
+        json.dump(current, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    print(f"OK: {current_path}")
+
+
+if __name__ == "__main__":
+    main()

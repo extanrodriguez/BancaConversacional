@@ -1,0 +1,123 @@
+{
+  "spec_version": "bindings-semanticos-api-1",
+  "status": "VERIFIED_AGAINST_CHECKOUT_MAPPER",
+  "source": "Analisis_Adjuntos_y_Decisiones.md + src/genesis_cognitive/context/core_portfolio_mapper.py",
+  "notice": "Mapeos verificados en código; no son promesas de Core vivo ni política comercial.",
+  "bindings": [
+    {
+      "query": "disponible cuenta CA/CC",
+      "api_field": "availableBalance",
+      "snapshot": "ProductSnapshot.available_balance",
+      "executor_field": "available",
+      "forbidden_substitution": ["TC availablePurchases*", "PR availableBalance"]
+    },
+    {
+      "query": "saldo actual cuenta CA/CC",
+      "api_field": "currentBalance",
+      "snapshot": "ProductSnapshot.ledger_balance",
+      "executor_field": "balance",
+      "note": "Excel indica coincidencia con disponible; no acredita ledger contable independiente"
+    },
+    {
+      "query": "límite total TC",
+      "api_field": "availableBalance",
+      "snapshot": "ProductSnapshot.credit_limit",
+      "executor_field": "credit_limit",
+      "forbidden_substitution": ["presentar como disponible para compras"]
+    },
+    {
+      "query": "disponible TC",
+      "api_field": "availablePurchasesDomestic|Foreign",
+      "snapshot": "available_purchases_domestic / available_balance (DOP)",
+      "executor_field": "available",
+      "forbidden_substitution": ["sumar DOP+USD", "límite − deuda"]
+    },
+    {
+      "query": "deuda TC",
+      "api_field": "currentBalance / domesticCurrencyBalance / foreignCurrencyBalance",
+      "snapshot": "ledger_balance / domestic_currency_balance / foreign_currency_balance",
+      "executor_field": "balance"
+    },
+    {
+      "query": "pago mínimo TC",
+      "api_field": "minimumPaymentTcRd|Us",
+      "snapshot": "min_payment_rd|us",
+      "executor_field": "min_payment",
+      "on_zero": "puede ser N/A — no convertir silenciosamente"
+    },
+    {
+      "query": "balance al corte TC",
+      "api_field": "statementBalanceTcRd|Us",
+      "snapshot": "statement_balance_rd|us",
+      "executor_field": "statement_balance",
+      "forbidden_substitution": ["deuda actual"]
+    },
+    {
+      "query": "día de corte TC",
+      "api_field": "statementCutoffDay",
+      "snapshot": "cutoff_day",
+      "forbidden_substitution": ["fecha límite de pago"]
+    },
+    {
+      "query": "caducidad tarjeta",
+      "api_field": "cardExpiryDate YYYYMM",
+      "snapshot": "card_expiry",
+      "forbidden_substitution": ["payment_due_date"]
+    },
+    {
+      "query": "capital original PR",
+      "api_field": "availableBalance",
+      "snapshot": "LoanSnapshot.disbursed_amount",
+      "forbidden_substitution": ["dinero disponible"]
+    },
+    {
+      "query": "capital pendiente PR",
+      "api_field": "currentBalance",
+      "snapshot": "LoanSnapshot.outstanding_principal",
+      "forbidden_substitution": ["monto de cancelación / payoff"]
+    },
+    {
+      "query": "mora PR",
+      "api_field": "pendingBalancePr",
+      "snapshot": "overdue_amount",
+      "forbidden_substitution": ["próxima cuota"]
+    },
+    {
+      "query": "próxima fecha PR",
+      "api_field": "nextPaymentDatePr|nextInstallmentDatePr",
+      "snapshot": "next_due_date",
+      "note": "si difieren, no elegir por conveniencia — hoy se unifican en next_due_date"
+    },
+    {
+      "query": "monto cancelación PR",
+      "api_field": "domesticCurrencyBalance ≠ currentBalance (o payoffAmount*)",
+      "snapshot": "LoanSnapshot.payoff_amount",
+      "on_equal_to_principal": "None — PARTIAL / BLOCKED_DATA, no sustituir",
+      "client_text": "lenguaje natural; path solo en audit"
+    },
+    {
+      "query": "cuota PR",
+      "api_field": "installmentAmountPr|nextInstallmentAmountPr|cuotaPr",
+      "snapshot": "installment_amount",
+      "on_missing_or_zero": "FIELD_NOT_AVAILABLE / BLOCKED_DATA"
+    },
+    {
+      "query": "certificado CD",
+      "api_field": "currentBalance/availableBalance=capital; interestRateCd; interestAmountCd; maturityDate",
+      "snapshot": "available_balance/ledger_balance; interest_rate; interest_amount; maturity_date"
+    }
+  ],
+  "gaps_blocked_data": [
+    "fecha límite de pago TC (paymentDueDateTc opcional; a menudo ausente)",
+    "importe próxima cuota si Core no envía installmentAmount*",
+    "cotización vigente de cancelación si no hay domestic≠principal",
+    "lista de movimientos / ledger independiente",
+    "disponible específico para avances"
+  ],
+  "status_codes_verified": {
+    "CA": {"3": "active", "2": "inactive", "1": "active"},
+    "TC": {"1": "active", "2": "inactive", "3": "blocked", "4": "delinquent"},
+    "PR": {"1": "active", "2": "closed", "3": "delinquent"},
+    "CD": {"1|3|A": "active", "2|I": "inactive"}
+  }
+}

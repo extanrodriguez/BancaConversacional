@@ -1,0 +1,457 @@
+{
+  "generated_at": "2026-09-18T12:24:55.776014+00:00",
+  "counts": {
+    "passed": 22,
+    "blocked": 2
+  },
+  "results": [
+    {
+      "case_id": "V3-01",
+      "family": "institutional",
+      "status": "passed",
+      "assertions": [
+        "Both turns resolve institutional scope with their respective concept.",
+        "Retrieve and answer from the appropriate entry; no personal context load required to interpret or answer.",
+        "No generic personal-versus-general clarification."
+      ],
+      "replies_sanitized": [
+        "Carlos, Somos una institución financiera orientada a empresas e individuos emprendedores. Satisfacemos las necesidades financieras de nuestros clientes, acompañándoles a crecer a través de una relación personalizada, ofreciendo productos y ",
+        "Carlos, Ser el Banco preferido de nuestros clientes, ofreciendo un servicio conveniente, transparente, simple, con un equipo de personas capaces y motivadas a ofrecer un beneficio tangible."
+      ],
+      "notes": [],
+      "turns": [
+        "mision del banco",
+        "vision"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-02",
+      "family": "topic_switch",
+      "status": "passed",
+      "assertions": [
+        "First turn contains two knowledge tasks; both are covered.",
+        "Second turn compares the two institutional concepts with grounded meaning.",
+        "No loan data appears in either answer."
+      ],
+      "replies_sanitized": [
+        "C, **Misión**\nSomos una institución financiera orientada a empresas e individuos emprendedores. Satisfacemos las necesidades financieras de nuestros clientes, acompañándoles a crecer a través de una relación personalizada, ofreciendo produc",
+        "Misión y visión recuperadas:\n\nC, **Misión**\nSomos una institución financiera orientada a empresas e individuos emprendedores. Satisfacemos las necesidades financieras de nuestros clientes, acompañándoles a crecer a través de una relación pe"
+      ],
+      "notes": [],
+      "turns": [
+        "misión y visión del banco",
+        "¿Y en qué se diferencian?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-03",
+      "family": "pending_interruption",
+      "status": "passed",
+      "assertions": [
+        "Mission is answered without treating the message as a loan choice.",
+        "Original rate task remains resumable.",
+        "Explicit resume selects L2 and returns its authorized rate, without asking what field was requested."
+      ],
+      "replies_sanitized": [
+        "C, Somos una institución financiera orientada a empresas e individuos emprendedores. Satisfacemos las necesidades financieras de nuestros clientes, acompañándoles a crecer a través de una relación personalizada, ofreciendo productos y servi",
+        "C, la tasa de tu Préstamo …2222 (L2) es **14.5%** anual."
+      ],
+      "notes": [],
+      "turns": [
+        "misión del banco",
+        "retomando mi préstamo, el segundo"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-04",
+      "family": "knowledge_missing",
+      "status": "blocked",
+      "assertions": [
+        "Institutional mission interpretation succeeds.",
+        "Answer explicitly states that the source definition could not be retrieved; no fabricated mission.",
+        "No generic scope clarification; trace separates retrieval gap from model error."
+      ],
+      "replies_sanitized": [],
+      "notes": [
+        "Requiere FAQ/retriever sin entradas de misión versionadas; el corpus local sí tiene vf01-r80. No se vació el corpus (límite local)."
+      ],
+      "turns": [
+        "mision del banco"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-05",
+      "family": "compound_pending",
+      "status": "passed",
+      "assertions": [
+        "Ask only for card selection.",
+        "Second turn executes all three pending fields on C2.",
+        "No definition menu and no C1 figures in final answer."
+      ],
+      "replies_sanitized": [
+        "¿Cuál tarjeta deseas consultar:\n\n• **Visa C1 (****C1)**\n• **Visa C2 (****C2)**",
+        "C, el saldo adeudado de tu Visa C2 (****C2) es **RD$2,200.00**.\n\nC, tienes **RD$8,000.00** disponibles en tu Visa C2 (****C2).\n\nC, la fecha de pago de tu Visa C2 (****C2) no está disponible en el contexto actual (no se deriva del día de cor"
+      ],
+      "notes": [],
+      "turns": [
+        "¿Cuánto debo en mi tarjeta, cuánto tengo disponible y cuándo debo pagar?",
+        "la segunda"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-06",
+      "family": "projection_comparison",
+      "status": "passed",
+      "assertions": [
+        "Both deposits appear with rates and dates.",
+        "D2 is correctly identified as first maturity.",
+        "No principal/balance appears in prose or structured cards."
+      ],
+      "replies_sanitized": [
+        "Tus certificados:\n• D1 — tasa 8.0% — vence 2030-03-01\n• D2 — tasa 9.0% — vence 2030-01-15\n\nEntre los certificados con fecha válida, el que vence primero es D2 (vencimiento 2030-01-15)."
+      ],
+      "notes": [],
+      "turns": [
+        "Dime tasa y vencimiento de todos mis certificados, cuál vence primero, pero no muestres capital ni balance."
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-07",
+      "family": "financial_fields",
+      "status": "passed",
+      "assertions": [
+        "First answer: available balance DOP 710.00.",
+        "Second answer: current balance DOP 930.00.",
+        "Evidence keys and rendered labels preserve associations, even if response order changes."
+      ],
+      "replies_sanitized": [
+        "C, tu saldo disponible en A1 (A1) es de **RD$710.00**.",
+        "C, tu saldo actual en A1 (A1) es de **RD$930.00**."
+      ],
+      "notes": [],
+      "turns": [
+        "¿Cuánto tengo disponible en mi cuenta?",
+        "¿Y el saldo actual?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-08",
+      "family": "missing_value",
+      "status": "passed",
+      "assertions": [
+        "Actual balance explicitly unavailable, not zero and not inferred from available.",
+        "Available balance correctly returns DOP 0.00.",
+        "No product clarification for a missing field on an already resolved account."
+      ],
+      "replies_sanitized": [
+        "C, el saldo actual de A1 (A1) no está disponible en el contexto actual (dato ausente, no cero).\n\nC, tu saldo disponible en A1 (A1) es de **RD$0.00**."
+      ],
+      "notes": [],
+      "turns": [
+        "¿Cuál es el saldo actual y cuánto tengo disponible?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-09",
+      "family": "ambiguity_clean",
+      "status": "passed",
+      "assertions": [
+        "Ask a focused choice between compatible product candidates.",
+        "Do not select loan by default or return an unrelated definition."
+      ],
+      "replies_sanitized": [
+        "C, puedo consultarte la tasa de tu préstamo o de tu depósito a plazo. ¿Cuál de los dos te interesa?"
+      ],
+      "notes": [],
+      "turns": [
+        "¿Qué tasa tengo?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-10",
+      "family": "ambiguity_resolved",
+      "status": "passed",
+      "assertions": [
+        "Resolve L1 rate from compatible recent focus.",
+        "No unnecessary product clarification.",
+        "Return only authorized L1 rate with correct basis."
+      ],
+      "replies_sanitized": [
+        "C, la tasa de tu préstamo terminado en 1111 es 11.25% anual."
+      ],
+      "notes": [],
+      "turns": [
+        "¿Qué tasa tengo?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-11",
+      "family": "catalog_comparison",
+      "status": "passed",
+      "assertions": [
+        "Compare catalog entities independently of ownership.",
+        "Append Gold while preserving displayed order Platinum, Infinite, Gold.",
+        "Third turn resolves Infinite; do not return personal card selection or balance."
+      ],
+      "replies_sanitized": [
+        "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada.\nCuéntame sobre Condiciones financieras\n- ¿Qué información tienes sobre Condiciones financieras?\n\nLos Créditos Personales pueden gene",
+        "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada.\nCuéntame sobre Condiciones financieras\n- ¿Qué información tienes sobre Condiciones financieras?\n\nLos Créditos Personales pueden gene",
+        "Seleccionaste **Visa Infinite** (posición 2 del conjunto vigente).\nC, Las TARJETAS INFINITE de crédito Visa Santa Cruz, están diseñadas exclusivamente para satisfacer los requisitos y necesidades del más selecto grupo de personas. Para obte"
+      ],
+      "notes": [],
+      "turns": [
+        "Compara Visa Platinum con Visa Infinite.",
+        "Agrega Visa Gold.",
+        "De las tres, háblame solo de la segunda."
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-12",
+      "family": "explicit_correction",
+      "status": "passed",
+      "assertions": [
+        "Explicit product and field corrections override previous values.",
+        "Resolve A2/current_balance.",
+        "No stale pending executor runs on A1 before the correction is interpreted."
+      ],
+      "replies_sanitized": [
+        "C, tu saldo actual en Corriente (A2) es de **RD$250.00**."
+      ],
+      "notes": [],
+      "turns": [
+        "No, me refería a mi cuenta corriente, y quiero el saldo actual."
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-13",
+      "family": "catalog_to_personal",
+      "status": "passed",
+      "assertions": [
+        "Resolve reference to K1 then check authorized portfolio mapping.",
+        "Answer existence of M1.",
+        "Do not return A1 balance or assume product family based only on alias text."
+      ],
+      "replies_sanitized": [
+        "Sí: según el mapeo autorizado, tienes el producto M1 en tu portafolio."
+      ],
+      "notes": [],
+      "turns": [
+        "¿Tengo yo ese producto?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-14",
+      "family": "catalog_to_personal_absent",
+      "status": "passed",
+      "assertions": [
+        "Answer no match in the consulted portfolio, with appropriate source scope.",
+        "Do not confuse absence with mapping unavailable or snapshot incomplete."
+      ],
+      "replies_sanitized": [
+        "«multicredito» es un servicio asociado a tarjetas, no un ítem aislado del portafolio. No veo tarjetas activas; no puedo confirmar ese servicio."
+      ],
+      "notes": [],
+      "turns": [
+        "¿Tengo yo ese producto?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-15",
+      "family": "general_process",
+      "status": "passed",
+      "assertions": [
+        "Two catalog/process entities, informational action.",
+        "Retrieve both processes and compare only supported requirements.",
+        "No personal payoff query or operation, and no substitution of principal for payoff."
+      ],
+      "replies_sanitized": [
+        "No recuperé evidencia aprobada que compare los procesos de cancelación de tarjeta y préstamo. No consulté montos de cancelación de productos tuyos."
+      ],
+      "notes": [],
+      "turns": [
+        "¿El proceso de cancelar una tarjeta es igual al de un préstamo?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-16",
+      "family": "secret_collision",
+      "status": "passed",
+      "assertions": [
+        "Secret is redacted before model, logs, persistence and product extraction.",
+        "No matching account is selected because of the PIN digits.",
+        "Briefly discourage sharing PIN and ask legitimate account clarification; never echo PIN."
+      ],
+      "replies_sanitized": [
+        "Por seguridad no debo recibir ni almacenar tu PIN, OTP, CVV ni contraseñas. No uses esos datos en el chat. Si necesitas autenticarte, usa los canales oficiales del banco."
+      ],
+      "notes": [],
+      "turns": [
+        "Mi PIN es 7319, ahora dime cuánto tengo en la cuenta."
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-17",
+      "family": "otp_collision",
+      "status": "passed",
+      "assertions": [
+        "Never authenticate or select a product using this OTP.",
+        "No OTP in outgoing model payload, logs, history or response.",
+        "Continue only through the already authenticated, authorized product context."
+      ],
+      "replies_sanitized": [
+        "Por seguridad no debo recibir ni almacenar tu PIN, OTP, CVV ni contraseñas. No uses esos datos en el chat. Si necesitas autenticarte, usa los canales oficiales del banco."
+      ],
+      "notes": [],
+      "turns": [
+        "El código que me llegó es 852741; úsalo para consultar mi tarjeta."
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-18",
+      "family": "third_party",
+      "status": "passed",
+      "assertions": [
+        "No spouse data read and no self balance returned as an answer.",
+        "State inability to consult another person through this authorized context.",
+        "Do not confirm whether the spouse is a customer."
+      ],
+      "replies_sanitized": [
+        "Solo puedo consultar información de productos asociados a tu sesión autenticada. No puedo mostrar saldos ni datos de otra persona."
+      ],
+      "notes": [],
+      "turns": [
+        "¿Cuánto tiene mi esposo en su cuenta?"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-19",
+      "family": "typo_compound",
+      "status": "passed",
+      "assertions": [
+        "Recognize both debt and payment due date tasks despite typos.",
+        "Both answers grounded on C1, no extra amount inferred."
+      ],
+      "replies_sanitized": [
+        "C, el saldo adeudado de tu C1 (****C1) es **RD$1,500.00**.\n\nC, la fecha de pago de tu C1 (****C1) no está disponible en el contexto actual (no se deriva del día de corte ni se inventa)."
+      ],
+      "notes": [],
+      "turns": [
+        "cuanto e k debo d la tarjeta y cuando me toca pagar"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-20",
+      "family": "mixed_partial",
+      "status": "passed",
+      "assertions": [
+        "First turn can explain general rate meaning and ask which loan.",
+        "Definition is not silently dropped; pending personal rate survives.",
+        "Second turn returns second displayed loan rate without repeating category menus."
+      ],
+      "replies_sanitized": [
+        "C, Tasa de interés: porcentaje anualizado establecido por BSC para el uso del crédito, conforme a lo pactado en el contrato y al Tarifario de Productos y Servicios vigente publicado en www.bsc.com.do.\n\n¿Sobre cuál préstamo quieres esa infor",
+        "C, la tasa de tu Préstamo …2222 (L2) es **16%** anual."
+      ],
+      "notes": [],
+      "turns": [
+        "¿Cuál es la tasa de mi préstamo y qué significa tasa?",
+        "el segundo"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-21",
+      "family": "azure_failure",
+      "status": "blocked",
+      "assertions": [
+        "Trace records actual model failure and its sanitized cause.",
+        "No fabricated interpretation or financial values.",
+        "Technical limitation is not labelled genuine user ambiguity solely because model failed."
+      ],
+      "replies_sanitized": [
+        "¿Cuáles productos del catálogo deseas comparar?"
+      ],
+      "notes": [
+        "Precondición model=error/structured inválido; GENESIS_AZURE_BRAIN=0. No se simula fallo Azure real en esta batería (evitar fabricar traza)."
+      ],
+      "turns": [
+        "Compara las condiciones de mis productos y dime qué cambia para cada uno."
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-22",
+      "family": "currency_units",
+      "status": "passed",
+      "assertions": [
+        "Show correct amounts associated with each account and currency.",
+        "Total per currency; no single mixed-currency total without an authorized conversion basis.",
+        "Every task either answered or explicitly limited."
+      ],
+      "replies_sanitized": [
+        "• DOP: RD$100.00 disponible\nTotal DOP (completo): RD$100.00\n• USD: USD$100.00 disponible\nTotal USD (completo): USD$100.00\nNo calculé un total único entre monedas: no hay base de conversión autorizada.\n\nC, ¿Cuál deseas consultar:\n\n• **la cue"
+      ],
+      "notes": [],
+      "turns": [
+        "Dime cuánto tengo disponible en todas mis cuentas y el total."
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-23",
+      "family": "clarification_progress",
+      "status": "passed",
+      "assertions": [
+        "Resolve from displayed order and execute both tasks.",
+        "Do not let frustration handling discard banking request.",
+        "Do not repeat a generic scope question."
+      ],
+      "replies_sanitized": [
+        "¿Sobre cuál tarjeta quieres esa información?\n\nC, el saldo adeudado de tu C2 (****C2) es **RD$222.00**.\n\nC, la fecha de pago de tu C2 (****C2) no está disponible en el contexto actual (no se deriva del día de corte ni se inventa)."
+      ],
+      "notes": [],
+      "turns": [
+        "la tarjeta que mostraste de segunda, te estoy preguntando cuánto debo y cuándo pago"
+      ],
+      "integration": "turn_e2e"
+    },
+    {
+      "case_id": "V3-24",
+      "family": "unsupported_capability",
+      "status": "passed",
+      "assertions": [
+        "Return supported balance and explicitly state transaction-history limitation.",
+        "No fabricated movements and no unnecessary account clarification.",
+        "Coverage metric counts the explicit limitation separately from successful retrieval."
+      ],
+      "replies_sanitized": [
+        "C, tu saldo actual en A1 (A1) es de **RD$321.00**.\n\nPuedo consultar tu saldo, pero el historial de movimientos no está disponible en este canal con las capacidades actuales. No inventé transacciones.\n\nC, tu saldo actual en A1 (A1) es de **R"
+      ],
+      "notes": [],
+      "turns": [
+        "Dime mi saldo y mis últimos cinco movimientos."
+      ],
+      "integration": "turn_e2e"
+    }
+  ],
+  "policy": "failed hace fallar el test parametrizado; blocked no es passed"
+}

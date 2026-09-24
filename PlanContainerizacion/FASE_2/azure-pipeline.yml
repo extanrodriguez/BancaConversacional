@@ -1,0 +1,81 @@
+# Referencia — Azure DevOps pipeline (Fase 2)
+# Copiar a azure-pipelines.yml o equivalente en GitHub Actions con az login
+
+trigger:
+  branches:
+    include:
+      - main
+      - release/*
+
+variables:
+  azureSubscription: 'sc-genesis-cognitive'
+  resourceGroup: 'rg-genesis-cognitive-mvp-eus'
+  acrName: 'acrgenesis871a5b'
+  containerAppName: 'genesis-api'
+  imageRepository: 'genesis-api'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildPush
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: Docker@2
+            displayName: Build and push
+            inputs:
+              command: buildAndPush
+              repository: $(imageRepository)
+              dockerfile: Dockerfile
+              containerRegistry: $(acrName)
+              tags: |
+                $(Build.SourceVersion)
+                latest
+
+  - stage: Deploy
+    dependsOn: Build
+    jobs:
+      - deployment: DeployACA
+        environment: genesis-qa
+        pool:
+          vmImage: 'ubuntu-latest'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  displayName: Update Container App
+                  inputs:
+                    azureSubscription: $(azureSubscription)
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az containerapp update \
+                        -n $(containerAppName) \
+                        -g $(resourceGroup) \
+                        --image $(acrName).azurecr.io/$(imageRepository):$(Build.SourceVersion)
+
+                - task: AzureCLI@2
+                  displayName: Smoke test
+                  inputs:
+                    azureSubscription: $(azureSubscription)
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      FQDN=$(az containerapp show -n $(containerAppName) -g $(resourceGroup) \
+                        --query properties.configuration.ingress.fqdn -o tsv)
+                      curl -sf "https://${FQDN}/health"
+                      GENESIS_ENDPOINT="https://${FQDN}" python Test_local/run_mvp.py --smoke
+
+  - stage: Rollback
+    condition: failed()
+    jobs:
+      - job: RollbackRevision
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              scriptType: bash
+              inlineScript: |
+                PREV=$(az containerapp revision list -n $(containerAppName) -g $(resourceGroup) \
+                  --query "[1].name" -o tsv)
+                az containerapp revision activate -n $(containerAppName) -g $(resourceGroup) --revision $PREV

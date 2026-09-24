@@ -1,0 +1,17 @@
+%% Decisión vigente lab8446: chitchat local; Azure elige tool KB vs Redis
+flowchart TD
+  classDef in fill:#E8EEF6,stroke:#0A2540,color:#0A2540,stroke-width:1.5px
+  classDef decide fill:#FFF6E8,stroke:#B86E00,color:#0A2540,stroke-width:1.5px
+  classDef chat fill:#E7F6F4,stroke:#0E7C7B,color:#0A2540,stroke-width:1.5px
+  classDef kb fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef prod fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef az fill:#0A2540,stroke:#0A2540,color:#FFFFFF
+
+  Q["Mensaje del usuario"]:::in --> G{"¿Chitchat puro?"}:::decide
+  G -->|Sí| C["Respuesta fija local"]:::chat
+  G -->|No| AZ["Azure OpenAI tool_choice=auto"]:::az
+  AZ -->|search_bank_knowledge| KB["Foundry + AI Search"]:::kb
+  AZ -->|get_customer_products| PR["Redis portafolio"]:::prod
+  AZ -->|sin tool| S["Hint semantic_intent"]:::decide
+  S --> KB
+  S --> PR

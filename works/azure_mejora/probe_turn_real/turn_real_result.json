@@ -1,0 +1,149 @@
+{
+  "mode": {
+    "GENESIS_SEMANTIC_MODE": "azure_plan",
+    "GENESIS_AZURE_BRAIN": "1",
+    "GENESIS_SESSION_BACKEND": "memory",
+    "GENESIS_KB_PACKAGE_ROOT": "C:\\NovusIntelligence\\BancoSantaCruz\\BancaConversacional\\works\\insumos\\BSC_Potenciacion_Lunes",
+    "deployment": "gpt-4o-mini",
+    "endpoint_host": "testbsc0001.openai.azure.com",
+    "portfolio": "qa_726588_contract_demo.json",
+    "customer_id": "726588",
+    "conversation_id": "probe-real-2928239124d4",
+    "context_source": "lab_synthetic",
+    "session_store": "memory_SIMULATED",
+    "redis_qa": "UNREACHABLE_PENDING",
+    "azure_search_remote": "REAL_REACHABLE_but_turn_uses_local_kb",
+    "interpretation": "REAL_AZURE_MODEL"
+  },
+  "turns": [
+    {
+      "question": "Oye, se me vence algo pronto? Dime si tengo que pagar algún préstamo o tarjeta en estos días y cuánto.",
+      "http": 200,
+      "client_ms": 5792,
+      "extracted": {
+        "status": "VALID_CONTRACT",
+        "intent_id": "TURN_PLAN_MULTI",
+        "reply": "Felix Prestamos, ventana temporal: fecha de referencia **2026-09-21**, zona horaria **America/Santo_Domingo**, intervalo **próximos 30 días** (hasta **2026-10-21**, inclusive).\nSí: estos productos tienen **pago próximo** dentro de la ventana:\n• **Visa Full Car Flotilla Empleado (••••2240)**: pago próximo / fecha límite **2026-09-25**, pago mínimo **RD$0.00**\nFechas de pago registradas fuera de la ventana (no cuentan como próximo):\n• **Préstamo personal (...27615)**: tiene fecha de pago **2026-09",
+        "brain_source": "structural_repair",
+        "inference_count": 2,
+        "decision_trace_head": {
+          "step": "azure_plan",
+          "output": {
+            "semantic_mode": "azure_plan",
+            "route_source": "repair:after_CLARIFICATION_REQUIRED_no_interpretation",
+            "brain_source": "structural_repair",
+            "deployment": "gpt-4o-mini",
+            "task_count": 1,
+            "task_statuses": {
+              "t1": "available"
+            },
+            "transition": "none",
+            "calls": [
+              {
+                "name": "proposer",
+                "duration_ms": 3345,
+                "deployment": "gpt-4o-mini"
+              },
+              {
+                "name": "verifier",
+                "duration_ms": 2285,
+                "deployment": "gpt-4o-mini"
+              }
+            ],
+            "inference_count": 2,
+            "failed_model_attempts": 0,
+            "stage_timings_ms": {
+              "envelope_ms": 1.6,
+              "resolve_full_attempt1_ms": 5631.3,
+              "structural_repair_ms": 30.1
+            },
+            "repaired_from": "CLARIFICATION_REQUIRED",
+            "interpretation_present": false
+          },
+          "duration_ms": 5772
+        },
+        "provider": null,
+        "deployment": null,
+        "audit_keys": [
+          "brain_source",
+          "context_source",
+          "correlation_id",
+          "decision_trace",
+          "inference_count",
+          "rag_status",
+          "route_steps",
+          "semantic_mode",
+          "slowest_step",
+          "slowest_step_ms",
+          "step_count",
+          "total_ms"
+        ]
+      },
+      "simulated_reply": false,
+      "model_path": "azure_plan.resolve_full"
+    },
+    {
+      "question": "Qué significa el saldo disponible en una cuenta de ahorros?",
+      "http": 200,
+      "client_ms": 31,
+      "extracted": {
+        "status": "VALID_CONTRACT",
+        "intent_id": "ACCOUNT_BALANCE_READ",
+        "reply": "Felix Prestamos, tu saldo disponible en Cuenta de ahorros ...08001 es de **RD$50,000.00**. Nota: la fecha de origen del dato bancario es desconocida; no lo presento como actualizado.",
+        "brain_source": "structured_shortcut",
+        "inference_count": null,
+        "decision_trace_head": {
+          "step": "azure_plan",
+          "output": {
+            "semantic_mode": "azure_plan",
+            "route_source": "shortcut:kb_catalog_define",
+            "brain_source": "structured_shortcut",
+            "deployment": "gpt-4o-mini",
+            "task_count": 1,
+            "task_statuses": {
+              "t1.available": "available"
+            },
+            "evidence_sources": [
+              "grounded"
+            ],
+            "field_accreditation": null,
+            "payment_window": null,
+            "transition": "none",
+            "calls": [],
+            "inference_count": 0,
+            "failed_model_attempts": 0,
+            "stage_timings_ms": {
+              "shortcut_ms": 12.9
+            },
+            "cognitive_code_version": "potenciacion-strict-v2.2",
+            "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+          },
+          "duration_ms": 14
+        },
+        "provider": null,
+        "deployment": null,
+        "audit_keys": [
+          "brain_source",
+          "context_source",
+          "correlation_id",
+          "decision_trace",
+          "inference_count",
+          "rag_status",
+          "route_steps",
+          "semantic_mode",
+          "slowest_step",
+          "slowest_step_ms",
+          "step_count",
+          "total_ms"
+        ]
+      },
+      "simulated_reply": false,
+      "model_path": "unknown"
+    }
+  ],
+  "context_load": {
+    "http": 200,
+    "ms": 4,
+    "status": "CONTEXT_LOADED"
+  }
+}

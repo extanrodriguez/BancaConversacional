@@ -1,0 +1,37 @@
+{
+  "isSucceded": true,
+  "code": "EGEN000",
+  "message": "ok",
+  "primerNombre": "Mario",
+  "data": [
+    {
+      "productCategory": "PR",
+      "productIdentification": "227615",
+      "productDescription": "Préstamo Personal",
+      "currencyCode": "214",
+      "productStatus": "1",
+      "availableBalance": 800000,
+      "maturityDate": "2027-04-07 00:00:00",
+      "currentBalance": 29255.87,
+      "foreignCurrencyBalance": 0,
+      "domesticCurrencyBalance": 32000.39,
+      "partyType": null,
+      "maskedCardNumber": null,
+      "pendingBalancePr": 32000.39,
+      "minimumPaymentTcRd": 0,
+      "minimumPaymentTcUs": 0,
+      "statementBalanceTcRd": 0,
+      "statementBalanceTcUs": 0,
+      "statementCutoffDay": 0,
+      "cardExpiryDate": 0,
+      "multiCurrency": "0",
+      "interestRateCd": 0,
+      "interestAmountCd": 0,
+      "interestRatePr": 10,
+      "nextInstallmentDatePr": "2026-04-07 00:00:00",
+      "nextPaymentDatePr": "2026-04-07 00:00:00",
+      "availablePurchasesForeign": null,
+      "availablePurchasesDomestic": null
+    }
+  ]
+}

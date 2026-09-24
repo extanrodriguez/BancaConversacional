@@ -1,0 +1,183 @@
+{
+  "ts": "2026-09-21T19:59:29Z",
+  "results": [
+    {
+      "q": "beneficios puntos santa cruz visa platinum",
+      "http": 200,
+      "ms": 352,
+      "reply_prefix": "No pude completar la interpretación semántica en este momento. Intenta de nuevo o reformula la consulta.",
+      "interesting": {
+        "audit.rag_status": "NOT_REQUIRED",
+        "audit.semantic_mode": "azure_plan",
+        "audit.decision_trace.[0].output.error_class": "ModelInvocationError",
+        "audit.decision_trace.[0].output.error_stage": "model_resolve_full_exhausted",
+        "audit.decision_trace.[0].output.semantic_mode": "azure_plan",
+        "audit.decision_trace.[0].output.deployment": "gpt-6-astra",
+        "audit.decision_trace.[0].output.failed_model_attempts": 1,
+        "rag_status": "NOT_REQUIRED"
+      },
+      "audit_keys": [
+        "total_ms",
+        "slowest_step",
+        "slowest_step_ms",
+        "step_count",
+        "rag_status",
+        "correlation_id",
+        "route_steps",
+        "brain_source",
+        "context_source",
+        "inference_count",
+        "semantic_mode",
+        "decision_trace"
+      ],
+      "body_keys": [
+        "app_channel",
+        "core_channel",
+        "audit",
+        "rag_status",
+        "reply",
+        "message",
+        "content",
+        "content_format",
+        "rich_content",
+        "options",
+        "suggested_questions",
+        "conversation_id",
+        "status"
+      ]
+    },
+    {
+      "q": "exclusiones recompensas visa infinite",
+      "http": 200,
+      "ms": 329,
+      "reply_prefix": "No pude completar la interpretación semántica en este momento. Intenta de nuevo o reformula la consulta.",
+      "interesting": {
+        "audit.rag_status": "NOT_REQUIRED",
+        "audit.semantic_mode": "azure_plan",
+        "audit.decision_trace.[0].output.error_class": "ModelInvocationError",
+        "audit.decision_trace.[0].output.error_stage": "model_resolve_full_exhausted",
+        "audit.decision_trace.[0].output.semantic_mode": "azure_plan",
+        "audit.decision_trace.[0].output.deployment": "gpt-6-astra",
+        "audit.decision_trace.[0].output.failed_model_attempts": 1,
+        "rag_status": "NOT_REQUIRED"
+      },
+      "audit_keys": [
+        "total_ms",
+        "slowest_step",
+        "slowest_step_ms",
+        "step_count",
+        "rag_status",
+        "correlation_id",
+        "route_steps",
+        "brain_source",
+        "context_source",
+        "inference_count",
+        "semantic_mode",
+        "decision_trace"
+      ],
+      "body_keys": [
+        "app_channel",
+        "core_channel",
+        "audit",
+        "rag_status",
+        "reply",
+        "message",
+        "content",
+        "content_format",
+        "rich_content",
+        "options",
+        "suggested_questions",
+        "conversation_id",
+        "status"
+      ]
+    },
+    {
+      "q": "como se calcula la tasa de interes tarjeta de credito",
+      "http": 200,
+      "ms": 401,
+      "reply_prefix": "No pude completar la interpretación semántica en este momento. Intenta de nuevo o reformula la consulta.",
+      "interesting": {
+        "audit.rag_status": "NOT_REQUIRED",
+        "audit.semantic_mode": "azure_plan",
+        "audit.decision_trace.[0].output.error_class": "ModelInvocationError",
+        "audit.decision_trace.[0].output.error_stage": "model_resolve_full_exhausted",
+        "audit.decision_trace.[0].output.semantic_mode": "azure_plan",
+        "audit.decision_trace.[0].output.deployment": "gpt-6-astra",
+        "audit.decision_trace.[0].output.failed_model_attempts": 1,
+        "rag_status": "NOT_REQUIRED"
+      },
+      "audit_keys": [
+        "total_ms",
+        "slowest_step",
+        "slowest_step_ms",
+        "step_count",
+        "rag_status",
+        "correlation_id",
+        "route_steps",
+        "brain_source",
+        "context_source",
+        "inference_count",
+        "semantic_mode",
+        "decision_trace"
+      ],
+      "body_keys": [
+        "app_channel",
+        "core_channel",
+        "audit",
+        "rag_status",
+        "reply",
+        "message",
+        "content",
+        "content_format",
+        "rich_content",
+        "options",
+        "suggested_questions",
+        "conversation_id",
+        "status"
+      ]
+    },
+    {
+      "q": "compara visa platinum e infinite",
+      "http": 200,
+      "ms": 1049,
+      "reply_prefix": "Comparación de catálogo (orden de mención / conjunto vigente): | 1. **Visa Platinum** — evidencia recuperada (producto verificado). | __AZURE_SEARCH__ | Tarjeta de Crédito Visa Platinum: instrumento de pago que permite realizar pagos o consumos en establecimientos afiliados sin efectivo, con características y condiciones de uso de tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Tarjetas de Crédito. | 2. **Visa Infinite** — evidencia recuperada ",
+      "interesting": {
+        "audit.rag_status": "FAQ",
+        "audit.semantic_mode": "azure_plan",
+        "audit.decision_trace.[0].output.semantic_mode": "azure_plan",
+        "audit.decision_trace.[0].output.deployment": "gpt-6-astra",
+        "audit.decision_trace.[0].output.failed_model_attempts": 0,
+        "rag_status": "FAQ"
+      },
+      "audit_keys": [
+        "total_ms",
+        "slowest_step",
+        "slowest_step_ms",
+        "step_count",
+        "rag_status",
+        "correlation_id",
+        "route_steps",
+        "brain_source",
+        "context_source",
+        "inference_count",
+        "semantic_mode",
+        "decision_trace"
+      ],
+      "body_keys": [
+        "app_channel",
+        "core_channel",
+        "audit",
+        "rag_status",
+        "reply",
+        "message",
+        "content",
+        "content_format",
+        "rich_content",
+        "options",
+        "suggested_questions",
+        "conversation_id",
+        "status"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "apk": "app-release-passkey-test.apk",
+  "package": "com.appconversacionalbsc",
+  "app_name": "Banco Santa Cruz",
+  "app_version": "1.0.0",
+  "build": "passkey-test / release",
+  "extracted_from": "assets/index.android.bundle APP_CONFIG",
+  "endpoints": {
+    "chat_api_url": "http://20.127.25.24:8000/chat/front?x-api-key=genesis-rag-temp-c04f313048e160f088601c96",
+    "chat_host": "20.127.25.24",
+    "chat_port": 8000,
+    "chat_path": "/chat/front",
+    "chat_api_key": "genesis-rag-temp-c04f313048e160f088601c96",
+    "chat_top_k": 3,
+    "api_base_url": "https://apigateway-gen.dev.bsc.com.do/api",
+    "websocket_url": "https://api-genesis.dev.bsc.com.do/ws",
+    "fido_applink_host": "apigateway-gen.dev.bsc.com.do"
+  },
+  "cognitive_qa": {
+    "public_ui": "http://20.127.25.24:8447/pruebas",
+    "health": "http://20.127.25.24:8447/health",
+    "note": "El APK NO habla con :8447 directo. Usa genesis-rag :8000 que hace proxy a cognitiva :8447."
+  },
+  "request_shape": {
+    "method": "POST",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "question": "texto del usuario",
+      "top_k": 3,
+      "conversation_id": "uuid-o-string",
+      "client_id": "id-cliente-sesion"
+    }
+  },
+  "response_shape": {
+    "reply": "texto mostrado en el chat",
+    "conversation_id": "string",
+    "options": [],
+    "status": "string"
+  },
+  "prerequisites": [
+    "NSG Allow-APK-Front-8000 abierto a la IP pública del dispositivo/PC",
+    "Servicio genesis-rag escuchando en 0.0.0.0:8000 en la VM",
+    "Proxy /chat/front -> cognitiva :8447 activo",
+    "API key del APK aceptada por genesis-rag (o GENESIS_API_KEY alineada)",
+    "Dispositivo Android con cleartext HTTP permitido (este build ya usa http://)"
+  ]
+}

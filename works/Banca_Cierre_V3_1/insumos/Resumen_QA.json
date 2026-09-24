@@ -1,0 +1,103 @@
+{
+  "source_document": "cf44e3ee-0aeb-4571-8350-6a0eda40c4c9.docx",
+  "analysis_date": "2026-09-18",
+  "source_case_count": 236,
+  "word_embedded_image_files": 493,
+  "visually_reviewed_word_images": 34,
+  "visually_reviewed_word_cases": 24,
+  "independent_image_reviewed": 1,
+  "reported_counts": {
+    "Cumple parcialmente": 72,
+    "No cumple": 69,
+    "Cumple": 95
+  },
+  "reported_full_compliance_pct": 40.3,
+  "reported_counts_by_family": {
+    "P": {
+      "Cumple parcialmente": 8,
+      "No cumple": 7
+    },
+    "C": {
+      "Cumple": 3,
+      "Cumple parcialmente": 2,
+      "No cumple": 3
+    },
+    "D": {
+      "No cumple": 6,
+      "Cumple parcialmente": 4
+    },
+    "R": {
+      "Cumple": 1,
+      "No cumple": 3
+    },
+    "X": {
+      "Cumple": 5,
+      "No cumple": 3,
+      "Cumple parcialmente": 2
+    },
+    "IG": {
+      "Cumple parcialmente": 6,
+      "Cumple": 14
+    },
+    "CD": {
+      "Cumple": 2,
+      "Cumple parcialmente": 6,
+      "No cumple": 12
+    },
+    "TC": {
+      "Cumple": 8,
+      "Cumple parcialmente": 7,
+      "No cumple": 1
+    },
+    "TD": {
+      "Cumple": 6,
+      "Cumple parcialmente": 2
+    },
+    "PR": {
+      "Cumple": 11,
+      "Cumple parcialmente": 4
+    },
+    "CE": {
+      "Cumple": 5,
+      "Cumple parcialmente": 3
+    },
+    "GR": {
+      "Cumple parcialmente": 5,
+      "No cumple": 1,
+      "Cumple": 6
+    },
+    "CTX": {
+      "Cumple parcialmente": 3,
+      "No cumple": 3,
+      "Cumple": 3
+    },
+    "DA": {
+      "No cumple": 10
+    },
+    "MIX": {
+      "Cumple": 5,
+      "No cumple": 5
+    },
+    "CMP": {
+      "Cumple": 26,
+      "Cumple parcialmente": 18,
+      "No cumple": 4
+    },
+    "CC": {
+      "Cumple parcialmente": 1,
+      "No cumple": 4
+    },
+    "CA": {
+      "No cumple": 7,
+      "Cumple parcialmente": 1
+    }
+  },
+  "proposed_additional_case_count": 24,
+  "new_remote_tests_executed": 0,
+  "limitations": [
+    "Reported labels were extracted, not independently confirmed for every screenshot.",
+    "Historical code copy does not prove behavior of current checkout or deployed service.",
+    "Extracted cases require explicit preconditions and adjudicated expected evidence.",
+    "Proposed scenarios and their synthetic fixtures are not approved bank knowledge."
+  ]
+}

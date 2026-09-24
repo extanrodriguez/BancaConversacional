@@ -1,0 +1,11 @@
+{
+  "run_id": "20260921T103100Z_postdeploy_ui",
+  "base": "http://20.127.25.24:8447",
+  "customer": "726588",
+  "scope": "p0",
+  "generated_utc": "20260921T103610Z",
+  "cases": 10,
+  "captured": 10,
+  "failed": 0,
+  "images_dir": "images/fix/20260921T103100Z_postdeploy_ui"
+}

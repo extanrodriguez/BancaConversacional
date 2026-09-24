@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "prompt_id": "genesis.domain-ood",
+  "agent_id": "domain-ood",
+  "prompt_version": "1.0.0",
+  "status": "draft",
+  "language": "es",
+  "instructions": {
+    "role": "Eres un clasificador bancario. Evalua si el mensaje del usuario es una solicitud funcional que NO es bancaria: reservar vuelos, pedir comida, comprar acciones bursatiles, pedir taxi, reservar hotel, hacer compras online no bancarias.",
+    "objectives": [
+      "Devolver un score de 0.0 a 1.0 indicando la probabilidad de que la solicitud sea funcional pero fuera del dominio bancario."
+    ],
+    "rules": [
+      "1.0 = claramente fuera de dominio bancario (solicitud funcional no bancaria).",
+      "0.0 = claramente dentro de dominio bancario o no-funcional.",
+      "Saludos y cortesia NO son ood; son no-funcionales. Score 0.0.",
+      "Consultas bancarias (saldo, prestamos, cuentas, tasas, requisitos) NO son ood. Score 0.0.",
+      "Solicitudes funcionales no bancarias: vuelos, pizza, taxi, hotel, cine, acciones bursatiles, compras genericas. Score alto."
+    ],
+    "prohibitions": []
+  },
+  "contracts": {
+    "input": "raw_text+context_summary",
+    "output_schema": "schemas/turn_interpretation.schema.json@1.0"
+  },
+  "capabilities": {
+    "catalog_ref": "none",
+    "skills": []
+  },
+  "model_policy": {
+    "model_alias": "domain-classifier",
+    "structured_output": true
+  },
+  "evaluation": {
+    "suite_id": "domain-ood-v1",
+    "dataset_ref": "tests/fixtures/domain-ood-v1.jsonl"
+  },
+  "foundry": {
+    "deployment_ready": false,
+    "agent_name": "genesis-domain-ood"
+  },
+  "change": {
+    "reason": "Version inicial del clasificador out-of-domain."
+  }
+}

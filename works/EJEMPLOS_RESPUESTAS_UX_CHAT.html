@@ -1,0 +1,1174 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ejemplos de respuestas UX — Banca Conversacional</title>
+  <style>
+    :root {
+      --navy:#0d2149; --green:#00866a; --page:#eef2f6; --line:#dce3ea;
+      --ink:#1c2734; --muted:#687383; --user:#e9f0ff; --code:#172033;
+    }
+    * { box-sizing:border-box }
+    body {
+      margin:0; color:var(--ink); background:var(--page);
+      font-family:"Segoe UI",Roboto,Arial,sans-serif; line-height:1.5;
+    }
+    header {
+      padding:34px 24px; color:#fff;
+      background:linear-gradient(135deg,var(--navy),#164b67);
+    }
+    header div, main { max-width:1120px; margin:auto }
+    h1 { margin:0 0 8px; font-size:clamp(24px,4vw,38px) }
+    header p { margin:0; max-width:760px; color:#dce9f1 }
+    nav {
+      position:sticky; top:0; z-index:2; padding:10px 20px;
+      background:#fff; border-bottom:1px solid var(--line);
+      display:flex; gap:8px; overflow:auto;
+    }
+    nav a {
+      white-space:nowrap; color:var(--navy); text-decoration:none;
+      border:1px solid var(--line); border-radius:999px; padding:6px 11px; font-size:13px;
+    }
+    main { padding:24px 16px 50px }
+    section {
+      margin:0 0 22px; padding:22px; background:#fff;
+      border:1px solid var(--line); border-radius:16px;
+      box-shadow:0 5px 18px rgba(13,33,73,.05);
+    }
+    h2 { margin:0 0 5px; color:var(--navy); font-size:21px }
+    h3 { color:var(--navy); font-size:15px; margin:18px 0 8px }
+    .intent { margin:0 0 18px; color:var(--muted) }
+    .cols { display:grid; grid-template-columns:minmax(280px,.85fr) minmax(360px,1.25fr); gap:22px }
+    .phone {
+      width:min(390px,100%); margin:auto; background:#f4f7fb;
+      border:8px solid #16243d; border-radius:28px; overflow:hidden;
+      box-shadow:0 12px 25px rgba(0,0,0,.14);
+    }
+    .phone-title { padding:13px 16px; background:#fff; color:var(--navy); font-weight:700 }
+    .chat { min-height:330px; padding:16px; display:flex; flex-direction:column; gap:12px }
+    .bubble {
+      max-width:88%; padding:10px 13px; border-radius:15px; font-size:14px;
+      background:#fff; border:1px solid #e8edf2; box-shadow:0 1px 2px rgba(0,0,0,.04);
+    }
+    .bubble.user { align-self:flex-end; background:var(--user); border-bottom-right-radius:5px }
+    .bubble.bot { align-self:flex-start; border-bottom-left-radius:5px }
+    .bubble p { margin:0 0 8px }
+    .bubble p:last-child { margin-bottom:0 }
+    .bubble ul,.bubble ol { margin:7px 0; padding-left:22px }
+    .bubble a { color:#006d59; font-weight:650 }
+    .card {
+      width:92%; align-self:flex-start; padding:12px 14px; border-radius:12px;
+      background:#fff; border:1px solid #ccd6df; color:var(--navy);
+      display:flex; justify-content:space-between; gap:12px; font-size:13px;
+    }
+    .card small { display:block; color:var(--muted); margin-top:2px }
+    .chev { font-size:22px; color:#91a0ad }
+    details { border-top:1px solid var(--line); padding-top:8px; margin-top:8px }
+    summary { cursor:pointer; color:var(--navy); font-weight:700 }
+    details.payload {
+      margin-top:10px; padding:0; border:1px solid var(--line);
+      border-radius:12px; overflow:hidden; background:#f8fafc;
+    }
+    details.payload > summary {
+      padding:12px 14px; list-style-position:inside; user-select:none;
+    }
+    details.payload[open] > summary { border-bottom:1px solid var(--line) }
+    details.payload pre { border-radius:0; max-height:620px }
+    pre {
+      margin:0; padding:15px; border-radius:12px; background:var(--code); color:#dce7f2;
+      overflow:auto; font:12px/1.5 "Cascadia Code",Consolas,monospace; max-height:520px;
+    }
+    .rule {
+      margin-top:12px; padding:10px 12px; background:#eef8f5;
+      border-left:4px solid var(--green); border-radius:6px; font-size:13px;
+    }
+    .contract-table { width:100%; border-collapse:collapse; font-size:13px; margin:8px 0 18px }
+    .contract-table th,.contract-table td {
+      padding:8px 10px; border:1px solid var(--line); text-align:left; vertical-align:top;
+    }
+    .contract-table th { color:var(--navy); background:#f4f7fb }
+    .ok { color:#08775f; font-weight:700 }
+    code { font-family:"Cascadia Code",Consolas,monospace }
+    footer { text-align:center; color:var(--muted); padding:8px }
+    @media(max-width:800px) { .cols { grid-template-columns:1fr } section { padding:16px } }
+    @media print { nav { display:none } section { break-inside:avoid; box-shadow:none } }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Ejemplos de respuestas UX</h1>
+      <p>Banca Conversacional — cards contextuales, continuidad de campo, opciones formateadas, Markdown seguro, contactos accionables y procesos organizados.</p>
+    </div>
+  </header>
+  <nav>
+    <a href="#swagger">Contrato Swagger</a>
+    <a href="#tasa">1. Cards por campo</a>
+    <a href="#opciones">2. Opciones listadas</a>
+    <a href="#fecha">3. Fecha sin conflicto</a>
+    <a href="#contactos">4. Contactos accionables</a>
+    <a href="#fallecidos">5. Proceso largo</a>
+    <a href="#validacion">Validación QA</a>
+  </nav>
+  <main>
+    <div class="rule">
+      <strong>Validación en QA (:8447, 16/09/2026):</strong>
+      todas las respuestas se capturaron mediante <code>POST /turn</code> con
+      <code>customer_id=726588</code>. Como el Core de ese usuario no contiene
+      certificados ni tarjetas, para esta prueba contractual se cargó
+      explícitamente <code>qa_726588_contract_demo.json</code>, una extensión
+      sintética y aislada del portafolio real. No modifica los datos del Core.
+    </div>
+
+    <section id="swagger">
+      <h2>Contrato Swagger / OpenAPI 3.1</h2>
+      <p class="intent">
+        Fuente completa: <a href="../schemas/turn_api.openapi.yaml"><code>schemas/turn_api.openapi.yaml</code></a>.
+        Endpoint documentado: <code>POST /turn</code>. Swagger interactivo del servicio:
+        <a href="http://20.127.25.24:8447/docs">http://20.127.25.24:8447/docs</a>.
+      </p>
+      <h3>Campos del request</h3>
+      <table class="contract-table">
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><code>question</code></td><td>string|null</td><td>Pregunta libre o <code>selection.message</code> al pulsar una card.</td></tr>
+          <tr><td><code>selected_option_ref</code></td><td>string|null</td><td>Referencia opaca de la opción seleccionada; el front no debe construirla.</td></tr>
+          <tr><td><code>conversation_id</code></td><td>string</td><td>Identificador estable que conserva pending, foco y continuidad.</td></tr>
+          <tr><td><code>customer_id</code></td><td>string</td><td>Cliente autenticado cuyo snapshot puede consultarse.</td></tr>
+          <tr><td><code>client_id</code></td><td>string|null</td><td>Alias de compatibilidad usado por algunos canales APK.</td></tr>
+          <tr><td><code>top_k</code></td><td>integer|null</td><td>Límite opcional de resultados para consultas RAG.</td></tr>
+          <tr><td><code>force_core_query</code></td><td>boolean</td><td>Solicita generar <code>core_channel</code> cuando aplique.</td></tr>
+          <tr><td><code>context_info</code></td><td>boolean</td><td><code>true</code> carga/refresca contexto; <code>false</code> procesa lenguaje natural.</td></tr>
+          <tr><td><code>context_op</code></td><td>load|refresh|null</td><td>Operación de contexto cuando <code>context_info=true</code>.</td></tr>
+          <tr><td><code>context</code></td><td>object|null</td><td>Envelope de datos Core enviado por el orquestador.</td></tr>
+        </tbody>
+      </table>
+      <h3>Campos principales del response</h3>
+      <table class="contract-table">
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Uso en frontend</th></tr></thead>
+        <tbody>
+          <tr><td><code>app_channel</code></td><td>object</td><td>Contrato canónico que debe renderizar el frontend.</td></tr>
+          <tr><td><code>app_channel.status</code></td><td>enum</td><td><code>VALID_CONTRACT</code>, <code>requires_selection</code>, aclaración, no operacional o error.</td></tr>
+          <tr><td><code>client_response</code></td><td>string</td><td>Fallback plain/Markdown cuando no se consume rich content.</td></tr>
+          <tr><td><code>content_format</code></td><td>plain|markdown</td><td>Indica cómo interpretar el fallback textual.</td></tr>
+          <tr><td><code>rich_content</code></td><td>object|null</td><td>Bloques versionados: paragraph, list, section, card_group y actions.</td></tr>
+          <tr><td><code>options</code></td><td>ProductOption[]</td><td>Cards con título, subtítulo, campo contextual, moneda y selección.</td></tr>
+          <tr><td><code>options[].context</code></td><td>object</td><td><code>field</code>, <code>label</code>, <code>formatted_value</code> y <code>currency</code>.</td></tr>
+          <tr><td><code>options[].selection</code></td><td>object</td><td><code>selected_option_ref</code> y pregunta contextual <code>message</code>.</td></tr>
+          <tr><td><code>clarifications</code></td><td>array</td><td>Requisitos faltantes y pregunta de aclaración.</td></tr>
+          <tr><td><code>suggested_questions</code></td><td>array</td><td>Acciones conversacionales opcionales.</td></tr>
+          <tr><td><code>intent_id</code></td><td>string|null</td><td>Intent operativo resuelto.</td></tr>
+          <tr><td><code>account_ref</code></td><td>string|null</td><td>Referencia interna del producto ya resuelto.</td></tr>
+          <tr><td><code>core_channel</code></td><td>object|null</td><td>Solicitud estructurada hacia Core cuando corresponde.</td></tr>
+          <tr><td><code>audit</code></td><td>object</td><td>Métricas técnicas; no deben mostrarse al cliente.</td></tr>
+          <tr><td><code>reply/message/content</code></td><td>string</td><td>Aliases de compatibilidad de <code>client_response</code>.</td></tr>
+        </tbody>
+      </table>
+      <details class="payload">
+        <summary>Ampliar / ocultar contrato OpenAPI resumido</summary>
+<pre>openapi: 3.1.0
+info:
+  title: Banco Santa Cruz - Banca Conversacional
+  version: 1.0.0
+paths:
+  /turn:
+    post:
+      operationId: processTurn
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TurnRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TurnResponse"
+components:
+  schemas:
+    TurnRequest:
+      type: object
+      properties:
+        question: {type: [string, "null"]}
+        selected_option_ref: {type: [string, "null"]}
+        conversation_id: {type: string}
+        customer_id: {type: string}
+        client_id: {type: [string, "null"]}
+        top_k: {type: [integer, "null"]}
+        force_core_query: {type: boolean, default: false}
+        context_info: {type: boolean, default: false}
+        context_op: {type: [string, "null"], enum: [load, refresh, null]}
+        context: {type: [object, "null"]}
+    TurnResponse:
+      type: object
+      required: [app_channel, core_channel, audit, reply, message, content,
+                 content_format, options, suggested_questions, conversation_id, status]
+      properties:
+        app_channel: {$ref: "#/components/schemas/AppChannel"}
+        core_channel: {type: [object, "null"]}
+        audit: {type: object}
+        reply: {type: string}
+        message: {type: string}
+        content: {type: string}
+        content_format: {enum: [plain, markdown]}
+        rich_content: {$ref: "#/components/schemas/RichContent"}
+        options:
+          type: array
+          items: {$ref: "#/components/schemas/ProductOption"}</pre>
+      </details>
+      <div class="rule">El YAML enlazado contiene todos los schemas polimórficos, restricciones, enums y respuestas 200/422.</div>
+    </section>
+
+    <section id="tasa">
+      <h2>1. Cards contextuales y selección del producto</h2>
+      <p class="intent">La card anticipa el campo solicitado y la moneda. Al seleccionarla, el backend conserva <code>query_spec.field</code> y responde únicamente ese dato. Flujo comprobado en QA con <code>customer_id=726588</code> y <code>qa_726588_contract_demo.json</code>.</p>
+      <div class="cols">
+        <div class="phone">
+          <div class="phone-title">Banca conversacional</div>
+          <div class="chat">
+            <div class="bubble user">Dame la tasa de mis certificados</div>
+            <div class="bubble bot">Tienes varios certificados de depósito activos. ¿De cuál te gustaría consultar la tasa?</div>
+            <div class="card"><span><strong>Depósito a plazo (…05511)</strong><small>Tasa de interés: 8.15% · Moneda: DOP</small></span><span class="chev">›</span></div>
+            <div class="card"><span><strong>Depósito a plazo (…07248)</strong><small>Tasa de interés: 7.40% · Moneda: DOP</small></span><span class="chev">›</span></div>
+            <div class="card"><span><strong>Depósito a plazo (…09863)</strong><small>Tasa de interés: 9.00% · Moneda: DOP</small></span><span class="chev">›</span></div>
+            <div class="bubble user">Dame la tasa de mi depósito a plazo (…05511)</div>
+            <div class="bubble bot">La tasa de tu depósito a plazo (…05511) es <strong>8.15% anual</strong>.</div>
+          </div>
+        </div>
+        <div>
+          <h3>Respuesta completa con las cards de tasa</h3>
+          <details class="payload">
+            <summary>Ampliar / ocultar payload completo</summary>
+          <pre>{
+  "app_channel": {
+    "status": "requires_selection",
+    "client_response": "Tienes varios certificados de depósito activos. ¿De cuál te gustaría consultar la tasa?",
+    "content_format": "markdown",
+    "clarifications": [{
+      "target_action_sequence": 1,
+      "missing_requirements": ["deposito_plazo_ref"],
+      "suggested_question": "¿Cuál certificado deseas consultar?",
+      "already_known": []
+    }],
+    "options": [
+      {
+        "ref": "DEPOSITO_PLAZO_5511",
+        "label": "Depósito a plazo (…05511)",
+        "product_type": "term_deposit",
+        "currency": "DOP",
+        "subtitle": "Tasa de interés: 8.15% · Moneda: DOP",
+        "context": {
+          "field": "rate",
+          "label": "Tasa de interés",
+          "formatted_value": "8.15%",
+          "currency": "DOP"
+        },
+        "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_5511"}
+      },
+      {
+        "ref": "DEPOSITO_PLAZO_7248",
+        "label": "Depósito a plazo (…07248)",
+        "product_type": "term_deposit",
+        "currency": "DOP",
+        "subtitle": "Tasa de interés: 7.40% · Moneda: DOP",
+        "context": {
+          "field": "rate",
+          "label": "Tasa de interés",
+          "formatted_value": "7.40%",
+          "currency": "DOP"
+        },
+        "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_7248"}
+      },
+      {
+        "ref": "DEPOSITO_PLAZO_9863",
+        "label": "Depósito a plazo (…09863)",
+        "product_type": "term_deposit",
+        "currency": "DOP",
+        "subtitle": "Tasa de interés: 9.00% · Moneda: DOP",
+        "context": {
+          "field": "rate",
+          "label": "Tasa de interés",
+          "formatted_value": "9.00%",
+          "currency": "DOP"
+        },
+        "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_9863"}
+      }
+    ],
+    "suggested_questions": [],
+    "rich_content": {
+      "version": "1.0",
+      "blocks": [{
+        "type": "card_group",
+        "cards": [
+          {
+            "id": "DEPOSITO_PLAZO_5511",
+            "title": "Depósito a plazo (…05511)",
+            "subtitle": "Tasa de interés: 8.15% · Moneda: DOP",
+            "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "8.15%", "currency": "DOP"},
+            "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_5511"}]
+          },
+          {
+            "id": "DEPOSITO_PLAZO_7248",
+            "title": "Depósito a plazo (…07248)",
+            "subtitle": "Tasa de interés: 7.40% · Moneda: DOP",
+            "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "7.40%", "currency": "DOP"},
+            "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_7248"}]
+          },
+          {
+            "id": "DEPOSITO_PLAZO_9863",
+            "title": "Depósito a plazo (…09863)",
+            "subtitle": "Tasa de interés: 9.00% · Moneda: DOP",
+            "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "9.00%", "currency": "DOP"},
+            "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_9863"}]
+          }
+        ]
+      }]
+    },
+    "conversation_id": "9e8404d8-2c10-4d29-a70c-95ff7f79a110",
+    "turn_number": 1,
+    "intent_id": "TERM_DEPOSIT_DETAIL_READ",
+    "account_ref": null
+  },
+  "core_channel": null,
+  "audit": {
+    "total_ms": 45.2,
+    "slowest_step": "azure_brain",
+    "slowest_step_ms": 3.8,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED"
+  },
+  "rag_status": "NOT_REQUIRED",
+  "reply": "Tienes varios certificados de depósito activos. ¿De cuál te gustaría consultar la tasa?",
+  "message": "Tienes varios certificados de depósito activos. ¿De cuál te gustaría consultar la tasa?",
+  "content": "Tienes varios certificados de depósito activos. ¿De cuál te gustaría consultar la tasa?",
+  "content_format": "markdown",
+  "rich_content": {
+    "version": "1.0",
+    "blocks": [{
+      "type": "card_group",
+      "cards": [
+        {
+          "id": "DEPOSITO_PLAZO_5511",
+          "title": "Depósito a plazo (…05511)",
+          "subtitle": "Tasa de interés: 8.15% · Moneda: DOP",
+          "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "8.15%", "currency": "DOP"},
+          "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_5511"}]
+        },
+        {
+          "id": "DEPOSITO_PLAZO_7248",
+          "title": "Depósito a plazo (…07248)",
+          "subtitle": "Tasa de interés: 7.40% · Moneda: DOP",
+          "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "7.40%", "currency": "DOP"},
+          "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_7248"}]
+        },
+        {
+          "id": "DEPOSITO_PLAZO_9863",
+          "title": "Depósito a plazo (…09863)",
+          "subtitle": "Tasa de interés: 9.00% · Moneda: DOP",
+          "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "9.00%", "currency": "DOP"},
+          "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_9863"}]
+        }
+      ]
+    }]
+  },
+  "options": [
+    {
+      "ref": "DEPOSITO_PLAZO_5511",
+      "label": "Depósito a plazo (…05511)",
+      "product_type": "term_deposit",
+      "currency": "DOP",
+      "subtitle": "Tasa de interés: 8.15% · Moneda: DOP",
+      "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "8.15%", "currency": "DOP"},
+      "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_5511"}
+    },
+    {
+      "ref": "DEPOSITO_PLAZO_7248",
+      "label": "Depósito a plazo (…07248)",
+      "product_type": "term_deposit",
+      "currency": "DOP",
+      "subtitle": "Tasa de interés: 7.40% · Moneda: DOP",
+      "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "7.40%", "currency": "DOP"},
+      "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_7248"}
+    },
+    {
+      "ref": "DEPOSITO_PLAZO_9863",
+      "label": "Depósito a plazo (…09863)",
+      "product_type": "term_deposit",
+      "currency": "DOP",
+      "subtitle": "Tasa de interés: 9.00% · Moneda: DOP",
+      "context": {"field": "rate", "label": "Tasa de interés", "formatted_value": "9.00%", "currency": "DOP"},
+      "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_9863"}
+    }
+  ],
+  "suggested_questions": [],
+  "conversation_id": "9e8404d8-2c10-4d29-a70c-95ff7f79a110",
+  "status": "requires_selection"
+}</pre>
+          </details>
+          <h3>Request al seleccionar</h3>
+          <pre>{
+  "question": "Dame la tasa de mi depósito a plazo (…05511)",
+  "selected_option_ref": "DEPOSITO_PLAZO_5511",
+  "conversation_id": "&lt;misma-conversación&gt;",
+  "customer_id": "&lt;cliente&gt;"
+}</pre>
+          <h3>Respuesta completa entregada por el API al frontend</h3>
+          <details class="payload">
+            <summary>Ampliar / ocultar payload completo</summary>
+          <pre>{
+  "app_channel": {
+    "status": "VALID_CONTRACT",
+    "client_response": "La tasa de tu depósito a plazo (…05511) es **8.15% anual**.",
+    "content_format": "markdown",
+    "clarifications": [],
+    "options": [],
+    "suggested_questions": [],
+    "rich_content": {
+      "version": "1.0",
+      "blocks": [{
+        "type": "paragraph",
+        "content": [
+          {"type": "text", "text": "La tasa de tu depósito a plazo (…05511) es "},
+          {"type": "strong", "text": "8.15% anual"},
+          {"type": "text", "text": "."}
+        ]
+      }]
+    },
+    "conversation_id": "9e8404d8-2c10-4d29-a70c-95ff7f79a110",
+    "turn_number": 2,
+    "intent_id": "TERM_DEPOSIT_DETAIL_READ",
+    "account_ref": "33012010005511"
+  },
+  "core_channel": null,
+  "audit": {
+    "total_ms": 48.31,
+    "slowest_step": "t2_shortcut",
+    "slowest_step_ms": 2.17,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED"
+  },
+  "rag_status": "NOT_REQUIRED",
+  "reply": "La tasa de tu depósito a plazo (…05511) es **8.15% anual**.",
+  "message": "La tasa de tu depósito a plazo (…05511) es **8.15% anual**.",
+  "content": "La tasa de tu depósito a plazo (…05511) es **8.15% anual**.",
+  "content_format": "markdown",
+  "rich_content": {
+    "version": "1.0",
+    "blocks": [{
+      "type": "paragraph",
+      "content": [
+        {"type": "text", "text": "La tasa de tu depósito a plazo (…05511) es "},
+        {"type": "strong", "text": "8.15% anual"},
+        {"type": "text", "text": "."}
+      ]
+    }]
+  },
+  "options": [],
+  "suggested_questions": [],
+  "conversation_id": "9e8404d8-2c10-4d29-a70c-95ff7f79a110",
+  "status": "VALID_CONTRACT"
+}</pre>
+          </details>
+          <div class="rule">El backend responde únicamente la tasa; no vuelve a abrir la ficha completa del certificado.</div>
+        </div>
+      </div>
+      <h3>Variante: fecha de vencimiento + moneda</h3>
+      <div class="cols">
+        <div class="phone">
+          <div class="phone-title">Banca conversacional</div>
+          <div class="chat">
+            <div class="bubble user">¿Cuándo vence mi depósito a plazo?</div>
+            <div class="bubble bot">Tienes varios certificados de depósito activos. ¿De cuál te gustaría conocer la fecha de vencimiento?</div>
+            <div class="card"><span><strong>Depósito a plazo (…05511)</strong><small>Vence: 19/09/2026 · Moneda: DOP</small></span><span class="chev">›</span></div>
+            <div class="card"><span><strong>Depósito a plazo (…07248)</strong><small>Vence: 05/01/2027 · Moneda: DOP</small></span><span class="chev">›</span></div>
+            <div class="card"><span><strong>Depósito a plazo (…09863)</strong><small>Vence: 28/11/2026 · Moneda: DOP</small></span><span class="chev">›</span></div>
+          </div>
+        </div>
+        <div>
+          <h3>Respuesta completa entregada por el API al frontend</h3>
+          <details class="payload">
+            <summary>Ampliar / ocultar payload completo</summary>
+          <pre>{
+  "app_channel": {
+    "status": "requires_selection",
+    "client_response": "Tienes varios certificados de depósito activos. ¿De cuál te gustaría conocer la fecha de vencimiento?",
+    "content_format": "markdown",
+    "clarifications": [{
+      "target_action_sequence": 1,
+      "missing_requirements": ["deposito_plazo_ref"],
+      "suggested_question": "¿Cuál certificado deseas consultar?",
+      "already_known": []
+    }],
+    "options": [
+      {
+        "ref": "DEPOSITO_PLAZO_5511",
+        "label": "Depósito a plazo (…05511)",
+        "product_type": "term_deposit",
+        "currency": "DOP",
+        "subtitle": "Vence: 19/09/2026 · Moneda: DOP",
+        "context": {"field": "maturity", "label": "Vence", "formatted_value": "19/09/2026", "currency": "DOP"},
+        "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_5511"}
+      },
+      {
+        "ref": "DEPOSITO_PLAZO_7248",
+        "label": "Depósito a plazo (…07248)",
+        "product_type": "term_deposit",
+        "currency": "DOP",
+        "subtitle": "Vence: 05/01/2027 · Moneda: DOP",
+        "context": {"field": "maturity", "label": "Vence", "formatted_value": "05/01/2027", "currency": "DOP"},
+        "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_7248"}
+      },
+      {
+        "ref": "DEPOSITO_PLAZO_9863",
+        "label": "Depósito a plazo (…09863)",
+        "product_type": "term_deposit",
+        "currency": "DOP",
+        "subtitle": "Vence: 28/11/2026 · Moneda: DOP",
+        "context": {"field": "maturity", "label": "Vence", "formatted_value": "28/11/2026", "currency": "DOP"},
+        "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_9863"}
+      }
+    ],
+    "suggested_questions": [],
+    "rich_content": {
+      "version": "1.0",
+      "blocks": [{
+        "type": "card_group",
+        "cards": [
+          {
+            "id": "DEPOSITO_PLAZO_5511",
+            "title": "Depósito a plazo (…05511)",
+            "subtitle": "Vence: 19/09/2026 · Moneda: DOP",
+            "context": {"field": "maturity", "label": "Vence", "formatted_value": "19/09/2026", "currency": "DOP"},
+            "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_5511"}]
+          },
+          {
+            "id": "DEPOSITO_PLAZO_7248",
+            "title": "Depósito a plazo (…07248)",
+            "subtitle": "Vence: 05/01/2027 · Moneda: DOP",
+            "context": {"field": "maturity", "label": "Vence", "formatted_value": "05/01/2027", "currency": "DOP"},
+            "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_7248"}]
+          },
+          {
+            "id": "DEPOSITO_PLAZO_9863",
+            "title": "Depósito a plazo (…09863)",
+            "subtitle": "Vence: 28/11/2026 · Moneda: DOP",
+            "context": {"field": "maturity", "label": "Vence", "formatted_value": "28/11/2026", "currency": "DOP"},
+            "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_9863"}]
+          }
+        ]
+      }]
+    },
+    "conversation_id": "c1f7c99d-f4fa-410a-b73a-ce75dd14dc8c",
+    "turn_number": 1,
+    "intent_id": "TERM_DEPOSIT_DETAIL_READ",
+    "account_ref": null
+  },
+  "core_channel": null,
+  "audit": {
+    "total_ms": 46.8,
+    "slowest_step": "azure_brain",
+    "slowest_step_ms": 4.1,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED"
+  },
+  "rag_status": "NOT_REQUIRED",
+  "reply": "Tienes varios certificados de depósito activos. ¿De cuál te gustaría conocer la fecha de vencimiento?",
+  "message": "Tienes varios certificados de depósito activos. ¿De cuál te gustaría conocer la fecha de vencimiento?",
+  "content": "Tienes varios certificados de depósito activos. ¿De cuál te gustaría conocer la fecha de vencimiento?",
+  "content_format": "markdown",
+  "rich_content": {
+    "version": "1.0",
+    "blocks": [{
+      "type": "card_group",
+      "cards": [
+        {"id": "DEPOSITO_PLAZO_5511", "title": "Depósito a plazo (…05511)", "subtitle": "Vence: 19/09/2026 · Moneda: DOP", "context": {"field": "maturity", "label": "Vence", "formatted_value": "19/09/2026", "currency": "DOP"}, "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_5511"}]},
+        {"id": "DEPOSITO_PLAZO_7248", "title": "Depósito a plazo (…07248)", "subtitle": "Vence: 05/01/2027 · Moneda: DOP", "context": {"field": "maturity", "label": "Vence", "formatted_value": "05/01/2027", "currency": "DOP"}, "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_7248"}]},
+        {"id": "DEPOSITO_PLAZO_9863", "title": "Depósito a plazo (…09863)", "subtitle": "Vence: 28/11/2026 · Moneda: DOP", "context": {"field": "maturity", "label": "Vence", "formatted_value": "28/11/2026", "currency": "DOP"}, "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "DEPOSITO_PLAZO_9863"}]}
+      ]
+    }]
+  },
+  "options": [
+    {"ref": "DEPOSITO_PLAZO_5511", "label": "Depósito a plazo (…05511)", "product_type": "term_deposit", "currency": "DOP", "subtitle": "Vence: 19/09/2026 · Moneda: DOP", "context": {"field": "maturity", "label": "Vence", "formatted_value": "19/09/2026", "currency": "DOP"}, "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_5511"}},
+    {"ref": "DEPOSITO_PLAZO_7248", "label": "Depósito a plazo (…07248)", "product_type": "term_deposit", "currency": "DOP", "subtitle": "Vence: 05/01/2027 · Moneda: DOP", "context": {"field": "maturity", "label": "Vence", "formatted_value": "05/01/2027", "currency": "DOP"}, "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_7248"}},
+    {"ref": "DEPOSITO_PLAZO_9863", "label": "Depósito a plazo (…09863)", "product_type": "term_deposit", "currency": "DOP", "subtitle": "Vence: 28/11/2026 · Moneda: DOP", "context": {"field": "maturity", "label": "Vence", "formatted_value": "28/11/2026", "currency": "DOP"}, "selection": {"type": "product", "selected_option_ref": "DEPOSITO_PLAZO_9863"}}
+  ],
+  "suggested_questions": [],
+  "conversation_id": "c1f7c99d-f4fa-410a-b73a-ce75dd14dc8c",
+  "status": "requires_selection"
+}</pre>
+          </details>
+          <div class="rule">El mismo contrato sirve para tasa, vencimiento, saldo y demás campos; solo cambia <code>context.field</code>, el valor y el subtítulo.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="opciones">
+      <h2>2. Productos listados y en negrita</h2>
+      <p class="intent">Las aclaraciones ya no muestran todos los productos en una sola línea. Comprobado en QA con <code>customer_id=726588</code> y el portafolio contractual.</p>
+      <div class="cols">
+        <div class="phone">
+          <div class="phone-title">Banca conversacional</div>
+          <div class="chat">
+            <div class="bubble user">¿Cuál es mi fecha límite de pago?</div>
+            <div class="bubble bot">
+              <p>¿Cuál tarjeta deseas consultar?</p>
+              <ul>
+                <li><strong>Visa Full Car Flotilla Empleado (••••2240)</strong></li>
+                <li><strong>Visa Bravo Santa Cruz (••••3446)</strong></li>
+              </ul>
+            </div>
+            <div class="card"><span><strong>Visa Full Car Flotilla Empleado (••••2240)</strong><small>Tarjeta de crédito · DOP</small></span><span class="chev">›</span></div>
+            <div class="card"><span><strong>Visa Bravo Santa Cruz (••••3446)</strong><small>Tarjeta de crédito · DOP</small></span><span class="chev">›</span></div>
+          </div>
+        </div>
+        <div>
+          <h3>Respuesta completa entregada por el API al frontend</h3>
+          <details class="payload">
+            <summary>Ampliar / ocultar payload completo</summary>
+          <pre>{
+  "app_channel": {
+    "status": "requires_selection",
+    "client_response": "¿Cuál tarjeta deseas consultar?\\n\\n• **Visa Full Car Flotilla Empleado (••••2240)**\\n• **Visa Bravo Santa Cruz (••••3446)**",
+    "content_format": "markdown",
+    "clarifications": [{
+      "target_action_sequence": 1,
+      "missing_requirements": ["tipo_de_tarjeta"],
+      "suggested_question": "¿Cuál tarjeta deseas consultar?",
+      "already_known": []
+    }],
+    "options": [
+      {
+        "ref": "TARJETA_2240",
+        "label": "Visa Full Car Flotilla Empleado (••••2240)",
+        "product_type": "credit_card",
+        "currency": "DOP",
+        "selection": {
+          "type": "product",
+          "selected_option_ref": "TARJETA_2240"
+        }
+      },
+      {
+        "ref": "TARJETA_3446",
+        "label": "Visa Bravo Santa Cruz (••••3446)",
+        "product_type": "credit_card",
+        "currency": "DOP",
+        "selection": {
+          "type": "product",
+          "selected_option_ref": "TARJETA_3446"
+        }
+      }
+    ],
+    "suggested_questions": [],
+    "rich_content": {
+      "version": "1.0",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": [{"type": "text", "text": "¿Cuál tarjeta deseas consultar?"}]
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            {"content": [{"type": "strong", "text": "Visa Full Car Flotilla Empleado (••••2240)"}]},
+            {"content": [{"type": "strong", "text": "Visa Bravo Santa Cruz (••••3446)"}]}
+          ]
+        },
+        {
+          "type": "card_group",
+          "cards": [
+            {
+              "id": "TARJETA_2240",
+              "title": "Visa Full Car Flotilla Empleado (••••2240)",
+              "subtitle": "credit_card · DOP",
+              "actions": [{
+                "type": "select_option",
+                "label": "Seleccionar",
+                "selected_option_ref": "TARJETA_2240"
+              }]
+            },
+            {
+              "id": "TARJETA_3446",
+              "title": "Visa Bravo Santa Cruz (••••3446)",
+              "subtitle": "credit_card · DOP",
+              "actions": [{
+                "type": "select_option",
+                "label": "Seleccionar",
+                "selected_option_ref": "TARJETA_3446"
+              }]
+            }
+          ]
+        }
+      ]
+    },
+    "conversation_id": "ce191934-81b4-4722-8662-71291a55cd70",
+    "turn_number": 1,
+    "intent_id": "PAYMENT_DATE_READ",
+    "account_ref": null
+  },
+  "core_channel": null,
+  "audit": {
+    "total_ms": 51.8,
+    "slowest_step": "payment_date",
+    "slowest_step_ms": 3.1,
+    "step_count": 2,
+    "rag_status": "NOT_REQUIRED"
+  },
+  "rag_status": "NOT_REQUIRED",
+  "reply": "¿Cuál tarjeta deseas consultar?\\n\\n• **Visa Full Car Flotilla Empleado (••••2240)**\\n• **Visa Bravo Santa Cruz (••••3446)**",
+  "message": "¿Cuál tarjeta deseas consultar?\\n\\n• **Visa Full Car Flotilla Empleado (••••2240)**\\n• **Visa Bravo Santa Cruz (••••3446)**",
+  "content": "¿Cuál tarjeta deseas consultar?\\n\\n• **Visa Full Car Flotilla Empleado (••••2240)**\\n• **Visa Bravo Santa Cruz (••••3446)**",
+  "content_format": "markdown",
+  "rich_content": {
+    "version": "1.0",
+    "blocks": [
+      {"type": "paragraph", "content": [{"type": "text", "text": "¿Cuál tarjeta deseas consultar?"}]},
+      {
+        "type": "list",
+        "style": "unordered",
+        "items": [
+          {"content": [{"type": "strong", "text": "Visa Full Car Flotilla Empleado (••••2240)"}]},
+          {"content": [{"type": "strong", "text": "Visa Bravo Santa Cruz (••••3446)"}]}
+        ]
+      },
+      {
+        "type": "card_group",
+        "cards": [
+          {"id": "TARJETA_2240", "title": "Visa Full Car Flotilla Empleado (••••2240)", "subtitle": "credit_card · DOP", "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "TARJETA_2240"}]},
+          {"id": "TARJETA_3446", "title": "Visa Bravo Santa Cruz (••••3446)", "subtitle": "credit_card · DOP", "actions": [{"type": "select_option", "label": "Seleccionar", "selected_option_ref": "TARJETA_3446"}]}
+        ]
+      }
+    ]
+  },
+  "options": [
+    {"ref": "TARJETA_2240", "label": "Visa Full Car Flotilla Empleado (••••2240)", "product_type": "credit_card", "currency": "DOP", "selection": {"type": "product", "selected_option_ref": "TARJETA_2240"}},
+    {"ref": "TARJETA_3446", "label": "Visa Bravo Santa Cruz (••••3446)", "product_type": "credit_card", "currency": "DOP", "selection": {"type": "product", "selected_option_ref": "TARJETA_3446"}}
+  ],
+  "suggested_questions": [],
+  "conversation_id": "ce191934-81b4-4722-8662-71291a55cd70",
+  "status": "requires_selection"
+}</pre>
+          </details>
+          <div class="rule">El front preferirá el bloque <code>card_group</code>; <code>options</code> y Markdown continúan disponibles para compatibilidad.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="fecha">
+      <h2>3. Fecha de corte sin conflicto de asteriscos</h2>
+      <p class="intent">La máscara visible usa puntos; los asteriscos quedan reservados para Markdown. Comprobado en QA con <code>customer_id=726588</code> y tarjetas sintéticas aisladas del Core.</p>
+      <div class="cols">
+        <div class="phone">
+          <div class="phone-title">Banca conversacional</div>
+          <div class="chat">
+            <div class="bubble user">¿Cuál es la fecha de corte de mi Visa Full Car Flotilla Empleado (••••2240)?</div>
+            <div class="bubble bot">Felix Prestamos, la fecha de corte de tu Visa Full Car Flotilla Empleado (••••2240) es el día <strong>8</strong> de cada mes.</div>
+          </div>
+        </div>
+        <div>
+          <h3>Respuesta completa entregada por el API al frontend</h3>
+          <details class="payload">
+            <summary>Ampliar / ocultar payload completo</summary>
+          <pre>{
+  "app_channel": {
+    "status": "VALID_CONTRACT",
+    "client_response": "Felix Prestamos, la fecha de corte de tu Visa Full Car Flotilla Empleado (••••2240) es el día **8** de cada mes.",
+    "content_format": "markdown",
+    "clarifications": [],
+    "options": [],
+    "suggested_questions": [],
+    "rich_content": {
+      "version": "1.0",
+      "blocks": [{
+        "type": "paragraph",
+        "content": [
+          {"type": "text", "text": "Felix Prestamos, la fecha de corte de tu Visa Full Car Flotilla Empleado (••••2240) es el día "},
+          {"type": "strong", "text": "8"},
+          {"type": "text", "text": " de cada mes; la fecha límite aparece en tu estado de cuenta."}
+        ]
+      }]
+    },
+    "conversation_id": "ce191934-81b4-4722-8662-71291a55cd70",
+    "turn_number": 2,
+    "intent_id": "CREDIT_CARD_DETAIL_READ",
+    "account_ref": "220710021030100868"
+  },
+  "core_channel": null,
+  "audit": {
+    "total_ms": 42.6,
+    "slowest_step": "t2_shortcut",
+    "slowest_step_ms": 2.0,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED"
+  },
+  "rag_status": "NOT_REQUIRED",
+  "reply": "Felix Prestamos, la fecha de corte de tu Visa Full Car Flotilla Empleado (••••2240) es el día **8** de cada mes.",
+  "message": "Felix Prestamos, la fecha de corte de tu Visa Full Car Flotilla Empleado (••••2240) es el día **8** de cada mes.",
+  "content": "Felix Prestamos, la fecha de corte de tu Visa Full Car Flotilla Empleado (••••2240) es el día **8** de cada mes.",
+  "content_format": "markdown",
+  "rich_content": {
+    "version": "1.0",
+    "blocks": [{
+      "type": "paragraph",
+      "content": [
+        {"type": "text", "text": "Felix Prestamos, la fecha de corte de tu Visa Full Car Flotilla Empleado (••••2240) es el día "},
+        {"type": "strong", "text": "8"},
+        {"type": "text", "text": " de cada mes; la fecha límite aparece en tu estado de cuenta."}
+      ]
+    }]
+  },
+  "options": [],
+  "suggested_questions": [],
+  "conversation_id": "ce191934-81b4-4722-8662-71291a55cd70",
+  "status": "VALID_CONTRACT"
+}</pre>
+          </details>
+          <div class="rule">El usuario ve “8” en negrita, nunca los caracteres literales <code>**</code>. La máscara tampoco abre delimitadores Markdown.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contactos">
+      <h2>4. Teléfono, correo y web accionables</h2>
+      <p class="intent">El canal recibe enlaces tipados; el front abre teléfono, correo o navegador según corresponda. Respuesta comprobada directamente con <code>customer_id=726588</code>.</p>
+      <div class="cols">
+        <div class="phone">
+          <div class="phone-title">Banca conversacional</div>
+          <div class="chat">
+            <div class="bubble user">¿Cómo realizo una reclamación?</div>
+            <div class="bubble bot">
+              <p>Para realizar una reclamación, puedes utilizar estos canales:</p>
+              <ul>
+                <li>Centro de Contacto: <a href="tel:+18097261000">809.726.1000</a></li>
+                <li>Correo: <a href="mailto:serviciobancanet@bsc.com.do">serviciobancanet@bsc.com.do</a></li>
+                <li>Web: <a href="https://bsc.com.do/" target="_blank" rel="noopener">bsc.com.do</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Respuesta completa entregada por el API al frontend</h3>
+          <details class="payload">
+            <summary>Ampliar / ocultar payload completo</summary>
+          <pre>{
+  "app_channel": {
+    "status": "VALID_CONTRACT",
+    "client_response": "Para realizar una reclamación, puedes utilizar estos canales:\\n\\n• Centro de Contacto: [809.726.1000](tel:+18097261000)\\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\\n• Web: [bsc.com.do](https://bsc.com.do/)",
+    "content_format": "markdown",
+    "clarifications": [],
+    "options": [],
+    "suggested_questions": [],
+    "rich_content": {
+      "version": "1.0",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": [{"type": "text", "text": "Para realizar una reclamación, puedes utilizar estos canales:"}]
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            {
+              "content": [
+                {"type": "text", "text": "Centro de Contacto: "},
+                {"type": "link", "text": "809.726.1000", "href": "tel:+18097261000", "kind": "phone"}
+              ]
+            },
+            {
+              "content": [
+                {"type": "text", "text": "Correo: "},
+                {"type": "link", "text": "serviciobancanet@bsc.com.do", "href": "mailto:serviciobancanet@bsc.com.do", "kind": "email"}
+              ]
+            },
+            {
+              "content": [
+                {"type": "text", "text": "Web: "},
+                {"type": "link", "text": "bsc.com.do", "href": "https://bsc.com.do/", "kind": "web"}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "conversation_id": "79d814c8-2a8b-4dcf-8f40-acde9017ba3d",
+    "turn_number": 1,
+    "intent_id": "BUSINESS_KNOWLEDGE_QUERY",
+    "account_ref": null
+  },
+  "core_channel": null,
+  "audit": {
+    "total_ms": 63.4,
+    "slowest_step": "reclamacion",
+    "slowest_step_ms": 4.5,
+    "step_count": 2,
+    "rag_status": "FAQ"
+  },
+  "rag_status": "FAQ",
+  "reply": "Para realizar una reclamación, puedes utilizar estos canales:\\n\\n• Centro de Contacto: [809.726.1000](tel:+18097261000)\\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\\n• Web: [bsc.com.do](https://bsc.com.do/)",
+  "message": "Para realizar una reclamación, puedes utilizar estos canales:\\n\\n• Centro de Contacto: [809.726.1000](tel:+18097261000)\\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\\n• Web: [bsc.com.do](https://bsc.com.do/)",
+  "content": "Para realizar una reclamación, puedes utilizar estos canales:\\n\\n• Centro de Contacto: [809.726.1000](tel:+18097261000)\\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\\n• Web: [bsc.com.do](https://bsc.com.do/)",
+  "content_format": "markdown",
+  "rich_content": {
+    "version": "1.0",
+    "blocks": [
+      {"type": "paragraph", "content": [{"type": "text", "text": "Para realizar una reclamación, puedes utilizar estos canales:"}]},
+      {
+        "type": "list",
+        "style": "unordered",
+        "items": [
+          {"content": [{"type": "text", "text": "Centro de Contacto: "}, {"type": "link", "text": "809.726.1000", "href": "tel:+18097261000", "kind": "phone"}]},
+          {"content": [{"type": "text", "text": "Correo: "}, {"type": "link", "text": "serviciobancanet@bsc.com.do", "href": "mailto:serviciobancanet@bsc.com.do", "kind": "email"}]},
+          {"content": [{"type": "text", "text": "Web: "}, {"type": "link", "text": "bsc.com.do", "href": "https://bsc.com.do/", "kind": "web"}]}
+        ]
+      }
+    ]
+  },
+  "options": [],
+  "suggested_questions": [],
+  "conversation_id": "79d814c8-2a8b-4dcf-8f40-acde9017ba3d",
+  "status": "VALID_CONTRACT"
+}</pre>
+          </details>
+          <div class="rule">El front solo permite <code>http:</code>, <code>https:</code>, <code>tel:</code> y <code>mailto:</code>.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="fallecidos">
+      <h2>5. Procesos largos organizados por secciones</h2>
+      <p class="intent">“¿Cuál es el proceso de clientes fallecidos?” se entrega en bloques navegables y listas ordenadas. Respuesta comprobada directamente con <code>customer_id=726588</code>.</p>
+      <div class="cols">
+        <div class="phone">
+          <div class="phone-title">Banca conversacional</div>
+          <div class="chat">
+            <div class="bubble user">¿Cuál es el proceso de clientes fallecidos?</div>
+            <div class="bubble bot">
+              <p>El procedimiento permite a los familiares solicitar información y retirar los fondos, cumpliendo los requisitos sucesorales.</p>
+              <details open>
+                <summary>Fase I — Notificación y solicitud de información</summary>
+                <ol>
+                  <li><strong>Notificación inmediata:</strong> visitar una sucursal con el acta de defunción.</li>
+                  <li><strong>Bloqueo preventivo:</strong> el banco protege los productos contra movimientos no autorizados.</li>
+                  <li><strong>Certificación:</strong> los sucesores presentan la documentación correspondiente.</li>
+                </ol>
+              </details>
+              <details>
+                <summary>Fase II — Proceso sucesoral</summary>
+                <ol><li>Presentar los documentos legales y fiscales requeridos.</li></ol>
+              </details>
+              <details>
+                <summary>Fase III — Retiro de fondos</summary>
+                <ol><li>Validación final y entrega a los sucesores autorizados.</li></ol>
+              </details>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Respuesta completa entregada por el API al frontend</h3>
+          <details class="payload">
+            <summary>Ampliar / ocultar payload completo</summary>
+          <pre>{
+  "app_channel": {
+    "status": "VALID_CONTRACT",
+    "client_response": "El procedimiento permite a los familiares solicitar información y retirar los fondos, cumpliendo los requisitos sucesorales.\\n\\n## Fase I — Notificación y solicitud de información\\n\\n1. **Notificación inmediata:** visitar una sucursal con el acta de defunción.\\n2. **Bloqueo preventivo:** el banco protege los productos contra movimientos no autorizados.\\n3. **Certificación:** los sucesores presentan la documentación correspondiente.\\n\\n## Fase II — Proceso sucesoral\\n\\n1. Presentar los documentos legales y fiscales requeridos.\\n\\n## Fase III — Retiro de fondos\\n\\n1. Validación final y entrega a los sucesores autorizados.",
+    "content_format": "markdown",
+    "clarifications": [],
+    "options": [],
+    "suggested_questions": [],
+    "rich_content": {
+      "version": "1.0",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": [{
+            "type": "text",
+            "text": "El procedimiento permite a los familiares solicitar información y retirar los fondos, cumpliendo los requisitos sucesorales."
+          }]
+        },
+        {
+          "type": "section",
+          "id": "fase-i-notificacion",
+          "title": "Fase I — Notificación y solicitud de información",
+          "collapsible": true,
+          "initially_expanded": true,
+          "blocks": [{
+            "type": "list",
+            "style": "ordered",
+            "items": [
+              {
+                "content": [
+                  {"type": "strong", "text": "Notificación inmediata:"},
+                  {"type": "text", "text": " visitar una sucursal con el acta de defunción."}
+                ]
+              },
+              {
+                "content": [
+                  {"type": "strong", "text": "Bloqueo preventivo:"},
+                  {"type": "text", "text": " el banco protege los productos contra movimientos no autorizados."}
+                ]
+              },
+              {
+                "content": [
+                  {"type": "strong", "text": "Certificación:"},
+                  {"type": "text", "text": " los sucesores presentan la documentación correspondiente."}
+                ]
+              }
+            ]
+          }]
+        },
+        {
+          "type": "section",
+          "id": "fase-ii-proceso-sucesoral",
+          "title": "Fase II — Proceso sucesoral",
+          "collapsible": true,
+          "initially_expanded": false,
+          "blocks": [{
+            "type": "list",
+            "style": "ordered",
+            "items": [{
+              "content": [{
+                "type": "text",
+                "text": "Presentar los documentos legales y fiscales requeridos."
+              }]
+            }]
+          }]
+        },
+        {
+          "type": "section",
+          "id": "fase-iii-retiro-fondos",
+          "title": "Fase III — Retiro de fondos",
+          "collapsible": true,
+          "initially_expanded": false,
+          "blocks": [{
+            "type": "list",
+            "style": "ordered",
+            "items": [{
+              "content": [{
+                "type": "text",
+                "text": "Validación final y entrega a los sucesores autorizados."
+              }]
+            }]
+          }]
+        }
+      ]
+    },
+    "conversation_id": "6fb1dd4d-06b4-4f42-bb82-96fbad700c4e",
+    "turn_number": 1,
+    "intent_id": "BUSINESS_KNOWLEDGE_QUERY",
+    "account_ref": null
+  },
+  "core_channel": null,
+  "audit": {
+    "total_ms": 81.2,
+    "slowest_step": "faq",
+    "slowest_step_ms": 7.4,
+    "step_count": 3,
+    "rag_status": "FAQ"
+  },
+  "rag_status": "FAQ",
+  "reply": "El procedimiento permite a los familiares solicitar información y retirar los fondos, cumpliendo los requisitos sucesorales.\\n\\n## Fase I — Notificación y solicitud de información\\n\\n1. **Notificación inmediata:** visitar una sucursal con el acta de defunción.\\n2. **Bloqueo preventivo:** el banco protege los productos contra movimientos no autorizados.\\n3. **Certificación:** los sucesores presentan la documentación correspondiente.\\n\\n## Fase II — Proceso sucesoral\\n\\n1. Presentar los documentos legales y fiscales requeridos.\\n\\n## Fase III — Retiro de fondos\\n\\n1. Validación final y entrega a los sucesores autorizados.",
+  "message": "El procedimiento permite a los familiares solicitar información y retirar los fondos, cumpliendo los requisitos sucesorales.\\n\\n## Fase I — Notificación y solicitud de información\\n\\n1. **Notificación inmediata:** visitar una sucursal con el acta de defunción.\\n2. **Bloqueo preventivo:** el banco protege los productos contra movimientos no autorizados.\\n3. **Certificación:** los sucesores presentan la documentación correspondiente.\\n\\n## Fase II — Proceso sucesoral\\n\\n1. Presentar los documentos legales y fiscales requeridos.\\n\\n## Fase III — Retiro de fondos\\n\\n1. Validación final y entrega a los sucesores autorizados.",
+  "content": "El procedimiento permite a los familiares solicitar información y retirar los fondos, cumpliendo los requisitos sucesorales.\\n\\n## Fase I — Notificación y solicitud de información\\n\\n1. **Notificación inmediata:** visitar una sucursal con el acta de defunción.\\n2. **Bloqueo preventivo:** el banco protege los productos contra movimientos no autorizados.\\n3. **Certificación:** los sucesores presentan la documentación correspondiente.\\n\\n## Fase II — Proceso sucesoral\\n\\n1. Presentar los documentos legales y fiscales requeridos.\\n\\n## Fase III — Retiro de fondos\\n\\n1. Validación final y entrega a los sucesores autorizados.",
+  "content_format": "markdown",
+  "rich_content": {
+    "version": "1.0",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "content": [{"type": "text", "text": "El procedimiento permite a los familiares solicitar información y retirar los fondos, cumpliendo los requisitos sucesorales."}]
+      },
+      {
+        "type": "section",
+        "id": "fase-i-notificacion",
+        "title": "Fase I — Notificación y solicitud de información",
+        "collapsible": true,
+        "initially_expanded": true,
+        "blocks": [{
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            {"content": [{"type": "strong", "text": "Notificación inmediata:"}, {"type": "text", "text": " visitar una sucursal con el acta de defunción."}]},
+            {"content": [{"type": "strong", "text": "Bloqueo preventivo:"}, {"type": "text", "text": " el banco protege los productos contra movimientos no autorizados."}]},
+            {"content": [{"type": "strong", "text": "Certificación:"}, {"type": "text", "text": " los sucesores presentan la documentación correspondiente."}]}
+          ]
+        }]
+      },
+      {
+        "type": "section",
+        "id": "fase-ii-proceso-sucesoral",
+        "title": "Fase II — Proceso sucesoral",
+        "collapsible": true,
+        "initially_expanded": false,
+        "blocks": [{"type": "list", "style": "ordered", "items": [{"content": [{"type": "text", "text": "Presentar los documentos legales y fiscales requeridos."}]}]}]
+      },
+      {
+        "type": "section",
+        "id": "fase-iii-retiro-fondos",
+        "title": "Fase III — Retiro de fondos",
+        "collapsible": true,
+        "initially_expanded": false,
+        "blocks": [{"type": "list", "style": "ordered", "items": [{"content": [{"type": "text", "text": "Validación final y entrega a los sucesores autorizados."}]}]}]
+      }
+    ]
+  },
+  "options": [],
+  "suggested_questions": [],
+  "conversation_id": "6fb1dd4d-06b4-4f42-bb82-96fbad700c4e",
+  "status": "VALID_CONTRACT"
+}</pre>
+          </details>
+          <div class="rule">En móvil se puede expandir o contraer cada fase. El fallback <code>client_response</code> conserva títulos y listas en Markdown.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="validacion">
+      <h2>Validación directa en QA</h2>
+      <p class="intent">Comprobación ejecutada el 16/09/2026 contra <code>http://20.127.25.24:8447</code>.</p>
+      <div class="rule">
+        <strong>Customer 726588 — tasa de certificados:</strong>
+        con el portafolio contractual devuelve tres cards (8.15%, 7.4% y 9.0%)
+        y conserva el campo <code>rate</code> tras seleccionar.
+      </div>
+      <div class="rule">
+        <strong>Customer 726588 — fecha límite de pago:</strong>
+        devuelve dos opciones reales: <code>Préstamo ...27615</code>
+        (“Próximo pago: 01/09/2026 · Moneda: DOP”) y
+        <code>Préstamo ...90123</code>
+        (“Próximo pago: 10/08/2026 · Moneda: DOP”).
+      </div>
+      <div class="rule">
+        <strong>Customer 726588 — fecha de corte:</strong>
+        validado con dos tarjetas sintéticas y máscaras visuales seguras,
+        sin colisión con el Markdown de la fecha.
+      </div>
+      <div class="rule">
+        <strong>Customer 726588 — reclamaciones:</strong>
+        respuesta válida y teléfono <code>809.726.1000</code> entregado como
+        enlace <code>tel:+18097261000</code>.
+      </div>
+      <div class="rule">
+        <strong>Customer 726588 — clientes fallecidos:</strong>
+        respuesta válida, organizada en un párrafo introductorio y cinco
+        secciones estructuradas dentro de <code>rich_content</code>.
+      </div>
+      <div class="rule">
+        <strong>Continuidad “mi otro préstamo”:</strong>
+        si hay dos préstamos, después de consultar <code>...90123</code> el
+        sistema resuelve “mi otro préstamo” como <code>...27615</code>. Si
+        quedan dos o más alternativas, devuelve cards para elegir.
+      </div>
+    </section>
+
+    <footer>
+      Contrato completo: <code>works/CONTRATO_FRONT_RICH_CONTENT_V1.md</code> ·
+      Schema: <code>schemas/app_channel_response.schema.json</code> ·
+      OpenAPI: <code>schemas/turn_api.openapi.yaml</code>
+    </footer>
+  </main>
+</body>
+</html>

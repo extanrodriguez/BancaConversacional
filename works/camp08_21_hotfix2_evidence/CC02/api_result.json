@@ -1,0 +1,85 @@
+{
+  "case_id": "CC02",
+  "section": 20,
+  "questions": [
+    "Compárame Visa Platinum y Visa Infinite.",
+    "¿Qué tienen diferente?",
+    "¿Y cuál es la diferencia en sus características?",
+    "Ahora agrega Visa Gold a la comparación.",
+    "De las tres, háblame únicamente de la segunda."
+  ],
+  "http": [
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "ms": [
+    929,
+    849,
+    781,
+    1078,
+    535
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Seleccionaste **Visa Infinite** (posición 2 del conjunto vigente).\nRespecto de Tarjeta de Crédito Visa Infinite: Exclusión del programa Puntos Santa Cruz: no participan las tarjetas de débito ni las transacciones como avances de efectivo, cargos, seguros o consumos no autorizados. La participación, categorías y vencimientos deben consultarse en las condiciones vigentes del programa.",
+  "replies_sanitized": [
+    "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Platinum: instrumento de pago que permite realizar pagos o consumos en establecimientos afiliados sin efectivo, con características y condiciones de uso de tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Tarjetas de Crédito.\n2. **Visa Infinite** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Infinite: diseñada para satisfacer requisitos y necesidades de un segmento selecto; permite pagos y consumos con características propias de Infinite. Condiciones y beneficios según ficha y sitio web de Tarjetas de Crédito.\n\nDiferencias por atributos equivalentes:\n- **segmento / público**: **Visa Infinite** → «y necesidades de un segmento selecto; permite pagos y consumos con características propias de Infinite. Condic»; en la ficha recuperada de **Visa Platinum** no aparece este atributo.\n- **requisitos**: **Visa Infinite** → «ada para satisfacer requisitos y necesidades de un segmento selecto; permite pagos y consumos con característi»; en la ficha recuperada de **Visa Platinum** no aparece este atributo.\n- **beneficios**: **Visa Platinum** → «tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Ta»; **Visa Infinite** → «nite. Condiciones y beneficios según ficha y sitio web de Tarjetas de Crédito.».\nPuedes pedir «la segunda» del conjunto vigente o agregar otro producto.",
+    "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Platinum: instrumento de pago que permite realizar pagos o consumos en establecimientos afiliados sin efectivo, con características y condiciones de uso de tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Tarjetas de Crédito.\n2. **Visa Infinite** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Infinite: diseñada para satisfacer requisitos y necesidades de un segmento selecto; permite pagos y consumos con características propias de Infinite. Condiciones y beneficios según ficha y sitio web de Tarjetas de Crédito.\n\nDiferencias por atributos equivalentes:\n- **segmento / público**: **Visa Infinite** → «y necesidades de un segmento selecto; permite pagos y consumos con características propias de Infinite. Condic»; en la ficha recuperada de **Visa Platinum** no aparece este atributo.\n- **requisitos**: **Visa Infinite** → «ada para satisfacer requisitos y necesidades de un segmento selecto; permite pagos y consumos con característi»; en la ficha recuperada de **Visa Platinum** no aparece este atributo.\n- **beneficios**: **Visa Platinum** → «tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Ta»; **Visa Infinite** → «nite. Condiciones y beneficios según ficha y sitio web de Tarjetas de Crédito.».\nPuedes pedir «la segunda» del conjunto vigente o agregar otro producto.",
+    "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Platinum: instrumento de pago que permite realizar pagos o consumos en establecimientos afiliados sin efectivo, con características y condiciones de uso de tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Tarjetas de Crédito.\n2. **Visa Infinite** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Infinite: diseñada para satisfacer requisitos y necesidades de un segmento selecto; permite pagos y consumos con características propias de Infinite. Condiciones y beneficios según ficha y sitio web de Tarjetas de Crédito.\n\nDiferencias por atributos equivalentes:\n- **segmento / público**: **Visa Infinite** → «y necesidades de un segmento selecto; permite pagos y consumos con características propias de Infinite. Condic»; en la ficha recuperada de **Visa Platinum** no aparece este atributo.\n- **requisitos**: **Visa Infinite** → «ada para satisfacer requisitos y necesidades de un segmento selecto; permite pagos y consumos con característi»; en la ficha recuperada de **Visa Platinum** no aparece este atributo.\n- **beneficios**: **Visa Platinum** → «tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Ta»; **Visa Infinite** → «nite. Condiciones y beneficios según ficha y sitio web de Tarjetas de Crédito.».\nPuedes pedir «la segunda» del conjunto vigente o agregar otro producto.",
+    "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Platinum: instrumento de pago que permite realizar pagos o consumos en establecimientos afiliados sin efectivo, con características y condiciones de uso de tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Tarjetas de Crédito.\n2. **Visa Infinite** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Infinite: diseñada para satisfacer requisitos y necesidades de un segmento selecto; permite pagos y consumos con características propias de Infinite. Condiciones y beneficios según ficha y sitio web de Tarjetas de Crédito.\n3. **Visa Gold** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Gold: permite simplificar pagos de forma segura y flexible, con características de respaldar necesidades de manera confiable. Detalle en el sitio web de Tarjetas de Crédito.\n\nDiferencias por atributos equivalentes:\n- **segmento / público**: **Visa Infinite** → «y necesidades de un segmento selecto; permite pagos y consumos con características propias de Infinite. Condic»; en la ficha recuperada de **Visa Platinum** no aparece este atributo.\n- **requisitos**: **Visa Infinite** → «ada para satisfacer requisitos y necesidades de un segmento selecto; permite pagos y consumos con característi»; en la ficha recuperada de **Visa Platinum** no aparece este atributo.\n- **beneficios**: **Visa Platinum** → «tarjetas Platinum y beneficios exclusivos documentados en el catálogo. Detalle adicional en el sitio web de Ta»; **Visa Infinite** → «nite. Condiciones y beneficios según ficha y sitio web de Tarjetas de Crédito.».\n- El conjunto incluye también: **Visa Gold**.\nPuedes pedir «la segunda» del conjunto vigente o agregar otro producto.",
+    "Seleccionaste **Visa Infinite** (posición 2 del conjunto vigente).\nRespecto de Tarjeta de Crédito Visa Infinite: Exclusión del programa Puntos Santa Cruz: no participan las tarjetas de débito ni las transacciones como avances de efectivo, cargos, seguros o consumos no autorizados. La participación, categorías y vencimientos deben consultarse en las condiciones vigentes del programa."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "FAIL",
+  "reason": "baja cobertura de la pregunta",
+  "audit": {
+    "total_ms": 308,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 308,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "f525dd9f-97fb-4d29-8a4a-0cf7658f4af8",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_compare_ordinal",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "available"
+          },
+          "evidence_sources": [
+            "azure_search"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "selection",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 304.9
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 308
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_MULTI"
+}

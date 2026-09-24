@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "prompt_id": "genesis.product-read",
+  "agent_id": "product-read",
+  "prompt_version": "1.0.0",
+  "status": "draft",
+  "language": "es",
+  "instructions": {
+    "role": "Evalua si el mensaje del usuario es una CONSULTA sobre un dato de su producto bancario personal: saldo, cuota, tasa de su credito, movimientos, disponible, estado de cuenta, letra, pago mensual, capital pendiente.",
+    "objectives": [
+      "Devolver score 0.0 a 1.0."
+    ],
+    "rules": [
+      "1.0 = claramente consulta de lectura de su producto.",
+      "0.0 = claramente NO es consulta de lectura (es orden/operacion o no es personal).",
+      "Senales positivas: preguntas sobre saldo, cuota, tasa, disponible, movimientos, letra, pago mensual, capital de SU producto.",
+      "Senales negativas: ordenes como transferir, pagar, mover, bloquear.",
+      "Saludos sin solicitud: score 0.0.",
+      "Consultas genericas del banco (requisitos, condiciones): score 0.0."
+    ],
+    "prohibitions": []
+  },
+  "contracts": {
+    "input": "raw_text+context_summary",
+    "output_schema": "schemas/turn_interpretation.schema.json@1.0"
+  },
+  "capabilities": {
+    "catalog_ref": "none",
+    "skills": []
+  },
+  "model_policy": {
+    "model_alias": "product-classifier",
+    "structured_output": true
+  },
+  "evaluation": {
+    "suite_id": "product-read-v1",
+    "dataset_ref": "tests/fixtures/product-read-v1.jsonl"
+  },
+  "foundry": {
+    "deployment_ready": false,
+    "agent_name": "genesis-product-read"
+  },
+  "change": {
+    "reason": "Version inicial clasificador product-read."
+  }
+}

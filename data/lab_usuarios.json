@@ -1,0 +1,95 @@
+{
+  "usuarios": [
+    {
+      "customer_id": "TEST-QA-001",
+      "document_type": "cedula",
+      "document_id": "40200812345",
+      "label": "TEST-QA-001 — Andres David (script curl)",
+      "portfolio": "qa_andres_david.json"
+    },
+    {
+      "customer_id": "323677",
+      "document_type": "cedula",
+      "document_id": "323677",
+      "label": "323677 — Felix Prestamos (contrato orch context_info)",
+      "portfolio": "orch_felix_prestamos.json"
+    },
+    {
+      "customer_id": "726588",
+      "document_type": "cedula",
+      "document_id": "726588",
+      "label": "726588 — customerId ejemplo WS Genesis (lab rico: tasa/DAP/tarjeta joven)",
+      "portfolio": "qa_726588_contract_demo.json"
+    },
+    {
+      "customer_id": "CUST_LOCAL",
+      "document_type": "cedula",
+      "document_id": "00100000001",
+      "label": "Cliente Core real",
+      "portfolio": "core_real_sample.json"
+    },
+    {
+      "customer_id": "ANA",
+      "document_type": "cedula",
+      "document_id": "00111111111",
+      "label": "Ana — cuenta única",
+      "portfolio": "mvp_cuenta_unica.json"
+    },
+    {
+      "customer_id": "CARLOS",
+      "document_type": "cedula",
+      "document_id": "00122222222",
+      "label": "Carlos — ahorros y corriente",
+      "portfolio": "mvp_cuentas_multi.json"
+    },
+    {
+      "customer_id": "LUCIA",
+      "document_type": "cedula",
+      "document_id": "00133333333",
+      "label": "Lucía — cuenta USD",
+      "portfolio": "mvp_cuenta_usd.json"
+    },
+    {
+      "customer_id": "MARIO",
+      "document_type": "cedula",
+      "document_id": "00144444444",
+      "label": "Mario — un préstamo",
+      "portfolio": "mvp_prestamo_unico.json"
+    },
+    {
+      "customer_id": "SOFIA",
+      "document_type": "cedula",
+      "document_id": "00155555555",
+      "label": "Sofía — varios préstamos",
+      "portfolio": "mvp_prestamos_tipos.json"
+    },
+    {
+      "customer_id": "PEDRO",
+      "document_type": "cedula",
+      "document_id": "00166666666",
+      "label": "Pedro — una tarjeta",
+      "portfolio": "mvp_tarjeta_unica.json"
+    },
+    {
+      "customer_id": "ELENA",
+      "document_type": "cedula",
+      "document_id": "00177777777",
+      "label": "Elena — dos tarjetas",
+      "portfolio": "mvp_tarjetas_multi.json"
+    },
+    {
+      "customer_id": "ROSA",
+      "document_type": "cedula",
+      "document_id": "00188888888",
+      "label": "Rosa — depósito a plazo",
+      "portfolio": "mvp_dap_unico.json"
+    },
+    {
+      "customer_id": "IVAN",
+      "document_type": "cedula",
+      "document_id": "00199999999",
+      "label": "Iván — sin préstamos",
+      "portfolio": "mvp_sin_prestamos.json"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+faq_id,tema,frases_del_cliente,respuesta_que_debe_dar_el_bot,no_debe,prioridad
+FAQ-MISION-01,mision_vision,"CUAL ES LA MISION DEL BANCO? | dime la mision y la vision | mision y vision",Texto oficial de Misión y Visión juntos si preguntan ambas,No inventar misión; no mezclar con productos personales,P0
+FAQ-DAP-01,certificado_deposito,"que es un certificado de deposito? | que es un DAP? | que es deposito a plazo?",Definición: producto de inversión/ahorro a plazo del banco,No dar el saldo del certificado del cliente; no confundir con préstamo con garantía de certificado,P0
+FAQ-CORTE-01,tarjeta_conceptos,"que es la fecha de corte? | diferencia entre fecha de corte y fecha limite de pago",Explicar corte ≠ límite de pago como conceptos,No decir que son lo mismo; no dar la fecha personal del cliente salvo que pregunte por la suya,P0

@@ -1,0 +1,60 @@
+{
+  "case_id": "TC16",
+  "section": 11,
+  "questions": [
+    "¿Qué es una tarjeta adicional y quién es responsable de sus consumos?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    1291
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, Consumo: Es la adquisición de bienes, donaciones, pago de servicios o avance de efectivo, mediante el uso de: a) las tarjetas de crédito, b) del crédito diferido, (Cuotas BSC/ Multicrédito BSC) o c) Tarjeta de Débito.",
+  "replies_sanitized": [
+    "Felix Prestamos, Consumo: Es la adquisición de bienes, donaciones, pago de servicios o avance de efectivo, mediante el uso de: a) las tarjetas de crédito, b) del crédito diferido, (Cuotas BSC/ Multicrédito BSC) o c) Tarjeta de Débito."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 95,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 95,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "b14f7dc5-2c36-454b-a481-55e5df2197ae",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 89.9
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 95
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

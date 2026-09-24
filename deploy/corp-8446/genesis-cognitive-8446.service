@@ -1,0 +1,18 @@
+[Unit]
+Description=Genesis Cognitive API - Isolated 8446
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=genesis
+WorkingDirectory=/opt/genesis-cognitive-8446/Genesis_v2
+Environment=GENESIS_PORT=8446
+Environment=GENESIS_SERVE_UI=false
+EnvironmentFile=/opt/genesis-cognitive-8446/Genesis_v2/.env
+ExecStart=/opt/genesis-cognitive-8446/Genesis_v2/.venv/bin/python scripts/run_contract_inspector.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

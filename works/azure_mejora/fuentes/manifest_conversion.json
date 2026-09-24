@@ -1,0 +1,22 @@
+{
+  "source": "C:\\Users\\zeusa\\Downloads\\Base de Conocimiento IA VF01.xlsx",
+  "source_hash": "9896f2a08f5d40f2730ba0a1acd3abd4ec49c5a22b63be7f6d46c9faa0ed336a",
+  "options_fingerprint": "3997eaadd98dd3505a33da3ef978f36afb2364ade47c936725e69bb3c727d156",
+  "options": {
+    "operation": "excel_to_md",
+    "excel": {
+      "include_hidden_sheets": true,
+      "infer_numbers": false,
+      "max_cells_per_sheet": 500000
+    }
+  },
+  "operation": "excel_to_md",
+  "status": "SUCCEEDED",
+  "output_file": "Base_de_Conocimiento_IA_VF01.MD",
+  "images": [],
+  "warnings": [
+    "Los valores almacenados de fórmulas pueden estar desactualizados; no se recalcularon."
+  ],
+  "errors": [],
+  "generated_at": "2026-09-19T22:37:45Z"
+}

@@ -1,0 +1,84 @@
+{
+  "count": 9,
+  "cases": [
+    {
+      "case_id": "P01",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey3_card_fields_and_dap_exclusion",
+      "also": "tests/unit/test_casos_adicionales_v3.py::V3-05 (relacionado)",
+      "checks": [
+        "Turno 1 multi-campo con 2 tarjetas → aclaración / pending_tasks",
+        "Turno 2 con entidad → deuda (3200) y disponible (15000) en respuesta"
+      ]
+    },
+    {
+      "case_id": "P15",
+      "test": "tests/unit/test_casos_adicionales_v3.py::test_p15_full_certificates_exclusion_journey",
+      "also": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey3_card_fields_and_dap_exclusion (rama DAP)",
+      "checks": [
+        "Tasas 8 y 9 presentes",
+        "Vence primero 2030-01-15",
+        "Sin capital/balance 10000/20000",
+        "Sin mención tarjeta en prosa"
+      ]
+    },
+    {
+      "case_id": "CD13",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_cd13_min_payment_not_personal_selection",
+      "checks": [
+        "Respuesta contiene pago mínimo / definición",
+        "No queda solo como CLARIFICATION de tarjetas personales"
+      ]
+    },
+    {
+      "case_id": "MIX07",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey4_catalog_existence_and_compare_set",
+      "checks": [
+        "Tras foco multicrédito, «¿Tengo yo ese producto?» no devuelve saldo 8000 de cuenta",
+        "Menciona tarjeta/servicio/portafolio"
+      ]
+    },
+    {
+      "case_id": "CC02",
+      "test": "tests/unit/test_casos_adicionales_v3.py::test_cc02_cc03_catalog_compare_ordered_add_and_ordinal",
+      "checks": [
+        "Compara Platinum + Infinite sin saldo personal",
+        "compare_set ordenado [platinum, infinite]"
+      ]
+    },
+    {
+      "case_id": "CC03",
+      "test": "tests/unit/test_casos_adicionales_v3.py::test_cc02_cc03_catalog_compare_ordered_add_and_ordinal",
+      "checks": [
+        "Agrega Gold → compare_set de 3",
+        "«la segunda» resuelve Infinite"
+      ]
+    },
+    {
+      "case_id": "X05",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey5_secrets_scrubbed_and_ownership",
+      "also": "tests/unit/test_cognitive_improvement_v3.py::test_auth_secret_blocks_product_digits",
+      "checks": [
+        "Historial sin dígitos del PIN",
+        "Respuesta de seguridad; no ficha de producto por sufijo"
+      ]
+    },
+    {
+      "case_id": "X07",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_journey5_secrets_scrubbed_and_ownership",
+      "also": "tests/unit/test_cognitive_improvement_v3.py::test_third_party_spouse_is_security",
+      "checks": [
+        "No devuelve saldo propio ante consulta del esposo",
+        "Mensaje de titularidad/autorización"
+      ]
+    },
+    {
+      "case_id": "IG01",
+      "test": "tests/unit/test_cierre_cognitivo_v3_1.py::test_mission_and_vision_both",
+      "also": "tests/unit/test_cognitive_improvement_v3.py::test_mision_after_loan_focus_hits_faq",
+      "checks": [
+        "«misión y visión» contiene ambos conceptos",
+        "Tras foco préstamo, misión no cae a clarificación genérica"
+      ]
+    }
+  ]
+}

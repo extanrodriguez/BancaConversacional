@@ -1,0 +1,68 @@
+{
+  "case_id": "MIX01",
+  "section": 18,
+  "questions": [
+    "¿Qué es una fecha límite de pago?",
+    "Ahora dime cuál es la fecha límite de pago de mi tarjeta."
+  ],
+  "http": [
+    200,
+    200
+  ],
+  "ms": [
+    294,
+    218
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuál tarjeta deseas consultar:\n\n• **Visa Full Car Flotilla Empleado (••••####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**",
+  "replies_sanitized": [
+    "Felix Prestamos, Fecha límite de pago: Es el último día que tiene el TARJETAHABIENTE TITULAR para realizar el pago mínimo, parcial o total de las sumas adeudadas, reflejadas en el estado de cuenta.",
+    "¿Cuál tarjeta deseas consultar:\n\n• **Visa Full Car Flotilla Empleado (••••####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**"
+  ],
+  "options_count": 3,
+  "options_labels": [
+    "Visa Full Car Flotilla Empleado (••••####)",
+    "Tarjeta Joven (••••####)",
+    "Multicredito Empleado (••••####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 5,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 5,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "558ddcd2-5b70-47fb-ad4d-8188bd7e17d7",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:payment_date",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "payment_date",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 0.8
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 5
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CREDIT_CARD_DETAIL_READ"
+}

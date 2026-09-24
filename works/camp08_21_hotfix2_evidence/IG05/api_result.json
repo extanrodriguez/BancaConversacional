@@ -1,0 +1,60 @@
+{
+  "case_id": "IG05",
+  "section": 9,
+  "questions": [
+    "¿Qué es un documento digital y qué relación tiene con una firma digital?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    292
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, Firma digital: Es el valor numérico que se adhiere a un mensaje de datos y que, utilizando un procedimiento matemático conocido, vinculado a la clave del iniciador y al texto del mensaje, permite determinar que eseste valor ha sido obtenido exclusivamente con la clave del iniciador y el texto del mensaje, y que el mensaje inicial no ha sido modificado después de efectuada la transmisión.",
+  "replies_sanitized": [
+    "Felix Prestamos, Firma digital: Es el valor numérico que se adhiere a un mensaje de datos y que, utilizando un procedimiento matemático conocido, vinculado a la clave del iniciador y al texto del mensaje, permite determinar que eseste valor ha sido obtenido exclusivamente con la clave del iniciador y el texto del mensaje, y que el mensaje inicial no ha sido modificado después de efectuada la transmisión."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PASS_RESOLVED",
+  "reason": "definición con cobertura léxica",
+  "audit": {
+    "total_ms": 102,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 102,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "d1743a67-5504-4de0-80f8-00eea5291575",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 96.9
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 102
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

@@ -1,0 +1,4 @@
+fail_id,fecha,frase_exacta_del_usuario,que_respondio_el_bot,que_debia_responder,gravedad,comentario
+F-001,2026-09-14,"Cuanto es mi proxima cuota?","…la próxima fecha de pago… es 2026-08-25","Monto de la cuota o aviso de que el monto no está disponible","bloqueante","Confundió cuánto con cuándo"
+F-002,2026-09-14,"Cuanto debo en mis tarjetas de debito y cual de ellas tiene mas credito disponible?","¿Quieres consultar: Credito Joven 6374 o Multicredito 7111?","No listar crédito como débito; explicar débito no consultable o preguntar si quiso crédito; si es crédito resumir todas","bloqueante","Pidió débito y además no debía forzar elección"
+F-003,2026-09-14,"Tengo algun prestamo o tarjeta con un pago proximo?","Ficha del Certificado de Depósito 5511","Listar préstamo(s) y tarjeta(s) con fecha de pago/corte","bloqueante","Se pegó al DAP de la sesión anterior"

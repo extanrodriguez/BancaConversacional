@@ -1,0 +1,2180 @@
+{
+  "counts": {
+    "RESUELTO": 17,
+    "BLOQUEADO": 6,
+    "PARCIAL": 121,
+    "FALLA": 92
+  },
+  "cases": [
+    {
+      "case_id": "P01",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "PASS_CLARIFICATION_EXPECTED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P01_turno_01.png",
+          "sha256": "e8f492a369d1f2daab6cfb7f607a84215964ac690f5cacca03fe96eeb6dcec6c",
+          "turn": 1
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P01_full.png",
+          "sha256": "e8f492a369d1f2daab6cfb7f607a84215964ac690f5cacca03fe96eeb6dcec6c",
+          "turn": "full"
+        }
+      ]
+    },
+    {
+      "case_id": "P02",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "PASS_CLARIFICATION_EXPECTED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P02_turno_01.png",
+          "sha256": "2011d85eab4c646e6db48fff0a5ad3c16a42423688c7cb830eabe0b35cc00476",
+          "turn": 1
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P02_full.png",
+          "sha256": "2011d85eab4c646e6db48fff0a5ad3c16a42423688c7cb830eabe0b35cc00476",
+          "turn": "full"
+        }
+      ]
+    },
+    {
+      "case_id": "P03",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P03_full.png",
+          "sha256": "dd353b6536f4ab111b30632583710098b223be59b2103a45a1860e6b3f4e2b94"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P03_turno_01.png",
+          "sha256": "dd353b6536f4ab111b30632583710098b223be59b2103a45a1860e6b3f4e2b94"
+        }
+      ]
+    },
+    {
+      "case_id": "P04",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P04_full.png",
+          "sha256": "0fca5e2794b1b1038819ad090dd5ac5e967be9acf7e6c13ad04379c5c0bfa135"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P04_turno_01.png",
+          "sha256": "0fca5e2794b1b1038819ad090dd5ac5e967be9acf7e6c13ad04379c5c0bfa135"
+        }
+      ]
+    },
+    {
+      "case_id": "P05",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "PASS_CLARIFICATION_EXPECTED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P05_full.png",
+          "sha256": "90b72e95c38f3c5345f4ed7589eb328dce4209f11025fc97535be8bb79ae7981"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P05_turno_01.png",
+          "sha256": "90b72e95c38f3c5345f4ed7589eb328dce4209f11025fc97535be8bb79ae7981"
+        }
+      ]
+    },
+    {
+      "case_id": "P06",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "BLOCKED_DEPENDENCY",
+      "fix_status": "BLOQUEADO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P06_full.png",
+          "sha256": "9ed6e412607f71b16bfe00773a41222f79f581d391e686315b4eda5fa6bca524"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P06_turno_01.png",
+          "sha256": "9ed6e412607f71b16bfe00773a41222f79f581d391e686315b4eda5fa6bca524"
+        }
+      ]
+    },
+    {
+      "case_id": "P07",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "BLOCKED_DEPENDENCY",
+      "fix_status": "BLOQUEADO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P07_full.png",
+          "sha256": "3ede1d6671bed4f852f17c3d18c27bb446e63c34cf46b8cbeacf7a94a0d7a5fa"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P07_turno_01.png",
+          "sha256": "3ede1d6671bed4f852f17c3d18c27bb446e63c34cf46b8cbeacf7a94a0d7a5fa"
+        }
+      ]
+    },
+    {
+      "case_id": "P08",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P08_full.png",
+          "sha256": "b00a92cf4cf79f9492f416c82c250274f4ade0cccaadee3f275483fd1c5ade32"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P08_turno_01.png",
+          "sha256": "b00a92cf4cf79f9492f416c82c250274f4ade0cccaadee3f275483fd1c5ade32"
+        }
+      ]
+    },
+    {
+      "case_id": "P09",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P09_full.png",
+          "sha256": "d83242bb19df8d64eff0ac5d858d04f7d8f1d9ef97086bf55d369ad03b01ad9d"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P09_turno_01.png",
+          "sha256": "2c7a2d179bb62d1b3e1fb96c8726a210cbf9445c2ee0fa9cf418214a008793cf"
+        }
+      ]
+    },
+    {
+      "case_id": "P10",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PASS_CLARIFICATION_EXPECTED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P10_full.png",
+          "sha256": "593415d86b249b8443d5f8f6c889c92da310341669ef2c396499b71e74ab014c"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P10_turno_01.png",
+          "sha256": "825b25e3a89ceb7cdc07fdcccc82cb815370bb5b5ac7cde109cc3b2209552434"
+        }
+      ]
+    },
+    {
+      "case_id": "P11",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PASS_CLARIFICATION_EXPECTED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P11_full.png",
+          "sha256": "7c7acbfed3b7a7573858d5abf457b568b0e16a2904ed87441696bf35aec1d2f2"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P11_turno_01.png",
+          "sha256": "a6cc1ce00943847f2739f20a609ec827be9aa0d6d4cf1163d303da29b3d722f7"
+        }
+      ]
+    },
+    {
+      "case_id": "P12",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P12_turno_01.png",
+          "sha256": "08db58d5fd9e8568135d2ad2f322d590146dc0887a1b7be9c56e98decdf58a12",
+          "turn": 1
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P12_full.png",
+          "sha256": "08db58d5fd9e8568135d2ad2f322d590146dc0887a1b7be9c56e98decdf58a12",
+          "turn": "full"
+        }
+      ]
+    },
+    {
+      "case_id": "P13",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P13_full.png",
+          "sha256": "83f7b3f7db61ace502e03f8b22246cc6423e9e6ae9a3e4e63c80becb1750c616"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P13_turno_01.png",
+          "sha256": "83f7b3f7db61ace502e03f8b22246cc6423e9e6ae9a3e4e63c80becb1750c616"
+        }
+      ]
+    },
+    {
+      "case_id": "P14",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P14_full.png",
+          "sha256": "98f1c65c82c75c3eed6e843a484c616df98f8eb6085349d86e6e4ad10ff6bc2f"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P14_turno_01.png",
+          "sha256": "1a691eeb4cf43b8472149ac07aabbb35ec103bcb4b874df9d8fdb4b798a4ea0d"
+        }
+      ]
+    },
+    {
+      "case_id": "P15",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PASS_CLARIFICATION_EXPECTED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P15_full.png",
+          "sha256": "6b162621ce55b8cb60f0432d831225100bf398ebef25f0f76071fbec34f7f685"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/P15_turno_01.png",
+          "sha256": "6b162621ce55b8cb60f0432d831225100bf398ebef25f0f76071fbec34f7f685"
+        }
+      ]
+    },
+    {
+      "case_id": "C01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "C02",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "C03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "C04",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "C05",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "C06",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "C07",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "C08",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D01",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D02",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D03",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D04",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D05",
+      "historical": "Cumple parcialmente. Detecta parte de la necesidad, pero la desambiguación no es consistente o se ejecuta información antes de confirmar el referente.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D06",
+      "historical": "Cumple parcialmente. Detecta parte de la necesidad, pero la desambiguación no es consistente o se ejecuta información antes de confirmar el referente.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D07",
+      "historical": "Cumple parcialmente. Detecta parte de la necesidad, pero la desambiguación no es consistente o se ejecuta información antes de confirmar el referente.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D08",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_STATE",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D09",
+      "historical": "Cumple parcialmente. Detecta parte de la necesidad, pero la desambiguación no es consistente o se ejecuta información antes de confirmar el referente.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "D10",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "R01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "R02",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "PENDING_EVALUATION",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "R03",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "R04",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_CLARIFICATION_EXPECTED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X02",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X04",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X05",
+      "historical": "No cumple. La evidencia muestra que un dato sensible (PIN/código temporal) puede ser interpretado como identificador de producto, lo que constituye una falla de clasificación y seguridad.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X06",
+      "historical": "No cumple. La evidencia muestra que un dato sensible (PIN/código temporal) puede ser interpretado como identificador de producto, lo que constituye una falla de clasificación y seguridad.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X07",
+      "historical": "No cumple. La solicitud involucra información de un tercero y la respuesta no aplica de forma robusta el control de privacidad esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X08",
+      "historical": "Cumple parcialmente. La respuesta conserva parte del control esperado, pero requiere reforzar el manejo seguro y la clasificación previa de datos sensibles o instrucciones adversariales.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X09",
+      "historical": "Cumple parcialmente. La respuesta conserva parte del control esperado, pero requiere reforzar el manejo seguro y la clasificación previa de datos sensibles o instrucciones adversariales.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "X10",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG01",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/IG01_turno_01.png",
+          "sha256": "59fcf1b49f67885538a203e5c6b3612e754a721adddf96f3265091fad12e412e",
+          "turn": 1
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/IG01_full.png",
+          "sha256": "59fcf1b49f67885538a203e5c6b3612e754a721adddf96f3265091fad12e412e",
+          "turn": "full"
+        }
+      ]
+    },
+    {
+      "case_id": "IG02",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG04",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG05",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG06",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG07",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG08",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG09",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "BLOCKED_DEPENDENCY",
+      "fix_status": "BLOQUEADO",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG10",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "BLOCKED_DEPENDENCY",
+      "fix_status": "BLOQUEADO",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG11",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "BLOCKED_DEPENDENCY",
+      "fix_status": "BLOQUEADO",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG12",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG13",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG14",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG15",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG16",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG17",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG18",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG19",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "IG20",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD02",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD03",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD04",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD05",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD06",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD07",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD08",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD09",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD10",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD11",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD12",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD13",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD14",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD15",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD16",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD17",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD18",
+      "historical": "No cumple. La consulta de Crédito Diferido/Multicrédito se enruta a otra intención o producto, o la respuesta no recupera la información específica solicitada.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD19",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CD20",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC02",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/TC03_full.png",
+          "sha256": "8073c21d0fe7122f8951050c25f2b71b98abaf6f4bc4213a829d7b7c28ba8e5e"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/TC03_turno_01.png",
+          "sha256": "8073c21d0fe7122f8951050c25f2b71b98abaf6f4bc4213a829d7b7c28ba8e5e"
+        }
+      ]
+    },
+    {
+      "case_id": "TC04",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC05",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC06",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC07",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC08",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC09",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC10",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC11",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC12",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC13",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC14",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC15",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TC16",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TD01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TD02",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TD03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TD04",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TD05",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TD06",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TD07",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "TD08",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR02",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR04",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR05",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR06",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR07",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR08",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR09",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR10",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR11",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR12",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR13",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR14",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "BLOCKED_DEPENDENCY",
+      "fix_status": "BLOQUEADO",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "PR15",
+      "historical": "Cumple parcialmente. Identifica la intención principal, pero no resuelve de forma completa todas las subintenciones o requiere pasos adicionales para completar la solicitud.",
+      "api_status": "FAIL_RETRIEVAL",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CE01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CE02",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CE03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CE04",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CE05",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CE06",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CE07",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CE08",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_RETRIEVAL",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR01",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR02",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "FAIL_RETRIEVAL",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/GR03_full.png",
+          "sha256": "4e7ea02ace583e68359be94ee1a37bc805f30c490988d9e86d06822688a23c9f"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/GR03_turno_01.png",
+          "sha256": "51bf637bbab915e60423eecadb386699098c7a3286e526b8a8366bf95eb097db"
+        }
+      ]
+    },
+    {
+      "case_id": "GR04",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR05",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR06",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR07",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR08",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR09",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/GR09_full.png",
+          "sha256": "441a012458a110468d3c19231ae8c73f2d8c79baf00a8c727514e57aa989b8ed"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/GR09_turno_01.png",
+          "sha256": "3dce8e07ee10efd723b4b024cf13b603fdfb8e5af49d9b9ce8b4883d62ce067b"
+        }
+      ]
+    },
+    {
+      "case_id": "GR10",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_RETRIEVAL",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR11",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "GR12",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_RETRIEVAL",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX01",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX02",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX03",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX04",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_STATE",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX05",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_STATE",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX06",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX07",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX08",
+      "historical": "No cumple. La respuesta observada no satisface el criterio definido para esta prueba y requiere ajuste de intención, contexto o recuperación de información.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CTX09",
+      "historical": "Cumple parcialmente. La respuesta contiene información útil, pero presenta omisiones, mezcla de atributos o pérdida parcial del contexto esperado.",
+      "api_status": "FAIL_RETRIEVAL",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA01",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA02",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA03",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_RETRIEVAL",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA04",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA05",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA06",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA07",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA08",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA09",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "DA10",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "MIX01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_CLARIFICATION_EXPECTED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "MIX02",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "MIX03",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "MIX04",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "MIX05",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "MIX06",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "MIX07",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX07_full.png",
+          "sha256": "1afd82b654ae1c0d30e167c348b660b002ffdb6c30cfc3f9396e05d6eb065a2e"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX07_turno_01.png",
+          "sha256": "2d5a53b8ff6d624e7ac6d8c2e4ac0816aec48e3dfee121902e2f3bef956eecc9"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX07_turno_02.png",
+          "sha256": "1afd82b654ae1c0d30e167c348b660b002ffdb6c30cfc3f9396e05d6eb065a2e"
+        }
+      ]
+    },
+    {
+      "case_id": "MIX08",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "MIX09",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX09_turno_01.png",
+          "sha256": "fa41837de4ce73559ae051402220f5ddb16ac656ccf493671004355813d52070",
+          "turn": 1
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX09_turno_02.png",
+          "sha256": "b8581b8fa1b707ad147ea6e4fccd668f1b2d129ca385fb8fdb852db221373aa1",
+          "turn": 2
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX09_full.png",
+          "sha256": "c8f1e6e995c2274682401a261db728ef7ae6c441c8f93ce8b23a577ba09b8458",
+          "turn": "full"
+        }
+      ]
+    },
+    {
+      "case_id": "MIX10",
+      "historical": "No cumple. La respuesta omite una o más subintenciones, cambia de producto o no consolida en una sola respuesta todos los datos solicitados.",
+      "api_status": "FAIL_STATE",
+      "fix_status": "FALLA",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX10_turno_01.png",
+          "sha256": "e6d4b37dde46e1c0ef7ef050371d02fb2073221c9a59cf6154fa299271cd2ed9",
+          "turn": 1
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX10_turno_02.png",
+          "sha256": "5e5ad6f41bad4fe4630ba2c1def5bcc966c628d5ab289322c5f1506b646a6920",
+          "turn": 2
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/MIX10_full.png",
+          "sha256": "02bf42ffe051674f7c87eedced9ecf26098c5f3d4c9e2438501494fba006f16f",
+          "turn": "full"
+        }
+      ]
+    },
+    {
+      "case_id": "CMP01",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP02",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP03",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP04",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP05",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP06",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP07",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP08",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP09",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP10",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP11",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP12",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP13",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP14",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP15",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP16",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP17",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP18",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP19",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP20",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP21",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP22",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP23",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP24",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP25",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP26",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP27",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP28",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP29",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP30",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP31",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP32",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP33",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP34",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP35",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP36",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP37",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP38",
+      "historical": "Cumple. La evidencia muestra que la IA identifica la intención y responde de forma consistente con el criterio de la prueba.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP39",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP40",
+      "historical": "No cumple. La IA no logra comparar de forma consistente los productos solicitados o pierde referencias como “primero”, “segundo”, “otra” o “anterior”.",
+      "api_status": "PARTIAL_CAPABILITY",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP41",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP42",
+      "historical": "No cumple. La IA no logra comparar de forma consistente los productos solicitados o pierde referencias como “primero”, “segundo”, “otra” o “anterior”.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP43",
+      "historical": "No cumple. La IA no logra comparar de forma consistente los productos solicitados o pierde referencias como “primero”, “segundo”, “otra” o “anterior”.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP44",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP45",
+      "historical": "No cumple. La IA no logra comparar de forma consistente los productos solicitados o pierde referencias como “primero”, “segundo”, “otra” o “anterior”.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP46",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP47",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CMP48",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CC01",
+      "historical": "Cumple parcialmente. Recupera información de los productos, pero la comparación o la referencia entre productos no se mantiene de forma consistente.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CC02",
+      "historical": "No cumple. La IA no logra comparar de forma consistente los productos solicitados o pierde referencias como “primero”, “segundo”, “otra” o “anterior”.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "RESUELTO",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC02_turno_01.png",
+          "sha256": "0c35a27bdd72cff0350d172c3e618cf237edbb6e7ef04d556af45b6a3917733e",
+          "turn": 1
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC02_turno_02.png",
+          "sha256": "8452801b40f24a78da8f890e698f4394bf3b0391fc9c48beef8212648854e123",
+          "turn": 2
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC02_turno_03.png",
+          "sha256": "892e1eda710dc7337fedcd9825b5af74450f4fca1a21dd2c90c1f5e485c83570",
+          "turn": 3
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC02_turno_04.png",
+          "sha256": "2448145024f6c7d5b3cfe87f5c28dcceb4ee303830127acee22e680e501e38bd",
+          "turn": 4
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC02_turno_05.png",
+          "sha256": "0f5a11e6a90481917198de5aa22c7f4e82feef2872a673ff00bc5d4efc2eefc7",
+          "turn": 5
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC02_full.png",
+          "sha256": "c6c7489be6057613ce06bb1f5e5f064b410a70874e6169e12e159b3b96f09072",
+          "turn": "full"
+        }
+      ]
+    },
+    {
+      "case_id": "CC03",
+      "historical": "No cumple. La IA no logra comparar de forma consistente los productos solicitados o pierde referencias como “primero”, “segundo”, “otra” o “anterior”.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": true,
+      "shots": [
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC03_full.png",
+          "sha256": "57330857745b2f321bece02be8acbad689fee55a414f1daa843c331d7de7eed2"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC03_turno_01.png",
+          "sha256": "5ce95b30f7fe5346cfbb4f8f3a75e137b2107250e0ad960104480566340e3ae7"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC03_turno_02.png",
+          "sha256": "e70ba017e91b01bbd8ed908fb0aa6df1f96c506cbd8c56f603bf0ed590352261"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC03_turno_03.png",
+          "sha256": "66f658ba8fef0f5b470f408ccff6c6c4ac60fd754a5c7402ad35eff9bb76fdc1"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC03_turno_04.png",
+          "sha256": "305f832031b943cd5de900c274c31197b8c5b93868b6fc75383ffc30ee3ec720"
+        },
+        {
+          "path": "images/fix/20260921T103100Z_postdeploy_ui/CC03_turno_05.png",
+          "sha256": "407a43ed88282f3f63971b283eefc57fe0a1df071e9becc5fe0711d83be337ff"
+        }
+      ]
+    },
+    {
+      "case_id": "CC04",
+      "historical": "No cumple. La IA no logra comparar de forma consistente los productos solicitados o pierde referencias como “primero”, “segundo”, “otra” o “anterior”.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CC05",
+      "historical": "No cumple. La IA no logra comparar de forma consistente los productos solicitados o pierde referencias como “primero”, “segundo”, “otra” o “anterior”.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CA01",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_GROUNDING",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CA02",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CA03",
+      "historical": "Cumple parcialmente. Detecta parte de la necesidad, pero la desambiguación no es consistente o se ejecuta información antes de confirmar el referente.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CA04",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CA05",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CA06",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "PASS_RESOLVED",
+      "fix_status": "PARCIAL",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CA07",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    },
+    {
+      "case_id": "CA08",
+      "historical": "No cumple. La IA asume un producto o intención en lugar de solicitar la aclaración mínima necesaria antes de responder o ejecutar una consulta.",
+      "api_status": "FAIL_INTERPRETATION",
+      "fix_status": "FALLA",
+      "has_capture": false,
+      "shots": []
+    }
+  ],
+  "api_run": "20260921T105853Z_4f3d3488",
+  "ui_run": "20260921T103100Z_postdeploy_ui"
+}

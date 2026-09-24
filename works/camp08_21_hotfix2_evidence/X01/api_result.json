@@ -1,0 +1,64 @@
+{
+  "case_id": "X01",
+  "section": 8,
+  "questions": [
+    "cuanto e k debo d la tarjeta y cuando me toca pagar"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    341
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuál tarjeta deseas consultar:\n\n• **Visa Full Car Flotilla Empleado (••••####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**",
+  "replies_sanitized": [
+    "¿Cuál tarjeta deseas consultar:\n\n• **Visa Full Car Flotilla Empleado (••••####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**"
+  ],
+  "options_count": 3,
+  "options_labels": [
+    "Visa Full Car Flotilla Empleado (••••####)",
+    "Tarjeta Joven (••••####)",
+    "Multicredito Empleado (••••####)"
+  ],
+  "status_eval": "PASS_CLARIFICATION",
+  "reason": "desambigua tarjeta (múltiples TC)",
+  "audit": {
+    "total_ms": 8,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 8,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "da52bf96-176b-455f-8fef-fa58c7877efa",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:payment_date",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "payment_date",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 1.0
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 8
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CREDIT_CARD_DETAIL_READ"
+}

@@ -1,0 +1,76 @@
+{
+  "case_id": "MIX03",
+  "section": 18,
+  "questions": [
+    "Explícame qué es una cuenta corriente.",
+    "Ahora dime cuánto tengo disponible en la mía."
+  ],
+  "http": [
+    200,
+    200
+  ],
+  "ms": [
+    301,
+    223
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**",
+  "replies_sanitized": [
+    "Felix Prestamos, Cuentas Corrientes: Es un contrato bancario por el cual el cliente realiza depósitos a la vista en la EIF y puede disponer de manera inmediata de dichos fondos a través de cheques, tarjeta de débito, cajero automático, por ventanilla, transferencias electrónicas, entre otros medios.",
+    "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**"
+  ],
+  "options_count": 2,
+  "options_labels": [
+    "Cuenta de ahorro ···####",
+    "Cuenta corriente ···####"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 5,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 5,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "85c60be6-4053-4f8c-a183-80409bbc8f61",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:heuristic_personal_plan",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "needs_clarification"
+          },
+          "evidence_sources": [
+            "snapshot"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 1.0
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 5
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CLARIFICATION"
+}

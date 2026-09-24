@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d2149" />
+  <title>Banca conversacional</title>
+  <style>
+    [hidden], .hidden { display: none !important; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+      background: #cfd6de;
+      color: #1c2330;
+    }
+    .device {
+      width: min(420px, 100vw);
+      min-height: 100dvh;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(13, 33, 73, 0.08);
+    }
+    .screen-scroll { padding: 28px 22px 24px; }
+    .login-form label { display: block; margin: 14px 0 6px; font-weight: 600; }
+    .login-form input, .login-form select { width: 100%; height: 48px; box-sizing: border-box; border: 1px solid #d5dbe3; border-radius: 12px; padding: 0 14px; font-size: 15px; background: #fff; }
+    .form-hint { margin: 14px 0 0; font-size: 13px; line-height: 1.45; color: #5b6573; }
+    .btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; border: 0; border-radius: 999px; font-weight: 700; font-size: 15px; cursor: pointer; }
+    .btn-primary { margin-top: 22px; background: #0d2149; color: #fff; }
+    .btn:disabled { opacity: 0.45; cursor: default; }
+    .btn-outline { margin-top: 12px; background: #fff; border: 1px solid #d5dbe3; }
+  </style>
+  <link rel="stylesheet" href="styles.css?v=12" />
+</head>
+<body>
+  <div class="device">
+    <!-- Acceso lab: solo customerId (simula APK post-auth) -->
+    <section class="screen" id="screenLogin">
+      <div class="screen-scroll login-screen">
+        <div class="brand-stack">
+          <div class="logo-mark" aria-hidden="true"></div>
+          <hr class="brand-rule" />
+          <h1>Bienvenido</h1>
+          <p class="lead">Accede a tu Canal Conversacional BSC</p>
+        </div>
+
+        <form id="loginForm" class="login-form" autocomplete="off">
+          <label for="loginUser">Customer ID</label>
+          <input
+            id="loginUser"
+            type="text"
+            placeholder="TEST-QA-001"
+            required
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+          />
+
+          <button class="btn btn-primary" type="submit" id="btnLogin">Continuar a la banca</button>
+          <p class="form-hint">
+            Simula el <strong>APK (canal delgado)</strong> desde fuera de Azure:
+            customerId → WebSocket Core → turn(context_info=true) → preguntas.
+          </p>
+          <p class="form-status" id="loginStatus"></p>
+        </form>
+
+        <button class="signup-banner" type="button" id="btnSignup" disabled aria-disabled="true">
+          <span class="signup-icon" aria-hidden="true">+</span>
+          <span class="signup-copy">
+            <strong>¿Primera vez aquí?</strong>
+            <small>Crea tu cuenta en minutos</small>
+          </span>
+          <span class="signup-chev" aria-hidden="true">›</span>
+        </button>
+
+        <details class="dev-panel" id="devPanel">
+          <summary>Opciones QA / DEV</summary>
+          <label for="customerSelect">Usuario de laboratorio</label>
+          <select id="customerSelect"></select>
+          <label for="apiBase">API cognitiva</label>
+          <select id="apiBase">
+            <option value="">Misma origen (8447)</option>
+            <option value="http://127.0.0.1:8445">Local :8445</option>
+            <option value="http://20.127.25.24:8447">Azure :8447</option>
+          </select>
+        </details>
+      </div>
+    </section>
+
+    <!-- Passkey (opcional, como APK) -->
+    <section class="screen" id="screenPasskey" hidden>
+      <div class="screen-scroll passkey-screen">
+        <div class="brand-stack compact">
+          <div class="logo-mark sm" aria-hidden="true"></div>
+          <div class="key-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="8" cy="15" r="4"/>
+              <path d="M12 15h8"/>
+              <path d="M17 8v4"/>
+            </svg>
+          </div>
+          <h1>Configura tu acceso con Passkey</h1>
+          <p class="lead">Un último detalle para entrar más rápido y seguro, sin contraseña.</p>
+        </div>
+
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="8" cy="15" r="4"/>
+              <path d="M12 15h8"/>
+            </svg>
+          </div>
+          <h2>Activa tu Passkey</h2>
+          <p>Usa la huella, el rostro o el PIN de tu teléfono para entrar. Más rápido y más difícil de suplantar que una contraseña.</p>
+          <ul class="check-list">
+            <li>Acceso en un toque, sin contraseña</li>
+            <li>Resistente a phishing y robo de credenciales</li>
+            <li>Tu contraseña queda como respaldo</li>
+          </ul>
+        </article>
+
+        <button class="btn btn-navy" type="button" id="btnCreatePasskey">Crear passkey</button>
+        <button class="btn btn-link" type="button" id="btnSkipPasskey">Ahora no</button>
+      </div>
+    </section>
+
+    <!-- Chat principal -->
+    <section class="screen" id="screenChat" hidden>
+      <header class="topbar">
+        <button class="icon-btn" id="btnMenu" type="button" aria-label="Menú">
+          <span class="hamburger"></span>
+        </button>
+        <div class="brand">
+          <span class="logo-mark xs" aria-hidden="true"></span>
+          <span class="brand-name">Banca conversacional</span>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn bell" type="button" aria-label="Notificaciones"><span class="dot"></span></button>
+          <div class="avatar" id="avatar">VP</div>
+        </div>
+      </header>
+
+      <main class="chat-body" id="chatBody">
+        <section class="hero-card" id="heroCard">
+          <div class="hero-logo" aria-hidden="true"></div>
+          <div class="hero-copy">
+            <strong id="heroGreeting">Hola, Cliente</strong>
+            <span>Estoy listo para ayudarte hoy.</span>
+          </div>
+        </section>
+
+        <p class="status-pill" id="connStatus">Conectado al asistente</p>
+
+        <div class="quick-grid" id="quickGrid">
+          <button type="button" class="quick-chip" data-q="Quiero transferir dinero">Quiero transferir dinero</button>
+          <button type="button" class="quick-chip" data-q="Mostrar mis transacciones recientes">Mostrar mis transacciones recientes</button>
+          <button type="button" class="quick-chip" data-q="Que productos puedo solicitar">Que productos puedo solicitar</button>
+          <button type="button" class="quick-chip" data-q="Necesito ayuda con mi perfil">Necesito ayuda con mi perfil</button>
+        </div>
+
+        <div class="chat" id="chat" aria-live="polite"></div>
+      </main>
+
+      <footer class="composer">
+        <input id="input" type="text" placeholder="Escribe tu mensaje..." autocomplete="off" disabled />
+        <button class="mic" type="button" aria-label="Voz" disabled></button>
+        <button class="send" id="btnSend" type="button" aria-label="Enviar" disabled>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13"></path>
+            <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+          </svg>
+        </button>
+      </footer>
+    </section>
+
+    <!-- Drawer sesión -->
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+    <aside class="drawer" id="drawer" hidden>
+      <h2>Sesión</h2>
+      <dl class="session-meta" id="sessionMeta">
+        <dt>Cliente</dt><dd>—</dd>
+        <dt>customer_id</dt><dd>—</dd>
+        <dt>conversation_id</dt><dd>—</dd>
+        <dt>Productos</dt><dd>—</dd>
+      </dl>
+      <button class="btn btn-outline full" type="button" id="btnLogout">Cerrar sesión</button>
+      <div class="dev-lab" id="devLab" hidden>
+        <h3>Automatización QA</h3>
+        <button class="btn btn-navy full" type="button" id="btnQaScript" disabled>Script QA (Andres David)</button>
+        <label for="excelCount">Casos Excel</label>
+        <select id="excelCount">
+          <option value="15">Primeros 15</option>
+          <option value="all">Los 77</option>
+        </select>
+        <div class="row-actions">
+          <button class="btn btn-outline full" type="button" id="btnExcel" disabled>Lanzar Excel</button>
+          <button class="btn btn-link" type="button" id="btnStop" disabled>Detener</button>
+        </div>
+        <div class="run-log" id="runLog"></div>
+      </div>
+    </aside>
+  </div>
+
+  <textarea id="contextJson" hidden aria-hidden="true"></textarea>
+  <input id="customerId" type="hidden" />
+
+  <script src="app.js?v=12"></script>
+</body>
+</html>

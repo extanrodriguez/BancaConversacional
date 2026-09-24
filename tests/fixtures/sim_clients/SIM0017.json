@@ -1,0 +1,8 @@
+{
+  "resultCode": 0,
+  "primerNombre": "Miguel Torres",
+  "products": [
+    {"productCategory": "CA", "productIdentification": "7701230001", "productDescription": "Cuenta de Ahorros", "productStatus": 3, "currencyCode": 214, "availableBalance": 55000.0, "currentBalance": 55000.0},
+    {"productCategory": "TC", "productIdentification": "4532XXXX8899", "productDescription": "Visa Clasica", "productStatus": 1, "currencyCode": 214, "maskedCardNumber": "****8899", "availableBalance": 35000.0}
+  ]
+}

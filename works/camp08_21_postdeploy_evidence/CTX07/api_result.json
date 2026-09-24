@@ -1,0 +1,77 @@
+{
+  "case_id": "CTX07",
+  "section": 16,
+  "questions": [
+    "¿Cómo presento una reclamación?",
+    "¿Qué información debo entregar?",
+    "¿Y cuáles son mis derechos durante ese proceso?"
+  ],
+  "http": [
+    200,
+    200,
+    200
+  ],
+  "ms": [
+    353,
+    199,
+    226
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+  "replies_sanitized": [
+    "Felix Prestamos, Apertura de reclamaciones\n\nPuedes realizar tu reclamación a través de los siguientes canales:\n\nCentro de Contacto: [809.726.####](tel:+####).\nCentros de Negocios BSC: visitando el área de Servicios del centro de tu preferencia.\nBSC en Línea.\n\nPara consultar horarios y ubicaciones de los Centros de Negocios, puedes acceder a [bsc.com.do](https://bsc.com.do).\n\nUna vez registrada tu reclamación, recibirás automáticamente en el correo electrónico registrado en el Banco el Formulario Único de Reclamación, con el número y los detalles de tu caso.\n\nDocumentación requerida\n\nDependiendo del tipo de reclamación, deberás presentar los documentos de soporte correspondientes:\n\nCrédito no procesado: constancia de la promesa de devolución o crédito realizada por el comercio.\nPagado por otros medios: constancia del medio de pago alternativo utilizado.\nMercancía no recibida o servicio no prestado: evidencia del intento de solución con el comercio y factura original de la compra.\nMonto alterado: factura o constancia del monto original de la compra.\n\nSi realizas la reclamación a través del Centro de Contacto, debes enviar la documentación de soporte al correo [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do).\n\nImportante:\n\nLos documentos deben ser enviados dentro de los 7 días calendario siguientes al registro de la reclamación.\nSi no se reciben las evidencias requeridas dentro de este plazo, la reclamación podrá ser desestimada con resultado desfavorable.\nPlazos de reclamación\nLa reclamación puede ser presentada dentro de un período máximo de 4 años desde el hecho que la origina.\nEl plazo regular de respuesta es de 30 días calendario.\nPara reclamaciones complejas, el plazo puede extenderse hasta 45 días calendario.\nPara reclamaciones de Tarjetas de Crédito o Débito que requieran intervención de una marca internacional, el plazo puede extenderse hasta 180 días calendario.\nSeguimiento y respuesta\n\nPara consultar el estado de tu reclamación puedes:\n\nLlamar al Centro de Contacto.\nVisitar el área de Servicios de un Centro de Negocios BSC.\n\nUna vez finalizado el análisis, recibirás por correo electrónico la notificación con el resultado de tu reclamación.\n\nSi quieres el detalle paso a paso, indícame el canal: Centro de Contacto ([809.726.####](tel:+####)), Centro de Negocios o BSC en Línea.",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea"
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "FAIL",
+  "reason": "fallback genérico sin evidencia",
+  "audit": {
+    "total_ms": 6,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 6,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "1c8d3d44-e8bf-48d1-a146-062c28b7dfce",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:heuristic_personal_plan",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "available"
+          },
+          "evidence_sources": [
+            "noop"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 1.2
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 6
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_MULTI"
+}

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arquitectura :8447 — Lab8446 + Redis WRITE PATH</title>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#e8f0ea",
+        primaryTextColor: "#1a2e22",
+        primaryBorderColor: "#2d6a4f",
+        lineColor: "#4a5568",
+        secondaryColor: "#f0f4f8",
+        tertiaryColor: "#fff8e7",
+        fontFamily: "Segoe UI, system-ui, sans-serif",
+      },
+      flowchart: { curve: "basis", htmlLabels: true, padding: 12 },
+    });
+  </script>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #1c241e;
+      --muted: #5c6b62;
+      --card: #ffffff;
+      --line: #d8ddd9;
+      --green: #2d6a4f;
+      --green-soft: #e8f0ea;
+      --amber: #9a6b2f;
+      --amber-soft: #fff4e0;
+      --blue: #2c5282;
+      --blue-soft: #e8f1fa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, #dce8e0 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, #e8dfd0 0%, transparent 50%),
+        var(--bg);
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(135deg, #1a3d2e 0%, #2d6a4f 55%, #3d7a5c 100%);
+      color: #f5faf7;
+      padding: 2.4rem 1.5rem 2rem;
+    }
+    header .wrap, main, footer .wrap { max-width: 980px; margin: 0 auto; }
+    header h1 { margin: 0 0 0.35rem; font-size: 1.65rem; font-weight: 650; }
+    header p { margin: 0; opacity: 0.92; max-width: 46rem; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .badge.on { background: rgba(255, 220, 120, 0.28); border-color: rgba(255,220,120,0.5); }
+    main { padding: 1.75rem 1.5rem 3rem; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.35rem 1.4rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 0 rgba(28,36,30,0.04);
+    }
+    h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.12rem;
+      color: var(--green);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.45rem;
+    }
+    h3 { margin: 1rem 0 0.4rem; font-size: 0.98rem; }
+    .muted { color: var(--muted); font-size: 0.92rem; }
+    .mermaid {
+      background: #fafbfa;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 0.5rem;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 0.55rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.55rem 0.65rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th { background: var(--green-soft); color: var(--green); font-weight: 600; }
+    code {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.84em;
+      background: #eef2ef;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+    .callout {
+      border-left: 4px solid var(--green);
+      background: var(--green-soft);
+      padding: 0.85rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0.75rem 0;
+    }
+    .callout.warn {
+      border-left-color: var(--amber);
+      background: var(--amber-soft);
+    }
+    .callout.blue {
+      border-left-color: var(--blue);
+      background: var(--blue-soft);
+    }
+    .ok { color: #166534; font-weight: 650; }
+    .path-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-right: 0.35rem;
+    }
+    .path-tag.write { background: #dbeafe; color: #1e40af; }
+    .path-tag.read { background: #dcfce7; color: #166534; }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.25rem 1.5rem 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } }
+    .key-pill {
+      display: inline-block;
+      margin: 0.15rem 0.25rem 0.15rem 0;
+      padding: 0.2rem 0.5rem;
+      background: #eef2ef;
+      border-radius: 6px;
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Arquitectura :8447 — Lab8446 + Redis</h1>
+      <p>
+        Runtime actual: <strong>BancaConversacional8446</strong> expuesto en puerto 8447.
+        El orquestador externo guarda contexto en Redis (WRITE PATH intocable) y lee productos vía tools.
+      </p>
+      <div class="badge-row">
+        <span class="badge">QA · 20.127.25.24:8447</span>
+        <span class="badge">lab8446-foundry-redis</span>
+        <span class="badge">Redis Entra MI</span>
+        <span class="badge on">genesis_write = true</span>
+        <span class="badge">prefix vacío (orch keys)</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>0. ¿Se guarda el contexto en Redis?</h2>
+      <div class="callout">
+        <span class="ok">Sí.</span>
+        Tras <code>POST /turn</code> con <code>context_info=true</code>, la respuesta incluye
+        <code>CONTEXT_LOADED</code> y <code>genesis_write: true</code>.
+        Verificación live (2026-09-22) creó estas keys:
+      </div>
+      <p>
+        <span class="key-pill">session:{conversation_id}</span>
+        <span class="key-pill">customer:{id}:snapshot</span>
+        <span class="key-pill">customer:{id}:portfolio</span>
+        <span class="key-pill">labmeta:{conversation_id}</span>
+      </p>
+      <table>
+        <thead>
+          <tr><th>Key Redis</th><th>Quién escribe</th><th>Para qué</th><th>Evidencia live</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>session:{conv}</code></td>
+            <td>ContextPersistenceService (genesis)</td>
+            <td>Sesión + snapshot CAS (WRITE PATH orquestador)</td>
+            <td>exists · revision · schema_version=2</td>
+          </tr>
+          <tr>
+            <td><code>customer:{id}:snapshot</code></td>
+            <td>ContextPersistenceService</td>
+            <td>Respaldo global del snapshot</td>
+            <td>exists</td>
+          </tr>
+          <tr>
+            <td><code>customer:{id}:portfolio</code></td>
+            <td>lab8446 context_write</td>
+            <td>Portafolio para <code>get_customer_products</code></td>
+            <td>exists · <strong>2 productos</strong> · source=ORCHESTRATOR</td>
+          </tr>
+          <tr>
+            <td><code>labmeta:{conv}</code></td>
+            <td>lab8446</td>
+            <td>Historia UI / authenticated (no pisa session genesis)</td>
+            <td>exists · authenticated=true</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        El portafolio que usan las tools (comparar tarjetas, saldos) vive en
+        <code>customer:{id}:portfolio</code>. Esa es la fuente del READ PATH Foundry/tools.
+      </div>
+    </section>
+
+    <section>
+      <h2>1. Vista general</h2>
+      <div class="mermaid">
+flowchart TB
+  APP[App / canal]
+  ORCH[Orquestador externo<br/>INTOCABLE]
+  LAB["Cognitive :8447<br/>lab8446 Foundry+Redis"]
+  CW[persist_orchestrator_context<br/>WRITE PATH]
+  CPS[ContextPersistenceService<br/>sibling genesis]
+  REDIS[(Azure Managed Redis<br/>Entra MI)]
+  AGENT[LabConversationalAgent<br/>Azure OpenAI tools]
+  TOOL[get_customer_products]
+  PCS[ProductContextService]
+
+  APP --> ORCH
+  ORCH -->|"1) context_info=true"| LAB
+  ORCH -->|"2) question NL"| LAB
+  LAB --> CW
+  CW --> CPS
+  CPS -->|"session + snapshot"| REDIS
+  CW -->|"portfolio lab"| REDIS
+  CW -->|"labmeta"| REDIS
+  LAB --> AGENT
+  AGENT --> TOOL
+  TOOL --> PCS
+  PCS -->|"lee portfolio"| REDIS
+
+  classDef intact fill:#e8f1fa,stroke:#2c5282
+  classDef cog fill:#e8f0ea,stroke:#2d6a4f
+  classDef redis fill:#fff4e0,stroke:#9a6b2f
+  class ORCH,APP intact
+  class LAB,CW,CPS,AGENT,TOOL,PCS cog
+  class REDIS redis
+      </div>
+    </section>
+
+    <section>
+      <h2>2. WRITE PATH — orquestador → Redis</h2>
+      <p class="muted">
+        <span class="path-tag write">Write</span>
+        Sin LLM. Solo validar → mapear → persistir.
+      </p>
+      <div class="mermaid">
+sequenceDiagram
+  participant O as Orquestador
+  participant T as POST /turn :8447
+  participant W as context_write
+  participant G as ContextPersistenceService
+  participant R as Redis
+
+  O->>T: context_info=true, question=null,<br/>customer_id, conversation_id, context.data
+  T->>W: persist_orchestrator_context
+  W->>R: SET customer:{id}:portfolio TTL
+  W->>G: persist (reusa cliente Redis lab)
+  G->>R: session:{conv} CAS REPLACE
+  G->>R: customer:{id}:snapshot
+  W->>R: SET labmeta:{conv}
+  W-->>T: CONTEXT_LOADED + genesis_write=true
+  T-->>O: HTTP 200
+      </div>
+      <div class="grid2">
+        <div>
+          <h3>Contrato de entrada</h3>
+          <ul>
+            <li><code>context_info: true</code></li>
+            <li><code>question: null</code></li>
+            <li><code>customer_id</code> + <code>conversation_id</code></li>
+            <li><code>context_op</code>: load | refresh</li>
+            <li><code>context.data</code> (productos Core)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Respuesta típica</h3>
+          <ul>
+            <li><code>status: CONTEXT_LOADED</code></li>
+            <li><code>genesis_write: true</code></li>
+            <li><code>lab_sync: true</code></li>
+            <li><code>products_count</code></li>
+            <li><code>source: ORCHESTRATOR</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. READ PATH — pregunta NL → tools → Redis</h2>
+      <p class="muted">
+        <span class="path-tag read">Read</span>
+        Foundry/Azure OpenAI llama <code>get_customer_products</code>; el tool lee Redis (no Core).
+      </p>
+      <div class="mermaid">
+sequenceDiagram
+  participant O as Orquestador
+  participant T as POST /turn :8447
+  participant A as Agent + tools
+  participant P as ProductContextService
+  participant R as Redis
+
+  O->>T: question="compara Full Car vs Joven"<br/>conversation_id (misma sesión)
+  T->>A: run_turn (tool-calling)
+  A->>P: get_customer_products CREDIT_CARD
+  P->>R: GET customer:{id}:portfolio
+  R-->>P: 2 tarjetas + tasas/disponibles
+  P-->>A: status=OK products[]
+  A-->>T: reply comparación
+  T-->>O: VALID_CONTRACT + reply / app_channel
+      </div>
+      <div class="callout blue">
+        Smoke verificado: Full Car (disp 50 000 · 24.5%) vs Joven (disp 20 000 · 32.0%)
+        con <code>tool_calls: get_customer_products → OK</code>.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Separación de responsabilidades</h2>
+      <table>
+        <thead>
+          <tr><th>Capa</th><th>Hace</th><th>No hace</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Orquestador</td>
+            <td>Envía portafolio Core completo en <code>context.data</code></td>
+            <td>No escribe Redis directamente</td>
+          </tr>
+          <tr>
+            <td>WRITE PATH :8447</td>
+            <td>Persiste en Redis (session/snapshot/portfolio)</td>
+            <td>No llama LLM ni Core</td>
+          </tr>
+          <tr>
+            <td>READ PATH tools</td>
+            <td>Lee portafolio Redis y responde NL</td>
+            <td>No inventa productos; no cambia de cliente</td>
+          </tr>
+          <tr>
+            <td>Redis</td>
+            <td>Fuente de verdad de sesión/portafolio en QA</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>5. Deploy actual</h2>
+      <table>
+        <thead><tr><th>Ítem</th><th>Valor</th></tr></thead>
+        <tbody>
+          <tr><td>Servicio</td><td><code>genesis-cognitive-8447.service</code></td></tr>
+          <tr><td>Path</td><td><code>/opt/genesis-cognitive-8447/lab8446_runtime</code></td></tr>
+          <tr><td>Entry</td><td><code>scripts/run_lab8446.py</code></td></tr>
+          <tr><td>Auth Redis</td><td>Entra managed identity</td></tr>
+          <tr><td>Key prefix</td><td>vacío (compatible orquestador)</td></tr>
+          <tr><td>Legacy :8446</td><td>inactive (no tocado)</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Documento vivo · QA BancConversacional · Lab8446 promovido a :8447 · WRITE PATH Redis intocable ·
+      Actualizado 2026-09-22
+    </div>
+  </footer>
+</body>
+</html>

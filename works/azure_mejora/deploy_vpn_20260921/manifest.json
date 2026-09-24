@@ -1,0 +1,10 @@
+{
+  "started_utc": "20260921T112542Z",
+  "host": "20.127.25.24",
+  "zip_local": "C:\\NovusIntelligence\\BancoSantaCruz\\BancaConversacional\\deploy\\corp-8446\\dist\\genesis_corp_8446.zip",
+  "zip_sha256": "78a02d1c49d010caa86e6bd00991cb22a42da514dbe3d76c5fb66f6db1b4b608",
+  "zip_bytes": 63621195,
+  "finished_utc": "20260921T112844Z",
+  "status": "QA_DESPLEGADO_CANDIDATO",
+  "post_excerpt": "status\":\"ok\",\"service\":\"genesis-cognitive\",\"env\":\"qa\",\"version\":\"0.8.0\",\"rag\":\"ready\"}\r\n{\"ok\":true,\"session_backend\":\"redis\",\"lock_backend\":\"redis\",\"auth_mode\":\"entra_managed_identity\",\"redis_required\":true,\"session_backend_preference\":\"redis\",\"session_ping\":true,\"lock_ping\":true,\"session_host\":\"bsc-cognitive-redis-qa.eastus.redis.azure.net\",\"lock_host\":\"bsc-cognitive-redis-qa.eastus.redis.azure.net\",\"errors\":[]}\r\nHAS_P12_WINDOW\r\n6c5d0b9fe6d67b4a1a9442b5549137e7f5cdfee96e1dc14ab0d8d880ba535a44\r\n"
+}

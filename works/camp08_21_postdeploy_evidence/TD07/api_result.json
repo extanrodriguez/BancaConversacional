@@ -1,0 +1,75 @@
+{
+  "case_id": "TD07",
+  "section": 12,
+  "questions": [
+    "¿Cómo cancelo una tarjeta de débito y qué debo hacer con la tarjeta física?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    543
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "__AZURE_SEARCH__\nTarjeta de débito: una tarjeta de débito es un medio de pago que permite acceder a los fondos disponibles en una cuenta bancaria, cuenta corriente o cuenta de ahorro de una entidad de intermediación financiera, que sirve para realizar retiros de efectivo en cajeros automático, así como para la compra de bienes y servicios con cargo a la cuenta asociada. Al usarla, el dinero se deduce directamente de la cuenta del titular, lo que significa que no se puede gastar más de lo que se tiene en la cuenta.\n\n¿Cuál tarjeta deseas consultar:\n\n• **Visa Full Car Flotilla Empleado (••••####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**",
+  "replies_sanitized": [
+    "__AZURE_SEARCH__\nTarjeta de débito: una tarjeta de débito es un medio de pago que permite acceder a los fondos disponibles en una cuenta bancaria, cuenta corriente o cuenta de ahorro de una entidad de intermediación financiera, que sirve para realizar retiros de efectivo en cajeros automático, así como para la compra de bienes y servicios con cargo a la cuenta asociada. Al usarla, el dinero se deduce directamente de la cuenta del titular, lo que significa que no se puede gastar más de lo que se tiene en la cuenta.\n\n¿Cuál tarjeta deseas consultar:\n\n• **Visa Full Car Flotilla Empleado (••••####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**"
+  ],
+  "options_count": 3,
+  "options_labels": [
+    "Visa Full Car Flotilla Empleado (••••####)",
+    "Tarjeta Joven (••••####)",
+    "Multicredito Empleado (••••####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 300,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 300,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "9b8c624a-f92d-4ce0-aa2e-27f7ce18a037",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_cancelacion",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 2,
+          "task_statuses": {
+            "t1": "available",
+            "t2": "needs_clarification"
+          },
+          "evidence_sources": [
+            "faq",
+            "snapshot"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 296.0
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 300
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_PARTIAL"
+}

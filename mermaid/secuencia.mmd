@@ -1,0 +1,26 @@
+%% Secuencia vigente: WRITE + Azure tool router
+flowchart TD
+  classDef canal fill:#E8EEF6,stroke:#0A2540,color:#0A2540,stroke-width:1.5px
+  classDef cog fill:#0A2540,stroke:#0A2540,color:#FFFFFF,stroke-width:1.5px
+  classDef azure fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef bank fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef decide fill:#FFF6E8,stroke:#B86E00,color:#0A2540,stroke-width:1.5px
+  classDef out fill:#E7F6F4,stroke:#0E7C7B,color:#0A2540,stroke-width:1.5px
+  classDef write fill:#DBEAFE,stroke:#1E40AF,color:#0A2540,stroke-width:1.5px
+
+  A["1. Cliente abre sesión"]:::canal --> B["2. Orquestador obtiene portafolio Core"]:::bank
+  B --> C["3. POST /turn context_info=true"]:::write
+  C --> D["4. Redis session + snapshot + portfolio"]:::azure
+  D --> E["5. CONTEXT_LOADED"]:::out
+  E --> F["6. Cliente pregunta"]:::canal
+  F --> G["7. POST /turn question"]:::canal
+  G --> H{"8. ¿Chitchat?"}:::decide
+  H -->|Sí| I["9a. Bienvenida local"]:::out
+  H -->|No| J["9b. Azure tool_choice=auto"]:::azure
+  J --> K{"10. Tool"}:::decide
+  K -->|KB| L["Foundry + Search"]:::azure
+  K -->|products| M["Redis"]:::cog
+  L --> P["VALID_CONTRACT + reply"]:::out
+  M --> P
+  I --> P
+  P --> Q["Cliente ve respuesta"]:::canal

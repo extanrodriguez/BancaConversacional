@@ -1,0 +1,72 @@
+{
+  "case_id": "CMP20",
+  "section": 19,
+  "questions": [
+    "Compárame un préstamo personal con garantía con uno sin garantía."
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    221
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**",
+  "replies_sanitized": [
+    "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**"
+  ],
+  "options_count": 2,
+  "options_labels": [
+    "Cuenta de ahorro ···####",
+    "Cuenta corriente ···####"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 6,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 6,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "75691a57-ad72-47cc-8b0b-9eb089c095cf",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_catalog_compare",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "needs_clarification"
+          },
+          "evidence_sources": [
+            "snapshot"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 1.8
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 6
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CLARIFICATION"
+}

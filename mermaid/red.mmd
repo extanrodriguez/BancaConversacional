@@ -1,0 +1,55 @@
+%% Banca Conversacional Genesis — red vigente QA (sin cambios de topología)
+%% Línea punteada: DNS privado desplegado; HTTP al gateway en validación.
+flowchart LR
+  classDef access fill:#E8EEF6,stroke:#0A2540,color:#0A2540,stroke-width:1.5px
+  classDef vnet fill:#E7F6F4,stroke:#0E7C7B,color:#0A2540,stroke-width:1.5px
+  classDef vm fill:#0A2540,stroke:#0A2540,color:#FFFFFF
+  classDef azure fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef bank fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef warn fill:#FFF6E8,stroke:#B86E00,color:#0A2540,stroke-width:1.5px
+
+  subgraph ACC["Quién entra"]
+    direction TB
+    DEV["Puestos autorizados<br/>allowlist del NSG"]:::access
+    APK["APK y orquestador .NET<br/>red del banco"]:::access
+  end
+
+  subgraph VNET["VNET_S2S_AZ_TO_BSC_GEN"]
+    direction TB
+    NSG["NSG vm-test002-genesis-nsg<br/>Allow 8440-8449 prioridad 119<br/>Deny el resto prioridad 121"]:::vnet
+    VM["vm-test002-genesis<br/>pública 20.127.25.24<br/>privada 192.168.150.5<br/>8447 lab8446 Foundry+Redis<br/>8446 legacy inactive"]:::vm
+    PE["Private Endpoint Redis<br/>192.168.150.7"]:::vnet
+    DNS["Private DNS qa.bsc.com.do<br/>apigateway-gen a 172.31.15.43<br/>vínculo link-VNET_S2S_AZ_TO_BSC_GEN"]:::warn
+  end
+
+  subgraph REDISZ["Datos de sesión"]
+    RED["bsc-cognitive-redis-qa<br/>puerto 10000 TLS<br/>Entra, sin access keys<br/>acceso público deshabilitado"]:::azure
+  end
+
+  subgraph AIZ["Modelos y conocimiento"]
+    direction TB
+    OAI["Azure OpenAI<br/>chat tool-calling"]:::azure
+    FND["Azure AI Foundry<br/>KB institucional"]:::azure
+    SCH["Azure AI Search"]:::azure
+  end
+
+  subgraph ONP["Sitio Banco Santa Cruz"]
+    direction TB
+    GW["API Gateway QA<br/>172.31.15.43 puerto 443"]:::bank
+    PP["Presentation Product"]:::bank
+    BK["APIs on-prem<br/>172.27.4.20"]:::bank
+  end
+
+  DEV -->|"TCP 22 y 8447<br/>solo IPs permitidas"| NSG
+  NSG --> VM
+  APK -->|"canal y túnel S2S"| VM
+  VM -->|"rediss, identidad<br/>administrada de la VM"| PE
+  PE --> RED
+  VM --> OAI
+  VM --> FND
+  FND --> SCH
+  VM -.->|"HTTPS, DNS listo<br/>alcance HTTP en validación"| DNS
+  DNS --> GW
+  GW --> PP
+  GW --> BK
+  APK -.->|"orquestador obtiene<br/>portafolio Core"| GW

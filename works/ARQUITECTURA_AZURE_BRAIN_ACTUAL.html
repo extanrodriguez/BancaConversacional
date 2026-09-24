@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arquitectura actual — Banca Conversacional Genesis (Azure Brain)</title>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#e8f0ea",
+        primaryTextColor: "#1a2e22",
+        primaryBorderColor: "#2f6b4f",
+        lineColor: "#4a6b58",
+        secondaryColor: "#f4f1e8",
+        tertiaryColor: "#ffffff",
+        fontFamily: "Segoe UI, system-ui, sans-serif"
+      },
+      flowchart: { htmlLabels: true, curve: "basis", nodeSpacing: 28, rankSpacing: 36 },
+      sequence: { actorMargin: 28, messageMargin: 32 }
+    });
+  </script>
+  <style>
+    :root {
+      --ink: #1a2e22;
+      --muted: #5a6f63;
+      --line: #d5e0d8;
+      --bg: #f7f9f7;
+      --card: #ffffff;
+      --accent: #2f6b4f;
+      --accent-soft: #e8f0ea;
+      --warn: #8a5a12;
+      --warn-bg: #fbf3e4;
+      --code-bg: #eff3ef;
+      --blue: #1e4d6b;
+      --blue-soft: #e6f1f6;
+      --purple: #4a3d6b;
+      --purple-soft: #efeaf6;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 10% -10%, #e4efe8 0%, transparent 55%),
+        radial-gradient(900px 400px at 100% 0%, #e6f1f6 0%, transparent 50%),
+        var(--bg);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header.hero {
+      padding: 1.75rem 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #ffffff 0%, var(--accent-soft) 55%, var(--blue-soft) 100%);
+      margin-bottom: 1.5rem;
+    }
+    header.hero h1 {
+      margin: 0 0 0.4rem;
+      font-size: clamp(1.4rem, 3vw, 1.95rem);
+      letter-spacing: -0.02em;
+      color: var(--accent);
+    }
+    header.hero p { margin: 0; color: var(--muted); max-width: 48rem; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.65rem;
+      margin-top: 1.1rem;
+    }
+    .meta div {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.65rem 0.8rem;
+      font-size: 0.9rem;
+    }
+    .meta strong { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    nav.toc {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+      margin-bottom: 1.75rem;
+    }
+    nav.toc a {
+      text-decoration: none;
+      color: var(--accent);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.85rem;
+    }
+    nav.toc a:hover { background: var(--accent-soft); }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.35rem 1.35rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    section h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+    section h3 {
+      margin: 1.2rem 0 0.5rem;
+      font-size: 1.02rem;
+      color: var(--blue);
+    }
+    p, li { color: var(--ink); }
+    .muted { color: var(--muted); }
+    .principle {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn);
+      padding: 0.85rem 1rem;
+      border-radius: 0 10px 10px 0;
+      margin: 0.75rem 0 1rem;
+    }
+    .principle strong { color: var(--warn); }
+    .diagram {
+      background: #fbfcfb;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 0.75rem 0 0.25rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 0.5rem 0 0;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    code, .path {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.84em;
+      background: var(--code-bg);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .comp {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      background: linear-gradient(180deg, #fff 0%, #f9fbf9 100%);
+    }
+    .comp h4 {
+      margin: 0 0 0.35rem;
+      font-size: 0.98rem;
+      color: var(--accent);
+    }
+    .comp .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      margin-bottom: 0.45rem;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+    .comp .tag.kb { background: var(--purple-soft); color: var(--purple); }
+    .comp .tag.core { background: var(--accent-soft); color: var(--accent); }
+    .comp .tag.edge { background: var(--warn-bg); color: var(--warn); }
+    .comp p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+    .comp .file { margin-top: 0.55rem; font-size: 0.8rem; }
+    ol.pipeline { padding-left: 1.2rem; }
+    ol.pipeline li { margin: 0.4rem 0; }
+    footer {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    @media print {
+      body { background: #fff; }
+      nav.toc { display: none; }
+      section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>Arquitectura actual — Banca Conversacional</h1>
+      <p>
+        Cómo está quedando Genesis Cognitiva con el pivot
+        <strong>Azure como cerebro</strong>, snapshot/KB como única boca de hechos,
+        redacción natural post-hechos y conversación social (chitchat).
+      </p>
+      <div class="meta">
+        <div><strong>Ambiente QA</strong>http://20.127.25.24:8447</div>
+        <div><strong>Fecha</strong>2026-09-15</div>
+        <div><strong>Flags</strong>BRAIN=1 · DRAFT=1 · FOUNDRY=1</div>
+        <div><strong>Principio</strong>Azure entiende · Core/KB hablan hechos</div>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="Índice">
+      <a href="#principio">Principio</a>
+      <a href="#vista">Vista general</a>
+      <a href="#pipeline">Pipeline /turn</a>
+      <a href="#brain">Capa Brain</a>
+      <a href="#hechos">Hechos &amp; KB</a>
+      <a href="#legacy">Fastpath &amp; LLM</a>
+      <a href="#flags">Flags</a>
+      <a href="#secuencia">Secuencia ejemplo</a>
+    </nav>
+
+    <!-- PRINCIPIO -->
+    <section id="principio">
+      <h2>1. Principio de diseño</h2>
+      <div class="principle">
+        <strong>Regla de oro:</strong>
+        Azure (y heurísticas) clasifican la intención del cliente.
+        Los <em>números, fechas y productos</em> solo salen del snapshot Core o de la base de conocimiento.
+        La matriz VF01 / funcional juzga si la respuesta es correcta.
+      </div>
+      <p class="muted">
+        No se improvisan cuotas, ni se usa la mora como cuota, ni se responde DAP ante “¿estás ahí?”.
+        La prosa natural (Fase 2) solo reescribe hechos ya verificados.
+      </p>
+    </section>
+
+    <!-- VISTA GENERAL -->
+    <section id="vista">
+      <h2>2. Vista general de componentes</h2>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TB
+  subgraph CANAL["Canal"]
+    APK[APK / Orquestador / UI /pruebas]
+  end
+
+  subgraph EDGE["Borde HTTP :8447"]
+    TURN["POST /turn<br/>contract_inspector_app"]
+    LAB["POST /lab/login"]
+    HEALTH["/health · /pruebas"]
+  end
+
+  subgraph SESION["Sesión + contexto"]
+    STORE[Session store]
+    SNAP[CustomerContextSnapshot]
+    CORE[API Core / portafolio]
+  end
+
+  subgraph BRAIN["Azure Brain — GENESIS_AZURE_BRAIN=1"]
+    SOC[social_intent<br/>presencia / corrección]
+    INT[azure_intent_brain<br/>IntentPacket JSON]
+    CAT[core_facts_catalog]
+    GE[grounded_executor]
+    ORCH[turn_orchestrator]
+    DRAFT[natural_draft<br/>GENESIS_AZURE_DRAFT]
+  end
+
+  subgraph HECHOS["Boca de hechos"]
+    FAQ[FAQ lexical VF01]
+    FY[Foundry KB Agent]
+    SEARCH[Azure AI Search]
+  end
+
+  subgraph LEGACY["Fallback histórico"]
+    FP[Fastpath field_guardrails]
+    LLM[Agent Framework + gate]
+  end
+
+  APK --> TURN
+  APK --> LAB
+  LAB --> CORE --> SNAP
+  TURN --> STORE
+  TURN --> SNAP
+  TURN --> ORCH
+  ORCH --> SOC
+  ORCH --> INT
+  INT --> GE
+  CAT -.-> GE
+  GE -->|personal| SNAP
+  GE -->|knowledge| FAQ
+  FAQ -->|miss| FY
+  FY --> SEARCH
+  GE --> DRAFT
+  ORCH -->|fallthrough / off| FP
+  FP --> LLM
+  DRAFT --> APK
+  FP --> APK
+  LLM --> APK
+        </pre>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section id="pipeline">
+      <h2>3. Pipeline de un turno (<code>POST /turn</code>)</h2>
+      <ol class="pipeline">
+        <li><strong>Sesión + snapshot</strong> — Resuelve <code>customer_id</code> / <code>conversation_id</code>, carga o reutiliza el portafolio Core.</li>
+        <li><strong>Azure Brain</strong> (si flag ON) — Clasifica intención → ejecuta grounded → FAQ/Foundry si es conocimiento → redacción natural. Sale temprano si hay texto.</li>
+        <li><strong>Fastpath histórico</strong> — Guardrails deterministas (saludos, campos, FAQ, reclamaciones…) si el brain no aplicó o hizo fallthrough.</li>
+        <li><strong>LLM + ensamblaje</strong> — Agent Framework + verificador semántico para casos no resueltos.</li>
+        <li><strong>Knowledge post-LLM</strong> — Foundry → Azure Search → FAQ/institucional si la intención es de conocimiento.</li>
+        <li><strong>Canal</strong> — <code>client_response</code> / <code>app_channel</code> + auditoría.</li>
+      </ol>
+      <p class="muted">
+        Si el usuario está eligiendo una opción de producto (“la que termina en 7615”), el brain cede al path de selección
+        para no romper el pending de clarificación.
+      </p>
+    </section>
+
+    <!-- BRAIN DETAIL -->
+    <section id="brain">
+      <h2>4. Capa Brain — cada componente</h2>
+      <p>
+        Paquete <code>src/genesis_cognitive/brain/</code>. Es el camino preferido en QA :8447.
+      </p>
+      <div class="comp-grid">
+        <article class="comp">
+          <span class="tag">Orquestación</span>
+          <h4>turn_orchestrator</h4>
+          <p>
+            Coordina un turno brain: clasifica → grounded → si <code>route=knowledge</code> resuelve FAQ→Foundry →
+            aplica redacción natural. Devuelve <code>None</code> para fallthrough al fastpath.
+          </p>
+          <div class="file"><span class="path">brain/turn_orchestrator.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag">Clasificación</span>
+          <h4>azure_intent_brain</h4>
+          <p>
+            Cerebro de intención. Llama Azure OpenAI con JSON schema estricto (<code>IntentPacket</code>).
+            Si falla o el flag está off, usa heurística local. Overrides de seguridad:
+            cuánto≠cuándo, débito≠crédito, upcoming≠DAP, y <strong>chitchat gana a producto</strong>.
+          </p>
+          <div class="file"><span class="path">brain/azure_intent_brain.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag">Conversación</span>
+          <h4>social_intent</h4>
+          <p>
+            Detecta presencia (“¿estás ahí?”), correcciones (“no te pregunté por depósitos”),
+            gracias, acuses y small-talk. Prioridad alta: evita que Azure/FAQ inventen un producto.
+          </p>
+          <div class="file"><span class="path">brain/social_intent.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag">Contratos</span>
+          <h4>intent_types</h4>
+          <p>
+            Define <code>IntentPacket</code> (family, product, field, scope, confidence…) y
+            <code>GroundedResult</code> (texto, status, route, trace). Familias:
+            personal, knowledge, process, ood, greeting, <strong>chitchat</strong>, clarify.
+          </p>
+          <div class="file"><span class="path">brain/intent_types.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag core">Semántica Core</span>
+          <h4>core_facts_catalog</h4>
+          <p>
+            Catálogo oficial API Productos → campos del snapshot.
+            Marca qué existe (disponible TC, mora≠cuota) y qué <strong>no</strong>
+            (monto de cuota contractual ausente en portafolio).
+          </p>
+          <div class="file"><span class="path">brain/core_facts_catalog.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag core">Hechos personales</span>
+          <h4>grounded_executor</h4>
+          <p>
+            Única boca de hechos personales: lee solo el snapshot.
+            Maneja multi-tarjeta, débito, préstamos, DAP, pagos próximos, chitchat y saludos.
+            Si es knowledge, deja <code>route=knowledge</code> vacío de texto para que el orquestador llame FAQ/Foundry.
+          </p>
+          <div class="file"><span class="path">brain/grounded_executor.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag">Prosa</span>
+          <h4>natural_draft</h4>
+          <p>
+            Fase 2: Azure reescribe el texto de hechos en español natural.
+            Validación anti-alucinación: no puede introducir montos/fechas nuevos.
+            Si falla o inventa, se conserva el texto grounded original.
+          </p>
+          <div class="file"><span class="path">brain/natural_draft.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag edge">Entrada HTTP</span>
+          <h4>contract_inspector_app</h4>
+          <p>
+            Hook del brain <em>antes</em> del fastpath. Persiste sesión, limpia sticky de producto
+            en correcciones chitchat, arma la respuesta JSON del canal.
+          </p>
+          <div class="file"><span class="path">demo/contract_inspector_app.py</span></div>
+        </article>
+      </div>
+
+      <h3>Familias de intención (resumen)</h3>
+      <table>
+        <thead>
+          <tr><th>Family</th><th>Cuándo</th><th>Quién responde hechos</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>personal</code></td><td>Mi saldo, mi cuota, mis tarjetas…</td><td>Snapshot Core vía grounded_executor</td></tr>
+          <tr><td><code>knowledge</code></td><td>Qué es, requisitos, catálogo…</td><td>FAQ → Foundry → Search</td></tr>
+          <tr><td><code>process</code></td><td>Reclamaciones / guías de trámite</td><td>FAQ / Foundry / guardrails</td></tr>
+          <tr><td><code>chitchat</code></td><td>¿Estás ahí?, correcciones, gracias…</td><td>Respuesta conversacional (sin producto)</td></tr>
+          <tr><td><code>greeting</code></td><td>Hola / buenos días</td><td>Saludo + oferta de ayuda</td></tr>
+          <tr><td><code>clarify</code></td><td>Ambiguo</td><td>Pregunta de aclaración</td></tr>
+          <tr><td><code>ood</code></td><td>Fuera de banca</td><td>Mensaje de alcance</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- HECHOS -->
+    <section id="hechos">
+      <h2>5. Boca de hechos — Core, FAQ, Foundry, Search</h2>
+      <div class="comp-grid">
+        <article class="comp">
+          <span class="tag core">Core</span>
+          <h4>CustomerContextSnapshot</h4>
+          <p>
+            Portafolio inmutable del cliente autenticado: cuentas, TC, préstamos, DAP, máscaras, tasas, fechas.
+            Se carga con <code>context_info</code>, lab login o mapeo Core. <strong>Nunca</strong> lo inventa el LLM.
+          </p>
+          <div class="file"><span class="path">context/customer_context_snapshot.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag kb">FAQ</span>
+          <h4>FAQ lexical VF01</h4>
+          <p>
+            Match de frases institucionales / procesos con score. Overlay Fase 1 para fixes.
+            Si el score es alto y no hay preferencia Foundry, responde directo.
+          </p>
+          <div class="file"><span class="path">router/faq_guardrail.py · data/kb_faq_*.json</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag kb">Foundry</span>
+          <h4>Foundry KB Agent</h4>
+          <p>
+            Agente <code>genesis-kb-agent-poc</code> en Azure AI Foundry.
+            Solo conocimiento de negocio (nunca saldos personales). Usa el índice Search del proyecto.
+          </p>
+          <div class="file"><span class="path">rag/foundry_kb_agent.py</span></div>
+        </article>
+
+        <article class="comp">
+          <span class="tag kb">Search</span>
+          <h4>Azure AI Search</h4>
+          <p>
+            Índice vectorial (p. ej. <code>bsc-kb-conocimiento</code>). Fallback RAG si Foundry no responde
+            o en el path LLM histórico.
+          </p>
+          <div class="file"><span class="path">rag/local_rag.py · scripts/index_kb_azure.py</span></div>
+        </article>
+      </div>
+
+      <h3>Cascada de conocimiento</h3>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart LR
+  Q[Pregunta knowledge] --> F{FAQ score alto?}
+  F -->|Sí| R1[Respuesta FAQ]
+  F -->|No / puerta Foundry| FY[Foundry KB Agent]
+  FY -->|OK| R2[Respuesta grounded]
+  FY -->|Miss / error| AS[Azure AI Search RAG]
+  AS -->|Hit| R3[Respuesta RAG]
+  AS -->|Miss| M[Pedir reformular]
+        </pre>
+      </div>
+    </section>
+
+    <!-- LEGACY -->
+    <section id="legacy">
+      <h2>6. Fastpath histórico y LLM (red de seguridad)</h2>
+      <p>
+        Siguen activos cuando el brain está off, falla, o hace <code>FALLTHROUGH</code>.
+        No se eliminaron: son la red de seguridad y cubren edge cases aún no migrados.
+      </p>
+      <table>
+        <thead>
+          <tr><th>Componente</th><th>Rol</th><th>Archivo</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fastpath</td>
+            <td>Guardrails deterministas: saldos, DAP, reclamación, FAQ, upcoming payments…</td>
+            <td><code>router/field_guardrails.py</code></td>
+          </tr>
+          <tr>
+            <td>Product focus / sticky</td>
+            <td>Memoria de producto en sesión; se limpia en corrección chitchat</td>
+            <td><code>router/product_focus.py</code></td>
+          </tr>
+          <tr>
+            <td>Agent Framework</td>
+            <td>Proposer + verifier LLM para contratos complejos</td>
+            <td>pipeline en <code>contract_inspector_app</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- FLAGS -->
+    <section id="flags">
+      <h2>7. Flags de entorno (QA :8447)</h2>
+      <table>
+        <thead>
+          <tr><th>Flag</th><th>Valor QA</th><th>Efecto</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>GENESIS_AZURE_BRAIN</code></td>
+            <td>1</td>
+            <td>Activa Intent Brain + grounded antes del fastpath</td>
+          </tr>
+          <tr>
+            <td><code>GENESIS_AZURE_DRAFT</code></td>
+            <td>1</td>
+            <td>Redacción natural Azure sobre hechos (no inventa números)</td>
+          </tr>
+          <tr>
+            <td><code>GENESIS_FOUNDRY_KB_AGENT</code></td>
+            <td>1</td>
+            <td>Agente Foundry en cascada de conocimiento</td>
+          </tr>
+          <tr>
+            <td><code>AZURE_SEARCH_INDEX</code></td>
+            <td>bsc-kb-conocimiento</td>
+            <td>Índice vectorial alineado al agente</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:0.75rem">
+        Deploy: <code>deploy/corp-8447/deploy_8447.sh</code> · UI: <code>/pruebas</code> · Servicio: <code>genesis-cognitive-8447</code>
+      </p>
+    </section>
+
+    <!-- SEQUENCE -->
+    <section id="secuencia">
+      <h2>8. Secuencia — ejemplo conversacional</h2>
+      <p class="muted">Caso real corregido: presencia y corrección ya no disparan DAP.</p>
+      <div class="diagram">
+        <pre class="mermaid">
+sequenceDiagram
+  actor U as Cliente
+  participant T as /turn
+  participant B as Azure Brain
+  participant S as Snapshot
+  participant K as FAQ/Foundry
+
+  U->>T: cuanto debo en mis tarjetas debito
+  T->>B: classify + grounded
+  B->>S: product=debit_card
+  S-->>B: sin TC débito consultable
+  B-->>U: mensaje débito + oferta cuentas/crédito
+
+  U->>T: estas ahi?
+  T->>B: social_intent → chitchat/presence
+  Note over B: No llama producto ni FAQ DAP
+  B-->>U: Sí, aquí estoy. ¿En qué te ayudo?
+
+  U->>T: no te pregunte por depositos
+  T->>B: chitchat/correction
+  B-->>U: Tienes razón, me desvié… ¿qué necesitas?
+        </pre>
+      </div>
+    </section>
+
+    <!-- SEMANTICA -->
+    <section id="semantica">
+      <h2>9. Semántica Core crítica (anti-alucinación)</h2>
+      <table>
+        <thead>
+          <tr><th>Pregunta cliente</th><th>Campo correcto</th><th>Prohibido</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Disponible TC</td><td><code>availablePurchasesDomestic</code></td><td>Usar límite como disponible</td></tr>
+          <tr><td>Adeudado TC</td><td><code>currentBalance</code> / ledger</td><td>—</td></tr>
+          <tr><td>Límite TC</td><td><code>availableBalance</code> (límite)</td><td>Confundir con disponible</td></tr>
+          <tr><td>Mora</td><td><code>pendingBalancePr</code></td><td>Usarla como cuota</td></tr>
+          <tr><td>Fecha próximo pago</td><td><code>nextPaymentDatePr</code></td><td><code>maturityDate</code> del DAP</td></tr>
+          <tr><td>Monto cuota</td><td><em>No en API portafolio</em></td><td>Inventar / usar fecha como monto</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      Documento vivo del estado en código y QA :8447 ·
+      Relacionado: <code>works/PIVOT_AZURE_BRAIN_FASE1.md</code> ·
+      AS-IS previo: <code>works/ARQUITECTURA_CAPA_COGNITIVA_AS_IS.html</code>
+    </footer>
+  </div>
+</body>
+</html>

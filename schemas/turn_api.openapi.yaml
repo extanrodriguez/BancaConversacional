@@ -1,0 +1,471 @@
+openapi: 3.1.0
+info:
+  title: Banco Santa Cruz - Banca Conversacional
+  version: 1.0.0
+  description: Contrato del canal conversacional entre el orquestador, el LLM y el frontend.
+servers:
+  - url: http://20.127.25.24:8447
+    description: QA
+paths:
+  /turn:
+    post:
+      summary: Procesa un turno conversacional
+      operationId: processTurn
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TurnRequest"
+      responses:
+        "200":
+          description: Turno procesado, incluyendo aclaraciones funcionales.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TurnResponse"
+        "422":
+          description: Solicitud inválida.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    TurnRequest:
+      type: object
+      description: En context_info=false se requiere question o selected_option_ref.
+      properties:
+        question:
+          type: [string, "null"]
+          description: Pregunta libre o texto visible generado al seleccionar una card.
+        selected_option_ref:
+          type: [string, "null"]
+          description: Referencia opaca devuelta por options[].selection.selected_option_ref.
+        conversation_id:
+          type: string
+          description: Identificador estable durante toda la conversación.
+        customer_id:
+          type: string
+          description: Identificador del cliente autenticado.
+        client_id:
+          type: [string, "null"]
+          description: Alias de customer_id aceptado para compatibilidad con APK.
+        top_k:
+          type: [integer, "null"]
+          minimum: 1
+          description: Cantidad máxima de resultados RAG solicitados.
+        force_core_query:
+          type: boolean
+          default: false
+          description: Solicita core_channel cuando el intent requiere consultar Core.
+        context_info:
+          type: boolean
+          default: false
+          description: Indica una carga o actualización de contexto, no un turno NL.
+        context_op:
+          type: [string, "null"]
+          enum: [load, refresh, null]
+          description: Operación de contexto cuando context_info=true.
+        context:
+          type: [object, "null"]
+          description: Contexto enviado por el orquestador; debe incluir data.
+          additionalProperties: true
+      additionalProperties: false
+    TurnResponse:
+      type: object
+      required:
+        - app_channel
+        - core_channel
+        - audit
+        - rag_status
+        - reply
+        - message
+        - content
+        - content_format
+        - options
+        - suggested_questions
+        - conversation_id
+        - status
+      properties:
+        app_channel:
+          $ref: "#/components/schemas/AppChannel"
+        core_channel:
+          type: [object, "null"]
+          description: Contrato para Core; normalmente null en respuestas resueltas desde snapshot.
+          additionalProperties: true
+        audit:
+          $ref: "#/components/schemas/Audit"
+        rag_status:
+          type: string
+          enum: [NOT_REQUIRED, ANSWERED, NO_MATCH, ERROR]
+        reply:
+          type: string
+          description: Alias compatible de app_channel.client_response.
+        message:
+          type: string
+          description: Alias compatible de app_channel.client_response.
+        content:
+          type: string
+          description: Alias compatible de app_channel.client_response.
+        content_format:
+          $ref: "#/components/schemas/ContentFormat"
+        rich_content:
+          oneOf:
+            - $ref: "#/components/schemas/RichContent"
+            - type: "null"
+        options:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProductOption"
+        suggested_questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/SuggestedQuestion"
+        conversation_id:
+          type: string
+        status:
+          $ref: "#/components/schemas/AppStatus"
+      additionalProperties: true
+    AppChannel:
+      type: object
+      required:
+        - status
+        - client_response
+        - content_format
+        - clarifications
+        - options
+        - suggested_questions
+        - conversation_id
+      properties:
+        status:
+          $ref: "#/components/schemas/AppStatus"
+        client_response:
+          type: string
+          description: Fallback Markdown/plain; nunca debe contener datos no verificados.
+        content_format:
+          $ref: "#/components/schemas/ContentFormat"
+        clarifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/Clarification"
+        options:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProductOption"
+        suggested_questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/SuggestedQuestion"
+        rich_content:
+          oneOf:
+            - $ref: "#/components/schemas/RichContent"
+            - type: "null"
+        conversation_id:
+          type: string
+        turn_number:
+          type: [integer, "null"]
+        intent_id:
+          type: [string, "null"]
+        account_ref:
+          type: [string, "null"]
+      additionalProperties: true
+    AppStatus:
+      type: string
+      enum:
+        - VALID_CONTRACT
+        - requires_selection
+        - CLARIFICATION_REQUIRED
+        - NON_OPERATIONAL
+        - UNSUPPORTED
+        - FALLBACK
+        - ERROR
+    ContentFormat:
+      type: string
+      enum: [plain, markdown]
+    Clarification:
+      type: object
+      required: [missing_requirements, suggested_question]
+      properties:
+        target_action_sequence:
+          type: [integer, "null"]
+        missing_requirements:
+          type: array
+          items:
+            type: string
+        suggested_question:
+          type: string
+        already_known:
+          type: array
+          items:
+            type: string
+      additionalProperties: true
+    ProductOption:
+      type: object
+      required: [ref, label, product_type, currency, selection]
+      properties:
+        ref:
+          type: string
+          description: Referencia opaca; el frontend no debe construirla.
+        label:
+          type: string
+          description: Nombre y máscara segura del producto.
+        product_type:
+          type: string
+          enum:
+            - savings_account
+            - checking_account
+            - payroll_account
+            - credit_card
+            - loan
+            - term_deposit
+        currency:
+          type: string
+          examples: [DOP, USD]
+        subtitle:
+          type: string
+          description: Texto listo para mostrar debajo del título de la card.
+        context:
+          $ref: "#/components/schemas/OptionContext"
+        selection:
+          $ref: "#/components/schemas/ProductSelection"
+      additionalProperties: false
+    OptionContext:
+      type: object
+      required: [field, label, formatted_value, currency]
+      properties:
+        field:
+          type: string
+          enum:
+            - rate
+            - maturity
+            - due_date
+            - cutoff
+            - available_balance
+            - principal
+            - payoff
+            - overdue
+        label:
+          type: string
+        formatted_value:
+          type: string
+        currency:
+          type: string
+      additionalProperties: false
+    ProductSelection:
+      type: object
+      required: [type, selected_option_ref]
+      properties:
+        type:
+          const: product
+        selected_option_ref:
+          type: string
+        message:
+          type: string
+          description: Pregunta contextual que el frontend muestra y reenvía al seleccionar.
+      additionalProperties: false
+    SuggestedQuestion:
+      type: object
+      properties:
+        question:
+          type: string
+        label:
+          type: string
+        ref:
+          type: string
+      additionalProperties: true
+    RichContent:
+      type: object
+      required: [version, blocks]
+      properties:
+        version:
+          const: "1.0"
+        blocks:
+          type: array
+          maxItems: 40
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/ParagraphBlock"
+              - $ref: "#/components/schemas/ListBlock"
+              - $ref: "#/components/schemas/SectionBlock"
+              - $ref: "#/components/schemas/CardGroupBlock"
+              - $ref: "#/components/schemas/ActionsBlock"
+          discriminator:
+            propertyName: type
+      additionalProperties: false
+    Inline:
+      oneOf:
+        - $ref: "#/components/schemas/TextInline"
+        - $ref: "#/components/schemas/StrongInline"
+        - $ref: "#/components/schemas/LinkInline"
+      discriminator:
+        propertyName: type
+    TextInline:
+      type: object
+      required: [type, text]
+      properties:
+        type:
+          const: text
+        text:
+          type: string
+      additionalProperties: false
+    StrongInline:
+      type: object
+      required: [type, text]
+      properties:
+        type:
+          const: strong
+        text:
+          type: string
+      additionalProperties: false
+    LinkInline:
+      type: object
+      required: [type, text, href, kind]
+      properties:
+        type:
+          const: link
+        text:
+          type: string
+        href:
+          type: string
+          pattern: "^(https?://|tel:|mailto:)"
+        kind:
+          type: string
+          enum: [phone, email, web]
+      additionalProperties: false
+    ParagraphBlock:
+      type: object
+      required: [type, content]
+      properties:
+        type:
+          const: paragraph
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/Inline"
+      additionalProperties: false
+    ListItem:
+      type: object
+      required: [content]
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/Inline"
+      additionalProperties: true
+    ListBlock:
+      type: object
+      required: [type, style, items]
+      properties:
+        type:
+          const: list
+        style:
+          type: string
+          enum: [ordered, unordered]
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ListItem"
+      additionalProperties: false
+    SectionBlock:
+      type: object
+      required: [type, id, title, blocks]
+      properties:
+        type:
+          const: section
+        id:
+          type: string
+        title:
+          type: string
+        collapsible:
+          type: boolean
+          default: false
+        initially_expanded:
+          type: boolean
+          default: false
+        blocks:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/ParagraphBlock"
+              - $ref: "#/components/schemas/ListBlock"
+      additionalProperties: false
+    Card:
+      type: object
+      required: [id, title, actions]
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        subtitle:
+          type: string
+        context:
+          $ref: "#/components/schemas/OptionContext"
+        actions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Action"
+      additionalProperties: false
+    CardGroupBlock:
+      type: object
+      required: [type, cards]
+      properties:
+        type:
+          const: card_group
+        cards:
+          type: array
+          items:
+            $ref: "#/components/schemas/Card"
+      additionalProperties: false
+    ActionsBlock:
+      type: object
+      required: [type, actions]
+      properties:
+        type:
+          const: actions
+        actions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Action"
+      additionalProperties: false
+    Action:
+      type: object
+      required: [type, label]
+      properties:
+        type:
+          type: string
+          enum: [select_option, phone, email, link, message]
+        label:
+          type: string
+        selected_option_ref:
+          type: string
+        message:
+          type: string
+        href:
+          type: string
+          pattern: "^(https?://|tel:|mailto:)"
+      additionalProperties: false
+    Audit:
+      type: object
+      properties:
+        total_ms:
+          type: number
+        slowest_step:
+          type: [string, "null"]
+        slowest_step_ms:
+          type: number
+        step_count:
+          type: integer
+        rag_status:
+          type: string
+      additionalProperties: true
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+        detail:
+          type: [string, object, array, "null"]
+      additionalProperties: true

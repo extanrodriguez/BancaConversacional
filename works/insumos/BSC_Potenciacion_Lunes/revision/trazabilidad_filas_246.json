@@ -1,0 +1,2055 @@
+[
+  {
+    "source_row": 79,
+    "disposition": "heading_only",
+    "related_rows": []
+  },
+  {
+    "source_row": 80,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r080",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 81,
+    "disposition": "exact_duplicate",
+    "canonical_id": "vf01-r080"
+  },
+  {
+    "source_row": 82,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r082",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 83,
+    "disposition": "exact_duplicate",
+    "canonical_id": "vf01-r082"
+  },
+  {
+    "source_row": 84,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r084",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 85,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r085",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 86,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r086",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 87,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r087",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 88,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r088",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 89,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r089",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 90,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r090",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 91,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r091",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 92,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r092",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 93,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r093",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 94,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r094",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 95,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r095",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 96,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r096",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 97,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r097",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 98,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r098",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 99,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r099",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 100,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r100",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 101,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r101",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 102,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r102",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 103,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r103",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 104,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r104",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 105,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r105",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 106,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r106",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 107,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r107",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 108,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r108",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 109,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r109",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 110,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r110",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 111,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r111",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 112,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r112",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 113,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r113",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 114,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r114",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 115,
+    "disposition": "heading_only",
+    "related_rows": [
+      114,
+      116,
+      117
+    ]
+  },
+  {
+    "source_row": 116,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r116",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 117,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r117",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 118,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r118",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 119,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r119",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 120,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r120",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 121,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r121",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 122,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r122",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 123,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r123",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 124,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r124",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 125,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r125",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 126,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r126",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 127,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r127",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 128,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r128",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 129,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r129",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 130,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r130",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 131,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r131",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 132,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r132",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 133,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r133",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 134,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r134",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 135,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r135",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 136,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r136",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 137,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r137",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 138,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r138",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 139,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r139",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 140,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r140",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 141,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r141",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 142,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r142",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 143,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r143",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 144,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r144",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 145,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r145",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 146,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r146",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 147,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r147",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 148,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r148",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 149,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r149",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 150,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r150",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 151,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r151",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 152,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r152",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 153,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r153",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 154,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r154",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 155,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r155",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 156,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r156",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 157,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r157",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 158,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r158",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 159,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r159",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 160,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r160",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 161,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r161",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 162,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r162",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 163,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r163",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 164,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r164",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 165,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r165",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 166,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r166",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 167,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r167",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 168,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r168",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 169,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r169",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 170,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r170",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 171,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r171",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 172,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r172",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 173,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r173",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 174,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r174",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 175,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r175",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 176,
+    "disposition": "heading_only",
+    "related_rows": [
+      89,
+      177,
+      180
+    ]
+  },
+  {
+    "source_row": 177,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r177",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 178,
+    "disposition": "exact_duplicate",
+    "canonical_id": "vf01-r177"
+  },
+  {
+    "source_row": 179,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r179",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 180,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r180",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 181,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r181",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 182,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r182",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 183,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r183",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 184,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r184",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 185,
+    "disposition": "heading_only",
+    "related_rows": [
+      102,
+      186
+    ]
+  },
+  {
+    "source_row": 186,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r186",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 187,
+    "disposition": "heading_only",
+    "related_rows": [
+      91,
+      188,
+      189,
+      190
+    ]
+  },
+  {
+    "source_row": 188,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r188",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 189,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r189",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 190,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r190",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 191,
+    "disposition": "heading_only",
+    "related_rows": [
+      192
+    ]
+  },
+  {
+    "source_row": 192,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r192",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 193,
+    "disposition": "heading_only",
+    "related_rows": [
+      194
+    ]
+  },
+  {
+    "source_row": 194,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r194",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 195,
+    "disposition": "heading_only",
+    "related_rows": [
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217
+    ]
+  },
+  {
+    "source_row": 196,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r196",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 197,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r197",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 198,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r198",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 199,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r199",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 200,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r200",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 201,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r201",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 202,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r202",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 203,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r203",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 204,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r204",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 205,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r205",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 206,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r206",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 207,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r207",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 208,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r208",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 209,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r209",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 210,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r210",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 211,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r211",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 212,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r212",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 213,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r213",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 214,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r214",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 215,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r215",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 216,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r216",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 217,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r217",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 218,
+    "disposition": "heading_only",
+    "related_rows": [
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226
+    ]
+  },
+  {
+    "source_row": 219,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r219",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 220,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r220",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 221,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r221",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 222,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r222",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 223,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r223",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 224,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r224",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 225,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r225",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 226,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r226",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 227,
+    "disposition": "heading_only",
+    "related_rows": [
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247
+    ]
+  },
+  {
+    "source_row": 228,
+    "disposition": "heading_only",
+    "related_rows": [
+      229,
+      230,
+      231,
+      232
+    ]
+  },
+  {
+    "source_row": 229,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r229",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 230,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r230",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 231,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r231",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 232,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r232",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 233,
+    "disposition": "heading_only",
+    "related_rows": [
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247
+    ]
+  },
+  {
+    "source_row": 234,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r234",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 235,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r235",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 236,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r236",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 237,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r237",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 238,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r238",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 239,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r239",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 240,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r240",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 241,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r241",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 242,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r242",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 243,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r243",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 244,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r244",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 245,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r245",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 246,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r246",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 247,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r247",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 248,
+    "disposition": "heading_only",
+    "related_rows": [
+      249
+    ]
+  },
+  {
+    "source_row": 249,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r249",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 250,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r250",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 251,
+    "disposition": "exact_duplicate",
+    "canonical_id": "vf01-r250"
+  },
+  {
+    "source_row": 252,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r252",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 253,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r253",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 254,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r254",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 255,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r255",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 256,
+    "disposition": "heading_only",
+    "related_rows": [
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276
+    ]
+  },
+  {
+    "source_row": 257,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r257",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 258,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r258",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 259,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r259",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 260,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r260",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 261,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r261",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 262,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r262",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 263,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r263",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 264,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r264",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 265,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r265",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 266,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r266",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 267,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r267",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 268,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r268",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 269,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r269",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 270,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r270",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 271,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r271",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 272,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r272",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 273,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r273",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 274,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r274",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 275,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r275",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 276,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r276",
+    "definition_was_shorter": true,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 277,
+    "disposition": "heading_only",
+    "related_rows": [
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289
+    ]
+  },
+  {
+    "source_row": 278,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r278",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 279,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r279",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 280,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r280",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 281,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r281",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 282,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r282",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 283,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r283",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 284,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r284",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 285,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r285",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 286,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r286",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 287,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r287",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 288,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r288",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 289,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r289",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 290,
+    "disposition": "heading_only",
+    "related_rows": [
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300,
+      301
+    ]
+  },
+  {
+    "source_row": 291,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r291",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 292,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r292",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 293,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r293",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 294,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r294",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 295,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r295",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 296,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r296",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 297,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r297",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 298,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r298",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 299,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r299",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 300,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r300",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 301,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r301",
+    "definition_was_shorter": false,
+    "title_corrected": false,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 302,
+    "disposition": "heading_only",
+    "related_rows": [
+      303,
+      304,
+      305,
+      306
+    ]
+  },
+  {
+    "source_row": 303,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r303",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 304,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r304",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 305,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r305",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 306,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r306",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 307,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r307",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 308,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r308",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 309,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r309",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 310,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r310",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 311,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r311",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 312,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r312",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 313,
+    "disposition": "heading_only",
+    "related_rows": [
+      314,
+      315,
+      316,
+      317,
+      318
+    ]
+  },
+  {
+    "source_row": 314,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r314",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 315,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r315",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 316,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r316",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": true
+  },
+  {
+    "source_row": 317,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r317",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 318,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r318",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 319,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r319",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 320,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r320",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 321,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r321",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 322,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r322",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 323,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r323",
+    "definition_was_shorter": true,
+    "title_corrected": true,
+    "qa_eligible": false
+  },
+  {
+    "source_row": 324,
+    "disposition": "recovered",
+    "canonical_id": "vf01-r324",
+    "definition_was_shorter": false,
+    "title_corrected": true,
+    "qa_eligible": false
+  }
+]

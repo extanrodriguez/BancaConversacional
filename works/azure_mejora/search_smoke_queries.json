@@ -1,0 +1,213 @@
+[
+  {
+    "q": "qué significa saldo disponible",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 0,
+    "ms": 4359,
+    "err": null,
+    "discarded": 3,
+    "top": []
+  },
+  {
+    "q": "misión del banco santa cruz",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 3,
+    "ms": 1667,
+    "err": null,
+    "discarded": 0,
+    "top": [
+      {
+        "id": "bsc-info-r0080-c01",
+        "title": "Banco Santa Cruz / General — Misión",
+        "score": 0.03333333507180214,
+        "product": "Banco Santa Cruz / General"
+      },
+      {
+        "id": "bsc-info-r0081-c01",
+        "title": "Banco Santa Cruz / General — Misión",
+        "score": 0.032786883413791656,
+        "product": "Banco Santa Cruz / General"
+      }
+    ]
+  },
+  {
+    "q": "visión banco santa cruz",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 3,
+    "ms": 1445,
+    "err": null,
+    "discarded": 0,
+    "top": [
+      {
+        "id": "bsc-info-r0082-c01",
+        "title": "Banco Santa Cruz / General — Visión",
+        "score": 0.03333333507180214,
+        "product": "Banco Santa Cruz / General"
+      },
+      {
+        "id": "bsc-info-r0083-c01",
+        "title": "Banco Santa Cruz / General — Visión",
+        "score": 0.032786883413791656,
+        "product": "Banco Santa Cruz / General"
+      }
+    ]
+  },
+  {
+    "q": "proceso de reclamación",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 3,
+    "ms": 1554,
+    "err": null,
+    "discarded": 0,
+    "top": [
+      {
+        "id": "bsc-info-r0320-c01",
+        "title": "General / Reclamaciones — PROCESO DE RECLAMACIONES (1/2)",
+        "score": 0.03306011110544205,
+        "product": "General / Reclamaciones"
+      },
+      {
+        "id": "bsc-info-r0320-c02",
+        "title": "General / Reclamaciones — PROCESO DE RECLAMACIONES (2/2)",
+        "score": 0.032522473484277725,
+        "product": "General / Reclamaciones"
+      }
+    ]
+  },
+  {
+    "q": "fondos de clientes fallecidos",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 3,
+    "ms": 1768,
+    "err": null,
+    "discarded": 0,
+    "top": [
+      {
+        "id": "bsc-info-r0324-c03",
+        "title": "General / Fondos de Clientes Fallecidos — RETIRO DE FONDOS DE CLIENTES FALLECIDO",
+        "score": 0.03279569745063782,
+        "product": "General / Fondos de Clientes Fallecidos"
+      },
+      {
+        "id": "bsc-info-r0324-c04",
+        "title": "General / Fondos de Clientes Fallecidos — RETIRO DE FONDOS DE CLIENTES FALLECIDO",
+        "score": 0.032786883413791656,
+        "product": "General / Fondos de Clientes Fallecidos"
+      }
+    ]
+  },
+  {
+    "q": "características tarjeta joven",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 3,
+    "ms": 1484,
+    "err": null,
+    "discarded": 0,
+    "top": [
+      {
+        "id": "bsc-info-r0262-c01",
+        "title": "Tarjeta de Crédito — Tarjeta de Crédito Visa Joven",
+        "score": 0.03333333507180214,
+        "product": "Tarjeta de Crédito"
+      },
+      {
+        "id": "1fd1d77ced6ccd532548083b76250fe4d5417c10",
+        "title": "Tarjeta de Crédito Visa Joven",
+        "score": 0.032258063554763794,
+        "product": "Tarjeta de Crédito"
+      }
+    ]
+  },
+  {
+    "q": "visa platinum",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 3,
+    "ms": 1507,
+    "err": null,
+    "discarded": 0,
+    "top": [
+      {
+        "id": "bsc-info-r0260-c01",
+        "title": "Tarjeta de Crédito — Tarjeta de Crédito Visa Platinum",
+        "score": 0.03333333507180214,
+        "product": "Tarjeta de Crédito"
+      },
+      {
+        "id": "bsc-info-r0280-c01",
+        "title": "Tarjeta de Débito — Tarjeta de Débito Visa Platinum",
+        "score": 0.03201844170689583,
+        "product": "Tarjeta de Débito"
+      }
+    ]
+  },
+  {
+    "q": "visa infinite",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 3,
+    "ms": 1370,
+    "err": null,
+    "discarded": 0,
+    "top": [
+      {
+        "id": "bsc-info-r0261-c01",
+        "title": "Tarjeta de Crédito — Tarjeta de Crédito Visa Infinite",
+        "score": 0.03333333507180214,
+        "product": "Tarjeta de Crédito"
+      },
+      {
+        "id": "975ad5fa7f0402818959e27cdfda60b1309c370b",
+        "title": "Tarjeta de Crédito Visa Infinite",
+        "score": 0.032522473484277725,
+        "product": "Tarjeta de Crédito"
+      }
+    ]
+  },
+  {
+    "q": "depósito a plazo certificado",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 1,
+    "ms": 1376,
+    "err": null,
+    "discarded": 2,
+    "top": [
+      {
+        "id": "c57380c822500fbbf0a47352f7f49b08bd1f5d95",
+        "title": "fase1-que-es-certificado-deposito",
+        "score": 0.03333333507180214,
+        "product": "Depósito a Plazo"
+      }
+    ]
+  },
+  {
+    "q": "préstamo personal requisitos",
+    "mode": "hybrid",
+    "http": 200,
+    "n": 3,
+    "ms": 1317,
+    "err": null,
+    "discarded": 0,
+    "top": [
+      {
+        "id": "bsc-info-r0303-c01",
+        "title": "Préstamos — Requisitos y prerrequisitos de la contratación del producto (1/2)",
+        "score": 0.03333333507180214,
+        "product": "Préstamos"
+      },
+      {
+        "id": "bsc-info-r0303-c02",
+        "title": "Préstamos — Requisitos y prerrequisitos de la contratación del producto (2/2)",
+        "score": 0.03201844170689583,
+        "product": "Préstamos"
+      }
+    ]
+  }
+]

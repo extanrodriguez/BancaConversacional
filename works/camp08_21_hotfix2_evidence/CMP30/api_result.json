@@ -1,0 +1,71 @@
+{
+  "case_id": "CMP30",
+  "section": 19,
+  "questions": [
+    "Compárame cargo por emisión, cargo por renovación y cargo por reemplazo de tarjeta."
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    865
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuáles productos del catálogo deseas comparar?\n\nCargo por emisión – Tarjeta de Crédito: es el cargo que aplica la entidad emisora de tarjetas de crédito al tarjetahabiente, para cubrir el costo inicial de emisión del plástico de la tarjeta de crédito, y que podría ser exonerado el 1er año en el marco de las políticas de competitividad de la entidad. Este cargo puede ser aplicado al balance del tarjetahabiente previa autorización de este, conforme a los términos contractuales. La entidad podrá realizar el cargo de manera parcial.",
+  "replies_sanitized": [
+    "¿Cuáles productos del catálogo deseas comparar?\n\nCargo por emisión – Tarjeta de Crédito: es el cargo que aplica la entidad emisora de tarjetas de crédito al tarjetahabiente, para cubrir el costo inicial de emisión del plástico de la tarjeta de crédito, y que podría ser exonerado el 1er año en el marco de las políticas de competitividad de la entidad. Este cargo puede ser aplicado al balance del tarjetahabiente previa autorización de este, conforme a los términos contractuales. La entidad podrá realizar el cargo de manera parcial."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PARTIAL",
+  "reason": "cubre solo una de misión/visión",
+  "audit": {
+    "total_ms": 597,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 597,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "9ea76451-c2fe-406a-acb9-ca6b4a3d44ee",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_catalog_compare",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 3,
+          "task_statuses": {
+            "t1": "needs_clarification",
+            "t2": "available"
+          },
+          "evidence_sources": [
+            "snapshot",
+            "azure_search"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 594.3
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 597
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_PARTIAL"
+}

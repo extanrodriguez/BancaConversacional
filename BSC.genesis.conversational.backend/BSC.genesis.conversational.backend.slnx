@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GenesisBackend.Api/GenesisBackend.Api.csproj" />
+    <Project Path="src/GenesisBackend.Application/GenesisBackend.Application.csproj" />
+    <Project Path="src/GenesisBackend.Domain/GenesisBackend.Domain.csproj" />
+    <Project Path="src/GenesisBackend.Infrastructure/GenesisBackend.Infrastructure.csproj" />
+    <Project Path="src/GenesisBackend.SharedKernel/GenesisBackend.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Conversations/">
+    <Project Path="src/Modules/Conversations/GenesisBackend.Modules.Conversations.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Users/">
+    <Project Path="src/Modules/Users/GenesisBackend.Modules.Users.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/GenesisBackend.IntegrationTests/GenesisBackend.IntegrationTests.csproj" />
+    <Project Path="tests/GenesisBackend.UnitTests/GenesisBackend.UnitTests.csproj" />
+  </Folder>
+</Solution>

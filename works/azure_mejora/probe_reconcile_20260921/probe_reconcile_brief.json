@@ -1,0 +1,59 @@
+{
+  "run_id": "reconcile_20260921T092332Z",
+  "turns": [
+    {
+      "question": "Oye, se me vence algo pronto? Dime si tengo que pagar algún préstamo o tarjeta e",
+      "reply_view_500": "Felix Prestamos, ventana temporal: fecha de referencia **2026-09-21**, zona horaria **America/Santo_Domingo**, intervalo **próximos 30 días** (hasta **2026-10-21**, inclusive).\nSí: estos productos tienen **pago próximo** dentro de la ventana:\n• **Visa Full Car Flotilla Empleado (••••2240)**: pago próximo / fecha límite **2026-09-25**, pago mínimo **RD$0.00**\nFechas de pago registradas fuera de la ventana (no cuentan como próximo):\n• **Préstamo personal (...27615)**: tiene fecha de pago **2026-09",
+      "reply_len": 1074,
+      "truncated_note": "report_view_only",
+      "brain_source": "structural_repair",
+      "inference_count": 2,
+      "route": "repair:after_CLARIFICATION_REQUIRED_no_interpretation",
+      "plan": {
+        "source": "repair:after_CLARIFICATION_REQUIRED_no_interpretation",
+        "transition": "none",
+        "tasks": [
+          {
+            "id": "t1",
+            "domain": "personal",
+            "action": "read_field",
+            "object": "product",
+            "fields": [
+              "due_date",
+              "installment_amount",
+              "min_payment"
+            ],
+            "status": "ready",
+            "entity_ref": null
+          }
+        ]
+      }
+    },
+    {
+      "question": "Qué significa el saldo disponible en una cuenta de ahorros?",
+      "reply_view_500": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta.",
+      "reply_len": 182,
+      "truncated_note": "none",
+      "brain_source": "structured_shortcut",
+      "inference_count": 0,
+      "route": "shortcut:kb_glossary_available",
+      "plan": {
+        "source": "shortcut:kb_glossary_available",
+        "transition": "none",
+        "tasks": [
+          {
+            "id": "t1",
+            "domain": "institutional",
+            "action": "define",
+            "object": "glossary",
+            "fields": [
+              "available_balance"
+            ],
+            "status": "ready",
+            "entity_ref": null
+          }
+        ]
+      }
+    }
+  ]
+}

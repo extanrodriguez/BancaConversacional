@@ -1,0 +1,10 @@
+{
+  "generated_utc": "20260921T041632Z",
+  "run_141": "20260921T020704Z_90a62b16",
+  "fix_counts": {
+    "RESUELTO": 18,
+    "PARCIAL": 68,
+    "FALLA": 150
+  },
+  "note": "RESUELTO visual exige captura; sin redeploy local, algunos PASS remotos no acreditan fixes nuevos"
+}

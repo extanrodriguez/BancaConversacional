@@ -1,0 +1,28 @@
+{
+  "auth_mode": "entra_managed_identity",
+  "session_url_set": true,
+  "lock_url_set": true,
+  "steps": {
+    "session_ping": true,
+    "lock_ping": true,
+    "set_get_del": true,
+    "lock_nx": true,
+    "cas_conflict": true
+  },
+  "diagnose": {
+    "ok": true,
+    "session_backend": "redis",
+    "lock_backend": "redis",
+    "auth_mode": "entra_managed_identity",
+    "redis_required": true,
+    "session_backend_preference": "redis",
+    "session_ping": true,
+    "lock_ping": true,
+    "session_host": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+    "lock_host": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+    "errors": []
+  },
+  "ok": true
+}
+/opt/genesis-cognitive-8447/Genesis_v2/scripts/redis_entra_ops_probe.py:80: DeprecationWarning: Call to deprecated setex. (Use 'set' instead.) -- Deprecated since version 2.6.12.
+  sess.setex(key, 30, "ok")

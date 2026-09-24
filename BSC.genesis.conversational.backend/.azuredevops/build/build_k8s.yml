@@ -1,0 +1,114 @@
+---
+name: $(Build.BuildId)-$(SourceBranchName)-$(Date:yyyyMMdd)$(rev:.r)
+
+trigger:
+  branches:
+    include:
+      - develop
+      - development
+      - staging
+      - release/*
+      - main
+  paths:
+    include:
+      - '*'
+    exclude:
+      - docs/**
+      - pipeline/**
+      - .azuredevops/**
+      - README.md
+      - '**/*.md'
+      - ecosystem.config.cjs
+      - .env.template
+      - .npmrc.template
+      - .gitignore
+      - gitversion.yml
+      - .vscode/**
+      - .github/**
+      - docker-compose.yml
+
+resources:
+  repositories:
+    - repository: self
+    - repository: portal_web_gitops
+      type: git
+      name: Infrastructura/ArgoCD
+      ref: main
+    - repository: templates
+      type: git
+      name: Pipeline_Templates/Pipeline_Templates
+      ref: main
+
+variables:
+  - name: IMAGE_TAG
+    value: '$(Build.BuildId)'
+  - name: IMAGE_NAME
+    value: $[ lower(variables['Build.Repository.Name']) ]
+  - name: IMAGE_PROJECT
+    value: $[ lower(variables['System.TeamProject']) ]
+  - name: imageRepository
+    value: $(IMAGE_PROJECT)/$(REPOSITORY_NAME)
+
+  - group: vg-Mail-vars
+  #- group: argo
+  - group: SQ_TOKEN_GATEWAY
+
+parameters:
+  - name: scan
+    displayName: 'scan'
+    type: boolean
+    default: true
+  - name: versioningMode
+    displayName: 'Modo de versionado Docker'
+    type: string
+    default: semver
+    values:
+      - semver
+      - legacy
+  - name: semver
+    displayName: 'Override SemVer para tag Docker'
+    type: string
+    default: ''
+  - name: gitversion_configFilePath
+    displayName: 'Archivo de configuracion GitVersion'
+    type: string
+    default: 'gitversion.yml'
+
+lockBehavior: sequential
+
+extends:
+  template: flow/deploy/k8s-harbor-kargo.yml@templates
+  parameters:
+    ArgoApp: portal-web-bsc
+    Approl: Backend
+    commonDeployVariableGroup: vg-deploy-common
+    artifactName: drop
+    application_name: '$(Build.Repository.Name)'
+    scan: ${{ parameters.scan }}
+    versioningMode: ${{ parameters.versioningMode }}
+    semver: ${{ parameters.semver }}
+    gitversion_configFilePath: ${{ parameters.gitversion_configFilePath }}
+    dotnetVersion: '8.x'
+    additionalSecureFiles:
+      - bsc-qa-ca-bundle.crt
+
+    environments:
+      - name: DEV
+        cert_self_sign: false
+        vg_app: vg-BSC.genesis.conversational.backend-deploy-Dev
+        updateGitopsConfigmap: true
+        gitopsConfigmapDirectory: k8s/apps/genesis-conversational-backend/stages/backend
+        gitopsConfigmapFilePrefix: values-
+        gitopsConfigmapFileSuffix: -backend.yaml
+
+      - name: QA
+        cert_self_sign: false
+        vg_app: vg-BSC.genesis.conversational.backend-deploy-QA
+        updateGitopsConfigmap: true
+        gitopsConfigmapDirectory: k8s/apps/genesis-conversational-backend/stages/backend
+        gitopsConfigmapFilePrefix: values-
+        gitopsConfigmapFileSuffix: -backend.yaml
+
+      #- name: PROD
+      #  cert_self_sign: false
+      #  vg_app: vg-BSC.genesis.conversational.backend-deploy-PROD

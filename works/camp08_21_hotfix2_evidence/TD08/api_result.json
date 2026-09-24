@@ -1,0 +1,60 @@
+{
+  "case_id": "TD08",
+  "section": 12,
+  "questions": [
+    "¿Qué diferencia hay entre una tarjeta de débito y una tarjeta de crédito?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    1335
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, La **tarjeta de crédito** usa una línea de crédito aprobada por el banco: consumes ahora y pagas después (pago mínimo o total), con intereses/cargos según el tarifario.\n\nLa **tarjeta de débito** usa directamente el dinero de tu **cuenta** asociada (ahorro/corriente/nómina): solo gastas lo disponible; no es una línea de préstamo.\n\nCargos típicos: emisión/renovación y otros del tarifario (débito suele cargarse a la cuenta; crédito al balance de la tarjeta).\n\n¿Quieres el detalle de cargos de la de débito o de la de crédito?",
+  "replies_sanitized": [
+    "Felix Prestamos, La **tarjeta de crédito** usa una línea de crédito aprobada por el banco: consumes ahora y pagas después (pago mínimo o total), con intereses/cargos según el tarifario.\n\nLa **tarjeta de débito** usa directamente el dinero de tu **cuenta** asociada (ahorro/corriente/nómina): solo gastas lo disponible; no es una línea de préstamo.\n\nCargos típicos: emisión/renovación y otros del tarifario (débito suele cargarse a la cuenta; crédito al balance de la tarjeta).\n\n¿Quieres el detalle de cargos de la de débito o de la de crédito?"
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "posible acierto; revisar criterio completo",
+  "audit": {
+    "total_ms": 102,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 102,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "b116f8c1-095b-4302-afff-2382a145d5b6",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 98.3
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 102
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

@@ -1,0 +1,49 @@
+trigger:
+  branches:
+    include:
+      - develop
+      - test
+      - staging
+      - main
+
+pr:
+  branches:
+    include:
+      - develop
+      - test
+      - staging
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: Release
+
+steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET 8 SDK'
+    inputs:
+      packageType: sdk
+      version: '8.x'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Restore'
+    inputs:
+      command: restore
+      projects: '**/*.csproj'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Build'
+    inputs:
+      command: build
+      projects: '**/*.csproj'
+      arguments: '--no-restore --configuration $(buildConfiguration)'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Test'
+    inputs:
+      command: test
+      projects: 'tests/**/*.csproj'
+      arguments: '--no-build --configuration $(buildConfiguration) --collect:"XPlat Code Coverage"'
+      publishTestResults: true

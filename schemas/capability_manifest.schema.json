@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://genesis.local/schemas/capability_manifest.schema.json",
+  "title": "Capability Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "capability_id",
+    "intent_ids",
+    "capability_candidate",
+    "domain",
+    "description",
+    "required_entities",
+    "optional_entities",
+    "skill_or_specialist",
+    "output_contract",
+    "orchestrator_requirements",
+    "app_requirements",
+    "auth_requirements",
+    "support_level",
+    "lifecycle_status",
+    "feature_flag",
+    "selected_route",
+    "validation_rules",
+    "enabled"
+  ],
+  "properties": {
+    "capability_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "intent_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]{2,127}$"
+      }
+    },
+    "capability_candidate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Z][A-Z0-9_]{2,127}$"
+    },
+    "domain": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{1,63}$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "required_entities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "optional_entities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "skill_or_specialist": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "output_contract": {
+      "type": "string",
+      "minLength": 1
+    },
+    "orchestrator_requirements": {
+      "$ref": "#/$defs/OrchestratorRequirements"
+    },
+    "app_requirements": {
+      "$ref": "#/$defs/AppRequirements"
+    },
+    "auth_requirements": {
+      "$ref": "#/$defs/AuthenticationRequirements"
+    },
+    "support_level": {
+      "enum": [
+        "INFORMATION_ONLY",
+        "GUIDED",
+        "ASSISTED",
+        "VALIDATABLE",
+        "EXECUTABLE"
+      ]
+    },
+    "lifecycle_status": {
+      "enum": [
+        "EXPERIMENTAL",
+        "PILOT",
+        "PRODUCTION"
+      ]
+    },
+    "feature_flag": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "selected_route": {
+      "enum": [
+        "BUSINESS_RAG",
+        "PORTFOLIO_QUERY",
+        "PERSONAL_READ",
+        "TRANSFER_CONTRACT_BUILDER",
+        "CLARIFICATION",
+        "UNSUPPORTED"
+      ]
+    },
+    "validation_rules": {
+      "$ref": "#/$defs/CapabilityValidationRules"
+    },
+    "enabled": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "OrchestratorRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_capabilities",
+        "requires_confirmation",
+        "requires_idempotency",
+        "max_execution_time_seconds"
+      ],
+      "properties": {
+        "required_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requires_confirmation": {
+          "type": "boolean"
+        },
+        "requires_idempotency": {
+          "type": "boolean"
+        },
+        "max_execution_time_seconds": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        }
+      }
+    },
+    "AppRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_channels",
+        "required_capabilities",
+        "show_confirmation_ui",
+        "show_cancellation_ui",
+        "show_timer"
+      ],
+      "properties": {
+        "allowed_channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "required_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "show_confirmation_ui": {
+          "type": "boolean"
+        },
+        "show_cancellation_ui": {
+          "type": "boolean"
+        },
+        "show_timer": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AuthenticationRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requires_authenticated",
+        "minimum_authentication_level",
+        "requires_elevated"
+      ],
+      "properties": {
+        "requires_authenticated": {
+          "type": "boolean"
+        },
+        "minimum_authentication_level": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "requires_elevated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "CapabilityValidationRules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min_required_entities",
+        "all_required_entities_present"
+      ],
+      "properties": {
+        "min_required_entities": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "all_required_entities_present": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "base": "http://20.127.25.24:8447",
+  "/health": {
+    "http": 200,
+    "body": {
+      "status": "ok",
+      "service": "genesis-cognitive",
+      "env": "qa",
+      "version": "0.8.0",
+      "rag": "ready"
+    }
+  },
+  "/ready/redis": {
+    "http": 200,
+    "body": {
+      "ok": true,
+      "session_backend": "redis",
+      "lock_backend": "redis",
+      "auth_mode": "entra_managed_identity",
+      "redis_required": true,
+      "session_backend_preference": "redis",
+      "session_ping": true,
+      "lock_ping": true,
+      "session_host": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+      "lock_host": "bsc-cognitive-redis-qa.eastus.redis.azure.net",
+      "errors": []
+    }
+  },
+  "context": {
+    "http": 200,
+    "status": "CONTEXT_LOADED"
+  },
+  "smoke_turns": [
+    {
+      "question": "Qué significa el saldo disponible",
+      "http": 200,
+      "reply_len": 182,
+      "reply_prefix": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta.",
+      "has_window": false,
+      "inference_count": null
+    },
+    {
+      "question": "Dime la misión y la visión",
+      "http": 200,
+      "reply_len": 2302,
+      "reply_prefix": "Tema: Misión / Visión\nProducto: Banco Santa Cruz / General\nPreguntas ejemplo:\n- mision y vision\n- misión y visión\n- mision y la vision\n- misión y la visión\n- cual es la mision y la vision\n- cuál es la misión y la visión\n- cual es la mision y vision del banco\n- cuál es la misión y visión del banco\n- ",
+      "has_window": false,
+      "inference_count": null
+    },
+    {
+      "question": "¿Tengo algún préstamo o tarjeta con un pago próximo? Si es así, dime cuánto debo pagar y cuándo.",
+      "http": 200,
+      "reply_len": 1074,
+      "reply_prefix": "Felix Prestamos, ventana temporal: fecha de referencia **2026-09-21**, zona horaria **America/Santo_Domingo**, intervalo **próximos 30 días** (hasta **2026-10-21**, inclusive).\nSí: estos productos tienen **pago próximo** dentro de la ventana:\n• **Visa Full Car Flotilla Empleado (••••2240)**: pago pr",
+      "has_window": true,
+      "inference_count": null
+    },
+    {
+      "question": "Compárame Visa Platinum y Visa Infinite.",
+      "http": 200,
+      "reply_len": 1627,
+      "reply_prefix": "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Platinum\nLas TARJETAS PLATINUM de crédito Visa Santa Cruz es un instrumento de pago que te da la facilidad de realizar pagos o co",
+      "has_window": false,
+      "inference_count": null
+    }
+  ]
+}

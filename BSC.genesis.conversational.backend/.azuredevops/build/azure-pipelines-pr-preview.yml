@@ -1,0 +1,66 @@
+trigger: none
+
+pr:
+  branches:
+    include:
+      - "*"
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - name: REPOSITORY_NAME
+    value: $[ lower(variables['Build.Repository.Name']) ]
+  - name: imageRepository
+    value: genesis/$(REPOSITORY_NAME)
+  - name: dockerRegistryServiceConnection
+    value: Harbor_Registry
+  - name: dockerfilePath
+    value: Dockerfile
+  - name: IMAGE_TAG
+    value: "$(Build.BuildId)"
+  - group: vg-Mail-vars
+  - group: SQ_TOKEN_GATEWAY
+
+resources:
+  repositories:
+    - repository: self
+    - repository: templates
+      type: git
+      name: Pipeline_Templates/Pipeline_Templates
+      ref: main
+
+parameters:
+  - name: scan
+    displayName: "scan"
+    type: boolean
+    default: false
+
+  - name: RegistrySource
+    displayName: "Registry ?"
+    type: string
+    default: npmjs
+    values:
+      - npmjs
+      - azartifact
+      - yarn
+      - nexus
+
+lockBehavior: sequential
+extends:
+  template: flow/deploy/multi-stage-efimero-argocd.yml@templates
+  parameters:
+    scan: ${{ parameters.scan }}
+    environments:
+      - name: DEV
+        dependsOn: Sonar
+        cert_self_sign: true
+        vg_app: vg-BSC.genesis.conversational.backend-deploy-Dev
+      - name: QA
+        dependsOn: Sonar
+        cert_self_sign: true
+        vg_app: vg-BSC.genesis.conversational.backend-deploy-Dev
+      - name: PROD
+        dependsOn: Sonar
+        cert_self_sign: true
+        vg_app: vg-BSC.genesis.conversational.backend-deploy-Dev

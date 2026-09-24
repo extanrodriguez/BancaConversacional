@@ -1,0 +1,41 @@
+{
+  "version": "contextual-v1",
+  "generated_at": "2026-09-19",
+  "domains": {
+    "personal": {
+      "actions": ["read_field", "list", "check_existence"],
+      "objects": ["account", "credit_card", "loan", "term_deposit", "portfolio", "product"],
+      "fields": {
+        "available": {"source": "ProductSnapshot.available_balance", "types": ["SAVINGS", "CHECKING", "PAYROLL", "CREDIT_CARD"]},
+        "balance": {"source": "ProductSnapshot.ledger_balance", "types": ["SAVINGS", "CHECKING", "PAYROLL", "CREDIT_CARD"], "card_convention": "debt"},
+        "min_payment": {"source": "min_payment_rd", "types": ["CREDIT_CARD"]},
+        "due_date": {"source": "LoanSnapshot.next_due_date / card cutoff context", "types": ["LOAN", "CREDIT_CARD"], "absent_ok": true},
+        "rate": {"source": "interest_rate / annual_interest_rate", "types": ["LOAN", "TERM_DEPOSIT", "CREDIT_CARD"]},
+        "principal": {"source": "outstanding_principal", "types": ["LOAN"]},
+        "payoff": {"source": "payoff_amount", "types": ["LOAN"]},
+        "maturity": {"source": "maturity_date", "types": ["TERM_DEPOSIT", "LOAN"]}
+      }
+    },
+    "institutional": {
+      "actions": ["define"],
+      "objects": ["bank", "glossary"],
+      "fields": ["mision", "vision", "interest_rate", "available_balance"]
+    },
+    "process": {
+      "actions": ["process", "compare"],
+      "objects": ["cancellation", "none"],
+      "sources": ["faq_guardrail", "reclamacion_guardrail", "Foundry/KB"]
+    },
+    "catalog": {
+      "actions": ["define", "compare"],
+      "objects": ["product", "catalog_refs"],
+      "note": "No confundir nombre comercial con definición de 'cliente'"
+    }
+  },
+  "conventions": {
+    "credit_card.saldo_unqualified": "ledger_balance (deuda)",
+    "unknown_commercial_classification": "no afirmar ausencia de producto",
+    "lab_fallback_vs_core": "lab_fallback no equivale a Core vivo"
+  },
+  "module": "genesis_cognitive.brain.semantic_field_catalog"
+}

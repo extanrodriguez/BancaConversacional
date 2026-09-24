@@ -1,0 +1,62 @@
+{
+  "descripcion": "Escenarios para enrutamiento TC/CA, saldo genérico, movimientos y transferencias",
+  "casos": [
+    {
+      "escenario": "cuentas_multi",
+      "question": "Dime mi saldo",
+      "expect_status": "VALID_CONTRACT",
+      "must_contain": "saldo disponible"
+    },
+    {
+      "escenario": "cuentas_multi",
+      "question": "¿Cuánto tengo?",
+      "expect_status": "VALID_CONTRACT",
+      "must_contain": "saldo disponible"
+    },
+    {
+      "escenario": "tarjetas_multi",
+      "question": "¿Cuál es mi límite?",
+      "expect_status": "CLARIFICATION_REQUIRED"
+    },
+    {
+      "escenario": "tarjeta_unica",
+      "question": "¿Cuándo corta mi tarjeta?",
+      "expect_intent": "CREDIT_CARD_DETAIL_READ"
+    },
+    {
+      "escenario": "qa_andres",
+      "question": "¿Cuál es mi límite?",
+      "expect_status": "CLARIFICATION_REQUIRED"
+    },
+    {
+      "escenario": "qa_andres",
+      "question": "Dime el saldo de mi cuenta de ahorros",
+      "must_contain": "265.46"
+    },
+    {
+      "escenario": "qa_andres",
+      "question": "¿Cuánto tengo en mi cuenta en dólares?",
+      "must_contain": "0.24"
+    },
+    {
+      "escenario": "qa_andres",
+      "question": "Ahora dime la corriente",
+      "must_contain": "no tienes cuentas corrientes"
+    },
+    {
+      "escenario": "qa_andres",
+      "question": "Dime el saldo de la cuenta 1234",
+      "must_contain": "no existe"
+    },
+    {
+      "escenario": "qa_andres",
+      "question": "Dime el saldo de mi cuenta corriente",
+      "must_contain": "no tienes cuentas corrientes"
+    },
+    {
+      "escenario": "cuenta_unica",
+      "question": "Quiero transferir a otra cuenta",
+      "expect_status": "UNSUPPORTED"
+    }
+  ]
+}

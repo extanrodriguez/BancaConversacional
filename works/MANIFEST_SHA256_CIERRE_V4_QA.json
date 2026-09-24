@@ -1,0 +1,12 @@
+{
+  "zip_sha256": "f9f8488df3cefbcfb86ff32056052a927ce38420efc46f5a059b45a3f91a8e99",
+  "files": {
+    "src/genesis_cognitive/brain/azure_plan_turn.py": "b76e5985de4a75289ea008a417a93d4d0192400a63049a07cea1bb897de6e700",
+    "src/genesis_cognitive/brain/azure_plan_adapter.py": "64716f394c0604475207c685ac34a38acedc3fb1eab0113a54b035d45fa84687",
+    "src/genesis_cognitive/brain/plan_interpreter.py": "16291ea5ce09211fc2123813114b605da37f38cc9f08075c68340fc55b227d4a",
+    "src/genesis_cognitive/brain/plan_executor.py": "a910718593eedf7bc1907a2148b1de6d6e9b2c360efd4dc594f7fc7ad18c743d",
+    "src/genesis_cognitive/context/app_channel.py": "fb3b33d6c801ffc3bf9b70180b8a65ea0e6765dad8c84ae137c0d8d664976630",
+    "src/genesis_cognitive/demo/contract_inspector_app.py": "1c1cb4aeb0ab546e6e509f7e150a2f5413ef54fb4c28c3da81ce583417aa828d",
+    "src/genesis_cognitive/context/redis_client_factory.py": "718c550de0538564b1d0675eaff42bc745910c3e370ebd2193f735ea522a317a"
+  }
+}

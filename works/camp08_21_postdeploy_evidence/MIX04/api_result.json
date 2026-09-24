@@ -1,0 +1,76 @@
+{
+  "case_id": "MIX04",
+  "section": 18,
+  "questions": [
+    "¿Qué es una tabla de amortización?",
+    "Ahora dime cuánto me falta por pagar de mi préstamo."
+  ],
+  "http": [
+    200,
+    200
+  ],
+  "ms": [
+    1484,
+    225
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Sobre cuál préstamo deseas consultar:\n\n• **Préstamo personal (...####)**\n• **Préstamo hipotecario (...####)**",
+  "replies_sanitized": [
+    "Felix Prestamos, Tabla de amortización: documento que muestra el desglose de los pagos de un préstamo o del Multicrédito BSC a lo largo del tiempo. En ella se detalla cómo se distribuyen los pagos entre el capital y los intereses en cada periodo.",
+    "¿Sobre cuál préstamo deseas consultar:\n\n• **Préstamo personal (...####)**\n• **Préstamo hipotecario (...####)**"
+  ],
+  "options_count": 2,
+  "options_labels": [
+    "Préstamo personal (...####)",
+    "Préstamo hipotecario (...####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 5,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 5,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "b01f01ef-171c-4fd4-a839-4838ca1634a3",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:heuristic_personal_plan",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "needs_clarification"
+          },
+          "evidence_sources": [
+            "snapshot"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 1.4
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 5
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CLARIFICATION"
+}

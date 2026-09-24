@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "prompt_id": "genesis.turn-decision",
+  "agent_id": "turn-decision-agent",
+  "prompt_version": "1.4.1",
+  "status": "draft",
+  "language": "es",
+  "instructions": {
+    "role": "Interpretar turnos bancarios del usuario y producir una propuesta semantica estructurada con result_type, capability_id, intent_id y entidades detectadas.",
+    "objectives": [
+      "Clasificar cada turno como ACTIONS, NON_OPERATIONAL o UNSUPPORTED.",
+      "Para ACTIONS: identificar capability_id e intent_id autorizados del catalogo effective_capabilities.",
+      "Detectar entidades y devolver product_ref canonico del portafolio, nunca alias ni label.",
+      "Expresar dependencias entre acciones mediante depends_on.",
+      "Para NON_OPERATIONAL: responder con non_operational_message cordial. Solo cuando el mensaje es un saludo, cortesia o conversacion general sin ninguna intencion funcional.",
+      "Para UNSUPPORTED: describir la razon en unsupported_segments. Usar cuando el usuario expresa una intencion funcional o solicitud concreta que no tiene capacidad autorizada en effective_capabilities."
+    ],
+    "rules": [
+      "result_type debe ser exactamente: ACTIONS, NON_OPERATIONAL o UNSUPPORTED.",
+      "Para ACTIONS: actions debe contener al menos una accion con capability_id e intent_id del catalogo.",
+      "Para NON_OPERATIONAL: actions debe ser vacio; non_operational_message debe tener contenido. Solo aplica a saludos, despedidas, cortesia y conversacion general sin solicitud funcional.",
+      "Para UNSUPPORTED: actions debe ser vacio; unsupported_segments debe tener al menos un elemento. Aplica cuando el usuario expresa una solicitud, peticion o intencion concreta que no corresponde a ninguna capacidad en effective_capabilities.",
+      "Distincion critica: NON_OPERATIONAL = mensaje sin intencion funcional (saludo, cortesia). UNSUPPORTED = mensaje con intencion funcional clara pero sin capacidad autorizada (reservar vuelos, pedir pizza, comprar acciones).",
+      "capability_id e intent_id deben coincidir exactamente con los del catalogo effective_capabilities.",
+      "Para account_ref, source_account_ref y destination_account_ref: devolver siempre product_ref del portafolio.",
+      "Usar alias y label solamente para comprender la referencia del usuario, no como valor de salida.",
+      "Si una referencia no puede vincularse a un unico product_ref, dejar el campo como null. Ejemplo: 'mi saldo' con 2+ cuentas en el portafolio no identifica una unica cuenta.",
+      "El uso de singular, posesivos (mi, tu, la) o articulos NO demuestra unicidad cuando existen multiples productos compatibles.",
+      "No inventar product_ref que no existan en el portafolio.",
+      "depends_on referencia secuencias existentes.",
+      "No incluir campos que no existan en el schema de salida.",
+      "temperature=0 para respuestas deterministas.",
+      "Si el campo pending_action esta presente en la entrada, el turno actual es una respuesta a una clarificacion previa. Usar el pending_action.intent_id y pending_action.capability_id como punto de partida. El raw_text del turno actual responde a pending_action.missing_requirements. Resolver la entidad faltante vinculandola al portafolio.",
+      "En un turno de continuacion (pending_action presente): el usuario responde a la pregunta de pending_action.suggested_question. Vincular la respuesta del usuario al product_ref correspondiente del portafolio. Si la referencia es unica e inequivoca (por ejemplo, solo hay un producto de tipo ahorros), resolver a su product_ref."
+    ],
+    "prohibitions": [
+      "No generar customer_id, subject_token, conversation_id, request_id ni correlation_id.",
+      "No generar mode, capability_candidate, selected_route, required_entities, optional_entities, missing_requirements, already_known ni output_contract.",
+      "No generar action_id.",
+      "No ejecutar operaciones financieras.",
+      "No acceder a bases de datos ni servicios externos.",
+      "No incluir credenciales, tokens ni PII en la respuesta.",
+      "No inventar capacidades, rutas ni entidades fuera del catalogo proporcionado.",
+      "No seleccionar un producto por su posicion en la lista del portafolio cuando hay ambiguedad.",
+      "No asumir una cuenta principal, predeterminada o habitual si esa preferencia no esta en el contexto."
+    ]
+  },
+  "contracts": {
+    "input": "SemanticTurnInput@1.0",
+    "output_schema": "schemas/turn_interpretation.schema.json@1.0"
+  },
+  "capabilities": {
+    "catalog_ref": "capability-catalog@1.0",
+    "skills": []
+  },
+  "model_policy": {
+    "model_alias": "turn-decision-default",
+    "structured_output": true
+  },
+  "evaluation": {
+    "suite_id": "turn-decision-semantic-v1",
+    "dataset_ref": "tests/fixtures/semantic-evaluation-v1.jsonl"
+  },
+  "foundry": {
+    "deployment_ready": false,
+    "agent_name": "genesis-turn-decision"
+  },
+  "change": {
+    "reason": "Agrega reglas para usar pending_action en turnos de continuacion (multivuelta). El modelo debe resolver la entidad faltante usando el contexto del portafolio cuando el usuario responde a una clarificacion previa."
+  }
+}

@@ -1,0 +1,730 @@
+[
+  {
+    "acceptance_id": "P01",
+    "guide_case_ids": [
+      "P01"
+    ],
+    "turns": [
+      "¿Cuánto debo en mi tarjeta de crédito, cuánto tengo disponible y cuándo es mi fecha límite de pago?"
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "tarjeta_credito",
+        "required_facets": [
+          "current_debt",
+          "available_credit",
+          "payment_due_date"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P02",
+    "guide_case_ids": [
+      "P02"
+    ],
+    "turns": [
+      "De mi tarjeta de crédito dime el saldo actual, el pago mínimo, el límite disponible y mis últimos movimientos."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "tarjeta_credito",
+        "required_facets": [
+          "current_debt",
+          "minimum_payment",
+          "available_credit",
+          "transactions"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P03",
+    "guide_case_ids": [
+      "P03"
+    ],
+    "turns": [
+      "¿Cuánto debo de mi préstamo personal, cuánto es mi próxima cuota y cuándo me toca pagarla?"
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "prestamo_personal",
+        "required_facets": [
+          "outstanding_balance",
+          "installment_amount",
+          "next_payment_date"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P04",
+    "guide_case_ids": [
+      "P04"
+    ],
+    "turns": [
+      "Dime cuánto me falta del préstamo hipotecario, cuál es la tasa y cuánto necesitaría para cancelarlo."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "prestamo_hipotecario",
+        "required_facets": [
+          "outstanding_balance",
+          "interest_rate",
+          "payoff_amount"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P05",
+    "guide_case_ids": [
+      "P05"
+    ],
+    "turns": [
+      "De mi certificado financiero dime cuánto invertí, qué tasa tiene, cuánto ha generado y cuándo vence."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "deposito",
+        "required_facets": [
+          "opening_amount",
+          "interest_rate",
+          "interest_earned",
+          "maturity_date"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P06",
+    "guide_case_ids": [
+      "P06"
+    ],
+    "turns": [
+      "¿Cuál es el balance actual y disponible de mi cuenta corriente y cuáles fueron los últimos tres movimientos?"
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "cuenta_corriente",
+        "required_facets": [
+          "ledger_balance",
+          "available_balance",
+          "transactions_last_3"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P07",
+    "guide_case_ids": [
+      "P07"
+    ],
+    "turns": [
+      "Dime cuánto tengo en mi cuenta de ahorros y cuánto debo en mi tarjeta de crédito."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "cuenta_ahorro",
+        "required_facets": [
+          "balance_semantics_resolved"
+        ]
+      },
+      {
+        "selector": "tarjeta_credito",
+        "required_facets": [
+          "current_debt"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P08",
+    "guide_case_ids": [
+      "P08"
+    ],
+    "turns": [
+      "¿Cuánto tengo disponible en mi cuenta corriente, cuánto debo de mi tarjeta y cuándo vence la próxima cuota del préstamo personal?"
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "cuenta_corriente",
+        "required_facets": [
+          "available_balance"
+        ]
+      },
+      {
+        "selector": "tarjeta_credito",
+        "required_facets": [
+          "current_debt"
+        ]
+      },
+      {
+        "selector": "prestamo_personal",
+        "required_facets": [
+          "next_payment_date"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P09",
+    "guide_case_ids": [
+      "P09"
+    ],
+    "turns": [
+      "¿Cuánto debo en mis tarjetas de crédito y cuál de ellas tiene más crédito disponible?"
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "todas_tarjetas_credito",
+        "required_facets": [
+          "current_debt",
+          "available_credit",
+          "compare_available_credit_same_currency"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P10",
+    "guide_case_ids": [
+      "P10"
+    ],
+    "turns": [
+      "Compárame mis certificados financieros: dime la tasa, el balance y cuál vence primero."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "todos_depositos",
+        "required_facets": [
+          "interest_rate",
+          "current_balance",
+          "maturity_date",
+          "earliest_maturity"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P11",
+    "guide_case_ids": [
+      "P11"
+    ],
+    "turns": [
+      "¿Cuánto tengo en mis cuentas, cuánto debo de mis tarjetas y cuánto tengo pendiente de mis préstamos?"
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "cuentas",
+        "required_facets": [
+          "balance_semantics_resolved"
+        ]
+      },
+      {
+        "selector": "tarjetas_credito",
+        "required_facets": [
+          "current_debt"
+        ]
+      },
+      {
+        "selector": "prestamos",
+        "required_facets": [
+          "outstanding_balance"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P12",
+    "guide_case_ids": [
+      "P12"
+    ],
+    "turns": [
+      "¿Tengo algún préstamo o tarjeta con un pago próximo? Si es así, dime cuánto debo pagar y cuándo."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "prestamos_y_tarjetas",
+        "required_facets": [
+          "payment_window_resolved",
+          "payment_amount_semantics_resolved",
+          "payment_date"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P13",
+    "guide_case_ids": [
+      "P13"
+    ],
+    "turns": [
+      "De mi préstamo personal dime saldo y próxima cuota, y del hipotecario solo dime la tasa."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "prestamo_personal",
+        "required_facets": [
+          "outstanding_balance",
+          "installment_amount"
+        ]
+      },
+      {
+        "selector": "prestamo_hipotecario",
+        "required_facets": [
+          "interest_rate"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [
+      "prestamo_hipotecario.outstanding_balance",
+      "prestamo_hipotecario.installment_amount"
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P14",
+    "guide_case_ids": [
+      "P14"
+    ],
+    "turns": [
+      "Dime el saldo de mi cuenta de ahorros y de mi cuenta corriente, pero solo muéstrame los movimientos de la cuenta de ahorros."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "cuenta_ahorro",
+        "required_facets": [
+          "balance_semantics_resolved",
+          "transactions"
+        ]
+      },
+      {
+        "selector": "cuenta_corriente",
+        "required_facets": [
+          "balance_semantics_resolved"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [
+      "cuenta_corriente.transactions"
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "P15",
+    "guide_case_ids": [
+      "P15"
+    ],
+    "turns": [
+      "Dime la tasa y vencimiento de mis certificados financieros y cuál vence primero, pero no necesito el balance."
+    ],
+    "fixture_requirements": "Portafolio sintético local con cada familia/subtipo mencionado; añadir variantes múltiples y campos nulos. En QA real, solo si existen en 726588.",
+    "targets": [
+      {
+        "selector": "todos_depositos",
+        "required_facets": [
+          "interest_rate",
+          "maturity_date",
+          "earliest_maturity"
+        ]
+      }
+    ],
+    "assertions": [
+      "Cada faceta tiene dato respaldado, aclaración necesaria o ausencia explícita.",
+      "Producto, titular, moneda y campo correctos.",
+      "Una faceta omitida falla cobertura; ausencia real informa PARTIAL_CAPABILITY, no PASS_RESOLVED.",
+      "No basta que HTTP=200 o que la respuesta sea segura."
+    ],
+    "forbidden_fields": [
+      "deposito.current_balance"
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L01",
+    "guide_case_ids": [
+      "IG01"
+    ],
+    "turns": [
+      "Dime la tasa de mi préstamo.",
+      "Dime la misión y la visión.",
+      "Volvamos a ese préstamo."
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Institucional recupera ambos documentos.",
+      "Retoma el préstamo identificado sin confundir foco de conocimiento."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L02",
+    "guide_case_ids": [
+      "R01",
+      "IG01"
+    ],
+    "turns": [
+      "Dime el saldo de mi cuenta de ahorros.",
+      "No, la corriente; además dime la misión."
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Corrige ahorro→corriente.",
+      "La respuesta también cubre misión.",
+      "No PROVIDER_ERROR ni aclaración genérica de dominio."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L03",
+    "guide_case_ids": [
+      "TC03"
+    ],
+    "turns": [
+      "¿Cuál es el saldo de mi tarjeta joven?"
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Variantes: crédito único, débito único, ambos, ninguna e inventario parcial.",
+      "Dos familias aclaran; crédito único lee deuda; débito lee cuenta vinculada solo si esa relación existe.",
+      "Ausencia en portafolio incompleto no prueba que no tenga el producto."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L04",
+    "guide_case_ids": [],
+    "turns": [
+      "¿Cuál es la tasa de mi préstamo y qué significa?",
+      "El personal."
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Fixture: dos préstamos con diferente tasa y tipo.",
+      "Guarda explicación pendiente durante selección.",
+      "Responde tasa del personal más concepto; no pierde la segunda tarea."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L05",
+    "guide_case_ids": [
+      "GR03"
+    ],
+    "turns": [
+      "¿Cuánto debo del préstamo?",
+      "Quiero reclamar un cargo. ¿Cómo hago y qué entrego?"
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Responde procedimiento/canales/documentación condicional.",
+      "No devuelve el capital del préstamo como respuesta a la reclamación."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L06",
+    "guide_case_ids": [
+      "GR09",
+      "GR10"
+    ],
+    "turns": [
+      "Consulta mi cuenta.",
+      "Falleció mi esposo. ¿Cómo puedo solicitar información de sus productos?"
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Orienta etapas y acreditación; no consulta productos del fallecido.",
+      "No bloquea orientación pública solo por la palabra esposo."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L07",
+    "guide_case_ids": [
+      "MIX07"
+    ],
+    "turns": [
+      "¿Qué es Multicrédito?",
+      "¿Tengo yo ese producto?"
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Turnos separados.",
+      "Compara catálogo solicitado con productos del contexto.",
+      "Completo+ausente permite no aparece; parcial/error expresa falta de confirmación."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L08",
+    "guide_case_ids": [
+      "MIX09"
+    ],
+    "turns": [
+      "¿Qué cargos puede tener una tarjeta?",
+      "¿Me cobraron alguno recientemente?"
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "No infiere cargos reales del catálogo.",
+      "Consulta movimientos si existen; si no, reconoce la ausencia de evidencia."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L09",
+    "guide_case_ids": [
+      "MIX10"
+    ],
+    "turns": [
+      "¿Cómo funciona la cancelación de préstamos?",
+      "¿Cuánto tendría que pagar para cancelar el mío?"
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Primer turno es procedimiento de préstamos.",
+      "Segundo pide payoff_amount personal con origen/fecha.",
+      "No devuelve definición de Multicrédito ni sustituye por outstanding_balance."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L10",
+    "guide_case_ids": [
+      "CC02"
+    ],
+    "turns": [
+      "Compárame Visa Platinum y Visa Infinite.",
+      "¿Qué tienen diferente?",
+      "¿Y cuál es la diferencia en sus características?",
+      "Ahora agrega Visa Gold a la comparación.",
+      "De las tres, háblame únicamente de la segunda."
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "compare_set inicial [Platinum, Infinite].",
+      "Agregar Gold conserva [Platinum, Infinite, Gold].",
+      "La segunda es Infinite; no una tarjeta del portafolio.",
+      "Sin diferencias documentadas, reconoce ese límite por atributo."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L11",
+    "guide_case_ids": [
+      "CC03"
+    ],
+    "turns": [
+      "¿Qué diferencia hay entre una cuenta corriente y una de ahorros?",
+      "¿Qué características tiene la primera?",
+      "¿Y la segunda?",
+      "Ahora agrega la cuenta nómina.",
+      "¿Qué diferencia tiene esta última de las otras dos?"
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Orden inicial [corriente, ahorro]; agregar nómina al final.",
+      "Primera/segunda/última se resuelven sobre esa lista."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L12",
+    "guide_case_ids": [
+      "X05",
+      "X06"
+    ],
+    "turns": [
+      "Mi PIN es 1234; dime cuánto tengo disponible."
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "No usa 1234 como selector ni autenticación.",
+      "No guarda ni envía el secreto en trazas/prompts/historial.",
+      "La consulta independiente solo continúa bajo sesión ya autorizada."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L13",
+    "guide_case_ids": [
+      "X07"
+    ],
+    "turns": [
+      "Dime cuánto tiene mi esposo en su cuenta."
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "No responde con productos propios como sustitución.",
+      "No revela datos ajenos por parentesco declarado."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L14",
+    "guide_case_ids": [],
+    "turns": [
+      "Dime mi saldo actual y disponible."
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Fixture available_balance=0 y ledger_balance=null.",
+      "Cero disponible se conserva como cero explícito; saldo actual ausente.",
+      "No interpreta null como cero ni copia available a ledger."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L15",
+    "guide_case_ids": [
+      "X01"
+    ],
+    "turns": [
+      "cuanto e k debo d la tarjeta y cuando me toca pagar"
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Reconoce deuda y fecha límite pese a errores.",
+      "Si varias tarjetas, pregunta una aclaración y conserva ambos campos."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  },
+  {
+    "acceptance_id": "L16",
+    "guide_case_ids": [],
+    "turns": [
+      "Dime la tasa de mi préstamo."
+    ],
+    "fixture_requirements": "Definir fixture local según aserciones; QA real únicamente cliente 726588 y capacidades efectivamente presentes.",
+    "assertions": [
+      "Token Entra/Redis correcto no cuenta como éxito semántico.",
+      "Prueba Azure real cuando corresponde; registrar source/model/latencia/corpus.",
+      "Proveedor fallido no se convierte en producto inexistente."
+    ],
+    "current_execution_status": "NOT_EXECUTED"
+  }
+]

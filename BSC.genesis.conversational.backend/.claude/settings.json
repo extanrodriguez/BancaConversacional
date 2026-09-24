@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(dotnet add c:\\\\Projects\\\\BSC.genesis.conversational.backend\\\\src\\\\GenesisBackend.Infrastructure\\\\GenesisBackend.Infrastructure.csproj package Microsoft.Extensions.Options)"
+    ]
+  }
+}

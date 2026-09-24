@@ -1,0 +1,23 @@
+# Referencia — copiar a raíz del repo como .dockerignore
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.git
+.gitignore
+*.md
+!prompts/**
+Test_local/build_exe
+Test_local/results
+interfaz Prueba
+*.zip
+.env
+.env.*
+!.env.example
+PlanContainerizacion
+deploy/corp-8446/*.zip
+terminals
+assets
+*.exe

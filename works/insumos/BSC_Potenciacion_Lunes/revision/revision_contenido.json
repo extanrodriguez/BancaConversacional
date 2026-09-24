@@ -1,0 +1,442 @@
+[
+  {
+    "id": "vf01-r090",
+    "title": "Cuota(s)",
+    "source_rows": [
+      90
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r116",
+    "title": "Fijo",
+    "source_rows": [
+      116
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r124",
+    "title": "Período de gracia",
+    "source_rows": [
+      124
+    ],
+    "review_reasons": [
+      "Plazo de gracia específico: confirmar alcance y vigencia."
+    ]
+  },
+  {
+    "id": "vf01-r163",
+    "title": "Cuenta inactiva",
+    "source_rows": [
+      163
+    ],
+    "review_reasons": [
+      "Cambio regulatorio publicado 17-09-2026; no reconciliado con el texto de VF01."
+    ]
+  },
+  {
+    "id": "vf01-r165",
+    "title": "Cuentas abandonadas",
+    "source_rows": [
+      165
+    ],
+    "review_reasons": [
+      "Cambio regulatorio publicado 17-09-2026; confirmar efectos."
+    ]
+  },
+  {
+    "id": "vf01-r179",
+    "title": "Crédito Diferido: segmentación",
+    "source_rows": [
+      179
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r186",
+    "title": "Multicrédito: intereses y características",
+    "source_rows": [
+      186
+    ],
+    "review_reasons": [
+      "Condiciones financieras cuantificadas sin vigencia explícita."
+    ]
+  },
+  {
+    "id": "vf01-r188",
+    "title": "Cuotas BSC: tasa y límite",
+    "source_rows": [
+      188
+    ],
+    "review_reasons": [
+      "Tasa/condiciones variables sin vigencia explícita."
+    ]
+  },
+  {
+    "id": "vf01-r189",
+    "title": "Cuotas BSC: modalidades de pago",
+    "source_rows": [
+      189
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r192",
+    "title": "Crédito Diferido: requisitos",
+    "source_rows": [
+      192
+    ],
+    "review_reasons": [
+      "Requisitos y umbrales de elegibilidad sin fecha de aprobación."
+    ]
+  },
+  {
+    "id": "vf01-r205",
+    "title": "Multicrédito: límite de avances",
+    "source_rows": [
+      205
+    ],
+    "review_reasons": [
+      "Límite cuantificado sin versión de condiciones."
+    ]
+  },
+  {
+    "id": "vf01-r206",
+    "title": "Multicrédito: límite para compras",
+    "source_rows": [
+      206
+    ],
+    "review_reasons": [
+      "Límite cuantificado sin versión de condiciones."
+    ]
+  },
+  {
+    "id": "vf01-r207",
+    "title": "Multicrédito: consumo mínimo",
+    "source_rows": [
+      207
+    ],
+    "review_reasons": [
+      "Consumo mínimo sin versión de condiciones."
+    ]
+  },
+  {
+    "id": "vf01-r212",
+    "title": "Crédito Diferido: corte y pago",
+    "source_rows": [
+      212
+    ],
+    "review_reasons": [
+      "Fechas y penalidades específicas requieren confirmar alcance."
+    ]
+  },
+  {
+    "id": "vf01-r213",
+    "title": "Crédito Diferido: cambio de fechas",
+    "source_rows": [
+      213
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r226",
+    "title": "Crédito Diferido: cálculo de intereses",
+    "source_rows": [
+      226
+    ],
+    "review_reasons": [
+      "Fórmula incompleta: referencia a sumar una tasa sin operandos completos."
+    ]
+  },
+  {
+    "id": "vf01-r254",
+    "title": "Crédito Diferido: plazo de cancelación",
+    "source_rows": [
+      254
+    ],
+    "review_reasons": [
+      "Plazo contractual específico sin aprobación documentada."
+    ]
+  },
+  {
+    "id": "vf01-r269",
+    "title": "Requisitos y prerrequisitos de la contratación del producto",
+    "source_rows": [
+      269
+    ],
+    "review_reasons": [
+      "Requisitos de edad/ingresos; texto ambiguo sobre porcentaje de renta."
+    ]
+  },
+  {
+    "id": "vf01-r272",
+    "title": "Programas de lealtad",
+    "source_rows": [
+      272
+    ],
+    "review_reasons": [
+      "Recompensas y límites numéricos variables; revisar reglamento vigente."
+    ]
+  },
+  {
+    "id": "vf01-r273",
+    "title": "COSTOS, CARGOS, Y COMISIONES ASOCIADAS AL PRODUCTO",
+    "source_rows": [
+      273
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r274",
+    "title": "COSTOS, CARGOS, Y COMISIONES ASOCIADAS AL PRODUCTO",
+    "source_rows": [
+      274
+    ],
+    "review_reasons": [
+      "Inconsistencia potencial: mora/sobregiro como fijo y como porcentaje entre filas."
+    ]
+  },
+  {
+    "id": "vf01-r275",
+    "title": "METODOLOGÍA PARA EL CÁLCULO DE LOS INTERESES, CARGOS Y COMISIONES",
+    "source_rows": [
+      275
+    ],
+    "review_reasons": [
+      "Metodología financiera; no habilita cálculo personal."
+    ]
+  },
+  {
+    "id": "vf01-r283",
+    "title": "Tarjeta de Débito Visa Junior",
+    "source_rows": [
+      283
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r284",
+    "title": "Tarjeta de Débito Mi Negocio",
+    "source_rows": [
+      284
+    ],
+    "review_reasons": [
+      "La definición está truncada; verificar integridad del cuerpo de origen."
+    ]
+  },
+  {
+    "id": "vf01-r285",
+    "title": "Tarjeta de débito: requisitos, solicitud y activación",
+    "source_rows": [
+      285
+    ],
+    "review_reasons": [
+      "Tiempos de entrega y requisitos requieren vigencia."
+    ]
+  },
+  {
+    "id": "vf01-r286",
+    "title": "Tarjeta de débito: condiciones de uso",
+    "source_rows": [
+      286
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r287",
+    "title": "Tarjeta de débito: cargos",
+    "source_rows": [
+      287
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r289",
+    "title": "Tarjeta de débito: cancelación",
+    "source_rows": [
+      289
+    ],
+    "review_reasons": [
+      "Plazos de cancelación no validados externamente."
+    ]
+  },
+  {
+    "id": "vf01-r303",
+    "title": "Préstamos: requisitos generales",
+    "source_rows": [
+      303
+    ],
+    "review_reasons": [
+      "Requisitos y elegibilidad específicos sujetos a validación de Producto."
+    ]
+  },
+  {
+    "id": "vf01-r304",
+    "title": "Préstamos: documentos por garantía",
+    "source_rows": [
+      304
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r307",
+    "title": "Préstamos: condiciones financieras",
+    "source_rows": [
+      307
+    ],
+    "review_reasons": [
+      "Porcentajes de financiamiento y elegibilidad específicos sin versión vigente."
+    ]
+  },
+  {
+    "id": "vf01-r308",
+    "title": "Préstamos: cuotas, pagos y tasa",
+    "source_rows": [
+      308
+    ],
+    "review_reasons": [
+      "Plazos y cambios contractuales sujetos a validación."
+    ]
+  },
+  {
+    "id": "vf01-r309",
+    "title": "Préstamos: cargos y cancelación anticipada",
+    "source_rows": [
+      309
+    ],
+    "review_reasons": [
+      "Mora del 5% y plazos sin contraste con tarifario vigente."
+    ]
+  },
+  {
+    "id": "vf01-r310",
+    "title": "Préstamos: cargos y cancelación anticipada",
+    "source_rows": [
+      310
+    ],
+    "review_reasons": [
+      "Duplicado de condiciones de cargos bajo título de metodología."
+    ]
+  },
+  {
+    "id": "vf01-r311",
+    "title": "Préstamos: garantías y refinanciación",
+    "source_rows": [
+      311
+    ],
+    "review_reasons": [
+      "Elegibilidad y garantías específicas sin versión aprobada."
+    ]
+  },
+  {
+    "id": "vf01-r312",
+    "title": "Préstamos: canales de cancelación",
+    "source_rows": [
+      312
+    ],
+    "review_reasons": [
+      "Plazos/canales de cancelación a confirmar."
+    ]
+  },
+  {
+    "id": "vf01-r317",
+    "title": "Cuentas de efectivo: apertura",
+    "source_rows": [
+      317
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r318",
+    "title": "Cuentas de efectivo: cargos",
+    "source_rows": [
+      318
+    ],
+    "review_reasons": [
+      "Condición numérica detectada: confirmar versión/vigencia; alerta automática, no juicio de invalidez."
+    ]
+  },
+  {
+    "id": "vf01-r319",
+    "title": "Cancelación de productos: procedimiento general",
+    "source_rows": [
+      319
+    ],
+    "review_reasons": [
+      "Tabla de canales por producto ausente en conversión y plazos específicos."
+    ]
+  },
+  {
+    "id": "vf01-r320",
+    "title": "Reclamaciones: apertura, documentación y seguimiento",
+    "source_rows": [
+      320
+    ],
+    "review_reasons": [
+      "Diferencias de alcance: VF01 menciona débito/crédito en 180 días; ProUsuario solo crédito. No ampliar por inferencia."
+    ]
+  },
+  {
+    "id": "vf01-r321",
+    "title": "Derechos y obligaciones del usuario",
+    "source_rows": [
+      321
+    ],
+    "review_reasons": [
+      "Derechos/plazos regulatorios: revisión de alcance."
+    ]
+  },
+  {
+    "id": "vf01-r322",
+    "title": "Derechos y obligaciones del usuario",
+    "source_rows": [
+      322
+    ],
+    "review_reasons": [
+      "Derechos/plazos regulatorios: revisión de alcance."
+    ]
+  },
+  {
+    "id": "vf01-r323",
+    "title": "Liberación de garantías: procedimiento",
+    "source_rows": [
+      323
+    ],
+    "review_reasons": [
+      "Requisitos legales y plazo de vehículo a confirmar."
+    ]
+  },
+  {
+    "id": "vf01-r324",
+    "title": "Fallecimiento de titular: orientación a familiares",
+    "source_rows": [
+      324
+    ],
+    "review_reasons": [
+      "Teléfono 809-227-1222 difiere del contacto público del banco; reglas sucesorales específicas no verificadas."
+    ]
+  }
+]

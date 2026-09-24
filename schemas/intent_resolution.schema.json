@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://genesis.local/schemas/intent_resolution.schema.json",
+  "title": "Intent Resolution",
+  "description": "External contract for orchestrator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "output_type",
+    "request_id",
+    "correlation_id",
+    "conversation_id",
+    "resolver_version",
+    "prompt_id",
+    "prompt_version",
+    "mode",
+    "actions",
+    "clarifications",
+    "unsupported_segments"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "1.0"
+    },
+    "output_type": {
+      "const": "intent_resolution"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "conversation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "resolver_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "prompt_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "prompt_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "mode": {
+      "enum": [
+        "SINGLE",
+        "MULTI_INDEPENDENT",
+        "MULTI_DEPENDENT",
+        "CLARIFICATION",
+        "UNSUPPORTED",
+        "MIXED"
+      ]
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ResolvedAction"
+      }
+    },
+    "clarifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ResolvedClarification"
+      }
+    },
+    "unsupported_segments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/UnsupportedSegment"
+      }
+    }
+  },
+  "$defs": {
+    "ResolvedAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_id",
+        "sequence",
+        "intent_id",
+        "capability_candidate",
+        "interaction_family",
+        "domain",
+        "selected_route",
+        "next_action",
+        "detected_entities",
+        "missing_requirements",
+        "depends_on_action_ids",
+        "confidence"
+      ],
+      "properties": {
+        "action_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "intent_id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,127}$"
+        },
+        "capability_candidate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z][A-Z0-9_]{2,127}$"
+        },
+        "interaction_family": {
+          "enum": [
+            "KNOWLEDGE",
+            "PORTFOLIO",
+            "PERSONAL_READ",
+            "TRANSACTION",
+            "CLARIFICATION",
+            "UNSUPPORTED"
+          ]
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{1,63}$"
+        },
+        "selected_route": {
+          "enum": [
+            "BUSINESS_RAG",
+            "PORTFOLIO_QUERY",
+            "PERSONAL_READ",
+            "TRANSFER_CONTRACT_BUILDER",
+            "CLARIFICATION",
+            "UNSUPPORTED"
+          ]
+        },
+        "next_action": {
+          "enum": [
+            "QUERY_RAG",
+            "QUERY_PORTFOLIO",
+            "BUILD_READ_REQUEST",
+            "BUILD_TYPED_CONTRACT",
+            "ASK_CLARIFICATION",
+            "RETURN_UNSUPPORTED"
+          ]
+        },
+        "detected_entities": {
+          "$ref": "#/$defs/DetectedEntities"
+        },
+        "missing_requirements": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "depends_on_action_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "DetectedEntities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "account_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "source_account_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "destination_account_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d+(\\.\\d+)?$"
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z]{3}$"
+        },
+        "knowledge_topic": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      }
+    },
+    "ResolvedClarification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_action_id",
+        "missing_requirements",
+        "suggested_question",
+        "already_known"
+      ],
+      "properties": {
+        "target_action_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "missing_requirements": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "suggested_question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "already_known": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "account_ref",
+              "source_account_ref",
+              "destination_account_ref",
+              "amount",
+              "currency",
+              "knowledge_topic"
+            ]
+          }
+        }
+      }
+    },
+    "UnsupportedSegment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "segment_description",
+        "reason"
+      ],
+      "properties": {
+        "segment_description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        }
+      }
+    }
+  }
+}

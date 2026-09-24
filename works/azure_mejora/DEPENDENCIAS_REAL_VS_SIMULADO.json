@@ -1,0 +1,24 @@
+{
+  "azure_openai": {
+    "status": "REAL_OK",
+    "deployment": "gpt-4o-mini",
+    "latency_ms": 2721,
+    "finish_reason": "stop",
+    "model_invoked": true,
+    "content_preview": "{\n  \"intent\": \"Consulta de vencimientos de pagos\",\n  \"products\": [\n    \"préstamo\",\n    \"tarjeta de crédito\"\n  ],\n  \"needs_temporal_window\": true,\n  \"rationale_short\": \"El usuario pregunta sobre vencimientos próximos de pagos relacionados co",
+    "usage": {
+      "prompt_tokens": 75,
+      "completion_tokens": 65
+    }
+  },
+  "azure_search": {
+    "status": "REAL_OK",
+    "index": "bsc-kb-conocimiento",
+    "doc_count": 980,
+    "http": 200
+  },
+  "redis_qa": {
+    "status": "UNREACHABLE_PENDING",
+    "note": "TCP timeout a bsc-cognitive-redis-qa:10000"
+  }
+}

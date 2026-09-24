@@ -1,0 +1,10 @@
+{
+  "candidate": "bsc-kb-qa-vnext-20260921",
+  "previous": "bsc-kb-conocimiento",
+  "activated": true,
+  "env_after": "AZURE_SEARCH_INDEX=bsc-kb-qa-vnext-20260921",
+  "turn_http": 200,
+  "reply_prefix": "Comparación de catálogo (orden de mención / conjunto vigente):\n1. **Visa Platinum** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Platinum\nLas TARJETAS PLATINUM de crédito Visa Santa Cruz es un instrumento de pago que te da la facilidad de realizar pagos o consumos permitiendo pagar en cualquier establecimiento afiliado, sin necesidad de utilizar efectivo. Además, de brindarte beneficios exclusivos. Para o…\n2. **Visa Infinite** — evidencia recuperada (producto verificado).\n__AZURE_SEARCH__\nTarjeta de Crédito Visa Infinite\nLas TARJETAS INFINITE de crédit",
+  "utc": "1790014375",
+  "rollback": "AZURE_SEARCH_INDEX=bsc-kb-conocimiento; systemctl restart genesis-cognitive-8447"
+}

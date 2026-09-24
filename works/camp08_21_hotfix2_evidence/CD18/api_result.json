@@ -1,0 +1,70 @@
+{
+  "case_id": "CD18",
+  "section": 10,
+  "questions": [
+    "¿Cómo cancelo Multicrédito y qué requisitos debo cumplir?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    738
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "__AZURE_SEARCH__\nUsa la tarjeta de manera responsable:\nEl Tarjetahabiente titular para el caso del Multicrédito BSC elige que se emita mediante plástico físico. Podrá utilizar su Multicrédito BSC luego de activarla llamando al centro de contacto o a través del App BSC y BSC en línea, adicionalmente el titular de la podrá realizar bloqueos temporales por los canales digitales APP BSC y BSC en línea.\n\nSeleccionaste **Multicredito**.\nMulticrédito BSC: facilidad de crédito otorgada por la entidad tarjetahabiente para ser usada con un plástico único para estos fines, el cual es revolvente amortizado en cuotas iguales, fijas y consecutivas contentivas de capital e interés en base a trescientos sesenta (360) días.",
+  "replies_sanitized": [
+    "__AZURE_SEARCH__\nUsa la tarjeta de manera responsable:\nEl Tarjetahabiente titular para el caso del Multicrédito BSC elige que se emita mediante plástico físico. Podrá utilizar su Multicrédito BSC luego de activarla llamando al centro de contacto o a través del App BSC y BSC en línea, adicionalmente el titular de la podrá realizar bloqueos temporales por los canales digitales APP BSC y BSC en línea.\n\nSeleccionaste **Multicredito**.\nMulticrédito BSC: facilidad de crédito otorgada por la entidad tarjetahabiente para ser usada con un plástico único para estos fines, el cual es revolvente amortizado en cuotas iguales, fijas y consecutivas contentivas de capital e interés en base a trescientos sesenta (360) días."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PASS_RESOLVED",
+  "reason": "definición FAQ (multicrédito)",
+  "audit": {
+    "total_ms": 521,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 521,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "3fdb5c8b-c607-48c7-a8ce-b1ec03cd30e0",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_catalog_define",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 2,
+          "task_statuses": {
+            "t1": "available",
+            "t2": "available"
+          },
+          "evidence_sources": [
+            "faq"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 517.6
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 521
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_MULTI"
+}

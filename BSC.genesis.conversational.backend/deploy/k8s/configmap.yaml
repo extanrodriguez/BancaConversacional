@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: banca-conversacional-config
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:8080"
+  ExternalServices__AzureEndpoint: "https://bancaconversacionalbsc-resource.services.ai.azure.com/api/projects/bancaconversacionalbsc"
+  ExternalServices__DeploymentName: "o4-mini"
+  ExternalServices__BankingApiBaseDev: "https://zqp02jwv1j.execute-api.us-east-1.amazonaws.com/poc"
+  ExternalServices__BankingApiBaseQa: "https://zqp02jwv1j.execute-api.us-east-1.amazonaws.com/poc"
+  ExternalServices__BankingApiBaseProduction: "https://zqp02jwv1j.execute-api.us-east-1.amazonaws.com/poc"
+  ExternalServices__DashboardApiBaseDev: "http://172.27.4.20:4429"
+  ExternalServices__DashboardApiBaseQa: "http://172.27.4.20:4429"
+  ExternalServices__DashboardApiBaseProduction: "http://172.27.4.20:4429"
+  Banking__ClientId: "JEISON-001"

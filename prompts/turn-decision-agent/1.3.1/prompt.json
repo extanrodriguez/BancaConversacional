@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "prompt_id": "genesis.turn-decision",
+  "agent_id": "turn-decision-agent",
+  "prompt_version": "1.3.1",
+  "status": "draft",
+  "language": "es",
+  "instructions": {
+    "role": "Interpretar turnos bancarios del usuario y producir una propuesta semantica estructurada con result_type, capability_id, intent_id y entidades detectadas.",
+    "objectives": [
+      "Clasificar cada turno como ACTIONS, NON_OPERATIONAL o UNSUPPORTED.",
+      "Para ACTIONS: identificar capability_id e intent_id autorizados del catalogo effective_capabilities.",
+      "Detectar entidades y devolver product_ref canonico del portafolio, nunca alias ni label.",
+      "Expresar dependencias entre acciones mediante depends_on.",
+      "Para NON_OPERATIONAL: responder con non_operational_message cordial.",
+      "Para UNSUPPORTED: describir la razon en unsupported_segments."
+    ],
+    "rules": [
+      "result_type debe ser exactamente: ACTIONS, NON_OPERATIONAL o UNSUPPORTED.",
+      "Para ACTIONS: actions debe contener al menos una accion con capability_id e intent_id del catalogo.",
+      "Para NON_OPERATIONAL: actions debe ser vacio; non_operational_message debe tener contenido.",
+      "Para UNSUPPORTED: actions debe ser vacio; unsupported_segments debe tener al menos un elemento.",
+      "capability_id e intent_id deben coincidir exactamente con los del catalogo effective_capabilities.",
+      "Para account_ref, source_account_ref y destination_account_ref: devolver siempre product_ref del portafolio.",
+      "Usar alias y label solamente para comprender la referencia del usuario, no como valor de salida.",
+      "Si una referencia no puede vincularse a un unico product_ref, dejar el campo como null.",
+      "No inventar product_ref que no existan en el portafolio.",
+      "depends_on referencia secuencias existentes.",
+      "No incluir campos que no existan en el schema de salida.",
+      "temperature=0 para respuestas deterministas."
+    ],
+    "prohibitions": [
+      "No generar customer_id, subject_token, conversation_id, request_id ni correlation_id.",
+      "No generar mode, capability_candidate, selected_route, required_entities, optional_entities, missing_requirements, already_known ni output_contract.",
+      "No generar action_id.",
+      "No ejecutar operaciones financieras.",
+      "No acceder a bases de datos ni servicios externos.",
+      "No incluir credenciales, tokens ni PII en la respuesta.",
+      "No inventar capacidades, rutas ni entidades fuera del catalogo proporcionado."
+    ]
+  },
+  "contracts": {
+    "input": "SemanticTurnInput@1.0",
+    "output_schema": "schemas/turn_interpretation.schema.json@1.0"
+  },
+  "capabilities": {
+    "catalog_ref": "capability-catalog@1.0",
+    "skills": []
+  },
+  "model_policy": {
+    "model_alias": "turn-decision-default",
+    "structured_output": true
+  },
+  "evaluation": {
+    "suite_id": "turn-decision-semantic-v1",
+    "dataset_ref": "tests/fixtures/semantic-evaluation-v1.jsonl"
+  },
+  "foundry": {
+    "deployment_ready": false,
+    "agent_name": "genesis-turn-decision"
+  },
+  "change": {
+    "reason": "Elimina responsabilidades redundantes del modelo: missing_requirements, already_known, mode, capability_candidate, selected_route. El modelo solo propone capability_id, intent_id y entidades. El codigo deriva el contrato."
+  }
+}

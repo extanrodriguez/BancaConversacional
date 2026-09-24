@@ -1,0 +1,1288 @@
+{
+  "source": "C:\\NovusIntelligence\\BancoSantaCruz\\BancaConversacional\\interfaz Prueba\\mvp_preguntas.json",
+  "total": 77,
+  "casos": [
+    {
+      "id": 1,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Consultar saldo de cuenta",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto me queda?",
+        "Balance de la corriente",
+        "¿Qué tengo disponible?",
+        "dime cuanto tengo"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 2,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Continuar consulta sobre cuenta en contexto",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Y cuánto tengo disponible?",
+        "¿Y el balance actual?",
+        "¿De esa cuenta cuánto puedo usar?"
+      ],
+      "prior_turn": "¿Cuál es mi saldo?",
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 3,
+      "escenario": "cuentas_multi",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Cambiar cuenta en contexto",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "Ahora dime la corriente",
+        "¿Y de la cuenta en dólares?",
+        "Mejor revisa mi otra cuenta"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 4,
+      "escenario": "cuentas_multi",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Detectar insuficiencia de información",
+      "ambiguedad": "Sí",
+      "expresiones": [
+        "Dime mi saldo",
+        "¿Cuánto tengo?",
+        "¿Qué tengo disponible?"
+      ],
+      "prior_turn": null,
+      "expect_status": "requires_selection",
+      "expect_options_min": 2,
+      "must_contain_any": [],
+      "must_not_show_balance": true
+    },
+    {
+      "id": 5,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Consultar saldo de cuenta",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto tengo?",
+        "Dime mi saldo"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 6,
+      "escenario": "cuentas_multi",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Seleccionar cuenta para consulta",
+      "ambiguedad": "Sí",
+      "expresiones": [
+        "¿Cuál es mi saldo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "requires_selection",
+      "expect_options_min": 2,
+      "must_contain_any": [],
+      "must_not_show_balance": true
+    },
+    {
+      "id": 7,
+      "escenario": "cuentas_multi",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Consultar saldo por tipo de cuenta",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Dime el saldo de mi cuenta corriente"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 8,
+      "escenario": "cuenta_usd",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Consultar saldo por tipo de cuenta",
+      "ambiguedad": "Sí",
+      "expresiones": [
+        "Dime el saldo de mi cuenta de ahorros"
+      ],
+      "prior_turn": null,
+      "expect_status": "requires_selection",
+      "expect_options_min": 2,
+      "must_contain_any": [],
+      "must_not_show_balance": true
+    },
+    {
+      "id": 9,
+      "escenario": "cuentas_multi",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Consultar saldo de múltiples cuentas",
+      "ambiguedad": "No, si todas las cuentas están identificadas",
+      "expresiones": [
+        "Dime el saldo de mi cuenta de ahorros 4587 y de mi corriente 7731",
+        "¿Cuánto tengo en mis dos cuentas?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 10,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Presentar saldo recuperado",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es mi saldo?",
+        "¿Cuánto tengo disponible?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 11,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Presentar información complementaria",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es mi saldo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 12,
+      "escenario": "cuenta_usd",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Presentar saldo por moneda",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuánto tengo en mi cuenta en dólares?",
+        "Saldo de la cuenta en pesos"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 13,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Manejar datos financieros incompletos",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es mi saldo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 14,
+      "escenario": "vacio",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Consultar saldo de cuenta",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es mi saldo?",
+        "¿Cuánto tengo en mis cuentas?"
+      ],
+      "prior_turn": null,
+      "expect_status": null,
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 15,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Consultar saldo de cuenta",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto tengo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 16,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Consultar saldo de cuenta",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Dime el saldo de la cuenta 1234",
+        "Consulta esta cuenta"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 17,
+      "escenario": "cuenta_unica",
+      "producto": "Cuenta de Ahorros / Cuenta Corriente",
+      "intencion": "Presentar y registrar consulta de saldo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es mi saldo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 18,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar información de Tarjeta de Crédito",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cómo está mi tarjeta?",
+        "Dime el balance de mi tarjeta",
+        "Quiero ver mi tarjeta de crédito",
+        "¿Qué debo en la tarjeta?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 19,
+      "escenario": "tarjetas_multi",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar información de Tarjeta de Crédito",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Qué debo?",
+        "¿Cómo voy con la tarjeta?",
+        "dime cuanto tengo disponible",
+        "cual es el minimo"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 20,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar información de Tarjeta de Crédito",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es mi saldo?",
+        "¿Cuánto debo en mi tarjeta?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 21,
+      "escenario": "tarjetas_multi",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar información de Tarjeta de Crédito",
+      "ambiguedad": "Sí",
+      "expresiones": [
+        "¿Cuál es mi saldo?",
+        "¿Cuánto debo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "requires_selection",
+      "expect_options_min": 2,
+      "must_contain_any": [],
+      "must_not_show_balance": true
+    },
+    {
+      "id": 22,
+      "escenario": "tarjetas_multi",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar tarjeta específica",
+      "ambiguedad": "No, si existe una coincidencia única",
+      "expresiones": [
+        "Saldo de mi tarjeta 6582",
+        "¿Cuánto debo en mi Visa?",
+        "Revisa mi tarjeta terminada en 9147"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 23,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Continuar consulta sobre tarjeta en contexto",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Y cuánto tengo disponible?",
+        "¿Y cuál es el mínimo?",
+        "¿Cuándo tengo que pagar?"
+      ],
+      "prior_turn": "¿Cuánto tengo disponible en mi tarjeta?",
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 24,
+      "escenario": "tarjetas_multi",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Cambiar tarjeta en contexto",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "Ahora revisa la 9147",
+        "¿Y de mi otra Visa?",
+        "Cambia a la tarjeta en dólares"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 25,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar saldo actual de Tarjeta de Crédito",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es el saldo de mi tarjeta?",
+        "¿Qué balance tengo?",
+        "¿Cuánto debo ahora?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 26,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar disponibilidad de Tarjeta de Crédito",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto tengo disponible?",
+        "¿Cuánto puedo usar?",
+        "¿Qué crédito me queda?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 27,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar límite de crédito",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es mi límite?",
+        "¿De cuánto es mi tarjeta?",
+        "¿Qué límite tengo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 28,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar balance al último corte",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuánto cerró mi tarjeta?",
+        "¿Cuál fue mi último corte?",
+        "¿Cuánto quedó al corte?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 29,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar monto a pagar",
+      "ambiguedad": "Sí para expresiones genéricas",
+      "expresiones": [
+        "¿Cuánto tengo que pagar?",
+        "¿Cuál es el mínimo?",
+        "¿Cuánto debo pagar este mes?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 30,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar pago mínimo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es mi pago mínimo?",
+        "¿Cuánto es lo mínimo que debo pagar?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 31,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar fechas de Tarjeta de Crédito",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuándo corta mi tarjeta?",
+        "¿Cuándo tengo que pagar?",
+        "¿Cuál es mi fecha límite?",
+        "¿Cuándo vence?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 32,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar Puntos Santa Cruz",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuántos puntos tengo?",
+        "¿Cuántos Puntos Santa Cruz tengo con mi tarjeta?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 33,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Presentar últimas transacciones",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Muéstrame mis últimos movimientos",
+        "¿Qué fue lo último que gasté?",
+        "Dame las últimas transacciones de mi tarjeta"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 34,
+      "escenario": "tarjetas_multi",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar múltiples Tarjetas de Crédito",
+      "ambiguedad": "No si todas están identificadas; Sí si alguna referencia es insuficiente",
+      "expresiones": [
+        "Dime el saldo de mi 6582 y de mi 9147",
+        "¿Cuánto debo en mis dos tarjetas?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 35,
+      "escenario": "cuenta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar información de Tarjeta de Crédito",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es el saldo de mi tarjeta?",
+        "Consulta mis tarjetas"
+      ],
+      "prior_turn": null,
+      "expect_status": null,
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 36,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Consultar información de Tarjeta de Crédito",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto debo?",
+        "¿Cuál es mi pago mínimo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 37,
+      "escenario": "tarjeta_unica",
+      "producto": "Tarjeta de Crédito",
+      "intencion": "Construir y entregar respuesta de Tarjeta de Crédito",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Cualquier consulta de TC"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 38,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar información de Depósito a Plazo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cómo está mi certificado?",
+        "Quiero ver mi depósito a plazo",
+        "¿Qué tengo invertido?",
+        "Dime la información de mi certificado"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 39,
+      "escenario": "dap_multi",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar información de Depósito a Plazo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuánto tengo metido ahí?",
+        "¿Cuándo se me vence el certificado?",
+        "¿Qué tasa me está dando?",
+        "¿Cuánto me ha generado?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 40,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar información de Depósito a Plazo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuándo vence mi depósito?",
+        "¿Qué tasa tengo?",
+        "¿Cuánto tengo invertido?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 41,
+      "escenario": "dap_multi",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar información de Depósito a Plazo",
+      "ambiguedad": "Sí",
+      "expresiones": [
+        "¿Cuándo vence mi depósito?",
+        "¿Qué tasa tengo?",
+        "Dime cuánto tengo invertido"
+      ],
+      "prior_turn": null,
+      "expect_status": "requires_selection",
+      "expect_options_min": 2,
+      "must_contain_any": [],
+      "must_not_show_balance": true
+    },
+    {
+      "id": 42,
+      "escenario": "dap_multi",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar depósito específico",
+      "ambiguedad": "No, si existe una coincidencia única",
+      "expresiones": [
+        "¿Cuándo vence el depósito 5511?",
+        "¿Qué tasa tiene mi certificado en dólares?",
+        "Dime el balance del depósito en pesos"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 43,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Continuar consulta sobre depósito en contexto",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Y qué tasa tiene?",
+        "¿Y cuánto me ha generado?",
+        "¿Cuándo vence?",
+        "¿Cuál es el balance ahora?"
+      ],
+      "prior_turn": "¿Cuál es el monto de mi depósito?",
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 44,
+      "escenario": "dap_multi",
+      "producto": "Depósito a Plazo",
+      "intencion": "Cambiar depósito en contexto",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "Ahora revisa el de dólares",
+        "¿Y el que vence en diciembre?",
+        "Cambia al certificado 8842"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 45,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar monto invertido",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto invertí?",
+        "¿Con cuánto abrí el certificado?",
+        "¿Cuál fue el monto inicial?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 46,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar fecha de apertura",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuándo abrí el certificado?",
+        "¿Cuál es la fecha de apertura?",
+        "¿Desde cuándo tengo este depósito?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 47,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar tasa de interés",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Qué tasa tengo?",
+        "¿A qué tasa está mi certificado?",
+        "¿Qué interés me paga?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 48,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar plazo contractual",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿A cuántos días está?",
+        "¿Cuál es el plazo?",
+        "¿Por cuánto tiempo lo abrí?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 49,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar modalidad de pago",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Los intereses se capitalizan?",
+        "¿Mi certificado es recapitalizable?",
+        "¿Cómo se pagan los intereses?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 50,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar balance actual",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuál es el balance actual?",
+        "¿Cuánto vale ahora mi certificado?",
+        "¿Cuánto tengo actualmente?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 51,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar intereses generados",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto me ha generado?",
+        "¿Cuántos intereses llevo?",
+        "¿Qué intereses tengo acumulados?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 52,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar fecha de vencimiento",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuándo vence?",
+        "¿Cuándo se me vence el certificado?",
+        "¿Cuál es la fecha de vencimiento?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 53,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar información integral del depósito",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Dame toda la información de mi certificado",
+        "Muéstrame los detalles de mi depósito"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 54,
+      "escenario": "dap_multi",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar múltiples depósitos a plazo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "Compárame mis depósitos",
+        "Dime la tasa y vencimiento de mis dos certificados",
+        "¿Cuál de mis depósitos vence primero?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 55,
+      "escenario": "cuenta_unica",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar información de Depósito a Plazo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Qué depósitos tengo?",
+        "¿Cuándo vence mi certificado?"
+      ],
+      "prior_turn": null,
+      "expect_status": null,
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 56,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Consultar información de Depósito a Plazo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuándo vence?",
+        "¿Qué tasa tengo?",
+        "¿Cuánto me ha generado?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 57,
+      "escenario": "dap_unico",
+      "producto": "Depósito a Plazo",
+      "intencion": "Construir y entregar respuesta de Depósito a Plazo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Cualquier consulta de Depósito a Plazo"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 58,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar información de Préstamo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuánto debo de mi préstamo?",
+        "¿Cuál es el saldo de mi préstamo?",
+        "¿Qué me falta por pagar?",
+        "¿Cuándo vence mi próxima cuota?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 59,
+      "escenario": "prestamos_tipos",
+      "producto": "Préstamo",
+      "intencion": "Consultar información de Préstamo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Qué debo todavía?",
+        "¿Cuánto me queda?",
+        "¿Cuándo me toca pagar?",
+        "¿Cuál es la próxima letra?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 60,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar información de Préstamo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto debo?",
+        "¿Cuándo vence mi próxima cuota?",
+        "¿Cuál es mi tasa?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 61,
+      "escenario": "prestamos_tipos",
+      "producto": "Préstamo",
+      "intencion": "Consultar información de Préstamo",
+      "ambiguedad": "Sí",
+      "expresiones": [
+        "¿Cuánto debo?",
+        "¿Cuándo vence mi próxima cuota?",
+        "¿Cuál es mi saldo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "requires_selection",
+      "expect_options_min": 2,
+      "must_contain_any": [],
+      "must_not_show_balance": true
+    },
+    {
+      "id": 62,
+      "escenario": "prestamos_tipos",
+      "producto": "Préstamo",
+      "intencion": "Consultar préstamo específico",
+      "ambiguedad": "No, si existe una coincidencia única",
+      "expresiones": [
+        "¿Cuánto debo del hipotecario?",
+        "¿Cuándo pago el préstamo personal?",
+        "Dime el saldo del préstamo de vehículo"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 63,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Continuar consulta sobre préstamo en contexto",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Y cuándo vence la próxima cuota?",
+        "¿Y cuál es la tasa?",
+        "¿Cuánto sería para cancelarlo?"
+      ],
+      "prior_turn": "¿Cuánto debo de mi préstamo?",
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 64,
+      "escenario": "prestamos_tipos",
+      "producto": "Préstamo",
+      "intencion": "Cambiar préstamo en contexto",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "Ahora revisa el hipotecario",
+        "¿Y del préstamo de vehículo?",
+        "Cambia al personal"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 65,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar monto desembolsado",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto me prestaron?",
+        "¿Cuál fue el monto desembolsado?",
+        "¿Por cuánto fue el préstamo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 66,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar saldo actual de préstamo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuál es el saldo de mi préstamo?",
+        "¿Cuánto debo?",
+        "¿Cuál es mi balance pendiente?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 67,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar monto de la cuota",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuánto pago de cuota?",
+        "¿De cuánto es la próxima cuota?",
+        "¿Cuál es mi mensualidad?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 68,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar tasa del préstamo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Qué tasa tiene mi préstamo?",
+        "¿A qué tasa estoy?",
+        "¿Cuál es el interés del préstamo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 69,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar próxima cuota",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuándo vence mi próxima cuota?",
+        "¿Cuándo me toca pagar?",
+        "¿Cuál es la próxima fecha de pago?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 70,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar saldo de cancelación",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto tengo que pagar para saldar?",
+        "¿Cuánto necesito para cancelar el préstamo?",
+        "¿Cuál es el saldo de cancelación?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 71,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar fecha de vencimiento del préstamo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cuándo termina mi préstamo?",
+        "¿Cuál es la fecha de vencimiento?",
+        "¿Hasta cuándo pago?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 72,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar últimas transacciones del préstamo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Muéstrame los últimos movimientos del préstamo",
+        "¿Cuáles fueron los últimos pagos?",
+        "Dame las últimas transacciones"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 73,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar estado del préstamo",
+      "ambiguedad": "Posible",
+      "expresiones": [
+        "¿Cómo está mi préstamo?",
+        "¿Está al día?",
+        "¿Tengo atrasos?",
+        "¿Cuál es el estado de mi préstamo?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 74,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar información integral del préstamo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Dame todos los detalles de mi préstamo",
+        "Muéstrame la información completa del préstamo"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 75,
+      "escenario": "sin_prestamos",
+      "producto": "Préstamo",
+      "intencion": "Consultar información de Préstamo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto debo de mi préstamo?",
+        "Consulta mis préstamos"
+      ],
+      "prior_turn": null,
+      "expect_status": null,
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 76,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Consultar información de Préstamo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "¿Cuánto debo?",
+        "¿Cuándo pago?",
+        "¿Cuál es mi saldo de cancelación?"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    },
+    {
+      "id": 77,
+      "escenario": "prestamo_unico",
+      "producto": "Préstamo",
+      "intencion": "Construir y entregar respuesta de Préstamo",
+      "ambiguedad": "No",
+      "expresiones": [
+        "Cualquier consulta de préstamo"
+      ],
+      "prior_turn": null,
+      "expect_status": "VALID_CONTRACT",
+      "expect_options_min": 0,
+      "must_contain_any": [],
+      "must_not_show_balance": false
+    }
+  ]
+}

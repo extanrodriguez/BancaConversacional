@@ -1,0 +1,71 @@
+{
+  "case_id": "CMP44",
+  "section": 19,
+  "questions": [
+    "Compara una tarjeta de débito con una de crédito en cuanto a origen de los fondos, forma de pago y cargos."
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    524
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuáles productos del catálogo deseas comparar?\n\nSeleccionaste **Cargo Tarjeta**.\nTarjeta de débito: una tarjeta de débito es un medio de pago que permite acceder a los fondos disponibles en una cuenta bancaria, cuenta corriente o cuenta de ahorro de una entidad de intermediación financiera, que sirve para realizar retiros de efectivo en cajeros automático, así como para la compra de bienes y servicios con cargo a la cuenta asociada. Al usarla, el dinero se deduce directamente de la cuenta del titular, lo que significa que no se puede gastar más de lo que se tiene en la cuenta.",
+  "replies_sanitized": [
+    "¿Cuáles productos del catálogo deseas comparar?\n\nSeleccionaste **Cargo Tarjeta**.\nTarjeta de débito: una tarjeta de débito es un medio de pago que permite acceder a los fondos disponibles en una cuenta bancaria, cuenta corriente o cuenta de ahorro de una entidad de intermediación financiera, que sirve para realizar retiros de efectivo en cajeros automático, así como para la compra de bienes y servicios con cargo a la cuenta asociada. Al usarla, el dinero se deduce directamente de la cuenta del titular, lo que significa que no se puede gastar más de lo que se tiene en la cuenta."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "posible acierto; revisar criterio completo",
+  "audit": {
+    "total_ms": 298,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 298,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "4cf4566c-7910-42df-99dd-96654e038fb8",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_catalog_compare",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 2,
+          "task_statuses": {
+            "t1": "needs_clarification",
+            "t2": "available"
+          },
+          "evidence_sources": [
+            "snapshot",
+            "azure_search"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 295.0
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 298
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "TURN_PLAN_PARTIAL"
+}

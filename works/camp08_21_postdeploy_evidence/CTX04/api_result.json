@@ -1,0 +1,89 @@
+{
+  "case_id": "CTX04",
+  "section": 16,
+  "questions": [
+    "Explícame los préstamos sin garantía.",
+    "¿Qué requisitos tienen?",
+    "Ahora los que tienen garantía.",
+    "¿Qué tipos de garantía existen?",
+    "¿Y con certificado cómo funciona?"
+  ],
+  "http": [
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "ms": [
+    331,
+    228,
+    260,
+    240,
+    425
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuál certificado deseas consultar:\n\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**",
+  "replies_sanitized": [
+    "Felix Prestamos, Préstamos Personales “Sin Garantía”: Es una modalidad de financiamiento que se otorga sin la necesidad de respaldo de un activo. Están diseñados para satisfacer necesidades personales de El Cliente, como gastos médicos, viajes, educación o compras importantes, sin requerir una garantía o aval.",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "¿Cuál certificado deseas consultar:\n\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**"
+  ],
+  "options_count": 3,
+  "options_labels": [
+    "Certificado de depósito (...####)",
+    "Certificado de depósito (...####)",
+    "Certificado de depósito (...####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "posible acierto; revisar criterio completo",
+  "audit": {
+    "total_ms": 5,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 5,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "8b9a400d-ccbd-40f2-932d-3b75d56a3ba6",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:heuristic_personal_plan",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "needs_clarification"
+          },
+          "evidence_sources": [
+            "snapshot"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 1.5
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 5
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CLARIFICATION"
+}

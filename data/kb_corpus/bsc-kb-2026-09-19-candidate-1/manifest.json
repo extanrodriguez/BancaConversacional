@@ -1,0 +1,14 @@
+{
+  "corpus_version": "bsc-kb-2026-09-19-candidate-1",
+  "chunk_count": 196,
+  "source_package": "C:\\NovusIntelligence\\BancoSantaCruz\\BancaConversacional\\works\\insumos\\BSC_Potenciacion_Lunes",
+  "qa_eligible_only": true,
+  "excluded": [
+    "kb/fichas_candidatas.jsonl",
+    "evaluacion/*",
+    "estrategia/*",
+    "catalogo/*",
+    "revision/*"
+  ],
+  "sha256_chunks": "fdb404a292c2c341a403d8273984a2a3053b6eb1390e8cc9e5619da387751cda"
+}

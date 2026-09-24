@@ -1,0 +1,90 @@
+{
+  "resultCode": 0,
+  "primerNombre": "Carolina Vega",
+  "resultMessage": "Consulta realizada exitosamente.",
+  "products": [
+    {
+      "productCategory": "CA",
+      "productIdentification": "7801230001",
+      "productDescription": "Cuenta de Ahorros",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 92000.00,
+      "currentBalance": 92000.00
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "7801230002",
+      "productDescription": "Cuenta Corriente",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 210000.00,
+      "currentBalance": 210000.00
+    },
+    {
+      "productCategory": "TC",
+      "productIdentification": "4532XXXX0675",
+      "productDescription": "Visa Gold",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "maskedCardNumber": "****0675",
+      "availableBalance": 85000.00
+    },
+    {
+      "productCategory": "TC",
+      "productIdentification": "5412XXXX1098",
+      "productDescription": "Mastercard Platinum",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "maskedCardNumber": "****1098",
+      "availableBalance": 120000.00
+    },
+    {
+      "productCategory": "TC",
+      "productIdentification": "4916XXXX6265",
+      "productDescription": "Visa PriceSmart",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "maskedCardNumber": "****6265",
+      "availableBalance": 45000.00
+    },
+    {
+      "productCategory": "TC",
+      "productIdentification": "5298XXXX9051",
+      "productDescription": "Mastercard Black",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "maskedCardNumber": "****9051",
+      "availableBalance": 250000.00
+    },
+    {
+    "productCategory": "TC",
+    "productIdentification": "5298XXXX9785",
+    "productDescription": "Visa Full Car Flotilla Empleado",
+    "currencyCode": "214",
+    "productStatus": "1",
+    "availableBalance": 5000,
+    "maturityDate": "2026-06-02 00:00:00",
+    "currentBalance": 0,
+    "foreignCurrencyBalance": 0,
+    "domesticCurrencyBalance": 4946.09,
+    "partyType": null,
+    "maskedCardNumber": "****9052",
+    "pendingBalancePr": 0,
+    "minimumPaymentTcRd": 0,
+    "minimumPaymentTcUs": 0,
+    "statementBalanceTcRd": 0,
+    "statementBalanceTcUs": 0,
+    "statementCutoffDay": 8,
+    "cardExpiryDate": 203101,
+    "multiCurrency": "0",
+    "interestRateCd": 0,
+    "interestAmountCd": 0,
+    "interestRatePr": 0,
+    "nextInstallmentDatePr": null,
+    "nextPaymentDatePr": null,
+    "availablePurchasesForeign": 0,
+    "availablePurchasesDomestic": 53.91
+  }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "case_id": "GR01",
+  "section": 15,
+  "questions": [
+    "Quiero cancelar un producto del Banco. ¿Cuál es el proceso general y qué debo presentar?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    246
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Sobre cuál préstamo deseas consultar:\n\n• **Préstamo personal (...####)**\n• **Préstamo hipotecario (...####)**",
+  "replies_sanitized": [
+    "¿Sobre cuál préstamo deseas consultar:\n\n• **Préstamo personal (...####)**\n• **Préstamo hipotecario (...####)**"
+  ],
+  "options_count": 2,
+  "options_labels": [
+    "Préstamo personal (...####)",
+    "Préstamo hipotecario (...####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 5,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 5,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "29a47792-a024-44c2-8346-8cbebb1dc628",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:loan_fastpath",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "loan_fastpath",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 1.6
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 5
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "LOAN_DETAIL_READ"
+}

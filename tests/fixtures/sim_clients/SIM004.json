@@ -1,0 +1,56 @@
+{
+  "resultCode": 0,
+  "primerNombre": "Fernando Reyes",
+  "resultMessage": "Consulta realizada exitosamente.",
+  "products": [
+    {
+      "productCategory": "CA",
+      "productIdentification": "4001230001",
+      "productDescription": "Cuenta de Ahorros",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 55000.00,
+      "currentBalance": 55000.00
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "4001230002",
+      "productDescription": "Cuenta Corriente",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 120000.00,
+      "currentBalance": 120000.00
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "4001230003",
+      "productDescription": "Cuenta Nómina",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 35000.00,
+      "currentBalance": 35000.00
+    },
+    {
+      "productCategory": "PR",
+      "productIdentification": "6001504001",
+      "productDescription": "Prestamo Libre Inversion",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "pendingBalancePr": 320000.50,
+      "interestRatePr": 14.5,
+      "nextPaymentDatePr": "2026-09-15",
+      "nextInstallmentDatePr": "2026-09-15"
+    },
+    {
+      "productCategory": "PR",
+      "productIdentification": "6001504002",
+      "productDescription": "Credito Vehiculo",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "pendingBalancePr": 185000.00,
+      "interestRatePr": 12.0,
+      "nextPaymentDatePr": "2026-09-20",
+      "nextInstallmentDatePr": "2026-09-20"
+    }
+  ]
+}

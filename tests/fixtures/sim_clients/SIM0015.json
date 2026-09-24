@@ -1,0 +1,43 @@
+{
+  "resultCode": 0,
+  "primerNombre": "Ricardo Morales",
+  "resultMessage": "Consulta realizada exitosamente.",
+  "products": [
+    {
+      "productCategory": "CA",
+      "productIdentification": "1100230005001",
+      "productDescription": "Cuenta de Ahorros",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 95000.00,
+      "currentBalance": 95000.00
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "2100230005001",
+      "productDescription": "Cuenta Corriente",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 175000.00,
+      "currentBalance": 175000.00
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "3300100002501",
+      "productDescription": "Cuenta de Ahorros",
+      "productStatus": 3,
+      "currencyCode": 840,
+      "availableBalance": 1500.25,
+      "currentBalance": 1500.25
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "4400100000088",
+      "productDescription": "Cuenta Corriente",
+      "productStatus": 3,
+      "currencyCode": 840,
+      "availableBalance": 320.00,
+      "currentBalance": 320.00
+    }
+  ]
+}

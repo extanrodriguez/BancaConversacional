@@ -1,0 +1,58 @@
+# Genesis Cognitive — Container Apps style deploy on VM port 8448
+# Build from repo root: docker compose -f deploy/corp-8448/docker-compose.yml up -d --build
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: genesis-redis-8448
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - genesis_redis_8448:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - genesis8448
+
+  api:
+    build:
+      context: ../..
+      dockerfile: deploy/corp-8448/Dockerfile
+    image: genesis-api:8448
+    container_name: genesis-api-8448
+    restart: unless-stopped
+    ports:
+      - "8448:8448"
+    env_file:
+      - ../../.env
+    environment:
+      GENESIS_HOST: "0.0.0.0"
+      GENESIS_PORT: "8448"
+      GENESIS_ENV: "qa"
+      GENESIS_SERVE_UI: "true"
+      GENESIS_REDIS_URL: "redis://redis:6379/0"
+      GENESIS_FAQ_PATH: "/app/data/kb_faq_vf01.json"
+      GENESIS_ORCH_URL: "http://host.docker.internal:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8448/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 50s
+    networks:
+      - genesis8448
+
+volumes:
+  genesis_redis_8448:
+
+networks:
+  genesis8448:
+    name: genesis8448

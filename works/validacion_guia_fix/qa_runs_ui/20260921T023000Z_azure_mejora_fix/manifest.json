@@ -1,0 +1,11 @@
+{
+  "run_id": "20260921T023000Z_azure_mejora_fix",
+  "base": "http://20.127.25.24:8447",
+  "customer": "726588",
+  "scope": "p0",
+  "generated_utc": "20260921T032837Z",
+  "cases": 12,
+  "captured": 12,
+  "failed": 0,
+  "images_dir": "images/fix/20260921T023000Z_azure_mejora_fix"
+}

@@ -1,0 +1,332 @@
+{
+  "version": "bsc-kb-2026-09-19-candidate-1",
+  "note": "Taxonomía semántica propuesta, extensible, independiente del naming del contrato Core.",
+  "domains": [
+    {
+      "domain": "personal",
+      "actions": [
+        {
+          "action": "consultar",
+          "objects": [
+            {
+              "object": "cuenta",
+              "fields": [
+                "account.ledger_balance",
+                "account.available_balance",
+                "account.transactions"
+              ]
+            },
+            {
+              "object": "tarjeta_credito",
+              "fields": [
+                "credit_card.current_debt",
+                "credit_card.available_credit",
+                "credit_card.credit_limit",
+                "credit_card.statement_balance",
+                "credit_card.minimum_payment",
+                "credit_card.cutoff_date",
+                "credit_card.payment_due_date",
+                "credit_card.points",
+                "credit_card.transactions"
+              ]
+            },
+            {
+              "object": "deposito",
+              "fields": [
+                "deposit.opening_amount",
+                "deposit.opening_date",
+                "deposit.interest_rate",
+                "deposit.term",
+                "deposit.interest_payment_mode",
+                "deposit.current_balance",
+                "deposit.interest_earned",
+                "deposit.maturity_date"
+              ]
+            },
+            {
+              "object": "prestamo",
+              "fields": [
+                "loan.disbursed_amount",
+                "loan.outstanding_balance",
+                "loan.installment_amount",
+                "loan.interest_rate",
+                "loan.next_payment_date",
+                "loan.payoff_amount",
+                "loan.maturity_date",
+                "loan.transactions",
+                "loan.status"
+              ]
+            }
+          ]
+        },
+        {
+          "action": "consultar_tenencia",
+          "objects": [
+            {
+              "object": "portafolio",
+              "fields": [
+                "product_presence",
+                "completeness",
+                "source"
+              ]
+            }
+          ]
+        },
+        {
+          "action": "comparar",
+          "objects": [
+            {
+              "object": "productos_propios",
+              "fields": [
+                "requested_fields",
+                "currency",
+                "as_of"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "conocimiento",
+      "actions": [
+        {
+          "action": "explicar",
+          "objects": [
+            {
+              "object": "producto",
+              "fields": [
+                "descripcion",
+                "requisitos",
+                "usos",
+                "cargos",
+                "canales",
+                "condiciones"
+              ]
+            },
+            {
+              "object": "concepto",
+              "fields": [
+                "definicion",
+                "diferencias"
+              ]
+            },
+            {
+              "object": "banco",
+              "fields": [
+                "mision",
+                "vision"
+              ]
+            }
+          ]
+        },
+        {
+          "action": "comparar",
+          "objects": [
+            {
+              "object": "producto",
+              "fields": [
+                "descripcion",
+                "requisitos",
+                "usos",
+                "cargos",
+                "canales",
+                "condiciones"
+              ]
+            },
+            {
+              "object": "concepto",
+              "fields": [
+                "definicion",
+                "diferencias"
+              ]
+            },
+            {
+              "object": "banco",
+              "fields": [
+                "mision",
+                "vision"
+              ]
+            }
+          ]
+        },
+        {
+          "action": "orientar_solicitud",
+          "objects": [
+            {
+              "object": "producto",
+              "fields": [
+                "descripcion",
+                "requisitos",
+                "usos",
+                "cargos",
+                "canales",
+                "condiciones"
+              ]
+            },
+            {
+              "object": "concepto",
+              "fields": [
+                "definicion",
+                "diferencias"
+              ]
+            },
+            {
+              "object": "banco",
+              "fields": [
+                "mision",
+                "vision"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "procedimientos",
+      "actions": [
+        {
+          "action": "orientar",
+          "objects": [
+            {
+              "object": "reclamacion",
+              "fields": [
+                "etapas",
+                "documentos",
+                "canales",
+                "condiciones",
+                "plazos_verificados"
+              ]
+            },
+            {
+              "object": "cancelacion",
+              "fields": [
+                "etapas",
+                "documentos",
+                "canales",
+                "condiciones",
+                "plazos_verificados"
+              ]
+            },
+            {
+              "object": "liberacion_garantia",
+              "fields": [
+                "etapas",
+                "documentos",
+                "canales",
+                "condiciones",
+                "plazos_verificados"
+              ]
+            },
+            {
+              "object": "fallecimiento",
+              "fields": [
+                "etapas",
+                "documentos",
+                "canales",
+                "condiciones",
+                "plazos_verificados"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "conversacion",
+      "actions": [
+        {
+          "action": "aclarar",
+          "objects": [
+            {
+              "object": "sesion",
+              "fields": [
+                "pending_tasks",
+                "personal_focus",
+                "knowledge_focus",
+                "compare_set",
+                "references"
+              ]
+            }
+          ]
+        },
+        {
+          "action": "corregir",
+          "objects": [
+            {
+              "object": "sesion",
+              "fields": [
+                "pending_tasks",
+                "personal_focus",
+                "knowledge_focus",
+                "compare_set",
+                "references"
+              ]
+            }
+          ]
+        },
+        {
+          "action": "retomar",
+          "objects": [
+            {
+              "object": "sesion",
+              "fields": [
+                "pending_tasks",
+                "personal_focus",
+                "knowledge_focus",
+                "compare_set",
+                "references"
+              ]
+            }
+          ]
+        },
+        {
+          "action": "cambiar_tema",
+          "objects": [
+            {
+              "object": "sesion",
+              "fields": [
+                "pending_tasks",
+                "personal_focus",
+                "knowledge_focus",
+                "compare_set",
+                "references"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain": "seguridad",
+      "actions": [
+        {
+          "action": "proteger",
+          "objects": [
+            {
+              "object": "credenciales",
+              "fields": [
+                "scope",
+                "reason_code"
+              ]
+            },
+            {
+              "object": "titularidad",
+              "fields": [
+                "scope",
+                "reason_code"
+              ]
+            },
+            {
+              "object": "instrucciones_internas",
+              "fields": [
+                "scope",
+                "reason_code"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

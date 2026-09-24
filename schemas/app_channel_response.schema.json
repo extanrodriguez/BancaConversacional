@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bsc.com.do/schemas/app-channel-response-v1.json",
+  "title": "BSC App Channel Response",
+  "type": "object",
+  "required": ["status", "client_response", "content_format", "options", "suggested_questions"],
+  "properties": {
+    "status": {"type": "string"},
+    "client_response": {"type": "string"},
+    "content_format": {"enum": ["plain", "markdown"]},
+    "conversation_id": {"type": ["string", "null"]},
+    "turn_number": {"type": ["integer", "null"]},
+    "intent_id": {"type": ["string", "null"]},
+    "account_ref": {"type": ["string", "null"]},
+    "clarifications": {"type": "array", "items": {"type": "object"}},
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ref", "label", "product_type", "currency"],
+        "properties": {
+          "ref": {"type": "string"},
+          "label": {"type": "string"},
+          "product_type": {"type": "string"},
+          "currency": {"type": "string"},
+          "subtitle": {"type": "string"},
+          "context": {
+            "type": "object",
+            "required": ["field", "label", "formatted_value", "currency"],
+            "properties": {
+              "field": {"type": "string"},
+              "label": {"type": "string"},
+              "formatted_value": {"type": "string"},
+              "currency": {"type": "string"}
+            },
+            "additionalProperties": false
+          },
+          "selection": {
+            "type": "object",
+            "required": ["type", "selected_option_ref"],
+            "properties": {
+              "type": {"const": "product"},
+              "selected_option_ref": {"type": "string"},
+              "message": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "suggested_questions": {"type": "array", "items": {"type": "object"}},
+    "rich_content": {
+      "type": ["object", "null"],
+      "required": ["version", "blocks"],
+      "properties": {
+        "version": {"const": "1.0"},
+        "blocks": {
+          "type": "array",
+          "maxItems": 40,
+          "items": {"$ref": "#/$defs/block"}
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "inline": {
+      "type": "object",
+      "required": ["type", "text"],
+      "properties": {
+        "type": {"enum": ["text", "strong", "link"]},
+        "text": {"type": "string"},
+        "href": {"type": "string"},
+        "kind": {"enum": ["phone", "email", "web"]}
+      },
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "required": ["type", "label"],
+      "properties": {
+        "type": {"enum": ["select_option", "phone", "email", "link", "message"]},
+        "label": {"type": "string"},
+        "href": {"type": "string"},
+        "message": {"type": "string"},
+        "selected_option_ref": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "block": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {"enum": ["paragraph", "list", "section", "card_group", "actions"]},
+        "content": {"type": "array", "items": {"$ref": "#/$defs/inline"}},
+        "style": {"enum": ["ordered", "unordered"]},
+        "items": {"type": "array", "items": {"type": "object"}},
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "subtitle": {"type": "string"},
+        "collapsible": {"type": "boolean"},
+        "initially_expanded": {"type": "boolean"},
+        "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}},
+        "cards": {"type": "array", "items": {"type": "object"}},
+        "actions": {"type": "array", "items": {"$ref": "#/$defs/action"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

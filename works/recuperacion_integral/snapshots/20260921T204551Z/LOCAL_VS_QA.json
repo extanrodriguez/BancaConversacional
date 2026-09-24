@@ -1,0 +1,151 @@
+{
+  "created_utc": "2026-09-21T20:45:53.409572+00:00",
+  "snapshot_id": "20260921T204551Z",
+  "qa_host": "20.127.25.24",
+  "qa_app": "/opt/genesis-cognitive-8447/Genesis_v2",
+  "qa_cfg": {
+    "AZURE_SEARCH_INDEX": "bsc-kb-qa-vnext-20260921",
+    "AZURE_OPENAI_CHAT_DEPLOYMENT": "gpt-6-astra",
+    "GENESIS_AZURE_DEPLOYMENT": "gpt-6-astra",
+    "AZURE_OPENAI_DEPLOYMENT": "gpt-6-astra",
+    "GENESIS_SEMANTIC_MODE": "azure_plan",
+    "GENESIS_AZURE_BRAIN": "1",
+    "GENESIS_SEARCH_RETRIEVE": "1",
+    "GENESIS_SEARCH_RERANK_LOCAL": ""
+  },
+  "file_diffs": [
+    {
+      "file": "src/genesis_cognitive/brain/azure_plan_turn.py",
+      "status": "DIVERGED",
+      "local_sha": "ec56440f43f0b695cf4dc6355761f91b49d202ae42d919cee06dae9ee8c8d875",
+      "qa_sha": "0e37d6ec092fc69cc9568e11568cb2ba074646a4b3f8f1a467a2d6acda7a91aa",
+      "local_bytes": 45261,
+      "qa_bytes": 44195
+    },
+    {
+      "file": "src/genesis_cognitive/brain/plan_executor.py",
+      "status": "MATCH",
+      "local_sha": "cc2eb27d80e4f21c9528010a2d84703734b6f574d22564b599d819c9ece08f80",
+      "qa_sha": "cc2eb27d80e4f21c9528010a2d84703734b6f574d22564b599d819c9ece08f80",
+      "local_bytes": 87519,
+      "qa_bytes": 87519
+    },
+    {
+      "file": "src/genesis_cognitive/brain/plan_interpreter.py",
+      "status": "MATCH",
+      "local_sha": "f2f4e163bd4cc900ea3074affc2d20bb1ffb0cc595f81a964c52cb3cfba13e31",
+      "qa_sha": "f2f4e163bd4cc900ea3074affc2d20bb1ffb0cc595f81a964c52cb3cfba13e31",
+      "local_bytes": 99162,
+      "qa_bytes": 99162
+    },
+    {
+      "file": "src/genesis_cognitive/brain/semantic_mode.py",
+      "status": "MATCH",
+      "local_sha": "9ae158132fb88894c50e74209a959c3a06e94ed51cb08872505a10891f296469",
+      "qa_sha": "9ae158132fb88894c50e74209a959c3a06e94ed51cb08872505a10891f296469",
+      "local_bytes": 2128,
+      "qa_bytes": 2128
+    },
+    {
+      "file": "src/genesis_cognitive/brain/azure_plan_adapter.py",
+      "status": "MATCH",
+      "local_sha": "2ef3808669a9d4a3e2e6588b0954a6a3548f0ac188c9f77db258550d1c46346f",
+      "qa_sha": "2ef3808669a9d4a3e2e6588b0954a6a3548f0ac188c9f77db258550d1c46346f",
+      "local_bytes": 47897,
+      "qa_bytes": 47897
+    },
+    {
+      "file": "src/genesis_cognitive/agents/agent_framework_turn_resolver.py",
+      "status": "MATCH",
+      "local_sha": "2a24d9c862ac051e61cd89049f677563604fa86c436daf71ae35fbfca33e4657",
+      "qa_sha": "2a24d9c862ac051e61cd89049f677563604fa86c436daf71ae35fbfca33e4657",
+      "local_bytes": 20319,
+      "qa_bytes": 20319
+    },
+    {
+      "file": "src/genesis_cognitive/agents/semantic_verifier.py",
+      "status": "MATCH",
+      "local_sha": "c47a4b2697c3e8966afd9d1bea49974d0be861c678ebd3a90d0ff0ce80305f8e",
+      "qa_sha": "c47a4b2697c3e8966afd9d1bea49974d0be861c678ebd3a90d0ff0ce80305f8e",
+      "local_bytes": 8369,
+      "qa_bytes": 8369
+    },
+    {
+      "file": "src/genesis_cognitive/rag/azure_search_retrieve.py",
+      "status": "MATCH",
+      "local_sha": "9880ead905a90b37bcc434f3bdc0fce586f41949a88c7fc05e2b57f181f440fe",
+      "qa_sha": "9880ead905a90b37bcc434f3bdc0fce586f41949a88c7fc05e2b57f181f440fe",
+      "local_bytes": 10927,
+      "qa_bytes": 10927
+    },
+    {
+      "file": "src/genesis_cognitive/rag/grounding_verifier.py",
+      "status": "MATCH",
+      "local_sha": "9ba181c1f64ca8eb80891b90ae605d62d59001b6ab3137b6794676b43eaefcc8",
+      "qa_sha": "9ba181c1f64ca8eb80891b90ae605d62d59001b6ab3137b6794676b43eaefcc8",
+      "local_bytes": 7921,
+      "qa_bytes": 7921
+    },
+    {
+      "file": "src/genesis_cognitive/router/field_guardrails.py",
+      "status": "DIVERGED",
+      "local_sha": "eddf3f66241bc8a0f1cf28111f77fa8c9086a56dfdfcc742c6a603af16a1026d",
+      "qa_sha": "ba2ef36cac7bae1a2799207c04d6cde931329b1c7e9c3e0d7494705966acbb2b",
+      "local_bytes": 132205,
+      "qa_bytes": 128842
+    },
+    {
+      "file": "src/genesis_cognitive/router/domain_classifier.py",
+      "status": "MATCH",
+      "local_sha": "8f90b99c28ee6bf08356b6f94ad2af816194413e2f700bc91d90fd461b77f988",
+      "qa_sha": "8f90b99c28ee6bf08356b6f94ad2af816194413e2f700bc91d90fd461b77f988",
+      "local_bytes": 6889,
+      "qa_bytes": 6889
+    },
+    {
+      "file": "src/genesis_cognitive/demo/contract_inspector_app.py",
+      "status": "DIVERGED",
+      "local_sha": "f06c3a6f7013b8327526d6bf5c092ca8f5e64a50c5cbd605a2a2a8974d1e1d64",
+      "qa_sha": "524a85cb42fd31d36e0d93dc1a11e3b0e8a44dc73da8458ff6307d18598fc615",
+      "local_bytes": 289937,
+      "qa_bytes": 284531
+    }
+  ],
+  "diverged": [
+    {
+      "file": "src/genesis_cognitive/brain/azure_plan_turn.py",
+      "status": "DIVERGED",
+      "local_sha": "ec56440f43f0b695cf4dc6355761f91b49d202ae42d919cee06dae9ee8c8d875",
+      "qa_sha": "0e37d6ec092fc69cc9568e11568cb2ba074646a4b3f8f1a467a2d6acda7a91aa",
+      "local_bytes": 45261,
+      "qa_bytes": 44195
+    },
+    {
+      "file": "src/genesis_cognitive/router/field_guardrails.py",
+      "status": "DIVERGED",
+      "local_sha": "eddf3f66241bc8a0f1cf28111f77fa8c9086a56dfdfcc742c6a603af16a1026d",
+      "qa_sha": "ba2ef36cac7bae1a2799207c04d6cde931329b1c7e9c3e0d7494705966acbb2b",
+      "local_bytes": 132205,
+      "qa_bytes": 128842
+    },
+    {
+      "file": "src/genesis_cognitive/demo/contract_inspector_app.py",
+      "status": "DIVERGED",
+      "local_sha": "f06c3a6f7013b8327526d6bf5c092ca8f5e64a50c5cbd605a2a2a8974d1e1d64",
+      "qa_sha": "524a85cb42fd31d36e0d93dc1a11e3b0e8a44dc73da8458ff6307d18598fc615",
+      "local_bytes": 289937,
+      "qa_bytes": 284531
+    }
+  ],
+  "matched": [
+    "src/genesis_cognitive/brain/plan_executor.py",
+    "src/genesis_cognitive/brain/plan_interpreter.py",
+    "src/genesis_cognitive/brain/semantic_mode.py",
+    "src/genesis_cognitive/brain/azure_plan_adapter.py",
+    "src/genesis_cognitive/agents/agent_framework_turn_resolver.py",
+    "src/genesis_cognitive/agents/semantic_verifier.py",
+    "src/genesis_cognitive/rag/azure_search_retrieve.py",
+    "src/genesis_cognitive/rag/grounding_verifier.py",
+    "src/genesis_cognitive/router/domain_classifier.py"
+  ]
+}

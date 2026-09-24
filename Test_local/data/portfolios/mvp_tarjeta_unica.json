@@ -1,0 +1,37 @@
+{
+  "isSucceded": true,
+  "code": "EGEN000",
+  "message": "ok",
+  "primerNombre": "Pedro",
+  "data": [
+    {
+      "productCategory": "TC",
+      "productIdentification": "250925031840000011",
+      "productDescription": "Visa Bravo Santa Cruz",
+      "currencyCode": "214",
+      "productStatus": "1",
+      "availableBalance": 100000,
+      "maturityDate": null,
+      "currentBalance": 2398.43,
+      "foreignCurrencyBalance": 0,
+      "domesticCurrencyBalance": 0,
+      "partyType": null,
+      "maskedCardNumber": "****3446",
+      "pendingBalancePr": 0,
+      "minimumPaymentTcRd": 696.85,
+      "minimumPaymentTcUs": 21.42,
+      "statementBalanceTcRd": 15866.99,
+      "statementBalanceTcUs": 380.14,
+      "statementCutoffDay": 1,
+      "cardExpiryDate": 0,
+      "multiCurrency": "1",
+      "interestRateCd": 0,
+      "interestAmountCd": 0,
+      "interestRatePr": 0,
+      "nextInstallmentDatePr": null,
+      "nextPaymentDatePr": null,
+      "availablePurchasesForeign": 2589.01,
+      "availablePurchasesDomestic": 83876.9
+    }
+  ]
+}

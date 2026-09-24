@@ -1,0 +1,60 @@
+{
+  "case_id": "GR04",
+  "section": 15,
+  "questions": [
+    "No reconozco un cargo en uno de mis productos. ¿Qué debo hacer para reclamarlo?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    345
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, Apertura de reclamaciones\n\nPuedes realizar tu reclamación a través de los siguientes canales:\n\nCentro de Contacto: [809.726.####](tel:+####).\nCentros de Negocios BSC: visitando el área de Servicios del centro de tu preferencia.\nBSC en Línea.\n\nPara consultar horarios y ubicaciones de los Centros de Negocios, puedes acceder a [bsc.com.do](https://bsc.com.do).\n\nUna vez registrada tu reclamación, recibirás automáticamente en el correo electrónico registrado en el Banco el Formulario Único de Reclamación, con el número y los detalles de tu caso.\n\nDocumentación requerida\n\nDependiendo del tipo de reclamación, deberás presentar los documentos de soporte correspondientes:\n\nCrédito no procesado: constancia de la promesa de devolución o crédito realizada por el comercio.\nPagado por otros medios: constancia del medio de pago alternativo utilizado.\nMercancía no recibida o servicio no prestado: evidencia del intento de solución con el comercio y factura original de la compra.\nMonto alterado: factura o constancia del monto original de la compra.\n\nSi realizas la reclamación a través del Centro de Contacto, debes enviar la documentación de soporte al correo [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do).\n\nImportante:\n\nLos documentos deben ser enviados dentro de los 7 días calendario siguientes al registro de la reclamación.\nSi no se reciben las evidencias requeridas dentro de este plazo, la reclamación podrá ser desestimada con resultado desfavorable.\nPlazos de reclamación\nLa reclamación puede ser presentada dentro de un período máximo de 4 años desde el hecho que la origina.\nEl plazo regular de respuesta es de 30 días calendario.\nPara reclamaciones complejas, el plazo puede extenderse hasta 45 días calendario.\nPara reclamaciones de Tarjetas de Crédito o Débito que requieran intervención de una marca internacional, el plazo puede extenderse hasta 180 días calendario.\nSeguimiento y respuesta\n\nPara consultar el estado de tu reclamación puedes:\n\nLlamar al Centro de Contacto.\nVisitar el área de Servicios de un Centro de Negocios BSC.\n\nUna vez finalizado el análisis, recibirás por correo electrónico la notificación con el resultado de tu reclamación.\n\nSi quieres el detalle paso a paso, indícame el canal: Centro de Contacto ([809.726.####](tel:+####)), Centro de Negocios o BSC en Línea.",
+  "replies_sanitized": [
+    "Felix Prestamos, Apertura de reclamaciones\n\nPuedes realizar tu reclamación a través de los siguientes canales:\n\nCentro de Contacto: [809.726.####](tel:+####).\nCentros de Negocios BSC: visitando el área de Servicios del centro de tu preferencia.\nBSC en Línea.\n\nPara consultar horarios y ubicaciones de los Centros de Negocios, puedes acceder a [bsc.com.do](https://bsc.com.do).\n\nUna vez registrada tu reclamación, recibirás automáticamente en el correo electrónico registrado en el Banco el Formulario Único de Reclamación, con el número y los detalles de tu caso.\n\nDocumentación requerida\n\nDependiendo del tipo de reclamación, deberás presentar los documentos de soporte correspondientes:\n\nCrédito no procesado: constancia de la promesa de devolución o crédito realizada por el comercio.\nPagado por otros medios: constancia del medio de pago alternativo utilizado.\nMercancía no recibida o servicio no prestado: evidencia del intento de solución con el comercio y factura original de la compra.\nMonto alterado: factura o constancia del monto original de la compra.\n\nSi realizas la reclamación a través del Centro de Contacto, debes enviar la documentación de soporte al correo [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do).\n\nImportante:\n\nLos documentos deben ser enviados dentro de los 7 días calendario siguientes al registro de la reclamación.\nSi no se reciben las evidencias requeridas dentro de este plazo, la reclamación podrá ser desestimada con resultado desfavorable.\nPlazos de reclamación\nLa reclamación puede ser presentada dentro de un período máximo de 4 años desde el hecho que la origina.\nEl plazo regular de respuesta es de 30 días calendario.\nPara reclamaciones complejas, el plazo puede extenderse hasta 45 días calendario.\nPara reclamaciones de Tarjetas de Crédito o Débito que requieran intervención de una marca internacional, el plazo puede extenderse hasta 180 días calendario.\nSeguimiento y respuesta\n\nPara consultar el estado de tu reclamación puedes:\n\nLlamar al Centro de Contacto.\nVisitar el área de Servicios de un Centro de Negocios BSC.\n\nUna vez finalizado el análisis, recibirás por correo electrónico la notificación con el resultado de tu reclamación.\n\nSi quieres el detalle paso a paso, indícame el canal: Centro de Contacto ([809.726.####](tel:+####)), Centro de Negocios o BSC en Línea."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "FAIL",
+  "reason": "baja cobertura de la pregunta",
+  "audit": {
+    "total_ms": 46,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 46,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "3fc78f8f-ebd1-4a5c-8a21-dcb357cfaead",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:reclamacion",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "reclamacion",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 42.4
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 46
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

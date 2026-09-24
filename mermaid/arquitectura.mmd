@@ -1,0 +1,52 @@
+%% Banca Conversacional Genesis — arquitectura vigente QA lab8446
+%% Azure tool_choice=auto elige Redis vs Foundry/Search; chitchat local.
+flowchart TB
+  classDef canal fill:#E8EEF6,stroke:#0A2540,color:#0A2540,stroke-width:1.5px
+  classDef orch fill:#F8F1E3,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef cog fill:#0A2540,stroke:#0A2540,color:#FFFFFF,stroke-width:1.5px
+  classDef step fill:#163A5F,stroke:#0A2540,color:#FFFFFF
+  classDef azure fill:#E5F2FB,stroke:#0078D4,color:#0A2540,stroke-width:1.5px
+  classDef bank fill:#F4EFE6,stroke:#8A6A2F,color:#0A2540,stroke-width:1.5px
+  classDef write fill:#DBEAFE,stroke:#1E40AF,color:#0A2540,stroke-width:1.5px
+
+  subgraph CAN["Canales"]
+    APK["APK Banca Conversacional"]:::canal
+    UI["UI /pruebas"]:::canal
+  end
+
+  subgraph ORQ["Orquestador .NET — INTOCABLE"]
+    NET["BancaConversacional.Api WebSocket"]:::orch
+    CTX["context.data Core"]:::orch
+  end
+
+  subgraph COG["Cognitiva lab8446 :8447"]
+    API["POST /turn"]:::cog
+    W["WRITE context_info"]:::write
+    CH["Chitchat local"]:::step
+    R["Azure tool_choice=auto"]:::step
+    TOOL["get_customer_products"]:::step
+    KB["search_bank_knowledge"]:::step
+  end
+
+  subgraph AZ["Azure"]
+    REDIS[("Redis")]:::azure
+    AOAI["Azure OpenAI"]:::azure
+    FOU["Foundry KB agent"]:::azure
+    SRCH["AI Search bsc-kb-conocimiento"]:::azure
+  end
+
+  APK --> NET
+  UI --> API
+  NET --> CTX
+  CTX --> API
+  NET -->|"question"| API
+  API --> W
+  API --> CH
+  API --> R
+  W --> REDIS
+  R --> AOAI
+  AOAI --> TOOL
+  AOAI --> KB
+  TOOL --> REDIS
+  KB --> FOU
+  FOU --> SRCH

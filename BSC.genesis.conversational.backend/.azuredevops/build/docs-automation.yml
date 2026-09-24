@@ -1,0 +1,69 @@
+trigger:
+  branches:
+    include:
+      - main
+      - master
+      - develop
+
+pr:
+  branches:
+    include:
+      - "*"
+
+schedules:
+  - cron: "0 7 * * 1"
+    displayName: Weekly technical docs sync
+    branches:
+      include:
+        - main
+        - master
+        - develop
+    always: true
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: vg-doc-automation-backend
+  - name: PYTHONUNBUFFERED
+    value: "1"
+
+steps:
+  - checkout: self
+    fetchDepth: 0
+
+  - task: UsePythonVersion@0
+    displayName: Use Python 3
+    inputs:
+      versionSpec: "3.x"
+
+  - script: |
+      python scripts/doc_automation/generate_docs.py --config scripts/doc_automation/config.example.json --repo-root .
+    displayName: Generate technical documentation
+    env:
+      ADO_ORG_URL: $(ADO_ORG_URL)
+      ADO_PROJECT: $(ADO_PROJECT)
+      ADO_REPO_ID: $(ADO_REPO_ID)
+      ADO_BEARER_TOKEN: $(System.AccessToken)
+      ADO_PAT: $(ADO_PAT)
+      PUBLISH_CONFLUENCE: $(PUBLISH_CONFLUENCE)
+      CONFLUENCE_BASE_URL: $(CONFLUENCE_BASE_URL)
+      CONFLUENCE_SPACE_KEY: $(CONFLUENCE_SPACE_KEY)
+      CONFLUENCE_USER: $(CONFLUENCE_USER)
+      CONFLUENCE_API_TOKEN: $(CONFLUENCE_API_TOKEN)
+      CONFLUENCE_PARENT_TITLE: $(CONFLUENCE_PARENT_TITLE)
+
+  - task: CopyFiles@2
+    displayName: Stage generated docs
+    inputs:
+      SourceFolder: docs/generated
+      Contents: |
+        **/*
+      TargetFolder: $(Build.ArtifactStagingDirectory)/tech-docs
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish generated docs as build artifact
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)/tech-docs
+      ArtifactName: tech-docs
+      publishLocation: Container

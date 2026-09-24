@@ -1,0 +1,92 @@
+{
+  "index": "bsc-kb-qa-vnext-20260921",
+  "protected_untouched": "bsc-kb-conocimiento",
+  "all_pass": true,
+  "cases": [
+    {
+      "id": "DEF_SALDO",
+      "q": "qué significa saldo disponible",
+      "http": 200,
+      "n_hits": 5,
+      "pass": true,
+      "top_titles": [
+        "Cuenta corriente personal",
+        "Facilidad",
+        "Crédito Diferido: carta de saldo"
+      ]
+    },
+    {
+      "id": "CMP_PLATINUM",
+      "q": "visa platinum características",
+      "http": 200,
+      "n_hits": 5,
+      "pass": true,
+      "top_titles": [
+        "Tarjeta de Crédito Visa Platinum",
+        "Tarjeta de Débito Visa Platinum",
+        "Cuentas de efectivo: características"
+      ]
+    },
+    {
+      "id": "CMP_INFINITE",
+      "q": "visa infinite características",
+      "http": 200,
+      "n_hits": 5,
+      "pass": true,
+      "top_titles": [
+        "Tarjeta de Crédito Visa Infinite",
+        "Tarjeta de Débito Visa Infinite",
+        "Cuentas de efectivo: características"
+      ]
+    },
+    {
+      "id": "CMP_BOTH",
+      "q": "comparar visa platinum e infinite",
+      "http": 200,
+      "n_hits": 5,
+      "pass": true,
+      "top_titles": [
+        "Tarjeta de Crédito Visa Platinum",
+        "Tarjeta de Crédito Visa Infinite",
+        "Tarjeta de Débito Visa Platinum"
+      ]
+    },
+    {
+      "id": "PROC_CANCEL",
+      "q": "cancelación de productos préstamo",
+      "http": 200,
+      "n_hits": 5,
+      "pass": true,
+      "top_titles": [
+        "Crédito Diferido: canales de cancelación",
+        "Crédito Diferido: condiciones de cancelación",
+        "Cancelación general y monto personal de cancelación"
+      ]
+    },
+    {
+      "id": "INST_MISION",
+      "q": "misión del banco santa cruz",
+      "http": 200,
+      "n_hits": 5,
+      "pass": true,
+      "top_titles": [
+        "Puntos Santa Cruz",
+        "Contacto general publicado por Banco Santa Cruz",
+        "Tarjeta de Crédito Bravo Santa Cruz"
+      ]
+    },
+    {
+      "id": "PROC_RECLAMO",
+      "q": "proceso de reclamación",
+      "http": 200,
+      "n_hits": 5,
+      "pass": true,
+      "top_titles": [
+        "Cómo iniciar una reclamación",
+        "Reclamaciones: inicio y escalamiento a ProUsuario",
+        "Pago de nómina"
+      ]
+    }
+  ],
+  "utc": "20260921T181047Z"
+}

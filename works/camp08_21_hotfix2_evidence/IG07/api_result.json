@@ -1,0 +1,60 @@
+{
+  "case_id": "IG07",
+  "section": 9,
+  "questions": [
+    "¿Qué es una tasa de interés nominal y en qué se diferencia de una tasa anual efectiva?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    333
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, Tasa anual efectiva: en operaciones pasivas, corresponde al rendimiento efectivo anual que permite igualar el monto que se ha depositado, con el valor actual del monto que efectivamente se recibe al vencimiento del plazo, considerando todos los cargos, comisiones e impuestos en que incurrirá el usuario en caso de contratar los productos o servicios en las condiciones ofrecidas.",
+  "replies_sanitized": [
+    "Felix Prestamos, Tasa anual efectiva: en operaciones pasivas, corresponde al rendimiento efectivo anual que permite igualar el monto que se ha depositado, con el valor actual del monto que efectivamente se recibe al vencimiento del plazo, considerando todos los cargos, comisiones e impuestos en que incurrirá el usuario en caso de contratar los productos o servicios en las condiciones ofrecidas."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "posible acierto; revisar criterio completo",
+  "audit": {
+    "total_ms": 115,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 115,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "ba67adde-138b-492e-bf5a-f5b4c1f5f8bd",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 111.8
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 115
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

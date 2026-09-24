@@ -1,0 +1,41 @@
+{
+  "package": "Banca_Cierre_V3_1",
+  "purpose": "Supplement to reported local V3; no application execution or deployment performed here",
+  "files": [
+    {
+      "path": "Prompt_Cursor_Cierre_V3_1.md",
+      "bytes": 15744,
+      "sha256": "d56b201248271fee9e7b550df05beb9aadabfff8833fe1393ae983c82189964b"
+    },
+    {
+      "path": "LEEME.md",
+      "bytes": 2455,
+      "sha256": "3f82ec30596f2ea6827702ead465031f3e7f916b1b85934f8a739327cad02ba4"
+    },
+    {
+      "path": "insumos/Modelo_Mejora_Cognitiva_QA_V3.md",
+      "bytes": 24853,
+      "sha256": "e20e573d2b01005bb0e0f66dafd4a067aaa8bb3305cdfac953a2811c695ec948"
+    },
+    {
+      "path": "insumos/Prompt_Cursor_Banca_V3_Pruebas_QA.md",
+      "bytes": 17166,
+      "sha256": "aebc6487810aaf04a93f525b9a3b8376602d77c6bde32b5c17efd7ec52897e2d"
+    },
+    {
+      "path": "insumos/Casos_QA_236_Extraidos.jsonl",
+      "bytes": 250734,
+      "sha256": "1272746afda50ede150ed4a809ee50bb33d48d0697948d9f15f7bd14de288dbd"
+    },
+    {
+      "path": "insumos/Casos_QA_Adicionales_V3.jsonl",
+      "bytes": 18650,
+      "sha256": "b03440f1916b33fc3716a55a6d59599f56309037b9d312b776d2fa21f8df36c0"
+    },
+    {
+      "path": "insumos/Resumen_QA.json",
+      "bytes": 2271,
+      "sha256": "f5d8a2cfea9170223a833ba3e409762f5b3287de2608c8a6e2988744cd842510"
+    }
+  ]
+}

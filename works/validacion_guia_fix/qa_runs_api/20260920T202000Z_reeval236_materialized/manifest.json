@@ -1,0 +1,16 @@
+{
+  "run_id": "20260920T202000Z_reeval236_materialized",
+  "source": "reeval_strict_v2.2_20260920T165755Z_3e71ec52",
+  "oracle_version": "strict_v2.2",
+  "scope": "all",
+  "executed": 236,
+  "counts": {
+    "PASS_RESOLVED": 39,
+    "PARTIAL_CAPABILITY": 11,
+    "FAIL_INTERPRETATION": 138,
+    "PASS_CLARIFICATION_EXPECTED": 8,
+    "FAIL_RETRIEVAL": 5,
+    "FAIL_STATE": 1,
+    "FAIL_GROUNDING": 34
+  }
+}

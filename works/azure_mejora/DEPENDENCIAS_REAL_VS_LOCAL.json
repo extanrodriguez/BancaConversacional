@@ -1,0 +1,50 @@
+{
+  "fecha": "2026-09-21",
+  "scope": "PC local — no VM QA",
+  "dependencies": {
+    "azure_openai": {
+      "status": "REAL",
+      "resource_host": "testbsc0001.openai.azure.com",
+      "deployment_name": "gpt-4o-mini",
+      "evidence": [
+        "works/azure_mejora/DEPENDENCIAS_REAL_VS_SIMULADO.json",
+        "works/azure_mejora/probe_reconcile_20260921/probe_reconcile_full.json"
+      ],
+      "notes": "Llamadas reales proposer/verifier; structural_repair etiquetado cuando interpretation ausente"
+    },
+    "azure_search": {
+      "status": "REAL_QUERIES",
+      "endpoint_host": "ai-search-genesis.search.windows.net",
+      "index": "bsc-kb-conocimiento",
+      "doc_count_probe": 980,
+      "search_mode_observed": "hybrid",
+      "wired_to_turn": true,
+      "env_flag": "GENESIS_SEARCH_RETRIEVE=1",
+      "evidence": [
+        "works/azure_mejora/search_smoke_queries.json",
+        "works/azure_mejora/suite_representativa_20260921/resultados_representativos.json"
+      ],
+      "contamination": "Índice contiene filas de matriz VF01; filtradas en retrieve; no se reindexó"
+    },
+    "redis_qa": {
+      "status": "UNREACHABLE_PENDING",
+      "session_fallback": "MEMORIA_SIMULADA (GENESIS_SESSION_BACKEND=memory)"
+    },
+    "core_presentation": {
+      "status": "NOT_FORCED",
+      "context": "CONTEXTO_SINTETICO lab qa_726588_contract_demo.json"
+    },
+    "local_glossary_faq": {
+      "status": "LOCAL_REAL_DISK",
+      "used_when": "Search sin hit conceptual limpio (p.ej. saldo disponible)"
+    }
+  },
+  "labels_required": [
+    "MODELO_REAL",
+    "LOCAL_DETERMINISTA",
+    "CONTEXTO_SINTETICO",
+    "MEMORIA_SIMULADA",
+    "SEARCH_REAL_PASS",
+    "SEARCH_REAL_NO_HITS"
+  ]
+}

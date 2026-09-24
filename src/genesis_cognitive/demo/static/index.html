@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis — Contract Inspector</title>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:system-ui,-apple-system,sans-serif;background:#f5f7fa;color:#1a1a2e;padding:1.5rem}
+        .container{max-width:960px;margin:0 auto}
+        h1{font-size:1.4rem;margin-bottom:.4rem;color:#16213e}
+        .warning{background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:.6rem 1rem;margin-bottom:.8rem;font-size:.82rem;color:#856404;font-weight:600}
+        .meta{background:#e8f4fd;border:1px solid #b8daff;border-radius:6px;padding:.4rem .8rem;margin-bottom:1rem;font-size:.75rem;color:#004085;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+        .customer-bar{display:flex;gap:.6rem;align-items:center;margin-bottom:.8rem;padding:.5rem .8rem;background:#e8f8e8;border:1px solid #a3d9a5;border-radius:6px}
+        .customer-bar label{font-size:.82rem;font-weight:600;color:#155724}
+        .customer-bar select{padding:.3rem .5rem;border:1px solid #a3d9a5;border-radius:4px;font-size:.85rem}
+        .customer-info{font-size:.75rem;color:#155724;margin-left:.5rem}
+        textarea{width:100%;min-height:70px;padding:.6rem;border:1px solid #ccc;border-radius:6px;font-size:.95rem;resize:vertical;font-family:inherit}
+        .btn-row{display:flex;gap:.5rem;align-items:center;margin-top:.5rem}
+        button{padding:.6rem 1.2rem;background:#0f3460;color:#fff;border:none;border-radius:6px;font-size:.9rem;cursor:pointer}
+        button:hover{background:#16213e}
+        button:disabled{background:#999;cursor:not-allowed}
+        .btn-secondary{background:#6c757d}
+        .result{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:1.2rem;display:none;margin:1rem 0;font-size:.85rem}
+        .result.visible{display:block}
+        .f{margin-bottom:.45rem;display:flex;gap:.4rem}
+        .fl{font-weight:600;font-size:.75rem;color:#555;text-transform:uppercase;min-width:150px;flex-shrink:0}
+        .fv{font-size:.85rem;word-break:break-word;white-space:pre-wrap}
+        .valid{color:#28a745;font-weight:700}
+        .invalid{color:#dc3545;font-weight:700}
+        .neutral{color:#6c757d;font-weight:600}
+        .error-box{background:#f8d7da;border:1px solid #f5c2c7;border-radius:6px;padding:.8rem;margin:1rem 0;display:none;font-size:.85rem}
+        .error-box.visible{display:block}
+        .history{background:#f8f9fa;border:1px solid #dee2e6;border-radius:6px;padding:.8rem;margin-top:1rem;max-height:250px;overflow-y:auto;display:none}
+        .history.visible{display:block}
+        .history h3{font-size:.85rem;margin-bottom:.4rem}
+        .hi{border-bottom:1px solid #eee;padding:.3rem 0;font-size:.8rem}
+        .hi:last-child{border-bottom:none}
+        pre.raw{background:#f1f1f1;border:1px solid #ddd;border-radius:4px;padding:.5rem;max-height:200px;overflow:auto;font-size:.75rem;margin-top:.3rem}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Genesis Contract Inspector</h1>
+    <div class="warning">&#9888; Esta interfaz interpreta y valida contratos. NO EJECUTA OPERACIONES FINANCIERAS.</div>
+    <div class="customer-bar">
+        <label for="customer-select">Cliente:</label>
+        <select id="customer-select"><option value="">Cargando...</option></select>
+        <span class="customer-info" id="customer-info"></span>
+    </div>
+    <div class="meta">
+        <span id="m-provider">Provider: AZURE_OPENAI</span>
+        <span id="m-fw">Framework: AGENT_FRAMEWORK</span>
+        <span id="m-model">Model: -</span>
+        <span id="m-prompt">Prompt: -</span>
+        <span id="m-conv">Conv: -</span>
+        <span id="m-turn">Turn: 0</span>
+    </div>
+    <textarea id="question" placeholder="Escribe tu pregunta en lenguaje natural..."></textarea>
+    <div class="btn-row">
+        <button id="btn" onclick="doInspect()">Inspeccionar contrato</button>
+        <button class="btn-secondary" onclick="newConv()">Nueva conversacion</button>
+        <span id="ind" style="font-size:.75rem;color:#666"></span>
+    </div>
+    <div class="error-box" id="err"></div>
+    <div id="client-response-box" style="background:#e8f8e8;border:1px solid #28a745;border-radius:8px;padding:1rem;margin:1rem 0;display:none">
+        <div style="font-size:.75rem;font-weight:700;color:#155724;margin-bottom:.4rem;text-transform:uppercase">Respuesta al cliente</div>
+        <div id="client-response-text" style="font-size:1rem;color:#1a1a2e;line-height:1.5"></div>
+    </div>
+    <div class="result" id="result">
+        <div class="f"><span class="fl">Status</span><span class="fv" id="r-status"></span></div>
+        <div class="f"><span class="fl">Mode</span><span class="fv" id="r-mode"></span></div>
+        <div class="f"><span class="fl">Intent</span><span class="fv" id="r-intent"></span></div>
+        <div class="f"><span class="fl">Capability</span><span class="fv" id="r-cap"></span></div>
+        <div class="f"><span class="fl">Route</span><span class="fv" id="r-route"></span></div>
+        <div class="f"><span class="fl">Entities</span><span class="fv" id="r-ent"></span></div>
+        <div class="f"><span class="fl">Missing Reqs</span><span class="fv" id="r-miss"></span></div>
+        <div class="f"><span class="fl">Output Contract</span><span class="fv" id="r-contract"></span></div>
+        <div class="f"><span class="fl">Catalog Valid</span><span class="fv" id="r-cat"></span></div>
+        <div class="f"><span class="fl">Entity Refs Valid</span><span class="fv" id="r-refs"></span></div>
+        <div class="f"><span class="fl">RAG Status</span><span class="fv" id="r-rag"></span></div>
+        <div class="f"><span class="fl">Violations</span><span class="fv" id="r-viol"></span></div>
+        <div class="f"><span class="fl">Clarifications</span><span class="fv" id="r-clar"></span></div>
+        <div class="f"><span class="fl">Unsupported</span><span class="fv" id="r-unsup"></span></div>
+        <div class="f"><span class="fl">Loan Detail</span><span class="fv" id="r-loan"></span></div>
+        <div class="f"><span class="fl">Domain Scores</span><span class="fv" id="r-domain"></span></div>
+        <div class="f"><span class="fl">Customer Context</span><span class="fv" id="r-ctx"></span></div>
+        <div class="f"><span class="fl">Capabilities</span><span class="fv" id="r-caps"></span></div>
+        <div class="f"><span class="fl">Inference</span><span class="fv" id="r-inf"></span></div>
+        <details><summary style="font-size:.8rem;cursor:pointer;margin-top:.5rem">Raw Model Result</summary><pre class="raw" id="r-raw"></pre></details>
+    </div>
+    <div class="history" id="hist">
+        <h3>Historial</h3>
+        <div id="hist-items"></div>
+    </div>
+    <div id="trace-panel" style="background:#f0f0ff;border:1px solid #b8b8ff;border-radius:8px;padding:1rem;margin-top:1rem;display:none">
+        <h3 style="font-size:.85rem;margin-bottom:.5rem;color:#333">Decisiones del turno — <span id="trace-turn-label">Turn ?</span></h3>
+        <div id="trace-items" style="font-size:.75rem;font-family:monospace;max-height:400px;overflow-y:auto"></div>
+    </div>
+    <div id="contract-lab" style="background:#fff8e1;border:1px solid #ffcc02;border-radius:8px;padding:1rem;margin-top:1.5rem">
+        <h3 style="font-size:.9rem;margin-bottom:.6rem;color:#5d4037">Contract Lab 1.2</h3>
+        <p style="font-size:.75rem;color:#795548;margin-bottom:.6rem">Disparo directo de operaciones Genesis 1.2.0. SOLO valida, NO ejecuta Core.</p>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.6rem">
+            <button onclick="labFire('mis productos')" style="background:#4caf50;font-size:.78rem;padding:.4rem .8rem">Portfolio</button>
+            <button onclick="labFire('saldo de mi cuenta de ahorros')" style="background:#2196f3;font-size:.78rem;padding:.4rem .8rem">Saldo cuenta</button>
+            <button onclick="labFire('cuota de mi prestamo')" style="background:#ff9800;font-size:.78rem;padding:.4rem .8rem">Loan detail</button>
+            <button onclick="labValidate()" style="background:#f44336;font-size:.78rem;padding:.4rem .8rem">Pago cuota (validate)</button>
+        </div>
+        <div id="lab-result" style="display:none;margin-top:.5rem">
+            <div style="font-size:.72rem;font-weight:600;color:#5d4037;margin-bottom:.3rem">operation_request (Genesis 1.2.0)</div>
+            <pre id="lab-json" style="background:#fff;border:1px solid #e0e0e0;border-radius:4px;padding:.5rem;font-size:.7rem;max-height:350px;overflow:auto;white-space:pre-wrap"></pre>
+        </div>
+    </div>
+    <div id="dispatch-lab" style="background:#e3f2fd;border:1px solid #64b5f6;border-radius:8px;padding:1rem;margin-top:1rem">
+        <h3 style="font-size:.9rem;margin-bottom:.4rem;color:#1565c0">Disparo Determinista (Orquestacion / Core DEV)</h3>
+        <p style="font-size:.72rem;color:#1976d2;margin-bottom:.5rem">Mismo formato 1.2.0. Orquestador no ejecuta sandbox (CUST001-010).</p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem">
+            <input id="dispatch-cid" type="text" placeholder="Customer ID (ej: CUST001 o ID real)" style="flex:1;min-width:180px;padding:.4rem .6rem;border:1px solid #90caf9;border-radius:4px;font-size:.82rem" value="">
+            <select id="dispatch-cat" onchange="onCatChange()" style="padding:.4rem .5rem;border:1px solid #90caf9;border-radius:4px;font-size:.8rem">
+                <option value="">-- Categoria (opcional) --</option>
+                <option value="query_portfolio">Consulta portafolio</option>
+                <option value="query_balance">Consulta saldo cuenta</option>
+                <option value="query_loan">Consulta prestamo</option>
+                <option value="transfer_own">Transferencia entre cuentas (M01)</option>
+                <option value="loan_payment">Pago prestamo (M10)</option>
+            </select>
+            <select id="dispatch-phase" style="padding:.4rem .5rem;border:1px solid #90caf9;border-radius:4px;font-size:.8rem">
+                <option value="">-- Fase (default: VALIDATE) --</option>
+                <option value="ANALYZE">ANALYZE</option>
+                <option value="VALIDATE" selected>VALIDATE</option>
+                <option value="EXECUTE" id="phase-execute-opt">EXECUTE (dev/test)</option>
+            </select>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem">
+            <input id="dispatch-cmd" type="text" placeholder="Comando (ej: Consulta saldo cuenta AHO001)" style="flex:2;min-width:300px;padding:.4rem .6rem;border:1px solid #90caf9;border-radius:4px;font-size:.82rem" value="">
+            <button onclick="doDispatch()" style="background:#1565c0;font-size:.8rem;padding:.5rem 1rem">Disparar contrato</button>
+        </div>
+        <p style="font-size:.68rem;color:#d32f2f;margin-bottom:.4rem">Mutantes: solo VALIDATE. Orquestador confirma y ejecuta. Sandbox (CUST001-010) no surte efecto real.</p>
+        <details style="font-size:.72rem;color:#555;margin-bottom:.5rem">
+            <summary style="cursor:pointer;font-weight:600">Comandos disponibles (copiar)</summary>
+            <pre style="margin-top:.3rem;background:#f5f5f5;padding:.4rem;border-radius:3px;white-space:pre-wrap">Consulta portafolio
+Consulta saldo cuenta AHO001
+Consulta saldo cuenta COR001
+Consulta prestamo PRE001
+Consulta prestamo PRE001V
+Dispara movimiento cuenta origen COR001 a cuenta destino AHO001 valor 500 moneda DOP
+Paga prestamo PRE001 valor 14500 moneda DOP desde COR001
+--- CUST008 ---
+Consulta prestamo PRE008V
+Paga prestamo PRE008V valor 19800 moneda DOP desde AHO008
+Consulta saldo cuenta AHO008
+--- Externo/DEV (IDs reales) ---
+Consulta saldo cuenta 788337
+Dispara movimiento cuenta origen 13081221 a cuenta destino 2039083 valor 55500 moneda DOP</pre>
+        </details>
+        <div id="dispatch-result" style="display:none">
+            <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:.3rem">
+                <span id="dispatch-badge" style="font-size:.7rem;font-weight:700;padding:.2rem .5rem;border-radius:3px"></span>
+                <span id="dispatch-note" style="font-size:.7rem;color:#666"></span>
+            </div>
+            <pre id="dispatch-json" style="background:#fff;border:1px solid #e0e0e0;border-radius:4px;padding:.5rem;font-size:.7rem;max-height:400px;overflow:auto;white-space:pre-wrap"></pre>
+        </div>
+    </div>
+</div>
+<script>
+let cid='';
+let selectedCustomer='';
+let turnTraces={};  // Store decision_trace per turn_number
+
+// Load customers from API on page load
+async function loadCustomers(){
+    try{
+        const r=await fetch('/customers');
+        const customers=await r.json();
+        const sel=document.getElementById('customer-select');
+        sel.innerHTML='';
+        customers.forEach(function(c){
+            const opt=document.createElement('option');
+            opt.value=c.customer_id;
+            opt.textContent=c.customer_id+' — '+c.display_name;
+            sel.appendChild(opt);
+        });
+        if(customers.length>0){selectedCustomer=customers[0].customer_id;}
+    }catch(e){
+        document.getElementById('customer-select').innerHTML='<option value="">Error cargando clientes</option>';
+    }
+}
+
+// On customer change: new conversation
+document.addEventListener('DOMContentLoaded',function(){
+    loadCustomers();
+    document.getElementById('customer-select').addEventListener('change',function(){
+        selectedCustomer=this.value;
+        newConv();
+    });
+});
+
+function newConv(){cid='';turnTraces={};document.getElementById('m-conv').textContent='Conv: nueva';document.getElementById('m-turn').textContent='Turn: 0';document.getElementById('hist').classList.remove('visible');document.getElementById('hist-items').textContent='';document.getElementById('result').classList.remove('visible');document.getElementById('err').classList.remove('visible');document.getElementById('customer-info').textContent='';document.getElementById('client-response-box').style.display='none';document.getElementById('trace-panel').style.display='none';}
+
+function renderTrace(trace){
+    const traceItems=document.getElementById('trace-items');
+    traceItems.innerHTML='';
+    if(!trace||!trace.length){traceItems.innerHTML='<em>Sin traza disponible</em>';return;}
+    trace.forEach(function(t){
+        const div=document.createElement('div');
+        div.style.cssText='margin-bottom:.5rem;padding:.4rem .5rem;border-bottom:1px solid #ddd;cursor:pointer;border-radius:4px;transition:background .15s';
+        div.onmouseenter=function(){div.style.background='#e8e8ff';};
+        div.onmouseleave=function(){div.style.background='transparent';};
+        const label=document.createElement('b');
+        label.textContent=t.step;
+        label.style.color='#0f3460';
+        div.appendChild(label);
+        const detail=document.createElement('pre');
+        detail.style.cssText='display:none;margin-top:.3rem;white-space:pre-wrap;font-size:.7rem;color:#444;background:#fff;padding:.3rem;border-radius:3px;max-height:300px;overflow-y:auto';
+        detail.textContent=JSON.stringify({input:t.input||null,output:t.output||null},null,2);
+        div.onclick=function(){detail.style.display=detail.style.display==='none'?'block':'none';};
+        div.appendChild(detail);
+        traceItems.appendChild(div);
+    });
+}
+
+async function doInspect(){
+    const q=document.getElementById('question').value.trim();
+    if(!q)return;
+    const btn=document.getElementById('btn');
+    const ind=document.getElementById('ind');
+    const errEl=document.getElementById('err');
+    const resEl=document.getElementById('result');
+    btn.disabled=true;ind.textContent='Procesando...';errEl.classList.remove('visible');resEl.classList.remove('visible');
+    try{
+        const body={question:q};
+        if(cid)body.conversation_id=cid;
+        if(selectedCustomer)body.customer_id=selectedCustomer;
+        const r=await fetch('/inspect',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+        const d=await r.json();
+        if(!r.ok&&!d.status){errEl.textContent='HTTP '+r.status+': '+(d.detail||JSON.stringify(d));errEl.classList.add('visible');return;}
+        cid=d.conversation_id||'';
+        document.getElementById('m-provider').textContent='Provider: '+(d.provider||'-');
+        document.getElementById('m-model').textContent='Model: '+(d.model||'-');
+        document.getElementById('m-prompt').textContent='Prompt: '+(d.prompt_version||'-');
+        document.getElementById('m-conv').textContent='Conv: '+(cid?cid.slice(0,8)+'...':'-');
+        document.getElementById('m-turn').textContent='Turn: '+(d.turn_number||0);
+        // Status
+        const stEl=document.getElementById('r-status');
+        stEl.textContent=d.status||'-';
+        stEl.className='fv '+({'VALID_CONTRACT':'valid','CLARIFICATION_REQUIRED':'neutral','NON_OPERATIONAL':'neutral','UNSUPPORTED':'neutral','RAG_PENDING':'neutral','INVALID_MODEL_OUTPUT':'invalid','PROVIDER_ERROR':'invalid'}[d.status]||'');
+        document.getElementById('r-mode').textContent=d.mode||'-';
+        // Actions
+        const acts=d.actions||[];const a0=acts[0]||{};
+        document.getElementById('r-intent').textContent=a0.intent_id||'-';
+        document.getElementById('r-cap').textContent=a0.capability_candidate||'-';
+        document.getElementById('r-route').textContent=a0.selected_route||'-';
+        document.getElementById('r-ent').textContent=a0.detected_entities?JSON.stringify(a0.detected_entities,null,1):'-';
+        document.getElementById('r-miss').textContent=(a0.missing_requirements||[]).join(', ')||'None';
+        document.getElementById('r-contract').textContent=(d.output_contracts||[]).join(', ')||'-';
+        // Catalog/refs
+        const catEl=document.getElementById('r-cat');
+        if(d.catalog_valid===null){catEl.textContent='N/A';catEl.className='fv neutral';}
+        else{catEl.textContent=d.catalog_valid?'TRUE':'FALSE';catEl.className='fv '+(d.catalog_valid?'valid':'invalid');}
+        const refEl=document.getElementById('r-refs');
+        if(d.entity_refs_valid===null){refEl.textContent='N/A';refEl.className='fv neutral';}
+        else{refEl.textContent=d.entity_refs_valid?'TRUE':'FALSE';refEl.className='fv '+(d.entity_refs_valid?'valid':'invalid');}
+        document.getElementById('r-rag').textContent=d.rag_status||'-';
+        document.getElementById('r-viol').textContent=(d.violations||[]).join(' | ')||'None';
+        document.getElementById('r-clar').textContent=d.clarifications&&d.clarifications.length?JSON.stringify(d.clarifications,null,1):'None';
+        document.getElementById('r-unsup').textContent=d.unsupported_segments&&d.unsupported_segments.length?JSON.stringify(d.unsupported_segments,null,1):'None';
+        document.getElementById('r-loan').textContent=d.loan_detail?JSON.stringify(d.loan_detail,null,1):'-';
+        document.getElementById('r-domain').textContent=d.domain_scores?JSON.stringify(d.domain_scores,null,1):'-';
+        // Customer context
+        const ctx=d.customer_context;
+        if(ctx){
+            document.getElementById('r-ctx').textContent=ctx.customer_id+' | '+ctx.display_name+' | products:'+ctx.products_count+' | loans:'+ctx.loans_count;
+            document.getElementById('customer-info').textContent=ctx.display_name+' ('+ctx.products_count+' prod, '+ctx.loans_count+' loans)';
+        }else{
+            document.getElementById('r-ctx').textContent='-';
+        }
+        document.getElementById('r-caps').textContent=(d.effective_capability_ids||[]).join(', ')||'-';
+        document.getElementById('r-inf').textContent=d.inference_count||'1';
+        document.getElementById('r-raw').textContent=d.raw_interpretation?JSON.stringify(d.raw_interpretation,null,2):(d.error_detail||'-');
+        resEl.classList.add('visible');
+        // Show operation_request in Contract Lab panel if present
+        if(d.operation_request){document.getElementById('lab-result').style.display='block';document.getElementById('lab-json').textContent=JSON.stringify(d.operation_request,null,2);}
+        // Client response box
+        const crBox=document.getElementById('client-response-box');
+        const crText=document.getElementById('client-response-text');
+        if(d.client_response){crText.textContent=d.client_response;crBox.style.display='block';}
+        else{crBox.style.display='none';}
+        // Decision trace: store per turn and render
+        const tracePanel=document.getElementById('trace-panel');
+        if(d.decision_trace&&d.decision_trace.length){
+            turnTraces[d.turn_number]=d.decision_trace;
+            tracePanel.style.display='block';
+            document.getElementById('trace-turn-label').textContent='Turn '+d.turn_number;
+            renderTrace(d.decision_trace);
+        }else{tracePanel.style.display='none';}
+        // History with clickable turns to show their trace
+        const h=d.conversation_history||[];
+        if(h.length){
+            const hEl=document.getElementById('hist');hEl.classList.add('visible');
+            const hi=document.getElementById('hist-items');hi.textContent='';
+            h.forEach(function(it){
+                const div=document.createElement('div');
+                div.className='hi';
+                div.style.cursor=turnTraces[it.turn]?'pointer':'default';
+                div.style.padding='.3rem .4rem';
+                div.style.borderRadius='3px';
+                const statusIcon={'VALID_CONTRACT':'✓','CLARIFICATION_REQUIRED':'?','UNSUPPORTED':'✗','NON_OPERATIONAL':'—'}[it.status]||'•';
+                div.textContent=statusIcon+' T'+it.turn+': '+it.question+' ['+it.status+']'+(it.intent?' → '+it.intent:'');
+                if(turnTraces[it.turn]){
+                    div.style.color='#0f3460';
+                    div.onmouseenter=function(){div.style.background='#e8f4fd';};
+                    div.onmouseleave=function(){div.style.background='transparent';};
+                    div.onclick=function(){
+                        document.getElementById('trace-turn-label').textContent='Turn '+it.turn;
+                        renderTrace(turnTraces[it.turn]);
+                        tracePanel.style.display='block';
+                        tracePanel.scrollIntoView({behavior:'smooth',block:'start'});
+                    };
+                }
+                hi.appendChild(div);
+            });
+        }
+        ind.textContent='Completado';
+        document.getElementById('question').value='';
+    }catch(e){errEl.textContent='Error: '+e.message;errEl.classList.add('visible');ind.textContent='';}
+    finally{btn.disabled=false;}
+}
+document.getElementById('question').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();doInspect();}});
+
+// Contract Lab: fire a question and show the operation_request
+async function labFire(question){
+    const labResult=document.getElementById('lab-result');
+    const labJson=document.getElementById('lab-json');
+    labResult.style.display='block';
+    labJson.textContent='Procesando...';
+    try{
+        const body={question:question};
+        if(selectedCustomer)body.customer_id=selectedCustomer;
+        body.conversation_id='lab-'+Date.now();
+        const r=await fetch('/inspect',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+        const d=await r.json();
+        if(d.operation_request){
+            labJson.textContent=JSON.stringify(d.operation_request,null,2);
+        }else{
+            labJson.textContent=JSON.stringify({status:d.status,client_response:d.client_response,note:'No operation_request emitted (status != VALID_CONTRACT or unmapped intent)'},null,2);
+        }
+    }catch(e){labJson.textContent='Error: '+e.message;}
+}
+
+async function labValidate(){
+    const labResult=document.getElementById('lab-result');
+    const labJson=document.getElementById('lab-json');
+    labResult.style.display='block';
+    labJson.textContent='Validando contrato mutante...';
+    try{
+        const body={question:'pago cuota validate'};
+        if(selectedCustomer)body.customer_id=selectedCustomer;
+        body.conversation_id='lab-val-'+Date.now();
+        const r=await fetch('/contract-lab/validate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+        const d=await r.json();
+        labJson.textContent=JSON.stringify(d,null,2);
+    }catch(e){labJson.textContent='Error: '+e.message;}
+}
+
+async function doDispatch(){
+    const cid=document.getElementById('dispatch-cid').value.trim()||selectedCustomer||'CUST001';
+    const cmd=document.getElementById('dispatch-cmd').value.trim();
+    if(!cmd){alert('Ingresa un comando');return;}
+    const phase=document.getElementById('dispatch-phase').value||null;
+    const panel=document.getElementById('dispatch-result');
+    const json=document.getElementById('dispatch-json');
+    const badge=document.getElementById('dispatch-badge');
+    const note=document.getElementById('dispatch-note');
+    panel.style.display='block';
+    json.textContent='Procesando...';
+    try{
+        const body={question:cmd,customer_id:cid,conversation_id:'dispatch-'+Date.now()};
+        let url='/contract-lab/dispatch';
+        if(phase)url+='?phase='+encodeURIComponent(phase);
+        const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+        const d=await r.json();
+        if(r.ok){
+            json.textContent=JSON.stringify(d.operation_request,null,2);
+            const op=d.operation_request.operation||{};
+            const cat=op.category?(' ['+op.category+']'):'';
+            const ph=op.phase?(' '+op.phase):'';
+            if(d.simulated){badge.textContent='SIMULADO'+cat+ph;badge.style.background='#ffcc02';badge.style.color='#5d4037';}
+            else{badge.textContent='REFS EXTERNAS'+cat+ph;badge.style.background='#4caf50';badge.style.color='#fff';}
+            if(op.phase==='EXECUTE'){badge.style.background='#f44336';badge.style.color='#fff';}
+            note.textContent=d.note||'';
+        }else{
+            json.textContent=JSON.stringify(d,null,2);
+            badge.textContent='ERROR';badge.style.background='#f44336';badge.style.color='#fff';
+            note.textContent=d.error||'';
+        }
+    }catch(e){json.textContent='Error: '+e.message;badge.textContent='ERROR';badge.style.background='#f44336';badge.style.color='#fff';}
+}
+
+function onCatChange(){
+    const cat=document.getElementById('dispatch-cat').value;
+    const cmd=document.getElementById('dispatch-cmd');
+    const templates={
+        'query_portfolio':'Consulta portafolio',
+        'query_balance':'Consulta saldo cuenta ',
+        'query_loan':'Consulta prestamo ',
+        'transfer_own':'Dispara movimiento cuenta origen  a cuenta destino  valor  moneda DOP',
+        'loan_payment':'Paga prestamo  valor  moneda DOP desde '
+    };
+    if(cat && templates[cat]){cmd.value=templates[cat];cmd.focus();}
+}
+
+document.getElementById('dispatch-cmd').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();doDispatch();}});
+</script>
+</body>
+</html>

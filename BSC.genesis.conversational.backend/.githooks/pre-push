@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Ejecutando validación pre-push con Gitleaks..."
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "ERROR: gitleaks no está instalado o no está en el PATH."
+  echo "Instala gitleaks antes de hacer push."
+  exit 1
+fi
+
+ZERO_SHA="0000000000000000000000000000000000000000"
+STATUS=0
+
+# Cambia esto si tu rama base es develop en vez de main
+DEFAULT_BASE_BRANCH="${DEFAULT_BASE_BRANCH:-origin/main}"
+
+while read -r LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
+  echo "Local ref:  $LOCAL_REF"
+  echo "Remote ref: $REMOTE_REF"
+
+  # Si están borrando una rama remota, no validamos.
+  if [[ "$LOCAL_SHA" == "$ZERO_SHA" ]]; then
+    echo "Rama eliminada. Se omite validación."
+    continue
+  fi
+
+  # Si es una rama nueva en remoto.
+  if [[ "$REMOTE_SHA" == "$ZERO_SHA" ]]; then
+    BASE_COMMIT="$(git merge-base "$LOCAL_SHA" "$DEFAULT_BASE_BRANCH" 2>/dev/null || git rev-list --max-parents=0 "$LOCAL_SHA")"
+    RANGE="${BASE_COMMIT}..${LOCAL_SHA}"
+  else
+    RANGE="${REMOTE_SHA}..${LOCAL_SHA}"
+  fi
+
+  echo "Validando commits: $RANGE"
+
+  gitleaks git . \
+    --redact \
+    --verbose \
+    --log-opts="$RANGE" || STATUS=1
+done
+
+if [[ "$STATUS" -ne 0 ]]; then
+  echo ""
+  echo "Push bloqueado: Gitleaks encontró posibles secretos."
+  echo "Remueve el secreto, limpia el commit y vuelve a intentar."
+  echo ""
+  echo "Comandos útiles:"
+  echo "  git reset HEAD~1"
+  echo "  git commit --amend"
+  echo "  git rebase -i origin/main"
+  exit 1
+fi
+
+echo "Validación pre-push completada correctamente."
+exit 0

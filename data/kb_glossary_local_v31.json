@@ -1,0 +1,24 @@
+{
+  "version": "v3.1-local-approved",
+  "provenance": "Synthetic local glossary for cognitive-layer tests; not a bank production corpus.",
+  "entries": [
+    {
+      "id": "glos-available-balance",
+      "topic": "saldo disponible",
+      "keywords": ["saldo disponible", "disponible", "qué significa saldo disponible"],
+      "answer": "El saldo disponible es el monto que puedes usar o retirar en este momento, después de descontar reservas o bloqueos. No es lo mismo que el saldo contable o saldo actual de la cuenta."
+    },
+    {
+      "id": "glos-interest-rate",
+      "topic": "tasa de interés",
+      "keywords": ["tasa", "tasa de interés", "qué significa tasa", "qué significa la tasa"],
+      "answer": "La tasa de interés es el porcentaje que el banco aplica sobre un capital o saldo durante un período (por ejemplo anual). No es lo mismo que el monto de la cuota ni el capital pendiente."
+    },
+    {
+      "id": "glos-min-payment",
+      "topic": "pago mínimo",
+      "keywords": ["pago mínimo", "pago minimo", "qué es el pago mínimo"],
+      "answer": "El pago mínimo es el importe mínimo que debes abonar en el ciclo de facturación para mantener la cuenta al día. No equivale al balance total adeudado."
+    }
+  ]
+}

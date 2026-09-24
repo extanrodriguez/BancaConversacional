@@ -1,0 +1,174 @@
+"""ReactiveSessionStore — in-memory Redis-simulated store with TTL.
+
+Replaces scattered global dicts (_sessions, _pending_actions, _last_resolved,
+CustomerContextStore) with a unified, thread-safe, TTL-aware store.
+
+Keys simulate Redis patterns:
+  session:{conversation_id}  → SessionState (history, pending, last_resolved)
+  customer:{customer_id}:snapshot → CustomerContextSnapshot + metadata
+
+Thread-safe via threading.Lock per logical partition.
+Stateless per request: worker reads/writes store, responds, exits.
+"""
+
+from __future__ import annotations
+
+import threading
+import time
+from dataclasses import dataclass, field
+from typing import Any
+
+from genesis_cognitive.context.customer_context_snapshot import CustomerContextSnapshot
+
+
+# ---------------------------------------------------------------------------
+# Data models
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class PendingAction:
+    """Stored pending action from a CLARIFICATION turn."""
+
+    intent_id: str
+    capability_candidate: str | None
+    selected_route: str
+    detected_entities: dict[str, str | None]
+    missing_requirements: list[str]
+    suggested_question: str
+
+
+@dataclass
+class LastResolved:
+    """Tracks the last successfully resolved product for follow-up turns."""
+
+    intent_id: str
+    account_ref: str
+    original_question: str
+
+
+@dataclass
+class SessionState:
+    """Full session state for a conversation_id."""
+
+    customer_id: str
+    history: list[dict[str, Any]] = field(default_factory=list)
+    pending_action: PendingAction | None = None
+    last_resolved: LastResolved | None = None
+    updated_at: float = field(default_factory=time.time)
+
+    @property
+    def turn_number(self) -> int:
+        return len(self.history) + 1
+
+
+@dataclass
+class SnapshotEntry:
+    """Cached customer snapshot with load metadata."""
+
+    snapshot: CustomerContextSnapshot
+    loaded_at: float = field(default_factory=time.time)
+    version: str = "v1"
+
+
+# ---------------------------------------------------------------------------
+# Store
+# ---------------------------------------------------------------------------
+
+
+class ReactiveSessionStore:
+    """Unified in-memory store simulating Redis key patterns with TTL.
+
+    Thread-safe. Supports concurrent access from async workers via locks.
+    """
+
+    def __init__(
+        self,
+        session_ttl_s: float = 1800.0,  # 30 minutes
+        snapshot_ttl_s: float = 60.0,   # 60 seconds
+    ) -> None:
+        self._session_ttl = session_ttl_s
+        self._snapshot_ttl = snapshot_ttl_s
+
+        self._sessions: dict[str, SessionState] = {}
+        self._snapshots: dict[str, SnapshotEntry] = {}
+
+        self._session_lock = threading.Lock()
+        self._snapshot_lock = threading.Lock()
+
+    # ----- Session operations -----
+
+    def get_session(self, conversation_id: str) -> SessionState | None:
+        """Get session by conversation_id. Returns None if expired or missing."""
+        with self._session_lock:
+            entry = self._sessions.get(conversation_id)
+            if entry is None:
+                return None
+            # Check TTL
+            if (time.time() - entry.updated_at) > self._session_ttl:
+                del self._sessions[conversation_id]
+                return None
+            return entry
+
+    def put_session(self, conversation_id: str, session: SessionState) -> None:
+        """Store/update session. Refreshes updated_at."""
+        session.updated_at = time.time()
+        with self._session_lock:
+            self._sessions[conversation_id] = session
+
+    def create_session(self, conversation_id: str, customer_id: str) -> SessionState:
+        """Create a new session for a conversation."""
+        session = SessionState(customer_id=customer_id)
+        self.put_session(conversation_id, session)
+        return session
+
+    def delete_session(self, conversation_id: str) -> None:
+        """Remove session (e.g. on conversation end)."""
+        with self._session_lock:
+            self._sessions.pop(conversation_id, None)
+
+    # ----- Snapshot operations -----
+
+    def get_snapshot(self, customer_id: str) -> CustomerContextSnapshot | None:
+        """Get customer snapshot. Returns None if expired or missing."""
+        key = customer_id
+        with self._snapshot_lock:
+            entry = self._snapshots.get(key)
+            if entry is None:
+                return None
+            # Check TTL
+            age = time.time() - entry.loaded_at
+            if age > self._snapshot_ttl:
+                del self._snapshots[key]
+                return None
+            return entry.snapshot
+
+    def get_snapshot_age(self, customer_id: str) -> float | None:
+        """Get snapshot age in seconds. None if missing/expired."""
+        with self._snapshot_lock:
+            entry = self._snapshots.get(customer_id)
+            if entry is None:
+                return None
+            age = time.time() - entry.loaded_at
+            if age > self._snapshot_ttl:
+                return None
+            return age
+
+    def put_snapshot(self, customer_id: str, snapshot: CustomerContextSnapshot) -> None:
+        """Store customer snapshot with fresh timestamp."""
+        with self._snapshot_lock:
+            self._snapshots[customer_id] = SnapshotEntry(snapshot=snapshot)
+
+    # ----- Diagnostics -----
+
+    def session_count(self) -> int:
+        with self._session_lock:
+            return len(self._sessions)
+
+    def snapshot_count(self) -> int:
+        with self._snapshot_lock:
+            return len(self._snapshots)
+
+    def session_keys(self) -> list[str]:
+        with self._session_lock:
+            return list(self._sessions.keys())

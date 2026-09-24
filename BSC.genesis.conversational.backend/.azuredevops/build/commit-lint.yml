@@ -1,0 +1,26 @@
+trigger: none
+  branches:
+    include:
+      - develop
+      - test
+      - staging
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+    fetchDepth: 0
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+
+  - bash: |
+      npm install --no-save @commitlint/cli @commitlint/config-conventional
+      npx commitlint \
+        --from "$(git merge-base HEAD^1 HEAD^2)" \
+        --to "HEAD^2" \
+        --verbose
+    displayName: 'Conventional commits validation'

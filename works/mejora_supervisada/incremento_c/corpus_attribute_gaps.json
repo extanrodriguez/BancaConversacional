@@ -1,0 +1,69 @@
+{
+  "gaps": [
+    {
+      "product": "platinum",
+      "docs": 4,
+      "needs_rate_chunk": true,
+      "needs_requirement_chunk": true,
+      "needs_benefit_chunk": false,
+      "needs_exclusion_chunk": false
+    },
+    {
+      "product": "infinite",
+      "docs": 4,
+      "needs_rate_chunk": true,
+      "needs_requirement_chunk": false,
+      "needs_benefit_chunk": true,
+      "needs_exclusion_chunk": false
+    },
+    {
+      "product": "gold",
+      "docs": 4,
+      "needs_rate_chunk": true,
+      "needs_requirement_chunk": true,
+      "needs_benefit_chunk": true,
+      "needs_exclusion_chunk": true
+    },
+    {
+      "product": "joven",
+      "docs": 4,
+      "needs_rate_chunk": true,
+      "needs_requirement_chunk": true,
+      "needs_benefit_chunk": true,
+      "needs_exclusion_chunk": true
+    },
+    {
+      "product": "clasica",
+      "docs": 0,
+      "needs_rate_chunk": true,
+      "needs_requirement_chunk": true,
+      "needs_benefit_chunk": true,
+      "needs_exclusion_chunk": true
+    },
+    {
+      "product": "bravo",
+      "docs": 2,
+      "needs_rate_chunk": true,
+      "needs_requirement_chunk": true,
+      "needs_benefit_chunk": true,
+      "needs_exclusion_chunk": true
+    },
+    {
+      "product": "pricesmart",
+      "docs": 4,
+      "needs_rate_chunk": true,
+      "needs_requirement_chunk": true,
+      "needs_benefit_chunk": false,
+      "needs_exclusion_chunk": true
+    },
+    {
+      "product": "empresarial",
+      "docs": 5,
+      "needs_rate_chunk": true,
+      "needs_requirement_chunk": false,
+      "needs_benefit_chunk": true,
+      "needs_exclusion_chunk": true
+    }
+  ],
+  "note": "No inventar tasas/requisitos; completar desde PDFs/MD aprobados"
+}

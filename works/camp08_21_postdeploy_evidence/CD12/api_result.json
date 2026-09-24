@@ -1,0 +1,60 @@
+{
+  "case_id": "CD12",
+  "section": 10,
+  "questions": [
+    "¿Cuándo es la fecha de corte, cuándo debo pagar y qué pasa si me atraso?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    263
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, ¿La fecha de pago de cuál producto deseas consultar: Préstamo personal (...####), Préstamo hipotecario (...####), Visa Full Car Flotilla Empleado (••••####), Tarjeta Joven (••••####) o Multicredito Empleado (••••####)?",
+  "replies_sanitized": [
+    "Felix Prestamos, ¿La fecha de pago de cuál producto deseas consultar: Préstamo personal (...####), Préstamo hipotecario (...####), Visa Full Car Flotilla Empleado (••••####), Tarjeta Joven (••••####) o Multicredito Empleado (••••####)?"
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "FAIL",
+  "reason": "baja cobertura de la pregunta",
+  "audit": {
+    "total_ms": 8,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 8,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "42286dfb-08d0-4e64-9799-6fb48642d235",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:payment_date",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "payment_date",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 0.9
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 8
+      }
+    ]
+  },
+  "app_status": "CLARIFICATION_REQUIRED",
+  "intent_id": "PAYMENT_DATE_READ"
+}

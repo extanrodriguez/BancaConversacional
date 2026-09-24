@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling==1.31.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "genesis-cognitive"
+version = "0.1.0"
+description = "Genesis Cognitive Layer — Turn Routing MVP"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "pydantic==2.11.7",
+    "jsonschema==4.23.0",
+    "fastapi==0.115.12",
+    "uvicorn==0.34.3",
+    "httpx==0.28.1",
+    "agent-framework-core==1.12.1",
+    "agent-framework-openai==1.11.0",
+    "azure-identity==1.25.3",
+    "azure-core==1.41.0",
+    "azure-search-documents==12.0.0",
+    "openai==2.52.0",
+    "pypdf==5.1.0",
+    "python-dotenv==1.2.2",
+    "redis==8.1.0",
+    "redis-entraid==1.2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.5",
+    "pytest-asyncio==0.25.3",
+    "pytest-cov==6.1.1",
+    "ruff==0.11.12",
+    "mypy==1.15.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/genesis_cognitive"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+packages = ["genesis_cognitive"]
+mypy_path = "src"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "SIM"]
+ignore = ["SIM102"]
+
+[tool.coverage.run]
+source = ["genesis_cognitive"]
+
+[tool.coverage.report]
+fail_under = 85
+show_missing = true

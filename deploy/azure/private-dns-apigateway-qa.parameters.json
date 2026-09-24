@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "zoneName": {
+      "value": "qa.bsc.com.do"
+    },
+    "aRecordName": {
+      "value": "apigateway-gen"
+    },
+    "aRecordIpv4Address": {
+      "value": "172.31.15.43"
+    },
+    "aRecordTtl": {
+      "value": 300
+    },
+    "vnetLinkName": {
+      "value": "link-VNET_S2S_AZ_TO_BSC_GEN"
+    },
+    "virtualNetworkId": {
+      "value": "/subscriptions/f2119315-95df-4c68-9f83-fb12c2ee0dfa/resourceGroups/RG_BSC_PRJ_GENESIS/providers/Microsoft.Network/virtualNetworks/VNET_S2S_AZ_TO_BSC_GEN"
+    },
+    "registrationEnabled": {
+      "value": false
+    }
+  }
+}

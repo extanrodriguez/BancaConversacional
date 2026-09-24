@@ -1,0 +1,43 @@
+{
+  "source_rows": 344,
+  "knowledge_source_rows": 246,
+  "behavior_rows": 98,
+  "cases": 236,
+  "multi_turn_cases": 36,
+  "heading_multiturn": 26,
+  "table_multiturn": 10,
+  "source_heading_only": 18,
+  "candidate_cards": 239,
+  "qa_cards": 195,
+  "qa_chunks": 196,
+  "review_cards": 44,
+  "families": {
+    "P": 15,
+    "C": 8,
+    "D": 10,
+    "R": 4,
+    "X": 10,
+    "IG": 20,
+    "CD": 20,
+    "TC": 16,
+    "TD": 8,
+    "PR": 15,
+    "CE": 8,
+    "GR": 12,
+    "CTX": 9,
+    "DA": 10,
+    "MIX": 10,
+    "CMP": 48,
+    "CC": 5,
+    "CA": 8
+  },
+  "current_executed": 0,
+  "visual_samples_reviewed": 6,
+  "source_statuses": {
+    "Propuesta funcional": 344
+  },
+  "source_declared_coverage": {
+    "100": 344
+  },
+  "recovered_from_short_definition": 72
+}

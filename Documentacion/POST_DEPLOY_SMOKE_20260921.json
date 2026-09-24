@@ -1,0 +1,32 @@
+﻿[
+    {
+        "name":  "GET /health",
+        "ok":  true,
+        "ms":  260,
+        "detail":  "{\"status\":\"ok\",\"service\":\"genesis-cognitive\",\"env\":\"qa\",\"version\":\"0.8.0\",\"rag\":\"ready\"}"
+    },
+    {
+        "name":  "GET /ready",
+        "ok":  true,
+        "ms":  118,
+        "detail":  "{\"ok\":true,\"session_backend\":\"redis\",\"lock_backend\":\"redis\",\"auth_mode\":\"entra_managed_identity\",\"redis_required\":true,\"session_backend_preference\":\"redis\",\"session_ping\":true,\"lock_ping\":true,\"session_host\":\"bsc-cognitive-redis-qa.eastus.redis.azure.net\",\"lock_host\":\"bsc-cognitive-redis-qa.eastus.redis.azure.net\",\"errors\":[],\"service\":\"genesis-cognitive\",\"foundry_product_tools\":false}"
+    },
+    {
+        "name":  "GET /ready/redis",
+        "ok":  true,
+        "ms":  142,
+        "detail":  "{\"ok\":true,\"session_backend\":\"redis\",\"lock_backend\":\"redis\",\"auth_mode\":\"entra_managed_identity\",\"redis_required\":true,\"session_backend_preference\":\"redis\",\"session_ping\":true,\"lock_ping\":true,\"session_host\":\"bsc-cognitive-redis-qa.eastus.redis.azure.net\",\"lock_host\":\"bsc-cognitive-redis-qa.eastus.redis.azure.net\",\"errors\":[]}"
+    },
+    {
+        "name":  "GET /pruebas/",
+        "ok":  true,
+        "ms":  136,
+        "detail":  "status=200"
+    },
+    {
+        "name":  "POST /turn smoke",
+        "ok":  true,
+        "ms":  2145,
+        "detail":  "HTTP 200 status=VALID_CONTRACT reply_len=540"
+    }
+]

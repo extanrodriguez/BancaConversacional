@@ -1,0 +1,32 @@
+{
+  "provisional_choice": "600/80",
+  "rows": [
+    {
+      "profile": "400/50",
+      "n": 196,
+      "avg_tokens_approx": 71.2,
+      "pct_near_target_pm200": 3.1,
+      "pct_short_lt400": 99.5,
+      "pct_over_gt800": 0.0,
+      "note": "Chunks ya curados; perfiles son referencia de medici\u00f3n, no re-chunk en caliente"
+    },
+    {
+      "profile": "600/80",
+      "n": 196,
+      "avg_tokens_approx": 71.2,
+      "pct_near_target_pm200": 0.5,
+      "pct_short_lt400": 99.5,
+      "pct_over_gt800": 0.0,
+      "note": "Chunks ya curados; perfiles son referencia de medici\u00f3n, no re-chunk en caliente"
+    },
+    {
+      "profile": "800/100",
+      "n": 196,
+      "avg_tokens_approx": 71.2,
+      "pct_near_target_pm200": 0.0,
+      "pct_short_lt400": 99.5,
+      "pct_over_gt800": 0.0,
+      "note": "Chunks ya curados; perfiles son referencia de medici\u00f3n, no re-chunk en caliente"
+    }
+  ]
+}

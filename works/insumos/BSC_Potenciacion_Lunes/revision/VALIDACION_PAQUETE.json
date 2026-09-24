@@ -1,0 +1,111 @@
+{
+  "kind": "DOCUMENT_VALIDATION_ONLY",
+  "application_tests_executed": 0,
+  "passed": true,
+  "checks": [
+    {
+      "check": "344 filas únicas de origen",
+      "passed": true
+    },
+    {
+      "check": "236 casos únicos",
+      "passed": true
+    },
+    {
+      "check": "236 asociaciones uno a uno",
+      "passed": true
+    },
+    {
+      "check": "36 escenarios multi-turno separados",
+      "passed": true
+    },
+    {
+      "check": "MIX01-MIX10 son conversaciones",
+      "passed": true
+    },
+    {
+      "check": "98 reglas fuera del RAG",
+      "passed": true
+    },
+    {
+      "check": "IDs de fichas únicos",
+      "passed": true
+    },
+    {
+      "check": "QA es subconjunto elegible",
+      "passed": true
+    },
+    {
+      "check": "44 fichas detalladas pendientes separadas",
+      "passed": true
+    },
+    {
+      "check": "Sin aprobación PROD inventada",
+      "passed": true
+    },
+    {
+      "check": "Fuentes bancarias solo filas generales",
+      "passed": true
+    },
+    {
+      "check": "Todos los enlaces de conocimiento resuelven",
+      "passed": true
+    },
+    {
+      "check": "Todos los enlaces de reglas resuelven",
+      "passed": true
+    },
+    {
+      "check": "Ningún caso declara ejecución no realizada",
+      "passed": true
+    },
+    {
+      "check": "Fragmentos con padres elegibles y numeración",
+      "passed": true
+    },
+    {
+      "check": "Ninguna respuesta de ejemplo personal en conocimiento",
+      "passed": true
+    },
+    {
+      "check": "Texto completo Joven recuperado",
+      "passed": true
+    },
+    {
+      "check": "Reclamaciones con orientación real",
+      "passed": true
+    },
+    {
+      "check": "Misión y visión canónicas",
+      "passed": true
+    },
+    {
+      "check": "Fichas débito corregidas",
+      "passed": true
+    },
+    {
+      "check": "Hashes de contenido válidos",
+      "passed": true
+    },
+    {
+      "check": "Nueve ampliaciones publicables en QA",
+      "passed": true
+    },
+    {
+      "check": "Fuentes web con enlace oficial y fecha",
+      "passed": true
+    },
+    {
+      "check": "Schema de referencia strict completo",
+      "passed": true
+    },
+    {
+      "check": "31 recorridos de aceptación prioritaria",
+      "passed": true
+    },
+    {
+      "check": "SHA de la base original",
+      "passed": true
+    }
+  ]
+}

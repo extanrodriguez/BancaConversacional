@@ -1,0 +1,34 @@
+{
+  "resultCode": 0,
+  "primerNombre": "Marta Diaz",
+  "resultMessage": "Consulta realizada exitosamente.",
+  "products": [
+    {
+      "productCategory": "CA",
+      "productIdentification": "5501230001",
+      "productDescription": "Cuenta de Ahorros",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 42000.00,
+      "currentBalance": 42000.00
+    },
+    {
+      "productCategory": "CA",
+      "productIdentification": "5501230002",
+      "productDescription": "Cuenta Corriente",
+      "productStatus": 3,
+      "currencyCode": 214,
+      "availableBalance": 88000.00,
+      "currentBalance": 88000.00
+    },
+    {
+      "productCategory": "TC",
+      "productIdentification": "4532XXXX7890",
+      "productDescription": "Visa Gold",
+      "productStatus": 1,
+      "currencyCode": 214,
+      "maskedCardNumber": "****7890",
+      "availableBalance": 60000.00
+    }
+  ]
+}

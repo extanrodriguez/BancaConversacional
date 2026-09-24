@@ -1,0 +1,73 @@
+{
+  "case_id": "TC08",
+  "section": 11,
+  "questions": [
+    "¿Qué requisitos necesito para solicitar una tarjeta de crédito y qué condiciones debo cumplir?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    307
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuál tarjeta deseas consultar:\n\n• **Visa Full Car Flotilla Empleado (••••####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**",
+  "replies_sanitized": [
+    "¿Cuál tarjeta deseas consultar:\n\n• **Visa Full Car Flotilla Empleado (••••####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**"
+  ],
+  "options_count": 3,
+  "options_labels": [
+    "Visa Full Car Flotilla Empleado (••••####)",
+    "Tarjeta Joven (••••####)",
+    "Multicredito Empleado (••••####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 6,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 6,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "4c37daa5-b6f2-4f1b-94b4-e6b315f791b7",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:heuristic_personal_plan",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "needs_clarification"
+          },
+          "evidence_sources": [
+            "snapshot"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 1.4
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 6
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CLARIFICATION"
+}

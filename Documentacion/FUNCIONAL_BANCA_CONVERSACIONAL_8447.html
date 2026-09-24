@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Documento funcional — Banca Conversacional Genesis QA :8447</title>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: "loose",
+      theme: "base",
+      fontFamily: "Segoe UI, Calibri, sans-serif",
+      themeVariables: { fontSize: "14px", lineColor: "#5C6B7A", textColor: "#0A2540" },
+      flowchart: { htmlLabels: true, curve: "basis", padding: 10 },
+    });
+  </script>
+  <style>
+    :root {
+      --navy: #0a2540;
+      --gold: #c5a46e;
+      --gold-deep: #8a6a2f;
+      --paper: #f6f4ef;
+      --card: #fff;
+      --ink: #1c2834;
+      --muted: #5c6b7a;
+      --line: #e4ddd2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+    }
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 2.2rem 6vw 1.5rem;
+    }
+    .kicker {
+      margin: 0 0 .35rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: .75rem;
+      color: var(--gold);
+    }
+    h1 { margin: 0; font-weight: 600; font-size: clamp(1.6rem, 2.8vw, 2.2rem); }
+    .meta { margin: .7rem 0 0; color: #d7e0ea; font-size: .95rem; }
+    nav {
+      position: sticky; top: 0; z-index: 2;
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      padding: .65rem 6vw;
+      background: rgba(246,244,239,.95);
+      border-bottom: 1px solid var(--line);
+    }
+    nav a {
+      text-decoration: none; color: var(--navy);
+      border: 1px solid var(--line); background: #fff;
+      border-radius: 999px; padding: .3rem .85rem; font-size: .88rem;
+    }
+    main { padding: 1.2rem 6vw 3.5rem; max-width: 920px; margin: 0 auto; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.35rem 1.4rem;
+      margin: 1.1rem 0;
+    }
+    h2 { margin: 0 0 .6rem; color: var(--navy); font-size: 1.25rem; }
+    h3 { margin: 1.1rem 0 .4rem; color: var(--gold-deep); font-size: 1rem; }
+    p, li { font-size: .98rem; }
+    .muted { color: var(--muted); }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: .92rem; margin: .6rem 0 0;
+    }
+    th, td {
+      text-align: left; padding: .5rem .55rem;
+      border-bottom: 1px solid var(--line); vertical-align: top;
+    }
+    th { background: #eef3f8; color: var(--navy); }
+    code {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: .84em; background: #eef2ef;
+      padding: .08rem .3rem; border-radius: 4px;
+    }
+    .callout {
+      border-left: 4px solid var(--gold-deep);
+      background: #f8f1e3;
+      padding: .75rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: .8rem 0;
+    }
+    .mermaid {
+      background: #fbfaf8;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: .8rem;
+      overflow-x: auto;
+    }
+    footer {
+      padding: 0 6vw 2.5rem;
+      color: var(--muted);
+      font-size: .85rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    @media print {
+      nav { display: none; }
+      section { break-inside: avoid; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="kicker">Banco Santa Cruz · Vicepresidencia de Tecnología</p>
+    <h1>Documento funcional — Banca Conversacional Genesis</h1>
+    <p class="meta">
+      Entorno QA · servicio cognitivo :8447 (lab8446 Foundry + Redis) ·
+      Versión 1.0 · 22 de septiembre de 2026
+    </p>
+  </header>
+
+  <nav>
+    <a href="#objetivo">Objetivo</a>
+    <a href="#actores">Actores</a>
+    <a href="#casos">Casos de uso</a>
+    <a href="#contratos">Contratos</a>
+    <a href="#reglas">Reglas</a>
+    <a href="#nfr">NFR</a>
+    <a href="../mermaid/index.html">Diagramas arquitectura</a>
+  </nav>
+
+  <main>
+    <section id="objetivo">
+      <h2>1. Objetivo del sistema</h2>
+      <p>
+        Permitir que el cliente, desde el canal conversacional del banco, consulte
+        <strong>información de sus productos</strong> (cuentas, tarjetas, préstamos) y
+        <strong>conocimiento institucional</strong> (definiciones, requisitos, procesos),
+        con respuestas en lenguaje natural, sin que el modelo invente saldos ni cambie de cliente.
+      </p>
+      <div class="callout">
+        En QA vigente, la capa cognitiva es <strong>lab8446</strong> en el puerto <strong>8447</strong>.
+        El orquestador .NET permanece intocable: él obtiene el portafolio Core y lo entrega
+        a la cognitiva, que lo <strong>persiste en Redis</strong>.
+      </div>
+    </section>
+
+    <section id="actores">
+      <h2>2. Actores</h2>
+      <table>
+        <thead>
+          <tr><th>Actor</th><th>Rol</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cliente</td>
+            <td>Formula preguntas en el canal (APK / WebSocket).</td>
+          </tr>
+          <tr>
+            <td>Orquestador .NET</td>
+            <td>Gestiona sesión de canal, obtiene portafolio Core/Presentation Product y llama a <code>POST /turn</code>.</td>
+          </tr>
+          <tr>
+            <td>Capa cognitiva :8447</td>
+            <td>Persiste contexto en Redis; interpreta preguntas; llama tools / Foundry; arma la respuesta.</td>
+          </tr>
+          <tr>
+            <td>Redis (Entra)</td>
+            <td>Fuente de verdad de sesión, snapshot y portafolio durante la conversación.</td>
+          </tr>
+          <tr>
+            <td>Azure OpenAI / Foundry</td>
+            <td>Modelo conversacional con tools; conocimiento institucional (KB).</td>
+          </tr>
+          <tr>
+            <td>Operaciones / QA</td>
+            <td>Usa <code>/pruebas</code>, <code>/health</code>, <code>/ready</code> para validar.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="casos">
+      <h2>3. Casos de uso funcionales</h2>
+
+      <h3>CU-01 · Cargar contexto de cliente (WRITE PATH)</h3>
+      <p class="muted">Disparador: apertura de sesión o refresco de portafolio.</p>
+      <ol>
+        <li>El orquestador obtiene el portafolio autenticado desde Core / Presentation Product.</li>
+        <li>Invoca <code>POST /turn</code> con <code>context_info=true</code>, <code>question=null</code>,
+            <code>customer_id</code>, <code>conversation_id</code> y <code>context.data</code>.</li>
+        <li>La cognitiva valida el payload y persiste en Redis:
+            <code>session:{conv}</code>, <code>customer:{id}:snapshot</code>,
+            <code>customer:{id}:portfolio</code>.</li>
+        <li>Responde <code>CONTEXT_LOADED</code> o <code>CONTEXT_REFRESHED</code>
+            con <code>genesis_write=true</code>.</li>
+      </ol>
+      <p><strong>Resultado:</strong> la conversación queda autenticada y con portafolio en Redis. Sin LLM.</p>
+
+      <h3>CU-02 · Consultar / comparar productos propios (READ PATH)</h3>
+      <p class="muted">Ejemplo: «compara Full Car vs Joven», «¿cuál es mi disponible?».</p>
+      <ol>
+        <li>El orquestador envía <code>POST /turn</code> con la misma <code>conversation_id</code> y <code>question</code>.</li>
+        <li>Azure OpenAI decide tool-calling hacia <code>get_customer_products</code>.</li>
+        <li>El tool lee <code>customer:{id}:portfolio</code> en Redis (no inventa datos).</li>
+        <li>El modelo redacta la respuesta solo con evidencia del tool.</li>
+        <li>Se devuelve <code>VALID_CONTRACT</code> con <code>reply</code> / <code>app_channel</code>.</li>
+      </ol>
+
+      <h3>CU-03 · Conocimiento institucional</h3>
+      <p class="muted">Ejemplo: misión del banco, requisitos de un producto genérico.</p>
+      <ol>
+        <li>La pregunta no requiere datos personales del portafolio.</li>
+        <li>Se consulta FAQ local y/o Foundry + AI Search.</li>
+        <li>La respuesta no afirma saldos ni productos concretos del cliente.</li>
+      </ol>
+
+      <h3>CU-04 · Health / readiness operativo</h3>
+      <ul>
+        <li><code>GET /health</code> — liveness del servicio lab8446.</li>
+        <li><code>GET /ready</code> — Redis alcanzable (Entra MI) y servicio listo.</li>
+      </ul>
+
+      <h3>Flujo resumido</h3>
+      <div class="mermaid">
+flowchart LR
+  A[Cliente] --> B[Orquestador]
+  B -->|context_info| C[Cognitiva :8447]
+  C -->|WRITE| D[(Redis)]
+  B -->|question| C
+  C -->|tool READ| D
+  C --> E[Respuesta al canal]
+      </div>
+    </section>
+
+    <section id="contratos">
+      <h2>4. Contratos de interfaz (funcionales)</h2>
+
+      <h3>4.1 Carga de contexto</h3>
+      <table>
+        <thead><tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><code>context_info</code></td><td>Sí (true)</td><td>Activa WRITE PATH</td></tr>
+          <tr><td><code>question</code></td><td>Sí (null)</td><td>Debe ir vacío / null</td></tr>
+          <tr><td><code>customer_id</code></td><td>Sí</td><td>Cliente autenticado</td></tr>
+          <tr><td><code>conversation_id</code></td><td>Sí</td><td>Id de sesión de canal</td></tr>
+          <tr><td><code>context_op</code></td><td>No</td><td><code>load</code> | <code>refresh</code></td></tr>
+          <tr><td><code>context.data</code></td><td>Sí</td><td>Portafolio Core completo</td></tr>
+        </tbody>
+      </table>
+      <p>Respuesta esperada: HTTP 200, <code>status: CONTEXT_LOADED|CONTEXT_REFRESHED</code>.</p>
+
+      <h3>4.2 Turno de pregunta</h3>
+      <table>
+        <thead><tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><code>question</code></td><td>Sí</td><td>Texto del cliente</td></tr>
+          <tr><td><code>conversation_id</code></td><td>Sí</td><td>Misma sesión del WRITE</td></tr>
+          <tr><td><code>customer_id</code></td><td>Recomendado</td><td>No puede usurpar la sesión</td></tr>
+        </tbody>
+      </table>
+      <p>Respuesta esperada: HTTP 200, <code>status: VALID_CONTRACT</code>,
+         campos <code>reply</code>, <code>message</code>, <code>app_channel.client_response</code>.</p>
+
+      <h3>4.3 Keys Redis (vista funcional)</h3>
+      <table>
+        <thead><tr><th>Key</th><th>Contenido de negocio</th></tr></thead>
+        <tbody>
+          <tr><td><code>session:{conversation_id}</code></td><td>Sesión + snapshot (WRITE PATH genesis)</td></tr>
+          <tr><td><code>customer:{id}:snapshot</code></td><td>Respaldo del snapshot</td></tr>
+          <tr><td><code>customer:{id}:portfolio</code></td><td>Portafolio para tools (saldos/tasas)</td></tr>
+          <tr><td><code>labmeta:{conversation_id}</code></td><td>Meta UI (historial lab; no pisa session)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="reglas">
+      <h2>5. Reglas de negocio</h2>
+      <ol>
+        <li><strong>No inventar cifras.</strong> Saldo, disponible, tasa, cuota y fechas salen del portafolio Redis o se declara que no están disponibles.</li>
+        <li><strong>No cambiar de cliente.</strong> El <code>customer_id</code> lo fija la sesión autenticada; el modelo no puede sustituirlo.</li>
+        <li><strong>Separación de fuentes.</strong> Datos personales → Redis/tools. Conocimiento genérico → FAQ/Foundry/Search.</li>
+        <li><strong>Orquestador dueño del Core.</strong> La cognitiva no reconstruye el portafolio desde Core en cada pregunta de producto.</li>
+        <li><strong>Misma conversación.</strong> WRITE y READ comparten <code>conversation_id</code>.</li>
+        <li><strong>Fail-closed Redis.</strong> Si Redis no está listo, <code>/ready</code> falla; no se opera en memoria en QA promovido.</li>
+      </ol>
+    </section>
+
+    <section id="nfr">
+      <h2>6. Requisitos no funcionales (QA)</h2>
+      <table>
+        <thead><tr><th>Ámbito</th><th>Requisito</th></tr></thead>
+        <tbody>
+          <tr><td>Disponibilidad</td><td>Servicio systemd con reinicio automático; health/ready para sondeo.</td></tr>
+          <tr><td>Seguridad</td><td>Redis sin access keys; Entra MI; NSG allowlist 8440–8449; sin secretos en diagramas.</td></tr>
+          <tr><td>Aislamiento</td><td>Legacy :8446 inactive; runtime lab8446 en path dedicado con backup previo.</td></tr>
+          <tr><td>Observabilidad</td><td>journalctl del servicio; flags <code>genesis_write</code> / tool calls en debug.</td></tr>
+          <tr><td>Compatibilidad</td><td>Contrato <code>/turn</code> consumible por orquestador externo sin cambio de firma.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="alcance">
+      <h2>7. Alcance y fuera de alcance (esta entrega)</h2>
+      <div class="callout">
+        <strong>En alcance:</strong> cognitiva :8447 lab8446, WRITE PATH Redis, tools de productos,
+        diagramas VP (componentes / Azure / red / secuencia), consumo por orquestador.
+        <br/><br/>
+        <strong>Fuera de alcance:</strong> rediseño a Container Apps, cambios al orquestador .NET,
+        cierre definitivo del HTTP al API Gateway desde la VM (sigue en validación de red).
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Relacionado: <code>mermaid/index.html</code> (diagramas para Vicepresidencia) ·
+    <code>Documentacion/ARQUITECTURA_8447_FOUNDRY_REDIS.html</code> (detalle WRITE/READ) ·
+    Sin secretos ni datos personales de clientes.
+  </footer>
+</body>
+</html>

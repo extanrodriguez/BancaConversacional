@@ -1,0 +1,106 @@
+{
+  "snapshot_id": "20260921T204551Z",
+  "created_utc": "2026-09-21T20:45:51.445920+00:00",
+  "note": "Contencion P0",
+  "git": "NO_REPO",
+  "local_fingerprints": {
+    "src/genesis_cognitive/brain/azure_plan_turn.py": {
+      "exists": true,
+      "sha256": "ec56440f43f0b695cf4dc6355761f91b49d202ae42d919cee06dae9ee8c8d875",
+      "bytes": 45261,
+      "mtime_utc": "2026-09-21T09:19:33.459290+00:00"
+    },
+    "src/genesis_cognitive/brain/plan_executor.py": {
+      "exists": true,
+      "sha256": "cc2eb27d80e4f21c9528010a2d84703734b6f574d22564b599d819c9ece08f80",
+      "bytes": 87519,
+      "mtime_utc": "2026-09-21T19:20:12.650094+00:00"
+    },
+    "src/genesis_cognitive/brain/plan_interpreter.py": {
+      "exists": true,
+      "sha256": "f2f4e163bd4cc900ea3074affc2d20bb1ffb0cc595f81a964c52cb3cfba13e31",
+      "bytes": 99162,
+      "mtime_utc": "2026-09-21T18:31:04.055379+00:00"
+    },
+    "src/genesis_cognitive/brain/semantic_mode.py": {
+      "exists": true,
+      "sha256": "9ae158132fb88894c50e74209a959c3a06e94ed51cb08872505a10891f296469",
+      "bytes": 2128,
+      "mtime_utc": "2026-09-21T20:06:11.789677+00:00"
+    },
+    "src/genesis_cognitive/brain/azure_plan_adapter.py": {
+      "exists": true,
+      "sha256": "2ef3808669a9d4a3e2e6588b0954a6a3548f0ac188c9f77db258550d1c46346f",
+      "bytes": 47897,
+      "mtime_utc": "2026-09-21T18:30:22.085234+00:00"
+    },
+    "src/genesis_cognitive/agents/agent_framework_turn_resolver.py": {
+      "exists": true,
+      "sha256": "2a24d9c862ac051e61cd89049f677563604fa86c436daf71ae35fbfca33e4657",
+      "bytes": 20319,
+      "mtime_utc": "2026-09-21T20:06:12.174479+00:00"
+    },
+    "src/genesis_cognitive/agents/semantic_verifier.py": {
+      "exists": true,
+      "sha256": "c47a4b2697c3e8966afd9d1bea49974d0be861c678ebd3a90d0ff0ce80305f8e",
+      "bytes": 8369,
+      "mtime_utc": "2026-09-21T20:06:12.791661+00:00"
+    },
+    "src/genesis_cognitive/rag/azure_search_retrieve.py": {
+      "exists": true,
+      "sha256": "9880ead905a90b37bcc434f3bdc0fce586f41949a88c7fc05e2b57f181f440fe",
+      "bytes": 10927,
+      "mtime_utc": "2026-09-21T19:18:52.312813+00:00"
+    },
+    "src/genesis_cognitive/rag/grounding_verifier.py": {
+      "exists": true,
+      "sha256": "9ba181c1f64ca8eb80891b90ae605d62d59001b6ab3137b6794676b43eaefcc8",
+      "bytes": 7921,
+      "mtime_utc": "2026-09-21T19:20:28.904536+00:00"
+    },
+    "src/genesis_cognitive/router/field_guardrails.py": {
+      "exists": true,
+      "sha256": "eddf3f66241bc8a0f1cf28111f77fa8c9086a56dfdfcc742c6a603af16a1026d",
+      "bytes": 132205,
+      "mtime_utc": "2026-09-21T10:37:46.268428+00:00"
+    },
+    "src/genesis_cognitive/router/domain_classifier.py": {
+      "exists": true,
+      "sha256": "8f90b99c28ee6bf08356b6f94ad2af816194413e2f700bc91d90fd461b77f988",
+      "bytes": 6889,
+      "mtime_utc": "2026-09-21T20:06:27.028063+00:00"
+    },
+    "src/genesis_cognitive/demo/contract_inspector_app.py": {
+      "exists": true,
+      "sha256": "f06c3a6f7013b8327526d6bf5c092ca8f5e64a50c5cbd605a2a2a8974d1e1d64",
+      "bytes": 289937,
+      "mtime_utc": "2026-09-21T10:15:45.436171+00:00"
+    }
+  },
+  "packages": [
+    {
+      "path": "deploy\\corp-8446\\dist\\genesis_corp_8446.zip",
+      "sha256": "78a02d1c49d010caa86e6bd00991cb22a42da514dbe3d76c5fb66f6db1b4b608",
+      "bytes": 63621195,
+      "mtime_utc": "2026-09-21T11:25:41.162675+00:00"
+    },
+    {
+      "path": "deploy\\corp-8447\\instalador\\genesis_corp_8447.zip",
+      "sha256": "58e4b0a7914298099e610376aaae32b1e2d28f6e465067804a3b746ca6447a47",
+      "bytes": 60524459,
+      "mtime_utc": "2026-09-17T01:20:22.382790+00:00"
+    },
+    {
+      "path": "deploy\\corp-8446\\dist\\genesis_corp_8446.zip",
+      "sha256": "78a02d1c49d010caa86e6bd00991cb22a42da514dbe3d76c5fb66f6db1b4b608",
+      "bytes": 63621195,
+      "mtime_utc": "2026-09-21T11:25:41.162675+00:00"
+    },
+    {
+      "path": "deploy\\corp-8447\\instalador\\genesis_corp_8447.zip",
+      "sha256": "58e4b0a7914298099e610376aaae32b1e2d28f6e465067804a3b746ca6447a47",
+      "bytes": 60524459,
+      "mtime_utc": "2026-09-17T01:20:22.382790+00:00"
+    }
+  ]
+}

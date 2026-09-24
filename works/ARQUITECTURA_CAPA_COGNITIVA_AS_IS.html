@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arquitectura funcional — Capa cognitiva Genesis (AS-IS)</title>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#e8f0ea",
+        primaryTextColor: "#1a2e22",
+        primaryBorderColor: "#2f6b4f",
+        lineColor: "#4a6b58",
+        secondaryColor: "#f4f1e8",
+        tertiaryColor: "#ffffff",
+        fontFamily: "Segoe UI, system-ui, sans-serif"
+      },
+      flowchart: { htmlLabels: true, curve: "basis" },
+      sequence: { actorMargin: 28, messageMargin: 36 }
+    });
+  </script>
+  <style>
+    :root {
+      --ink: #1a2e22;
+      --muted: #5a6f63;
+      --line: #d5e0d8;
+      --bg: #f7f9f7;
+      --card: #ffffff;
+      --accent: #2f6b4f;
+      --accent-soft: #e8f0ea;
+      --warn: #8a5a12;
+      --warn-bg: #fbf3e4;
+      --code-bg: #eff3ef;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 10% -10%, #e4efe8 0%, transparent 55%),
+        radial-gradient(900px 400px at 100% 0%, #eef2ea 0%, transparent 50%),
+        var(--bg);
+      line-height: 1.55;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    header.hero {
+      padding: 1.75rem 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #ffffff 0%, var(--accent-soft) 100%);
+      margin-bottom: 1.75rem;
+    }
+    header.hero h1 {
+      margin: 0 0 0.4rem;
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      letter-spacing: -0.02em;
+      color: var(--accent);
+    }
+    header.hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 46rem;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.65rem;
+      margin-top: 1.1rem;
+    }
+    .meta div {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.92rem;
+    }
+    .meta strong { display: block; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    nav.toc {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(247,249,247,0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+    nav.toc strong { color: var(--accent); }
+    nav.toc ol {
+      margin: 0.4rem 0 0;
+      padding-left: 1.2rem;
+      columns: 2;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 700px) {
+      nav.toc ol { columns: 1; }
+    }
+    nav.toc a { color: var(--ink); text-decoration: none; }
+    nav.toc a:hover { color: var(--accent); text-decoration: underline; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.25rem 1.35rem 1.4rem;
+      margin-bottom: 1.1rem;
+    }
+    h2 {
+      margin: 0 0 0.85rem;
+      font-size: 1.25rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent-soft);
+      padding-bottom: 0.45rem;
+    }
+    h3 {
+      margin: 1.2rem 0 0.55rem;
+      font-size: 1.05rem;
+      color: #244836;
+    }
+    p { margin: 0.55rem 0; }
+    ul, ol { margin: 0.4rem 0 0.6rem; padding-left: 1.25rem; }
+    li { margin: 0.25rem 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+      margin: 0.75rem 0;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--accent-soft);
+      color: #1f3d2d;
+      font-weight: 600;
+    }
+    tr:nth-child(even) td { background: #fbfcfb; }
+    code, .mono {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.88em;
+      background: var(--code-bg);
+      padding: 0.08em 0.35em;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1a2e22;
+      color: #e8f0ea;
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    .diagram {
+      background: #fbfcfb;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 0.75rem;
+      margin: 0.9rem 0;
+      overflow-x: auto;
+    }
+    .mermaid { display: flex; justify-content: center; }
+    .callout {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn);
+      padding: 0.7rem 0.9rem;
+      border-radius: 0 8px 8px 0;
+      color: #5c4010;
+      margin: 0.8rem 0;
+    }
+    .rule {
+      background: var(--accent-soft);
+      border: 1px solid #c5d9cc;
+      border-radius: 10px;
+      padding: 0.75rem 0.9rem;
+      margin: 0.8rem 0;
+    }
+    footer {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>Arquitectura funcional — Capa cognitiva Genesis (AS-IS)</h1>
+      <p>Diagrama de componentes y explicación de cada pieza de <code>src/genesis_cognitive</code>, tal como está desplegada hoy.</p>
+      <div class="meta">
+        <div><strong>Fecha</strong>2026-09-14</div>
+        <div><strong>Instancia</strong>QA :8447 — <a href="http://20.127.25.24:8447/pruebas">20.127.25.24:8447/pruebas</a></div>
+        <div><strong>Entrada</strong><code>POST /turn</code> → <code>contract_inspector_app.inspect()</code></div>
+        <div><strong>Paquete</strong><code>src/genesis_cognitive</code></div>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="Tabla de contenidos">
+      <strong>Contenido</strong>
+      <ol>
+        <li><a href="#principio">Principio de diseño</a></li>
+        <li><a href="#componentes">Diagrama de componentes</a></li>
+        <li><a href="#secuencia">Secuencia de un turno</a></li>
+        <li><a href="#explicacion">Explicación de componentes</a></li>
+        <li><a href="#memoria">Estado conversacional</a></li>
+        <li><a href="#capas">Diagrama de capas</a></li>
+        <li><a href="#mapa">Mapa archivo → componente</a></li>
+        <li><a href="#fuera">Fuera de la capa</a></li>
+        <li><a href="#resumen">Resumen ejecutivo</a></li>
+      </ol>
+    </nav>
+
+    <section id="principio">
+      <h2>1. Principio de diseño (hoy)</h2>
+      <p>La cognitiva separa dos mundos y <strong>no los mezcla</strong>:</p>
+      <table>
+        <thead>
+          <tr><th>Tipo de pregunta</th><th>Quién responde</th><th>Fuente de verdad</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Personal</strong> (saldo, mi préstamo, mi tarjeta, fecha de pago mía, cuota…)</td>
+            <td>Cognitiva + snapshot del cliente</td>
+            <td>API Productos / Core → <code>CustomerContextSnapshot</code></td>
+          </tr>
+          <tr>
+            <td><strong>Conocimiento</strong> (qué es, catálogo, requisitos, reclamaciones, misión…)</td>
+            <td>FAQ/overlay → <strong>Foundry KB</strong> → Azure Search local → fallbacks</td>
+            <td><code>kb_faq_*.json</code> + índice <code>bsc-kb-conocimiento</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="rule"><strong>Regla dura:</strong> Foundry <strong>no</strong> inventa ni responde saldos, límites, cuotas ni fechas personales del portafolio autenticado.</div>
+    </section>
+
+    <section id="componentes">
+      <h2>2. Diagrama de componentes (vista lógica)</h2>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TB
+  subgraph CANALES["Canales"]
+    APK["APK Banca conversacional&lt;br/&gt;/chat/front · webhook"]
+    UI["UI /pruebas&lt;br/&gt;lab QA"]
+    ORCH["Orquestador / MCP Bridge&lt;br/&gt;:8080 · /orch/*"]
+  end
+
+  subgraph COG["Capa cognitiva — genesis_cognitive"]
+    DEMO["demo/&lt;br/&gt;contract_inspector_app&lt;br/&gt;Orquestador HTTP del turno"]
+    ROUTER["router/&lt;br/&gt;Fastpath · FAQ · follow-up&lt;br/&gt;guardrails · templates"]
+    CTX["context/&lt;br/&gt;Sesión · Snapshot&lt;br/&gt;Mapper Core · app_channel"]
+    AGENTS["agents/&lt;br/&gt;Domain · Product&lt;br/&gt;Proposer · Verifier"]
+    DECISION["decision/&lt;br/&gt;Capabilities · Route table&lt;br/&gt;SemanticContractGate"]
+    MI["model_input/&lt;br/&gt;Envelope para LLM"]
+    RAG["rag/&lt;br/&gt;Foundry KB · Cache&lt;br/&gt;Azure Search local"]
+    CONTRACTS["contracts/&lt;br/&gt;core_channel · dispatch"]
+    LEARN["learning/&lt;br/&gt;Feedback · rerank FAQ"]
+    SUPPORT["prompts · validation&lt;br/&gt;telemetry · inspection"]
+  end
+
+  subgraph EXTERNOS["Sistemas externos"]
+    REDIS[("Redis&lt;br/&gt;sesión + snapshot")]
+    CORE["Core / API Productos&lt;br/&gt;contexto cliente"]
+    AOAI["Azure OpenAI"]
+    FOUNDRY["Azure AI Foundry&lt;br/&gt;genesis-kb-agent-poc"]
+    SEARCH["Azure AI Search&lt;br/&gt;bsc-kb-conocimiento"]
+    FAQDATA[("FAQ + overlay&lt;br/&gt;JSON en disco")]
+  end
+
+  APK --> DEMO
+  UI --> DEMO
+  ORCH --> DEMO
+  DEMO --> ROUTER
+  DEMO --> CTX
+  DEMO --> AGENTS
+  DEMO --> DECISION
+  DEMO --> MI
+  DEMO --> RAG
+  DEMO --> CONTRACTS
+  ROUTER --> FAQDATA
+  ROUTER --> CTX
+  AGENTS --> AOAI
+  RAG --> FOUNDRY
+  RAG --> SEARCH
+  FOUNDRY --> SEARCH
+  CTX --> REDIS
+  CTX --> CORE
+  LEARN -.-> ROUTER
+  SUPPORT -.-> DEMO
+        </pre>
+      </div>
+    </section>
+
+    <section id="secuencia">
+      <h2>3. Diagrama de secuencia de un turno (AS-IS)</h2>
+      <div class="diagram">
+        <pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant C as Canal APK / UI
+  participant D as demo /turn · inspect
+  participant S as context sesión+snapshot
+  participant F as router fastpath
+  participant L as agents LLM
+  participant G as decision gate
+  participant R as rag Foundry/Search
+  participant T as templates + app_channel
+
+  C->>D: POST /turn question + conversation_id
+  D->>S: cargar sesión Redis/memoria + snapshot
+  alt context_info=true
+    D->>S: persistir contexto Core
+    D-->>C: OK sin LLM
+  else turno conversacional
+    D->>F: run_field_fastpath
+    Note over F: Moderación → reclamación → portafolio&lt;br/&gt;alcance → saludo → campos personales&lt;br/&gt;pago próximo → FAQ…
+    alt hit determinista
+      F-->>D: status + texto + options
+      D->>T: formatear canal
+      D-->>C: reply + app_channel
+    else miss
+      D->>D: early KB follow-up / compare / Foundry
+      D->>D: T2 pending / follow-up personal
+      alt aún sin respuesta
+        D->>L: domain + product + proposer/verifier
+        L->>G: SemanticContractGate
+        alt BUSINESS_KNOWLEDGE / RAG_PENDING
+          D->>R: Foundry → Search → FAQ fallback
+        end
+        D->>F: post-guardrails FAQ/snapshot/deposit
+        D->>T: final_response_agent + app_channel
+        D-->>C: reply + audit
+      end
+    end
+  end
+        </pre>
+      </div>
+    </section>
+
+    <section id="explicacion">
+      <h2>4. Explicación de cada componente</h2>
+
+      <h3>4.1 Canales (fuera del paquete, pero dependientes)</h3>
+      <table>
+        <thead><tr><th>Componente</th><th>Qué hace hoy</th></tr></thead>
+        <tbody>
+          <tr><td><strong>APK Banca conversacional</strong></td><td>Envía turnos a <code>/chat/front</code> (alias de <code>/turn</code>). Consume <code>reply</code> / <code>message</code> / <code>content</code> y <code>app_channel</code> (options, chips, masks).</td></tr>
+          <tr><td><strong>UI <code>/pruebas</code></strong></td><td>Laboratorio QA en :8447 para probar sin APK.</td></tr>
+          <tr><td><strong>Orquestador / MCP Bridge</strong></td><td>Proxy <code>/orch/*</code>. Login y carga de contexto; la cognitiva no “es” el Core, lo consume.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>4.2 <code>demo/</code> — Orquestador HTTP del turno</h3>
+      <p><strong>Archivo clave:</strong> <code>demo/contract_inspector_app.py</code></p>
+      <p>Es el <strong>cerebro de orquestación</strong> de la instancia cognitiva:</p>
+      <ul>
+        <li>Expone <code>POST /turn</code>, <code>/inspect</code>, <code>/chat/front</code>, <code>/pruebas</code>, proxies <code>/orch/*</code>.</li>
+        <li>Resuelve <code>customer_id</code> / <code>conversation_id</code>, carga sesión y snapshot.</li>
+        <li>Ejecuta el pipeline completo (fastpath → early KB → follow-ups → LLM → RAG → templates).</li>
+        <li>Arma la respuesta de canal (<code>app_channel</code>) y, si aplica, <code>core_channel</code>.</li>
+        <li>Mantiene estado conversacional: <code>last_resolved</code>, <code>pending_action</code>, <code>product_focus</code>, <code>last_knowledge_topic</code>.</li>
+      </ul>
+      <p>Sin este módulo no hay “capa cognitiva viva”: el resto son bibliotecas que él compone.</p>
+
+      <h3>4.3 <code>router/</code> — Fastpath determinista y políticas de routing</h3>
+      <table>
+        <thead><tr><th>Archivo</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code>field_guardrails.py</code></td><td><code>run_field_fastpath</code>: orden de reglas sin LLM</td></tr>
+          <tr><td><code>moderation.py</code></td><td>Higiene de lenguaje (capa 0)</td></tr>
+          <tr><td><code>faq_guardrail.py</code></td><td>Match FAQ base + overlay</td></tr>
+          <tr><td><code>knowledge_followup.py</code></td><td>Follow-ups cortos de KB + confidence gate</td></tr>
+          <tr><td><code>reclamacion_guardrail.py</code></td><td>Procesos de reclamación / overview</td></tr>
+          <tr><td><code>scope_guardrail.py</code></td><td>“¿En qué me puedes ayudar?”</td></tr>
+          <tr><td><code>deposit_guardrail.py</code></td><td>Cuentas / saldos específicos</td></tr>
+          <tr><td><code>snapshot_guardrails.py</code></td><td>Campos de préstamo desde snapshot</td></tr>
+          <tr><td><code>product_focus.py</code></td><td>Memoria de producto personal vs KB</td></tr>
+          <tr><td><code>final_response_agent.py</code></td><td>Templates de préstamo / TC / DAP / multi-campo</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Qué resuelve sin LLM (ejemplos actuales):</strong></p>
+      <ul>
+        <li>Saldos, límites, cortes, deudas de tarjeta.</li>
+        <li>Fechas de pago, escaneo “¿tengo préstamo o tarjeta con pago próximo?”.</li>
+        <li>Multi-pregunta de tarjeta (saldo + mínimo + disponible).</li>
+        <li>Débito personal vs crédito (no confundir catálogo/portafolio).</li>
+        <li>FAQ institucional (misión, glosario, etc.).</li>
+        <li>Clarificaciones con options APK cuando hay ambigüedad real.</li>
+      </ul>
+      <p><strong>Orden conceptual del fastpath (simplificado):</strong></p>
+      <pre><code>Moderación
+  → Reclamación / portafolio / alcance / saludo
+  → Préstamos · tarjetas · DAP · saldos · pagos próximos
+  → FAQ / overlay</code></pre>
+
+      <h3>4.4 <code>context/</code> — Sesión, portafolio y canal</h3>
+      <table>
+        <thead><tr><th>Pieza</th><th>Rol AS-IS</th></tr></thead>
+        <tbody>
+          <tr><td><code>customer_context_snapshot.py</code></td><td>Modelo inmutable del portafolio (cuentas, TC, préstamos, DAP).</td></tr>
+          <tr><td><code>core_portfolio_mapper.py</code></td><td>Traduce respuesta Core/API Productos → snapshot.</td></tr>
+          <tr><td><code>redis_session_store.py</code></td><td>Persistencia de sesión/snapshot en Redis.</td></tr>
+          <tr><td><code>reactive_store.py</code></td><td>Fallback in-memory (lab) + tipos de sesión (<code>LastResolved</code>, <code>PendingAction</code>, <code>ProductFocus</code>).</td></tr>
+          <tr><td><code>app_channel.py</code></td><td>Options APK, disambiguation questions, labels de producto.</td></tr>
+          <tr><td><code>product_display.py</code></td><td>Máscaras, listados, clarificaciones, multi-saldo.</td></tr>
+          <tr><td><code>response_formatting.py</code></td><td>Fichas rich (TC, préstamo, DAP) y <code>format_money</code>.</td></tr>
+        </tbody>
+      </table>
+      <div class="rule"><strong>Datos personales solo salen de aquí.</strong> Si Core no trae un campo (ej. cuota contractual), la cognitiva lo declara no disponible; no lo inventa.</div>
+
+      <h3>4.5 <code>agents/</code> — Camino LLM (cuando el fastpath no alcanza)</h3>
+      <table>
+        <thead><tr><th>Pieza</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code>agent_framework_turn_resolver.py</code></td><td>Orquesta llamadas al Microsoft Agent Framework / Azure OpenAI.</td></tr>
+          <tr><td>Clasificadores de dominio / producto</td><td><code>own_product</code> · <code>business_knowledge</code> · <code>ood</code> · <code>non_operational</code> y read vs mutation.</td></tr>
+          <tr><td><code>semantic_verifier.py</code></td><td>Verifica la propuesta del modelo contra contratos semánticos.</td></tr>
+          <tr><td><code>semantic_schema_builder.py</code> / <code>model_cognitive_result.py</code></td><td>Schemas y resultado cognitivo tipado.</td></tr>
+        </tbody>
+      </table>
+      <p>El LLM <strong>no</strong> es la primera opción: entra cuando no hay hit determinista y la pregunta no se resolvió en early Foundry/FAQ.</p>
+
+      <h3>4.6 <code>decision/</code> — Catálogo de capacidades y gate post-modelo</h3>
+      <table>
+        <thead><tr><th>Pieza</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code>capability_catalog.py</code></td><td>Qué intents/capabilities existen (saldo, detalle TC, KB, etc.).</td></tr>
+          <tr><td><code>route_table.py</code></td><td>Rutas (<code>PERSONAL_READ</code>, conocimiento, unsupported…).</td></tr>
+          <tr><td><code>semantic_contract_gate.py</code></td><td>Valida que la salida del modelo respete el contrato (refs, missing requirements, etc.).</td></tr>
+          <tr><td><code>types.py</code> / <code>capability_types.py</code></td><td>Tipos de decisión.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>4.7 <code>model_input/</code> — Envelope hacia el modelo</h3>
+      <p><strong>Archivo clave:</strong> <code>model_input/model_input_builder.py</code></p>
+      <p>Construye el <code>ModelInput</code> con capabilities efectivas, hint de dominio/producto, historial proyectado y contexto de sesión (<code>pending</code>, <code>last_resolved</code>). Evita que el LLM “vea” más de lo autorizado para ese turno.</p>
+
+      <h3>4.8 <code>rag/</code> — Conocimiento institucional</h3>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart LR
+  Q[Pregunta de conocimiento] --> FAQ[FAQ / overlay]
+  FAQ -->|score bajo / detalle| GATE[Confidence gate]
+  GATE --> FO[Foundry KB Agent]
+  FO --> IDX[(Azure Search&lt;br/&gt;bsc-kb-conocimiento)]
+  FO -->|miss / error| LOC[local_rag.py&lt;br/&gt;Search directo]
+  LOC -->|miss| FB[FAQ lexical / institucional / clarificación]
+        </pre>
+      </div>
+      <table>
+        <thead><tr><th>Pieza</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code>foundry_kb_agent.py</code></td><td>Cliente del agente Foundry (<code>genesis-kb-agent-poc</code>).</td></tr>
+          <tr><td><code>foundry_kb_cache.py</code></td><td>Cache local de respuestas KB no personales.</td></tr>
+          <tr><td><code>local_rag.py</code></td><td>RAG directo contra Azure Search + generación Azure OpenAI.</td></tr>
+          <tr><td><code>kb_intent_resolver.py</code></td><td>Resolución lexical auxiliar de temas KB.</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Flags típicos en :8447:</strong></p>
+      <ul>
+        <li><code>GENESIS_FOUNDRY_KB_AGENT=1</code></li>
+        <li><code>GENESIS_KB_CONFIDENCE_GATE=1</code></li>
+        <li><code>GENESIS_FOUNDRY_CACHE=1</code></li>
+        <li><code>AZURE_SEARCH_INDEX=bsc-kb-conocimiento</code></li>
+        <li><code>GENESIS_FAQ_OVERLAY_PATH=…/kb_faq_overlay_fase1.json</code></li>
+      </ul>
+
+      <h3>4.9 <code>contracts/</code> — Puente hacia Core / operaciones</h3>
+      <table>
+        <thead><tr><th>Pieza</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code>operation_request_adapter.py</code></td><td>Arma <code>core_channel</code> / operation request cuando el turno implica contrato hacia Core.</td></tr>
+          <tr><td><code>deterministic_dispatch.py</code></td><td>Dispatch determinista de operaciones (cuando aplica).</td></tr>
+        </tbody>
+      </table>
+      <p>Hoy la cognitiva es <strong>sobre todo consulta</strong>; mutaciones (transferir, pagar) suelen quedar en unsupported / mensaje de canal no habilitado.</p>
+
+      <h3>4.10 <code>learning/</code> — Aprendizaje auxiliar</h3>
+      <table>
+        <thead><tr><th>Pieza</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code>feedback_store.py</code></td><td>Almacén de feedback (SQLite).</td></tr>
+          <tr><td><code>embedding_rerank.py</code></td><td>Rerank por embeddings para mejorar ranking FAQ/RAG.</td></tr>
+        </tbody>
+      </table>
+      <p>No sustituye al fastpath ni a Foundry; es soporte de mejora continua.</p>
+
+      <h3>4.11 Soporte transversal</h3>
+      <table>
+        <thead><tr><th>Paquete</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code>prompts/</code></td><td>Prompts versionados para clasificadores / proposer / verifier.</td></tr>
+          <tr><td><code>validation/</code></td><td>Validación de payload de entrada del orquestador.</td></tr>
+          <tr><td><code>telemetry/</code></td><td>Tiempos de llamadas LLM / slow calls.</td></tr>
+          <tr><td><code>inspection/</code></td><td>Utilidades de inspección de contratos (demo/diagnóstico).</td></tr>
+          <tr><td><code>assembly/</code></td><td>Tipos de contrato externo (<code>ResolvedAction</code>, etc.).</td></tr>
+          <tr><td><code>types/</code>, <code>errors/</code></td><td>Tipos monetarios, constraints, errores tipados.</td></tr>
+          <tr><td><code>api/</code></td><td>Paquete vacío hoy; <strong>no</strong> hay API HTTP aparte de <code>demo/</code>.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="memoria">
+      <h2>5. Estado conversacional (componentes de memoria)</h2>
+      <p>No son servicios aparte, pero son <strong>componentes lógicos</strong> críticos:</p>
+      <table>
+        <thead><tr><th>Estado</th><th>Dónde vive</th><th>Para qué</th></tr></thead>
+        <tbody>
+          <tr><td><code>last_resolved</code></td><td>Sesión</td><td>Deíxis inmediata (“y la tasa?”, “y el saldo?”) sobre el mismo producto.</td></tr>
+          <tr><td><code>pending_action</code></td><td>Sesión</td><td>Clarificación APK pendiente (elegir tarjeta/préstamo/cuenta).</td></tr>
+          <tr><td><code>product_focus</code></td><td>Sesión</td><td>Memoria de producto personal que sobrevive turnos de KB.</td></tr>
+          <tr><td><code>last_knowledge_topic</code></td><td>Sesión</td><td>Follow-ups de conocimiento (“cómo se usa”, “y la del banco”).</td></tr>
+          <tr><td><code>CustomerContextSnapshot</code></td><td>Redis/memoria</td><td>Portafolio del cliente autenticado.</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Un follow-up con palabras como “pago/próxima” <strong>no</strong> debe reutilizar un DAP en foco si el usuario cambió a préstamo/tarjeta (ya corregido en routing).</div>
+    </section>
+
+    <section id="capas">
+      <h2>6. Diagrama de capas (vista de responsabilidad)</h2>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TB
+  L0["Capa 0 — Moderación"]
+  L1["Capa 1 — Fastpath determinista&lt;br/&gt;router/* + snapshot"]
+  L1b["Capa 1b — Early KB&lt;br/&gt;FAQ ampliado · Foundry · compare"]
+  L2["Capa 2 — LLM&lt;br/&gt;domain · product · proposer · verifier"]
+  L3["Capa 3 — RAG conocimiento&lt;br/&gt;Foundry → Search → fallbacks"]
+  L4["Capa 4 — Presentación&lt;br/&gt;templates · app_channel · core_channel"]
+
+  L0 --> L1 --> L1b --> L2 --> L3 --> L4
+        </pre>
+      </div>
+      <div class="callout">En código hay <strong>más early exits</strong> que en la documentación histórica <code>ORQUESTACION_FAQ_RAG.md</code>. Este documento refleja el comportamiento actual de <code>inspect()</code>.</div>
+    </section>
+
+    <section id="mapa">
+      <h2>7. Mapa archivo → componente (referencia rápida)</h2>
+      <table>
+        <thead><tr><th>Necesitas entender…</th><th>Empieza aquí</th></tr></thead>
+        <tbody>
+          <tr><td>Flujo completo de un turno</td><td><code>demo/contract_inspector_app.py</code></td></tr>
+          <tr><td>Reglas sin LLM</td><td><code>router/field_guardrails.py</code></td></tr>
+          <tr><td>FAQ + overlay</td><td><code>router/faq_guardrail.py</code> + <code>data/kb_faq_*.json</code></td></tr>
+          <tr><td>Foundry</td><td><code>rag/foundry_kb_agent.py</code></td></tr>
+          <tr><td>Azure Search local</td><td><code>rag/local_rag.py</code></td></tr>
+          <tr><td>Templates personales</td><td><code>router/final_response_agent.py</code></td></tr>
+          <tr><td>Options APK</td><td><code>context/app_channel.py</code></td></tr>
+          <tr><td>Snapshot Core</td><td><code>context/core_portfolio_mapper.py</code></td></tr>
+          <tr><td>Sesión Redis</td><td><code>context/redis_session_store.py</code></td></tr>
+          <tr><td>Gate post-LLM</td><td><code>decision/semantic_contract_gate.py</code></td></tr>
+          <tr><td>Política KB Foundry</td><td><code>docs/architecture/FOUNDRY_KB_AGENT_INSTRUCTIONS.md</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="fuera">
+      <h2>8. Qué está fuera de la capa cognitiva</h2>
+      <ul>
+        <li><strong>Core bancario / API Productos:</strong> fuente de portafolio; la cognitiva solo mapea y consulta.</li>
+        <li><strong>APK nativa:</strong> UI y auth de canal; no contiene la lógica de routing.</li>
+        <li><strong>Índice Azure Search / documentos MD/Excel:</strong> contenido de KB; se opera con scripts de indexación, no en cada turno Python.</li>
+        <li><strong>Puerto :8446:</strong> instancia legacy; los deploys de evolución van a <strong>:8447</strong>.</li>
+      </ul>
+    </section>
+
+    <section id="resumen">
+      <h2>9. Resumen ejecutivo</h2>
+      <p>La capa cognitiva AS-IS es un <strong>orquestador FastAPI</strong> (<code>demo</code>) que:</p>
+      <ol>
+        <li>Responde lo personal con <strong>reglas + snapshot</strong> (sin Foundry).</li>
+        <li>Responde lo institucional con <strong>FAQ → Foundry → Search</strong>.</li>
+        <li>Usa <strong>LLM</strong> solo cuando el fastpath no cierra el turno.</li>
+        <li>Entrega al canal un texto + <strong><code>app_channel</code></strong> (options/chips) listo para APK.</li>
+      </ol>
+      <p>Esa es la arquitectura de componentes <strong>como está hoy</strong> en el código y en QA :8447.</p>
+    </section>
+
+    <footer>
+      Genesis Cognitiva · documento AS-IS · fuente Markdown: <code>works/ARQUITECTURA_CAPA_COGNITIVA_AS_IS.md</code>
+    </footer>
+  </div>
+</body>
+</html>

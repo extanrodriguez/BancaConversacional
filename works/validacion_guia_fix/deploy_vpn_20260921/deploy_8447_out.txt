@@ -1,0 +1,27 @@
+***
+=== Genesis 8447 Deploy (paralelo a 8446) ===
+Target: /opt/genesis-cognitive-8447/Genesis_v2
+[0] Backup versión 8447 actual...
+***
+  Backup: /opt/genesis-cognitive-8447/backups/genesis_v2_20260921_112742.tar.gz
+[1] Verificando 8446 legacy (no se modifica)...
+curl: (7) Failed to connect to 127.0.0.1 port 8446 after 0 ms: Couldn't connect to server
+  WARN: 8446 no responde
+[3] Preparando directorio...
+[4] Extrayendo paquete...
+[5] .env listo (8447 + FAQ + Foundry + Azure Brain + gate + cache)
+[6] venv + dependencias...
+[7] Verificando imports...
+ALL_IMPORTS_OK
+[8] systemd genesis-cognitive-8447.service...
+[9] Health check :8447 ...
+  8447 health OK
+[10] /pruebas OK
+[11] private 192.168.150.5:8447 health OK
+curl: (7) Failed to connect to 127.0.0.1 port 8446 after 0 ms: Couldn't connect to server
+
+=== Deploy 8447 complete ===
+  Publica:  http://20.127.25.24:8447/pruebas
+  Privada:  http://192.168.150.5:8447/pruebas
+  (GENESIS_HOST=0.0.0.0 → escucha en ambas IPs)
+  8446 legacy intacto en :8446

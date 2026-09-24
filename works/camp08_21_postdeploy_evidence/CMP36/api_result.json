@@ -1,0 +1,78 @@
+{
+  "case_id": "CMP36",
+  "section": 19,
+  "questions": [
+    "Compárame tasa nominal y tasa anual efectiva."
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    1334
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuáles productos del catálogo deseas comparar?\n\nTienes varios productos con tasa de interés. ¿Cuál quieres consultar:\n\n• **Préstamo personal (...####)**\n• **Préstamo hipotecario (...####)**\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**",
+  "replies_sanitized": [
+    "¿Cuáles productos del catálogo deseas comparar?\n\nTienes varios productos con tasa de interés. ¿Cuál quieres consultar:\n\n• **Préstamo personal (...####)**\n• **Préstamo hipotecario (...####)**\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**\n• **Tarjeta Joven (••••####)**\n• **Multicredito Empleado (••••####)**"
+  ],
+  "options_count": 7,
+  "options_labels": [
+    "Préstamo personal (...####)",
+    "Préstamo hipotecario (...####)",
+    "Certificado de depósito (...####)",
+    "Certificado de depósito (...####)",
+    "Certificado de depósito (...####)",
+    "Tarjeta Joven (••••####)",
+    "Multicredito Empleado (••••####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 5,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 5,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "fd3751d7-4b6d-422d-a811-c7f2be31b4c4",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:kb_catalog_compare",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 2,
+          "task_statuses": {
+            "t1": "needs_clarification",
+            "t2": "needs_clarification"
+          },
+          "evidence_sources": [
+            "snapshot"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "shortcut_ms": 2.3
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 5
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CLARIFICATION"
+}

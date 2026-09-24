@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://genesis.local/schemas/orchestrator_turn_request.schema.json",
+  "title": "Orchestrator Turn Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "conversation_id",
+    "customer_id",
+    "subject_token",
+    "request_id",
+    "correlation_id",
+    "user_turn",
+    "channel_context"
+  ],
+  "properties": {
+    "type": {
+      "const": "USER_MESSAGE"
+    },
+    "conversation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "customer_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "subject_token": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "user_turn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_text"
+      ],
+      "properties": {
+        "raw_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        }
+      }
+    },
+    "channel_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "channel",
+        "client_slot",
+        "authenticated",
+        "locale"
+      ],
+      "properties": {
+        "channel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "client_slot": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "authenticated": {
+          "type": "boolean"
+        },
+        "locale": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 32,
+          "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+        }
+      }
+    }
+  }
+}

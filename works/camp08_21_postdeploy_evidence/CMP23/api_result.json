@@ -1,0 +1,60 @@
+{
+  "case_id": "CMP23",
+  "section": 19,
+  "questions": [
+    "¿Qué diferencia hay entre un préstamo para vehículo y un préstamo con garantía mobiliaria?"
+  ],
+  "http": [
+    200
+  ],
+  "ms": [
+    317
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "Felix Prestamos, i. Préstamos con “Garantía Mobiliaria”: aquellos que tienen un bien mueble bajo su propiedad, como un vehículo, maquinaria, mercancía o un certificado de depósito, u otros instrumentos financieros aceptados por El Banco como garantía para respaldar la facilidad de crédito. En los párrafos siguientes se detallan los distintos tipos de Préstamos Personales con Garantía Prendaria que ofrece Banco Santa Cruz.",
+  "replies_sanitized": [
+    "Felix Prestamos, i. Préstamos con “Garantía Mobiliaria”: aquellos que tienen un bien mueble bajo su propiedad, como un vehículo, maquinaria, mercancía o un certificado de depósito, u otros instrumentos financieros aceptados por El Banco como garantía para respaldar la facilidad de crédito. En los párrafos siguientes se detallan los distintos tipos de Préstamos Personales con Garantía Prendaria que ofrece Banco Santa Cruz."
+  ],
+  "options_count": 0,
+  "options_labels": [],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "posible acierto; revisar criterio completo",
+  "audit": {
+    "total_ms": 99,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 99,
+    "step_count": 1,
+    "rag_status": "FAQ",
+    "correlation_id": "cf1e7f5f-a2d2-4d55-980a-f0432ff8b142",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "deterministic_fastpath_pre_azure",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "field_fastpath:faq",
+          "brain_source": "deterministic_fastpath_pre_azure",
+          "fastpath_step": "faq",
+          "account_ref": null,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 91.5
+          },
+          "not_heuristic_fallback": false,
+          "deterministic_bridge": true,
+          "inference_count": 0,
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 99
+      }
+    ]
+  },
+  "app_status": "VALID_CONTRACT",
+  "intent_id": "BUSINESS_KNOWLEDGE_QUERY"
+}

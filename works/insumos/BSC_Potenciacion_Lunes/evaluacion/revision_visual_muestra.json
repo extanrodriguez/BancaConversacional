@@ -1,0 +1,35 @@
+{
+  "scope": "6 de 493 imágenes; no revisión exhaustiva",
+  "samples": [
+    {
+      "case_id": "P01",
+      "image": "images/img_0001.png",
+      "finding": "Aclaración y ficha; una captura parcial no acredita todas las facetas del recorrido."
+    },
+    {
+      "case_id": "TC03",
+      "image": "images/img_0212.png",
+      "finding": "Respuesta sobre definición de cliente ante características de Visa Joven; contradice etiqueta histórica Cumple."
+    },
+    {
+      "case_id": "GR03",
+      "image": "images/img_0301.png",
+      "finding": "Respuesta con capital del préstamo ante proceso de reclamación; contradice etiqueta Cumple."
+    },
+    {
+      "case_id": "GR09",
+      "image": "images/img_0313.png",
+      "finding": "Respuesta de definición de cliente ante fallecimiento; contradice etiqueta Cumple."
+    },
+    {
+      "case_id": "MIX10",
+      "image": "images/img_0409.png",
+      "finding": "Definición de Multicrédito ante procedimiento de cancelación de préstamo."
+    },
+    {
+      "case_id": "CC02",
+      "image": "images/img_0470.png",
+      "finding": "Infinite conservada como segunda referencia, pero descripción repetida."
+    }
+  ]
+}

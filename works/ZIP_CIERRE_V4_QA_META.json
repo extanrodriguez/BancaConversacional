@@ -1,0 +1,8 @@
+{
+  "zip": "BancaConversacional_Cierre_V4_QA_20260918.zip",
+  "sha256": "f9f8488df3cefbcfb86ff32056052a927ce38420efc46f5a059b45a3f91a8e99",
+  "bytes": 795723,
+  "utc": "2026-09-18T13:07:33.430002+00:00",
+  "includes_redis_entra_async": true,
+  "note": "No secrets. Orquestador externo no incluido."
+}

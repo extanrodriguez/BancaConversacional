@@ -1,0 +1,214 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "reference-1"
+      ]
+    },
+    "turn_operation": {
+      "type": "string",
+      "enum": [
+        "new",
+        "continue",
+        "correct",
+        "switch",
+        "mixed"
+      ]
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "knowledge",
+              "procedure",
+              "security",
+              "conversation"
+            ]
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "read",
+              "explain",
+              "compare",
+              "check_ownership",
+              "clarify",
+              "protect",
+              "orient"
+            ]
+          },
+          "object": {
+            "type": "string"
+          },
+          "selector": {
+            "type": "object",
+            "properties": {
+              "reference_text": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "personal",
+                  "catalog",
+                  "concept",
+                  "none"
+                ]
+              },
+              "product_family": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "candidate_product_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "catalog_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "currency": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "ordinal": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "relation": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "reference_text",
+              "scope",
+              "product_family",
+              "candidate_product_ids",
+              "catalog_ids",
+              "currency",
+              "ordinal",
+              "relation"
+            ],
+            "additionalProperties": false
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excluded_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "knowledge_query": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "clarification_needed": {
+            "type": "boolean"
+          },
+          "clarification_question": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "task_id",
+          "domain",
+          "action",
+          "object",
+          "selector",
+          "fields",
+          "excluded_fields",
+          "knowledge_query",
+          "depends_on",
+          "clarification_needed",
+          "clarification_question"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "corrections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target_task_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reference_text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_task_ids",
+          "reference_text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "comparison_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retained_pending_task_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "turn_operation",
+    "tasks",
+    "corrections",
+    "comparison_order",
+    "retained_pending_task_ids"
+  ],
+  "additionalProperties": false
+}

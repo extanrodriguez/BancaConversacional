@@ -1,0 +1,90 @@
+{
+  "case_id": "CC04",
+  "section": 20,
+  "questions": [
+    "Compárame un préstamo con garantía y uno sin garantía.",
+    "Háblame de los requisitos del primero.",
+    "¿Y del otro?",
+    "En el que tiene garantía, ¿qué tipos de garantía existen?",
+    "Explícame específicamente el de garantía con certificado."
+  ],
+  "http": [
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "ms": [
+    1241,
+    261,
+    221,
+    216,
+    492
+  ],
+  "context_source": "lab_fixture_qa_726588_contract_demo",
+  "reply_sanitized": "¿Cuál certificado deseas consultar:\n\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**",
+  "replies_sanitized": [
+    "¿Cuál de estos productos deseas consultar:\n\n• **Cuenta de ahorros ...####**\n• **Cuenta corriente ...####**",
+    "Felix Prestamos, tu saldo actual en Cuenta de ahorros ...#### es de **RD$[AMT]**.",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "No pude completar la consulta con la información disponible. Para más información contacte las líneas de atención del banco:\n\n• Centro de Contacto: [809.726.####](tel:+####)\n• Correo: [serviciobancanet@bsc.com.do](mailto:serviciobancanet@bsc.com.do)\n• Web: [bsc.com.do](https://bsc.com.do/)\n• Centro de Negocios o BSC en Línea",
+    "¿Cuál certificado deseas consultar:\n\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**\n• **Certificado de depósito (...####)**"
+  ],
+  "options_count": 3,
+  "options_labels": [
+    "Certificado de depósito (...####)",
+    "Certificado de depósito (...####)",
+    "Certificado de depósito (...####)"
+  ],
+  "status_eval": "PENDING_EVALUATION",
+  "reason": "requiere juicio semántico por criterio del caso",
+  "audit": {
+    "total_ms": 273,
+    "slowest_step": "azure_plan",
+    "slowest_step_ms": 273,
+    "step_count": 1,
+    "rag_status": "NOT_REQUIRED",
+    "correlation_id": "a1ca5e4d-e503-42ac-97bb-457f0cac941b",
+    "route_steps": [
+      "azure_plan"
+    ],
+    "brain_source": "structured_shortcut",
+    "context_source": null,
+    "inference_count": 0,
+    "semantic_mode": "azure_plan",
+    "decision_trace": [
+      {
+        "step": "azure_plan",
+        "output": {
+          "semantic_mode": "azure_plan",
+          "route_source": "shortcut:heuristic_personal_plan",
+          "brain_source": "structured_shortcut",
+          "deployment": "gpt-6-astra",
+          "task_count": 1,
+          "task_statuses": {
+            "t1": "needs_clarification"
+          },
+          "evidence_sources": [
+            "snapshot"
+          ],
+          "field_accreditation": null,
+          "payment_window": null,
+          "transition": "none",
+          "calls": [],
+          "inference_count": 0,
+          "failed_model_attempts": 0,
+          "stage_timings_ms": {
+            "deterministic_fastpath_ms": 264.9,
+            "shortcut_ms": 2.6
+          },
+          "cognitive_code_version": "potenciacion-strict-v2.2",
+          "knowledge_version": "bsc-kb-2026-09-19-candidate-1"
+        },
+        "duration_ms": 273
+      }
+    ]
+  },
+  "app_status": "requires_selection",
+  "intent_id": "CLARIFICATION"
+}
